@@ -1,6 +1,78 @@
 import sys
+import keyboard
+
+#Constants
+STREET = 0
+STREET_NUMBER = 1
+
+def init_suburbs():
+    global Suburbs
+    rows, cols = (6, 5)
+    Suburbs = [[0 for i in range(cols)] for j in range(rows)]
+
+def startGame():
+    global playerChoice
+    print("Welcome to pizza run!\nA pen and paper is advised.")
+
+    while playerChoice != "start" and playerChoice != "yes":
+        print("start?")
+        playerChoice = input("> ")
+
+def get_current_street_number():
+    global playerPosition
+
+    if playerPosition[STREET_NUMBER] == 0:
+        return "I"
+    elif playerPosition[STREET_NUMBER] == 1:
+        return "II"
+    elif playerPosition[STREET_NUMBER] == 2:
+        return "III"
+    elif playerPosition[STREET_NUMBER] == 3:
+        return "IV"
+    elif playerPosition[STREET_NUMBER] == 4:
+        return "V"
+
+def get_current_street_name():
+    global playerPosition
+
+    if playerPosition[STREET] == 0:
+        return "Bush "
+    elif playerPosition[STREET] == 1:
+        return "Love "
+    elif playerPosition[STREET] == 2:
+        return "Freedom "
+    elif playerPosition[STREET] == 3:
+        return "First "
+    elif playerPosition[STREET] == 4:
+        return "Tree "
+    elif playerPosition[STREET] == 5:
+        return "Duck "
+
+def print_address():
+    address = get_current_street_name()
+    address += get_current_street_number()
+    print("\n" + address + "\n")
+    
+
 def main():
-    print("hello world!")
+    global Suburbs, playerPosition, playerChoice
+    init_suburbs()
+
+    playerChoice = ""
+    playerPosition = [3, 3]
+    
+    #For debug
+    for row in Suburbs:
+        print(row)
+
+    querters = ["Suburbs", "Skyscrapers", "Shakedown", "Hood", "Square"]
+
+    startGame()
+
+    print_address()
+
+    
+    print("you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is probably 16.\nYou know the place.\nThere's a locked door to the west.\nthere's a key on the floor, a massive pile of hot pizza and a note on the counter")
     
 if __name__ == '__main__':
-    sys.exit(main()) 
+    sys.exit(main())
