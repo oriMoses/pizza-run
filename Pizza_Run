@@ -59,9 +59,13 @@ def checkSouthDirection():
 
 def commonChoices():
     if "inventory" in playerChoice:
-        print(inventory)
-        #TODO: print inventory
+        if "pizzaHub_key" in inventory:
+            print(inventory["pizzaHub_key"])
+        else:
+            if len(inventory) == 0:
+                print("nothing there")
         return True
+
     elif "help" in playerChoice:
         print("Help yourself Geez.")
         return True
@@ -78,47 +82,58 @@ def commonChoices():
         print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)")
 
     else:
+        if "pick" in playerChoice and "key" in playerChoice:
+            print("no key around.")
         return False
 
 def three_three_position():
-    global keyPickedUp, inventory, playerPosition
+    global keyPickedUp, inventory, playerPosition, playerChoice
     while True:
         playerChoice = input("> ").lower()
 
         if "pick" in playerChoice and "key" in playerChoice or keyPickedUp:
-            inventory.append("pizzaHub key")
+            inventory.append("pizzaHub_key")
             print("Key added to your inventory")
             keyPickedUp = True
-            break# instead of break send to other point
-        
-        elif commonChoices:
+                    
+        elif commonChoices():
             pass
         else:
-            print("pardon me?")
+            print("pardon mmmme?")
 
         if "go" in playerChoice:
             if "south" in playerChoice:
                 playerPosition = [4, 3]
+                print_address()
                 four_three_position()
             elif "north" in playerChoice:
                 playerPosition = [2, 3]
+                print_address()
                 two_three_position()
             elif "west" in playerChoice:
                 playerPosition = [3, 4]
+                print_address()
                 three_four_position()
             elif "east" in playerChoice:
                 playerPosition = [3, 2]
+                print_address()
                 three_two_position() 
 
 def four_three_position():
+    global playerChoice
     while True:
-        print("in four three")
+        playerChoice = input("> ").lower()
+        if commonChoices():
+            pass
+        else:
+            print("pardon me?")
+
 def two_three_position():
     while True:
         pass
 def three_four_position():
     while True:
-        if inventory["pizzaHubKey"]:
+        if inventory["pizzaHub_key"]:
             pass
         else:
             print("The door is locked (as doors should be)")
