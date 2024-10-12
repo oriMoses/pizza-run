@@ -4,7 +4,7 @@ from Rooms.pizza_place import PizzaPlace
 from Classes.inventory import Inventory
 from Rooms.parking import Parking
 from Classes.player import Player
-from Classes.common_choices import commonChoices
+from Classes.common_choices import CommonChoices
 import Utils
 
 def init_suburbs():
@@ -16,9 +16,9 @@ def startGame():
     global player
     print("Welcome to pizza run!\nA pen and paper is advised.")
 
-    while player.playerChoice != "start" and player.playerChoice != "yes":
+    while player.choice != "start" and player.choice != "yes":
         print("start?")
-        player.playerChoice = input("> ")
+        player.choice = input("> ")
 
 def checkSouthDirection():
     #print(playerPosition[STREET])
@@ -48,33 +48,34 @@ def three_two_position():
         pass
 
 def init_classes():
+    global pizzaPlaceObject, parkingObject, player, inventory, commonChoiceObject
     pizzaPlaceObject = PizzaPlace()
     parkingObject = Parking()
     player = Player(parkingObject.location)
+    commonChoiceObject = CommonChoices()
+    inventory = Inventory()
+
 
 def main():
-    global querters, playerPosition, player, inventory
-
-    Utils.print_address()
+    global querters, player, commonChoiceObject
+    init_classes()
+    Utils.print_address(player)
 
     Suburbs = [0],[0]
     querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]
-    inventory = Inventory()
 
     init_suburbs()
-
-    playerPosition = [3, 3]
     
     startGame()
 
-    Utils.print_address()
+    Utils.print_address(player)
 
 
     # inventory.update_item("I001", 100, 505.00)
 
 
     print("you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is probably 16.\nYou know the place.\nThere's a locked door to the west.\nthere's a key on the floor, a massive pile of hot pizza and a note on the counter")    
-    pizzaPlaceObject.dialogCircle()
+    pizzaPlaceObject.dialog_circle()
 
 if __name__ == '__main__':
     sys.exit(main())

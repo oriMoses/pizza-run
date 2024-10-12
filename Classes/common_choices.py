@@ -1,10 +1,15 @@
-class commonChoices():
+class CommonChoices():
     def __init__(self):
         pass
-        #check_inventory_input(playerChoice, inventory)
 
+    def check_player_input(self, playerChoice):
+        self.check_inventory_input(playerChoice)
+        self.check_help_input(playerChoice)
+        self.check_bike_input(playerChoice)
+        self.check_read_note_input(playerChoice)
+        self.check_pick_key_input(playerChoice)
 
-    def check_inventory_input(self, playerChoice, inventory):
+    def check_inventory_input(self, playerChoice):
         if "inventory" in playerChoice:
             if "pizzaHub_key" in inventory:
                 print(inventory["pizzaHub_key"])
