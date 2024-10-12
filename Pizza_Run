@@ -1,6 +1,6 @@
 import sys
 import keyboard
-
+from parking import ParkingClass
 #Constants
 STREET = 0
 STREET_NUMBER = 1
@@ -145,6 +145,11 @@ def three_two_position():
 
 def main():
     global querters, playerPosition, playerChoice, keyPickedUp, inventory
+
+    parkingObject = ParkingClass()
+    print(parkingObject.location)
+    playerPosition = parkingObject.location
+    print_address()
 
     Suburbs = [0],[0]
     querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]
