@@ -1,19 +1,18 @@
 import sys
 import keyboard
-import Classes.settings as settings
-import Utils
+import Classes.settings as Settings
 
 def init_suburbs():
     global querters
     rows, cols = (6, 5)
-    settings.querters["Suburbs"] = [[0 for i in range(cols)] for j in range(rows)]
+    Settings.querters["Suburbs"] = [[0 for i in range(cols)] for j in range(rows)]
 
 def startGame():
     print("Welcome to pizza run!\nA pen and paper is advised.")
 
-    while settings.player.choice != "start" and settings.player.choice != "yes":
+    while Settings.player.choice != "start" and Settings.player.choice != "yes":
         print("start?")
-        settings.player.choice = input("> ")
+        Settings.player.choice = input("> ")
 
 def checkSouthDirection():
     print("laaa")
@@ -39,8 +38,8 @@ def three_two_position():
 
 
 def main():
-    settings.init()
-    Utils.print_address(settings.player)
+    Settings.init()
+    Settings.print_address()
 
 
 
@@ -48,14 +47,14 @@ def main():
     
     startGame()
 
-    Utils.print_address(settings.player)
+    Settings.print_address()
 
 
     # inventory.update_item("I001", 100, 505.00)
 
 
     print("you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is probably 16.\nYou know the place.\nThere's a locked door to the west.\nthere's a key on the floor, a massive pile of hot pizza and a note on the counter")    
-    settings.pizzaPlaceObject.dialog_circle(settings.commonChoiceObject)
+    Settings.pizzaPlaceObject.dialog_circle(Settings.commonChoiceObject)
 
 if __name__ == '__main__':
     sys.exit(main())
