@@ -11,7 +11,7 @@ class CommonChoices():
         
     def check_inventory_input(self):
         if "inventory" in Settings.player.choice:
-
+            Settings.player.inventory.print_all()
             # if "pizzaHub_key" in player.inventory:
             #     print(inventory["pizzaHub_key"])
             # else:

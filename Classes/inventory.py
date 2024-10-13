@@ -22,6 +22,11 @@ class Inventory():
         else:
             return "Item not found in inventory."
         
+    def print_all(self):
+        for item in self.inventory:
+            print(self.inventory[item]['item_name'], self.inventory[item]['stock_count'])
+            #TODO: change the above line to print all inventory as Ron says
+
     def check_item_exist(self, item_id):
         if item_id in self.inventory:
             return True

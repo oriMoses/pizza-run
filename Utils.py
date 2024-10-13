@@ -5,7 +5,8 @@ STREET_NUMBER = 1
 
 class pizza_temprature(Enum):
     HOT = 0,
-    COLD = 1
+    COLD = 1,
+    UNAVAILABLE = 2
 
 def print_address(player):
     address = get_current_street_name(player)

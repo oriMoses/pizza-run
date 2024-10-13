@@ -3,7 +3,6 @@ from Rooms.parking import Parking
 from Classes.player import Player
 from Classes.common_choices import CommonChoices
 
-one = 1
 def init():
     global pizzaPlaceObject, parkingObject, player, commonChoiceObject, Suburbs, querters
     parkingObject = Parking()
