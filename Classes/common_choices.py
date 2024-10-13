@@ -52,26 +52,42 @@ class CommonChoices():
         if "go" in Settings.player.choice:
             if "south" in Settings.player.choice:
                 if(Settings.street_in_boundary(Settings.player.position[0] + 1, \
-                                                        Settings.player.position[1])):
+                                                Settings.player.position[1])):
                     Settings.player.position[0] = Settings.player.position[0] + 1
                     Settings.print_address()
-                    #TODO: add start_dialog
+                                                #TODO: add start_dialog
                 else:
                     print("place out of bounds")
 
             elif "north" in Settings.player.choice:
-                Settings.player.position = [2, 3]
-                Settings.print_address()
+                if(Settings.street_in_boundary(Settings.player.position[0] - 1, \
+                                                Settings.player.position[1])):
+                    Settings.player.position[0] = Settings.player.position[0] - 1
+                    Settings.print_address()
+                                                #TODO: add start_dialog
+                else:
+                    print("place out of bounds")
+
                 
                 #two_three_position()
             elif "west" in Settings.player.choice:
-                Settings.player.position = [3, 4]
-                Settings.print_address()
+                if(Settings.street_in_boundary(Settings.player.position[0], \
+                                                Settings.player.position[1] + 1)):
+                    Settings.player.position[1] = Settings.player.position[1] + 1
+                    Settings.print_address()
+                                                #TODO: add start_dialog
+                else:
+                    print("place out of bounds")
                 
                 #three_four_position()
             elif "east" in Settings.player.choice:
-                Settings.player.position = [3, 2]
-                Settings.print_address()
+                if(Settings.street_in_boundary(Settings.player.position[0], \
+                                                Settings.player.position[1] - 1)):
+                    Settings.player.position[1] = Settings.player.position[1] - 1
+                    Settings.print_address()
+                                                #TODO: add start_dialog
+                else:
+                    print("place out of bounds")
                 
                 #three_two_position() 
             

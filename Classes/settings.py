@@ -9,7 +9,7 @@ STREET_NUMBER = 1
 SUBURBS_MIN_STREET_BOUNDARY = 0
 SUBURBS_MAX_STREET_BOUNDARY = 5
 SUBURBS_MIN_STREET_NUMBER_BOUNDARY = 0
-SUBURBS_MAX_STREET_NUMBER_BOUNDARY = 5
+SUBURBS_MAX_STREET_NUMBER_BOUNDARY = 4
 
 def init():
     global pizzaPlaceObject, parkingObject, player, commonChoiceObject, Suburbs, querters
@@ -58,10 +58,10 @@ def street_in_boundary(streetPoition, streetNumberPosition):
         if streetPoition < SUBURBS_MIN_STREET_BOUNDARY or \
             streetPoition > SUBURBS_MAX_STREET_BOUNDARY:
             return False
-        
+
         if streetNumberPosition < SUBURBS_MIN_STREET_NUMBER_BOUNDARY or \
             streetNumberPosition > SUBURBS_MAX_STREET_NUMBER_BOUNDARY:
             return False
-        
+
         return True
     
