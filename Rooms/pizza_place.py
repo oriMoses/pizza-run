@@ -1,39 +1,40 @@
-from property_boxes import suburbsMatrixProperties
+from property_boxes import suburbsBox
 from Classes.common_choices import CommonChoices
 import Utils
+import Classes.settings as Settings
 
-class PizzaPlace(suburbsMatrixProperties):
+class PizzaPlace():
     def __init__(self):
-        suburbsMatrixProperties.__init__(self, [3,3])
+        suburbsBox.__init__(self, [3,3])
 
-    def dialog_circle(self):
-        global inventory, playerPosition, playerChoice, commonChoiceObject
+    def dialog_circle(self, commonChoiceObject):
         while True:
-            playerChoice = input("> ").lower()
+            Settings.player.choice = input("> ").lower()
 
-            if commonChoiceObject.check_player_input(playerChoice):
+            if commonChoiceObject.check_player_input():
                 pass
-            else:
-                print("pardon mmmme?")
 
-            if "go" in playerChoice:
-                if "south" in playerChoice:
+            elif "go" in Settings.player.choice:
+                if "south" in Settings.player.choice:
                     playerPosition = [4, 3]
                     Utils.print_address()
                     
                     #four_three_position()
-                elif "north" in playerChoice:
+                elif "north" in Settings.player.choice:
                     playerPosition = [2, 3]
                     Utils.print_address()
                     
                     #two_three_position()
-                elif "west" in playerChoice:
+                elif "west" in Settings.player.choice:
                     playerPosition = [3, 4]
                     Utils.print_address()
                     
                     #three_four_position()
-                elif "east" in playerChoice:
+                elif "east" in Settings.player.choice:
                     playerPosition = [3, 2]
                     Utils.print_address()
                     
                     #three_two_position() 
+                
+            else:
+                print("Pardon me?")

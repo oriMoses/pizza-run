@@ -1,4 +1,4 @@
-from property_boxes import suburbsMatrixProperties
-class Parking(suburbsMatrixProperties):
+from property_boxes import suburbsBox
+class Parking(suburbsBox):
     def __init__(self):
-        suburbsMatrixProperties.__init__(self, [3,2])
+        suburbsBox.__init__(self, [3,2])

@@ -1,81 +1,61 @@
 import sys
 import keyboard
-from Rooms.pizza_place import PizzaPlace
-from Classes.inventory import Inventory
-from Rooms.parking import Parking
-from Classes.player import Player
-from Classes.common_choices import CommonChoices
+import Classes.settings as settings
 import Utils
 
 def init_suburbs():
     global querters
     rows, cols = (6, 5)
-    querters["Suburbs"] = [[0 for i in range(cols)] for j in range(rows)]
+    settings.querters["Suburbs"] = [[0 for i in range(cols)] for j in range(rows)]
 
 def startGame():
-    global player
     print("Welcome to pizza run!\nA pen and paper is advised.")
 
-    while player.choice != "start" and player.choice != "yes":
+    while settings.player.choice != "start" and settings.player.choice != "yes":
         print("start?")
-        player.choice = input("> ")
+        settings.player.choice = input("> ")
 
 def checkSouthDirection():
-    #print(playerPosition[STREET])
     print("laaa")
 
 def four_three_position():
-    global player
     while True:
-        player.playerChoice = input("> ").lower()
-        if commonChoices():
-            pass
-        else:
-            print("pardon me?")
+        pass
+        # player.playerChoice = input("> ").lower()
+        # if commonChoices():
+        #     pass
+        # else:
+        #     print("pardon me?")
 
 def two_three_position():
     while True:
         pass
 def three_four_position():
     while True:
-        if inventory["pizzaHub_key"]:
-            pass
-        else:
-            print("The door is locked (as doors should be)")
         pass
 def three_two_position():
     while True:
         pass
 
-def init_classes():
-    global pizzaPlaceObject, parkingObject, player, inventory, commonChoiceObject
-    pizzaPlaceObject = PizzaPlace()
-    parkingObject = Parking()
-    player = Player(parkingObject.location)
-    commonChoiceObject = CommonChoices()
-    inventory = Inventory()
-
 
 def main():
-    global querters, player, commonChoiceObject
-    init_classes()
-    Utils.print_address(player)
+    settings.init()
+    Utils.print_address(settings.player)
 
-    Suburbs = [0],[0]
-    querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]
+
 
     init_suburbs()
     
     startGame()
 
-    Utils.print_address(player)
+    Utils.print_address(settings.player)
 
 
     # inventory.update_item("I001", 100, 505.00)
 
 
     print("you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is probably 16.\nYou know the place.\nThere's a locked door to the west.\nthere's a key on the floor, a massive pile of hot pizza and a note on the counter")    
-    pizzaPlaceObject.dialog_circle()
+    settings.pizzaPlaceObject.dialog_circle(settings.commonChoiceObject)
 
 if __name__ == '__main__':
     sys.exit(main())
