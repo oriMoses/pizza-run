@@ -39,10 +39,6 @@ def three_two_position():
 
 def main():
     Settings.init()
-    Settings.print_address()
-
-
-
     init_suburbs()
     
     startGame()

@@ -1,9 +1,10 @@
 from Utils import pizza_temprature
+#TODO: add inventory to every object like bike, pizza_place etc.
 class Inventory():
     def __init__(self):
         self.inventory = {}
 
-    def add_item(self, item_id, item_name, stock_count, pizza_temprature = pizza_temprature.HOT):
+    def add_item(self, item_id, item_name, stock_count, pizza_temprature = pizza_temprature.NOT_A_PIZZA):
         self.inventory[item_id] = {"item_name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature}
 
     def update_item(self, item_id, stock_count, price):
@@ -23,9 +24,9 @@ class Inventory():
             return "Item not found in inventory."
         
     def print_all(self):
+        print("Inventory:")
         for item in self.inventory:
-            print(self.inventory[item]['item_name'], self.inventory[item]['stock_count'])
-            #TODO: change the above line to print all inventory as Ron says
+            print(self.inventory[item]['item_name'], self.inventory[item]['stock_count'], "\n")
 
     def check_item_exist(self, item_id):
         if item_id in self.inventory:
