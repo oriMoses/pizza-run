@@ -11,14 +11,16 @@ SUBURBS_MAX_STREET_BOUNDARY = 5
 SUBURBS_MIN_STREET_NUMBER_BOUNDARY = 0
 SUBURBS_MAX_STREET_NUMBER_BOUNDARY = 4
 
+KEY_ID = 0
+
 def init():
     global pizzaPlaceObject, parkingObject, player, commonChoiceObject, Suburbs, querters
     parkingObject = Parking()
     pizzaPlaceObject = PizzaPlace()
-    player = Player(parkingObject.location)
+    player = Player(pizzaPlaceObject.location)
     commonChoiceObject = CommonChoices()
 
-
+    goNextRoom = False
     Suburbs = [0],[0]
     querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]
 

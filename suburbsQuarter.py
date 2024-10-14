@@ -1,4 +1,4 @@
-class suburbsBox:
+class suburbsQuarter:
     def __init__(self, location):
         self.location = location
     

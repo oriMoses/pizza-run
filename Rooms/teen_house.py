@@ -7,7 +7,7 @@ class Parking(suburbsQuarter):
         self.firstArrival = True
 
     def dialog_circle(self, commonChoiceObject):
-        print("Parking")
+        print("Teen house")
         if self.firstArrival:
             print("You are in the pizza parking lot.")
             self.firstArrival = False

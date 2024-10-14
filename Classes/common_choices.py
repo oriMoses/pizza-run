@@ -12,11 +12,6 @@ class CommonChoices():
     def check_inventory_input(self):
         if "inventory" in Settings.player.choice:
             Settings.player.inventory.print_all()
-            # if "pizzaHub_key" in player.inventory:
-            #     print(inventory["pizzaHub_key"])
-            # else:
-            #     if len(inventory) == 0:
-            #         print("nothing there")
             return True
 
     def check_help_input(self):
@@ -39,9 +34,9 @@ class CommonChoices():
 
     def check_pick_key_input(self):
         if "pick" in Settings.player.choice and "key" in Settings.player.choice:
-            if not Settings.player.inventory.check_item_exist("I001"):
+            if not Settings.player.inventory.item_exist(0):
                 #TODO: add if key.position == player.position
-                Settings.player.inventory.add_item("I001", "key", 1)
+                Settings.player.inventory.add_item(0, "key", 1)
                 print("Key added to your inventory")
                 return True
             else:
@@ -49,47 +44,39 @@ class CommonChoices():
                 return True
     
     def check_go_input(self):
-        if "go" in Settings.player.choice:
-            if "south" in Settings.player.choice:
-                if(Settings.street_in_boundary(Settings.player.position[0] + 1, \
-                                                Settings.player.position[1])):
-                    Settings.player.position[0] = Settings.player.position[0] + 1
-                    Settings.print_address()
-                                                #TODO: add start_dialog
-                else:
-                    print("place out of bounds")
+        # if "go" in Settings.player.choice:
+        if "south" in Settings.player.choice:
+            if(Settings.street_in_boundary(Settings.player.position[0] + 1, \
+                                            Settings.player.position[1])):
+                Settings.player.position[0] = Settings.player.position[0] + 1
+                Settings.goNextRoom = True
+            else:
+                print("place out of bounds")
 
-            elif "north" in Settings.player.choice:
-                if(Settings.street_in_boundary(Settings.player.position[0] - 1, \
-                                                Settings.player.position[1])):
-                    Settings.player.position[0] = Settings.player.position[0] - 1
-                    Settings.print_address()
-                                                #TODO: add start_dialog
-                else:
-                    print("place out of bounds")
+        elif "north" in Settings.player.choice:
+            if(Settings.street_in_boundary(Settings.player.position[0] - 1, \
+                                            Settings.player.position[1])):
+                Settings.player.position[0] = Settings.player.position[0] - 1
+                Settings.print_address()
+                Settings.goNextRoom = True
+            else:
+                print("place out of bounds")
 
-                
-                #two_three_position()
-            elif "west" in Settings.player.choice:
-                if(Settings.street_in_boundary(Settings.player.position[0], \
-                                                Settings.player.position[1] + 1)):
-                    Settings.player.position[1] = Settings.player.position[1] + 1
-                    Settings.print_address()
-                                                #TODO: add start_dialog
-                else:
-                    print("place out of bounds")
-                
-                #three_four_position()
-            elif "east" in Settings.player.choice:
-                if(Settings.street_in_boundary(Settings.player.position[0], \
-                                                Settings.player.position[1] - 1)):
-                    Settings.player.position[1] = Settings.player.position[1] - 1
-                    Settings.print_address()
-                                                #TODO: add start_dialog
-                else:
-                    print("place out of bounds")
-                
-                #three_two_position() 
+        elif "west" in Settings.player.choice:
+            if(Settings.street_in_boundary(Settings.player.position[0], \
+                                            Settings.player.position[1] - 1)):
+                Settings.player.position[1] = Settings.player.position[1] - 1
+                Settings.goNextRoom = True
+            else:
+                print("place out of bounds")
+            
+        elif "east" in Settings.player.choice:
+            if(Settings.street_in_boundary(Settings.player.position[0], \
+                                            Settings.player.position[1] + 1)):
+                Settings.player.position[1] = Settings.player.position[1] + 1
+                Settings.goNextRoom = True
+            else:
+                print("place out of bounds")
             
         else:
             print("Pardon me?")

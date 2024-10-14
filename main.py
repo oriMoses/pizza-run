@@ -14,27 +14,14 @@ def startGame():
         print("start?")
         Settings.player.choice = input("> ")
 
-def checkSouthDirection():
-    print("laaa")
+def choose_player_room():
+    Settings.goNextRoom = False
+    Settings.print_address()
+    if Settings.player.position == [3,3]:
+        Settings.pizzaPlaceObject.dialog_circle(Settings.commonChoiceObject)
 
-def four_three_position():
-    while True:
-        pass
-        # player.playerChoice = input("> ").lower()
-        # if commonChoices():
-        #     pass
-        # else:
-        #     print("pardon me?")
-
-def two_three_position():
-    while True:
-        pass
-def three_four_position():
-    while True:
-        pass
-def three_two_position():
-    while True:
-        pass
+    elif Settings.player.position == [3,2]:
+        Settings.parkingObject.dialog_circle(Settings.commonChoiceObject)
 
 
 def main():
@@ -43,14 +30,9 @@ def main():
     
     startGame()
 
-    Settings.print_address()
+    while True:
+        choose_player_room()
 
-
-    # inventory.update_item("I001", 100, 505.00)
-
-
-    print("you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is probably 16.\nYou know the place.\nThere's a locked door to the west.\nthere's a key on the floor, a massive pile of hot pizza and a note on the counter")    
-    Settings.pizzaPlaceObject.dialog_circle(Settings.commonChoiceObject)
 
 if __name__ == '__main__':
     sys.exit(main())

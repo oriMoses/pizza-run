@@ -28,7 +28,7 @@ class Inventory():
         for item in self.inventory:
             print(self.inventory[item]['item_name'], self.inventory[item]['stock_count'], "\n")
 
-    def check_item_exist(self, item_id):
+    def item_exist(self, item_id):
         if item_id in self.inventory:
             return True
         else:
