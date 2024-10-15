@@ -16,5 +16,5 @@ class Parking(suburbsQuarter):
                 break
             Settings.player.choice = input("> ").lower()
 
-            if commonChoiceObject.check_player_input():
+            if commonChoiceObject.check_player_input(self.inventory):
                 pass

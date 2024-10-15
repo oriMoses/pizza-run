@@ -1,11 +1,15 @@
 from suburbsQuarter import suburbsQuarter
-from Classes.common_choices import CommonChoices
+from Classes.handle_choices import HandleChoices
+from Classes.inventory import Inventory
 import Classes.settings as Settings
+from Utils import pizza_temprature
 
 class PizzaPlace():
     def __init__(self):
         suburbsQuarter.__init__(self, [3,3])
         self.firstArrival = True
+        self.inventory = Inventory()
+        self.inventory.add_item(Settings.PIZZA_ID, "Pizza", 100, pizza_temprature.HOT)
 
     def dialog_circle(self, commonChoiceObject):
         print("Main Pizza Place")
@@ -21,20 +25,23 @@ class PizzaPlace():
             if Settings.goNextRoom:
                 break
             Settings.player.choice = input("> ").lower()
+
             if "look" in Settings.player.choice or "lookaround" in Settings.player.choice:
                 print("You see massive pile of hot pizza and a small note on the counter.")
 
-            # elif "go" in Settings.player.choice:
             elif "north" in Settings.player.choice or "south" in Settings.player.choice \
                                                     or "east" in Settings.player.choice:
                 print("You can't go that way")
 
-            elif "west" in Settings.player.choice:
+            elif "west" in Settings.player.choice or "get" in Settings.player.choice and "out" in Settings.player.choice or \
+                                    "through" in Settings.player.choice and "door" in Settings.player.choice:
                 if Settings.player.inventory.item_exist(Settings.KEY_ID):
+                    print("click")
+                    Settings.player.choice = "west"
                     commonChoiceObject.check_player_input()
                     break
                 else:
-                    print("The door is locked")
+                    print("The door is locked (as doors should be)")
 
-            elif commonChoiceObject.check_player_input():
+            elif commonChoiceObject.check_player_input(self.inventory):
                 pass

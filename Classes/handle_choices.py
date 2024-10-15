@@ -1,12 +1,14 @@
 import Classes.settings as Settings
-class CommonChoices():
+from Utils import pizza_temprature
+class HandleChoices():
     def __init__(self):
         pass
 
-    def check_player_input(self):
+    def check_player_input(self, roomInventory):
         if self.check_inventory_input() or self.check_help_input()      \
             or self.check_bike_input() or self.check_read_note_input()  \
-            or self.check_pick_key_input() or self.check_go_input():
+            or self.check_pick_key_input() or self.check_go_input() or \
+                self.check_pick_pizza_input(roomInventory):
                 return True
         
     def check_inventory_input(self):
@@ -43,8 +45,52 @@ class CommonChoices():
                 print("You already have the key.")
                 return True
     
+    def check_pick_pizza_input(self, roomInventory):
+        if "pick" in Settings.player.choice and "pizza" in Settings.player.choice:
+            if not Settings.player.inventory.item_exist(Settings.PIZZA_ID):
+                Settings.player.inventory.add_item(Settings.PIZZA_ID, "Pizza", 0, pizza_temprature.HOT)
+
+
+            pizzasOnPlayer = Settings.player.inventory.get_amount(Settings.PIZZA_ID)
+
+            if pizzasOnPlayer < Settings.MAX_PIZZA_ON_PLAYER:
+                pizzasToAdd = 0
+                if "1" in Settings.player.choice:
+                    if 1 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
+                        pizzasToAdd = 1
+                    else:
+                        print("You can't carry more than 5 pizzas")
+
+                elif "2" in Settings.player.choice:
+                    if 2 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
+                        pizzasToAdd = 2
+                    else:
+                        print("You can't carry more than 5 pizzas")
+                        
+                elif "3" in Settings.player.choice:
+                    if 3 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
+                        pizzasToAdd = 3
+                    else:
+                        print("You can't carry more than 5 pizzas")
+
+                elif "4" in Settings.player.choice:
+                    if 4 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
+                        pizzasToAdd = 4
+                    else:
+                        print("You can't carry more than 5 pizzas")
+
+                elif "5" in Settings.player.choice:
+                    if 5 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
+                        pizzasToAdd = 5
+                    else:
+                        print("You can't carry more than 5 pizzas")
+
+                if pizzasToAdd != 0:
+                    pizzaOnInventory = roomInventory.get_amount(Settings.PIZZA_ID)
+                    roomInventory.update_item(Settings.PIZZA_ID, pizzaOnInventory - pizzasToAdd)
+                    Settings.player.inventory.update_item(Settings.PIZZA_ID, pizzasOnPlayer + pizzasToAdd)
+
     def check_go_input(self):
-        # if "go" in Settings.player.choice:
         if "south" in Settings.player.choice:
             if(Settings.street_in_boundary(Settings.player.position[0] + 1, \
                                             Settings.player.position[1])):
@@ -77,6 +123,3 @@ class CommonChoices():
                 Settings.goNextRoom = True
             else:
                 print("place out of bounds")
-            
-        else:
-            print("Pardon me?")

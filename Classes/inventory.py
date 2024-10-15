@@ -1,5 +1,4 @@
 from Utils import pizza_temprature
-#TODO: add inventory to every object like bike, pizza_place etc.
 class Inventory():
     def __init__(self):
         self.inventory = {}
@@ -7,7 +6,7 @@ class Inventory():
     def add_item(self, item_id, item_name, stock_count, pizza_temprature = pizza_temprature.NOT_A_PIZZA):
         self.inventory[item_id] = {"item_name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature}
 
-    def update_item(self, item_id, stock_count, price):
+    def update_item(self, item_id, stock_count):
         if item_id in self.inventory:
             self.inventory[item_id]["stock_count"] = stock_count
         else:
@@ -33,3 +32,9 @@ class Inventory():
             return True
         else:
             return False
+        
+    def get_amount(self, item_id):
+        if item_id in self.inventory:
+            return self.inventory[item_id]['stock_count']
+        else:
+            return 0
