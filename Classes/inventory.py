@@ -1,4 +1,5 @@
 from Utils import pizza_temprature
+import Classes.settings as Settings
 class Inventory():
     def __init__(self):
         self.inventory = {}
@@ -25,14 +26,28 @@ class Inventory():
     def print_all(self):
         print("Inventory:")
         for item in self.inventory:
-            print(self.inventory[item]['item_name'], self.inventory[item]['stock_count'], "\n")
+            if self.inventory[item]['stock_count'] != 0:
+                print(self.inventory[item]['item_name'], self.inventory[item]['stock_count'], "\n")
 
     def item_exist(self, item_id):
         if item_id in self.inventory:
             return True
         else:
             return False
-        
+
+    def hot_pizza_exists(self, amount):
+        for item in self.inventory:
+            if self.inventory[item]['item_name'] == "HotPizza":
+                if self.inventory[item]['stock_count'] >= amount:
+                    return True
+
+    def cold_pizza_exists(self, amount):
+        for item in self.inventory:
+            if self.inventory[item]['item_name'] == "ColdPizza":
+                if self.inventory[item]['stock_count'] >= amount:
+                    return True
+
+
     def get_amount(self, item_id):
         if item_id in self.inventory:
             return self.inventory[item_id]['stock_count']

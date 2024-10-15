@@ -23,6 +23,12 @@ def choose_player_room():
     elif Settings.player.position == [3,2]:
         Settings.parkingObject.dialog_circle(Settings.commonChoiceObject)
 
+    elif Settings.player.position == [3,1]:
+        Settings.threeOne.dialog_circle(Settings.commonChoiceObject)
+
+    elif Settings.player.position == [2,1]:
+        Settings.teenHouseObject.dialog_circle(Settings.commonChoiceObject)
+
 
 def main():
     Settings.init()

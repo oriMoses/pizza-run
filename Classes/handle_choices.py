@@ -47,11 +47,8 @@ class HandleChoices():
     
     def check_pick_pizza_input(self, roomInventory):
         if "pick" in Settings.player.choice and "pizza" in Settings.player.choice:
-            if not Settings.player.inventory.item_exist(Settings.PIZZA_ID):
-                Settings.player.inventory.add_item(Settings.PIZZA_ID, "Pizza", 0, pizza_temprature.HOT)
-
-
-            pizzasOnPlayer = Settings.player.inventory.get_amount(Settings.PIZZA_ID)
+            pizzasOnPlayer = Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) + \
+                            Settings.player.inventory.get_amount(Settings.COLD_PIZZA_ID)
 
             if pizzasOnPlayer < Settings.MAX_PIZZA_ON_PLAYER:
                 pizzasToAdd = 0
@@ -86,9 +83,19 @@ class HandleChoices():
                         print("You can't carry more than 5 pizzas")
 
                 if pizzasToAdd != 0:
-                    pizzaOnInventory = roomInventory.get_amount(Settings.PIZZA_ID)
-                    roomInventory.update_item(Settings.PIZZA_ID, pizzaOnInventory - pizzasToAdd)
-                    Settings.player.inventory.update_item(Settings.PIZZA_ID, pizzasOnPlayer + pizzasToAdd)
+                    hotPizzaInRoom = roomInventory.get_amount(Settings.HOT_PIZZA_ID)
+                    if hotPizzaInRoom < pizzasToAdd:
+                        coldPizzaInRoom = roomInventory.get_amount(Settings.COLD_PIZZA_ID)
+                        if coldPizzaInRoom < pizzasToAdd:
+                            print("Not enough pizza in the room")
+                        else:
+                            roomInventory.update_item(Settings.COLD_PIZZA_ID, coldPizzaInRoom - pizzasToAdd)
+                            Settings.player.inventory.update_item(Settings.COLD_PIZZA_ID, pizzasOnPlayer + pizzasToAdd)
+
+
+                    else:
+                        roomInventory.update_item(Settings.HOT_PIZZA_ID, hotPizzaInRoom - pizzasToAdd)
+                        Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, pizzasOnPlayer + pizzasToAdd)
 
     def check_go_input(self):
         if "south" in Settings.player.choice:

@@ -1,20 +1,70 @@
 from suburbsQuarter import suburbsQuarter
 import Classes.settings as Settings
-
-class Parking(suburbsQuarter):
+from Classes.inventory import Inventory
+from Utils import pizza_temprature
+class TeenHouse(suburbsQuarter):
     def __init__(self):
-        suburbsQuarter.__init__(self, [3,2])
+        suburbsQuarter.__init__(self, [2,1])
         self.firstArrival = True
+        self.inventory = Inventory()
+        self.inventory.add_item(Settings.HOT_PIZZA_ID, "HotPizza", 0)
+        self.inventory.add_item(Settings.COLD_PIZZA_ID, "ColdPizza", 0)
+
+        self.door_knocked = False
+
+    def print_first_arrival(self):
+        print("You see a family house, no cars in front.\nIt's sounds like there's about million teenagers inside")
+
+    def first_arrival(self):
+        if self.firstArrival:
+            self.print_first_arrival()
+            self.firstArrival = False
+
+    def give_pizza(self):
+        if "give" in Settings.player.choice:
+            if "pizza" in Settings.player.choice:
+                return True
+            
+    def howMuchPizza(self):
+        for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER):
+            if str(numberOfPizza) in Settings.player.choice:
+                return numberOfPizza
 
     def dialog_circle(self, commonChoiceObject):
-        print("Teen house")
-        if self.firstArrival:
-            print("You are in the pizza parking lot.")
-            self.firstArrival = False
+        print("Teen House:")
+
+        self.first_arrival()
+
         while True:
             if Settings.goNextRoom:
                 break
+
             Settings.player.choice = input("> ").lower()
 
-            if commonChoiceObject.check_player_input(self.inventory):
+            if self.door_knocked:
+                if self.give_pizza():
+                    numberOfPizza = self.howMuchPizza()
+
+                    if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
+                        print("thanks! Damm, that smells amazing")
+                        print(numberOfPizza*2, " coin up tip")
+                        Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + 10)
+                        break
+                    elif Settings.player.inventory.cold_pizza_exists(numberOfPizza):
+                        print("thanks! Damm, that's cold")
+                        print(numberOfPizza, " coin up tip")
+                        Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + 5)
+                        break
+                    else:
+                        print("Not enough pizza in inventory")
+
+            if "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
+                self.print_first_arrival()
+
+            elif "knock" in Settings.player.choice:
+                if "door" in Settings.player.choice or "house" in Settings.player.choice:
+                    self.door_knocked = True
+                    print('(door opened)\n "Pizzas hereeee"')
+
+            elif commonChoiceObject.check_player_input(self.inventory):
                 pass

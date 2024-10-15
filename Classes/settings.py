@@ -1,8 +1,9 @@
 from Rooms.pizza_place import PizzaPlace
 from Rooms.parking import Parking
+from Rooms.none_special_room import NoneSpecialRoom
+from Rooms.teen_house import TeenHouse
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
-
 #constants
 STREET = 0
 STREET_NUMBER = 1
@@ -12,16 +13,21 @@ SUBURBS_MIN_STREET_NUMBER_BOUNDARY = 0
 SUBURBS_MAX_STREET_NUMBER_BOUNDARY = 4
 
 KEY_ID = 0
-PIZZA_ID = 1
+COLD_PIZZA_ID = 1
+HOT_PIZZA_ID = 2
+COIN_ID = 3
 
 MAX_PIZZA_ON_PLAYER = 5
 
 def init():
-    global pizzaPlaceObject, parkingObject, player, commonChoiceObject, Suburbs, querters
+    global pizzaPlaceObject, parkingObject, player, commonChoiceObject, Suburbs, querters, threeOne\
+            ,teenHouseObject
     parkingObject = Parking()
     pizzaPlaceObject = PizzaPlace()
-    player = Player(pizzaPlaceObject.location)
     commonChoiceObject = HandleChoices()
+    threeOne = NoneSpecialRoom(3,1)
+    teenHouseObject = TeenHouse()
+    player = Player(teenHouseObject.location) # Starting point for player
 
     goNextRoom = False
     Suburbs = [0],[0]
