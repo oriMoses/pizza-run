@@ -2,6 +2,10 @@ from Rooms.pizza_place import PizzaPlace
 from Rooms.parking import Parking
 from Rooms.none_special_room import NoneSpecialRoom
 from Rooms.teen_house import TeenHouse
+from Rooms.blue_house import BlueHouse
+from Rooms.hippie_house import HippieHouse
+from Rooms.gatekeeper import Gatekeeper
+from Rooms.mini_market import MiniMarket
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
 #constants
@@ -22,7 +26,7 @@ AMOOUNT_OF_ORDERS_IN_SUBURBS = 11
 
 def init_orders():
     global suburbsOrders
-    suburbsOrders = [(3, 'Blue House'),(5, teenHouseObject), (3, 'Hippie House'), (1, 'Gatekeeper'), (1, 'Minimarket'), (1, 'Green House'), (2, 'Yellow House'), (1, 'Pink House'), (5, 'Bush Garden')]
+    suburbsOrders = [(3, blueHouseObject),(5, teenHouseObject), (3, hippieHouseObject), (1, gatekeeperObject), (1, miniMarketObject), (1, 'Green House'), (2, 'Yellow House'), (1, 'Pink House'), (5, 'Bush Garden')]
 
 def get_orders_for(object):
     for item in suburbsOrders:
@@ -59,7 +63,11 @@ def init_suburbs():
     Suburbs[3][3] = pizzaPlaceObject
     Suburbs[3][2] = parkingObject
     Suburbs[2][1] = teenHouseObject
-    
+    Suburbs[4][1] = blueHouseObject
+    Suburbs[1][0] = hippieHouseObject
+    Suburbs[5][2] = gatekeeperObject
+    Suburbs[1][3] = miniMarketObject
+
     ######Debug
     # for i in range(suburbs_cols):
     #     for j in range(suburbs_rows):
@@ -68,12 +76,19 @@ def init_suburbs():
     
 def init():
     global pizzaPlaceObject, parkingObject, player, commonChoiceObject, querters \
-            ,teenHouseObject, goNextRoom
+            ,teenHouseObject, blueHouseObject, hippieHouseObject, gatekeeperObject, miniMarketObject\
+                , goNextRoom
     parkingObject = Parking()
     pizzaPlaceObject = PizzaPlace()
     commonChoiceObject = HandleChoices()
     teenHouseObject = TeenHouse()
+    blueHouseObject = BlueHouse()
+    hippieHouseObject = HippieHouse()
+    gatekeeperObject = Gatekeeper()
+    miniMarketObject = MiniMarket()
+
     player = Player(pizzaPlaceObject.location) # Starting point for player
+
 
     init_suburbs()
     init_orders()
