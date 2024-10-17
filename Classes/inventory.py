@@ -44,7 +44,7 @@ class Inventory():
     def cold_pizza_exists(self, amount):
         for item in self.inventory:
             if self.inventory[item]['item_name'] == "ColdPizza":
-                if self.inventory[item]['stock_count'] >= amount:
+                if self.inventory[item]['stock_count'] >= int(amount):
                     return True
 
 

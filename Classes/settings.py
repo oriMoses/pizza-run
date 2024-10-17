@@ -19,18 +19,31 @@ COIN_ID = 3
 
 MAX_PIZZA_ON_PLAYER = 5
 
+def init_suburbs():
+    global Suburbs
+    rows, cols = (6, 5)
+
+    Suburbs = [[0]*cols]*rows
+
+    for i in range(rows):
+        for j in range(cols):
+            Suburbs[i][j] = NoneSpecialRoom(i, j)
+
 def init():
-    global pizzaPlaceObject, parkingObject, player, commonChoiceObject, Suburbs, querters, threeOne\
-            ,teenHouseObject
+    global pizzaPlaceObject, parkingObject, player, commonChoiceObject, Suburbs, querters \
+            ,teenHouseObject, goNextRoom
     parkingObject = Parking()
     pizzaPlaceObject = PizzaPlace()
     commonChoiceObject = HandleChoices()
-    threeOne = NoneSpecialRoom(3,1)
     teenHouseObject = TeenHouse()
-    player = Player(teenHouseObject.location) # Starting point for player
+    player = Player(pizzaPlaceObject.location) # Starting point for player
+
+    init_suburbs()
+    Suburbs[3][2] = parkingObject
+    Suburbs[3][3] = pizzaPlaceObject
+    Suburbs[2][1] = teenHouseObject
 
     goNextRoom = False
-    Suburbs = [0],[0]
     querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]
 
 def print_address():

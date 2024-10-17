@@ -1,11 +1,7 @@
 import sys
 import keyboard
 import Classes.settings as Settings
-
-def init_suburbs():
-    global querters
-    rows, cols = (6, 5)
-    Settings.querters["Suburbs"] = [[0 for i in range(cols)] for j in range(rows)]
+from Rooms.none_special_room import NoneSpecialRoom
 
 def startGame():
     print("Welcome to pizza run!\nA pen and paper is advised.")
@@ -17,22 +13,11 @@ def startGame():
 def choose_player_room():
     Settings.goNextRoom = False
     Settings.print_address()
-    if Settings.player.position == [3,3]:
-        Settings.pizzaPlaceObject.dialog_circle(Settings.commonChoiceObject)
 
-    elif Settings.player.position == [3,2]:
-        Settings.parkingObject.dialog_circle(Settings.commonChoiceObject)
-
-    elif Settings.player.position == [3,1]:
-        Settings.threeOne.dialog_circle(Settings.commonChoiceObject)
-
-    elif Settings.player.position == [2,1]:
-        Settings.teenHouseObject.dialog_circle(Settings.commonChoiceObject)
-
+    Settings.Suburbs[Settings.player.position[0]][Settings.player.position[1]].dialog_circle(Settings.commonChoiceObject)
 
 def main():
     Settings.init()
-    init_suburbs()
     
     startGame()
 

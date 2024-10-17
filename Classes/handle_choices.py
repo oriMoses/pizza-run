@@ -110,7 +110,6 @@ class HandleChoices():
             if(Settings.street_in_boundary(Settings.player.position[0] - 1, \
                                             Settings.player.position[1])):
                 Settings.player.position[0] = Settings.player.position[0] - 1
-                Settings.print_address()
                 Settings.goNextRoom = True
             else:
                 print("place out of bounds")
