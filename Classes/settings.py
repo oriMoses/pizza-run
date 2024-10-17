@@ -18,6 +18,14 @@ HOT_PIZZA_ID = 2
 COIN_ID = 3
 
 MAX_PIZZA_ON_PLAYER = 5
+AMOOUNT_OF_ORDERS_IN_SUBURBS = 11
+
+def init_orders():
+    global suburbsOrders
+    suburbsOrders = [(3, 'Blue House'),(5, teenHouseObject), (3, 'Hippie House'), (1, 'Gatekeeper'), (1, 'Minimarket'), (1, 'Green House'), (2, 'Yellow House'), (1, 'Pink House'), (5, 'Bush Garden')]
+
+def get_orders_for(object):
+    return([item for item in suburbsOrders if object in item][0][0])
 
 def init_suburbs():
     global Suburbs
@@ -54,6 +62,7 @@ def init():
     player = Player(pizzaPlaceObject.location) # Starting point for player
 
     init_suburbs()
+    init_orders()
 
     goNextRoom = False
     querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]

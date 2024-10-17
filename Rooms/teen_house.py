@@ -12,6 +12,9 @@ class TeenHouse(suburbsQuarter):
 
         self.door_knocked = False
 
+    def __str__(self):
+        return f"TeenHouse"
+
     def print_first_arrival(self):
         print("You see a family house, no cars in front.\nIt's sounds like there's about million teenagers inside")
 
@@ -24,11 +27,12 @@ class TeenHouse(suburbsQuarter):
         if "give" in Settings.player.choice:
             if "pizza" in Settings.player.choice:
                 return True
-            
+    
     def howMuchPizza(self):
         for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER+1):
             if str(numberOfPizza) in Settings.player.choice:
                 return numberOfPizza
+        return 0
 
     def dialog_circle(self, commonChoiceObject):
         print("Teen House:")
@@ -44,16 +48,22 @@ class TeenHouse(suburbsQuarter):
             if self.door_knocked:
                 if self.give_pizza():
                     numberOfPizza = self.howMuchPizza()
-                    if numberOfPizza != 0 and numberOfPizza != 1 and numberOfPizza !=2 and numberOfPizza != 3 and numberOfPizza != 4 and numberOfPizza != 5:
-                        continue
 
                     if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
-                        Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
+                        print(Settings.get_orders_for(Settings.teenHouseObject))
+                        print(numberOfPizza)
+                        if Settings.get_orders_for(Settings.teenHouseObject) == numberOfPizza:
+                            Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
 
-                        print("thanks! Damm, that smells amazing")
-                        print(numberOfPizza*2, " coin up tip")
-                        Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
-                        break
+                            print("thanks! Damm, that smells amazing")
+                            print(numberOfPizza*2, " coin up tip")
+                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+                            break
+                        else:
+                            print(numberOfPizza)
+                            print(Settings.get_orders_for(Settings.teenHouseObject))
+                            print("Not the corrent amount of pizza")
+
                     elif Settings.player.inventory.cold_pizza_exists(numberOfPizza):
                         Settings.player.inventory.update_item(Settings.COLD_PIZZA_ID, Settings.player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
 
