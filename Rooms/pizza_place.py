@@ -11,6 +11,10 @@ class PizzaPlace():
         self.inventory = Inventory()
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 100, pizza_temprature.HOT)
 
+    def __str__(self):
+        return f"pizza place!"
+
+
     def print_first_arrival(self):
         print("It's your basic pizza place, the floor is sticky and the cook is probably 16..\
                 \n\nYou know that place.\n")

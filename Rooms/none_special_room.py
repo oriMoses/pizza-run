@@ -10,6 +10,8 @@ class NoneSpecialRoom(suburbsQuarter):
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
 
+    def __str__(self):
+        return f"none special room"
 
     def dialog_circle(self, commonChoiceObject):
         print("...")

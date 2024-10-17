@@ -21,16 +21,31 @@ MAX_PIZZA_ON_PLAYER = 5
 
 def init_suburbs():
     global Suburbs
-    rows, cols = (6, 5)
+    suburbs_rows, suburbs_cols = (6, 5)
+    Suburbs = [[0 for _ in range(suburbs_cols)] for _ in range(suburbs_rows)]
 
-    Suburbs = [[0]*cols]*rows
+    for i in range(suburbs_cols):
+        for j in range(suburbs_rows):
+            Suburbs[j][i] = NoneSpecialRoom(j, i)
 
-    for i in range(rows):
-        for j in range(cols):
-            Suburbs[i][j] = NoneSpecialRoom(i, j)
+    for i in range(suburbs_cols):
+        for j in range(suburbs_rows):
+            if i == 3:
+                if j == 3:
+                    Suburbs[j][i] = NoneSpecialRoom(j, i)
 
+    Suburbs[3][3] = pizzaPlaceObject
+    Suburbs[3][2] = parkingObject
+    Suburbs[2][1] = teenHouseObject
+    
+    ######Debug
+    # for i in range(suburbs_cols):
+    #     for j in range(suburbs_rows):
+    #         print(j, i, Suburbs[j][i])
+
+    
 def init():
-    global pizzaPlaceObject, parkingObject, player, commonChoiceObject, Suburbs, querters \
+    global pizzaPlaceObject, parkingObject, player, commonChoiceObject, querters \
             ,teenHouseObject, goNextRoom
     parkingObject = Parking()
     pizzaPlaceObject = PizzaPlace()
@@ -39,9 +54,6 @@ def init():
     player = Player(pizzaPlaceObject.location) # Starting point for player
 
     init_suburbs()
-    Suburbs[3][2] = parkingObject
-    Suburbs[3][3] = pizzaPlaceObject
-    Suburbs[2][1] = teenHouseObject
 
     goNextRoom = False
     querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]
