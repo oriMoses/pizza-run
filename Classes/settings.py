@@ -25,7 +25,21 @@ def init_orders():
     suburbsOrders = [(3, 'Blue House'),(5, teenHouseObject), (3, 'Hippie House'), (1, 'Gatekeeper'), (1, 'Minimarket'), (1, 'Green House'), (2, 'Yellow House'), (1, 'Pink House'), (5, 'Bush Garden')]
 
 def get_orders_for(object):
-    return([item for item in suburbsOrders if object in item][0][0])
+    for item in suburbsOrders:
+        if object in item:
+            return item[0]
+    return -1
+
+def remove_orderes_for(object):
+    global suburbsOrders
+    suburbsOrders_list = list(suburbsOrders)
+    i=0
+    for item in suburbsOrders:
+        if object in item:
+            suburbsOrders_list.pop(i)
+            
+            suburbsOrders = tuple(suburbsOrders_list)
+        i += 1
 
 def init_suburbs():
     global Suburbs
