@@ -26,7 +26,7 @@ class TeenHouse(suburbsQuarter):
                 return True
             
     def howMuchPizza(self):
-        for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER):
+        for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER+1):
             if str(numberOfPizza) in Settings.player.choice:
                 return numberOfPizza
 
@@ -44,13 +44,19 @@ class TeenHouse(suburbsQuarter):
             if self.door_knocked:
                 if self.give_pizza():
                     numberOfPizza = self.howMuchPizza()
+                    if numberOfPizza != 0 and numberOfPizza != 1 and numberOfPizza !=2 and numberOfPizza != 3 and numberOfPizza != 4 and numberOfPizza != 5:
+                        continue
 
                     if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
+                        Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
+
                         print("thanks! Damm, that smells amazing")
                         print(numberOfPizza*2, " coin up tip")
-                        Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + 10)
+                        Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
                         break
                     elif Settings.player.inventory.cold_pizza_exists(numberOfPizza):
+                        Settings.player.inventory.update_item(Settings.COLD_PIZZA_ID, Settings.player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+
                         print("thanks! Damm, that's cold")
                         print(numberOfPizza, " coin up tip")
                         Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + 5)
