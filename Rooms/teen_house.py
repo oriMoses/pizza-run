@@ -53,7 +53,7 @@ class TeenHouse(suburbsQuarter):
                         orders = Settings.get_orders_for(Settings.teenHouseObject)
                         if orders == -1:
                             print("You already delivered this order")
-                        elif Settings.get_orders_for(Settings.teenHouseObject) == numberOfPizza:
+                        elif orders == numberOfPizza:
                             Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                             Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
 
@@ -63,7 +63,7 @@ class TeenHouse(suburbsQuarter):
                             print(numberOfPizza*2, " coin up tip")
                             break
                         else:
-                            print("Not the corrent amount of pizza")
+                            print("Thats not the correct order")
 
                     elif Settings.player.inventory.cold_pizza_exists(numberOfPizza):
                         Settings.player.inventory.update_item(Settings.COLD_PIZZA_ID, Settings.player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
