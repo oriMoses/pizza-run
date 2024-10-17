@@ -6,6 +6,7 @@ from Rooms.blue_house import BlueHouse
 from Rooms.hippie_house import HippieHouse
 from Rooms.gatekeeper import Gatekeeper
 from Rooms.mini_market import MiniMarket
+from Rooms.green_house import GreenHouse
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
 #constants
@@ -26,7 +27,7 @@ AMOOUNT_OF_ORDERS_IN_SUBURBS = 11
 
 def init_orders():
     global suburbsOrders
-    suburbsOrders = [(3, blueHouseObject),(5, teenHouseObject), (3, hippieHouseObject), (1, gatekeeperObject), (1, miniMarketObject), (1, 'Green House'), (2, 'Yellow House'), (1, 'Pink House'), (5, 'Bush Garden')]
+    suburbsOrders = [(3, blueHouseObject),(5, teenHouseObject), (3, hippieHouseObject), (1, gatekeeperObject), (1, miniMarketObject), (1, GreenHouse), (2, 'Yellow House'), (1, 'Pink House'), (5, 'Bush Garden')]
 
 def get_orders_for(object):
     for item in suburbsOrders:
@@ -67,6 +68,7 @@ def init_suburbs():
     Suburbs[1][0] = hippieHouseObject
     Suburbs[5][2] = gatekeeperObject
     Suburbs[1][3] = miniMarketObject
+    Suburbs[4][4] = greenHouseObject
 
     ######Debug
     # for i in range(suburbs_cols):
@@ -77,7 +79,7 @@ def init_suburbs():
 def init():
     global pizzaPlaceObject, parkingObject, player, commonChoiceObject, querters \
             ,teenHouseObject, blueHouseObject, hippieHouseObject, gatekeeperObject, miniMarketObject\
-                , goNextRoom
+                , greenHouseObject, goNextRoom
     parkingObject = Parking()
     pizzaPlaceObject = PizzaPlace()
     commonChoiceObject = HandleChoices()
@@ -86,6 +88,7 @@ def init():
     hippieHouseObject = HippieHouse()
     gatekeeperObject = Gatekeeper()
     miniMarketObject = MiniMarket()
+    greenHouseObject = GreenHouse()
 
     player = Player(pizzaPlaceObject.location) # Starting point for player
 
