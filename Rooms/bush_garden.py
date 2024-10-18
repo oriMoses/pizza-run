@@ -3,27 +3,28 @@ import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
 
-class GreenHouse(suburbsQuarter):
+class BushGarden(suburbsQuarter):
     def __init__(self):
-        suburbsQuarter.__init__(self, [4,4])
+        suburbsQuarter.__init__(self, [0,0])
         self.firstArrival = True
-        self.lawn_mower_key_taken = False
-        self.door_knocked = False
+        self.picnic_went = False
         self.inventory = Inventory()
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
 
     def __str__(self):
-        return f"Green House"
+        return f"Bush Garden"
 
     def print_first_arrival(self):
-        print("You see a greenhouse.\nThe front lawn is overgrown.\nThere's a big, rideable lawn mower.\nThere's a note on the door.")
+        print("Flowers and butterflies…\nThere's a light smell of oak trees.\nyou feel calmness wash over you.\nYou see a far picnic table with some people having a quiet conversation.")
 
     def first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
-
+        else:
+            print("What's up with that fence?")
+    
     def give_pizza(self):
         if "give" in Settings.player.choice:
             if "pizza" in Settings.player.choice:
@@ -35,8 +36,13 @@ class GreenHouse(suburbsQuarter):
                 return numberOfPizza
         return 0
 
+    def print_end_1(self):
+        print("You join the festival and have the time of your life.\nsuddenly, all of the things that used to worry and upset you seem to just fade away.\nYou decide to live your life truly, as one could.")
+        print("congratulations! you beat the game! (END 1)")
+        print("Score: ", Settings.player.score , "(who cares right? you get to live your life as a free man! or women, you do you)\n\nEND")
+
     def dialog_circle(self, commonChoiceObject):
-        print("Green House")
+        print("Bush Garden")
 
         self.first_arrival()
 
@@ -46,57 +52,50 @@ class GreenHouse(suburbsQuarter):
             Settings.player.choice = input("> ").lower()
 
 
-            if self.door_knocked:
+            if self.picnic_went:
                 if self.give_pizza():
                     numberOfPizza = self.howMuchPizza()
 
                     if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
-                        orders = Settings.get_orders_for(Settings.greenHouseObject)
+                        orders = Settings.get_orders_for(Settings.pinkHouseObject)
                         if orders == -1:
                             print("You already delivered this order")
                         elif orders == numberOfPizza:
                             Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
 
-                            Settings.remove_orderes_for(Settings.greenHouseObject)
+                            Settings.remove_orderes_for(Settings.pinkHouseObject)
 
-                            print('far out man!"')
-                            print(numberOfPizza*2, " coin up tip")
+                            print("thanks man! we don't have any money for tip,\nbut you join us!\ntake a slice of pizza, kick your shoes off and enjoy yourself!")
+                            print("stay at the festival?")
+
+                            Settings.player.choice = input("> ").lower()
+
+                            if "yes" in Settings.player.choice:
+                                self.print_end_1()
+                            elif "no" in Settings.player.choice:
+                                print("I get it man, show must go on… anyway, happy new year!!!")
+                            
                             break
                         else:
-                            print("Thats not the correct order")
+                            print("give me pizza!!!! only one pizza!")
 
                     elif Settings.player.inventory.cold_pizza_exists(numberOfPizza):
                         Settings.player.inventory.update_item(Settings.COLD_PIZZA_ID, Settings.player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
                         Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + 5)
 
-                        print("hmm, thanks man")
+                        print("The man grabs the pizza and shut the door with a slam!")
                         print(numberOfPizza, " coin up tip")
                         break
                     else:
                         print("Not enough pizza in inventory")
 
-            if "note" in Settings.player.choice:
-                if "read" in Settings.player.choice or "examine":
-                    if self.lawn_mower_key_taken:
-                        print('“Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”')
-                    else:
-                        print('“Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”\nthere is a green lawn mower key taped to the note.')
-                if "take" in Settings.player.choice:
-                    print("Don’t bother - the note is glued to the door")
-            if "key" in Settings.player.choice:
-                if "take" in Settings.player.choice or "examine":
-                    print("lawn mower key added to your inventory")
-                    #TODO: create lawn mower key item and add it to inventory
-
             if "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
                 self.print_first_arrival()
 
-            elif "knock" in Settings.player.choice:
-                if "door" in Settings.player.choice or "house" in Settings.player.choice:
-                    self.door_knocked = True
-                    print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n \
-                          “Did we order pizza?”\n\n“Hah, guess we did.“')
-            #TODO: keep working from docx on Shiny dice/ basic adds
+            elif "table" in Settings.player.choice or "picnic" in Settings.player.choice:
+                if "go" in Settings.player.choice:
+                    print('you hike your way to the table, from up close, you see the table is on top of a hill.\nDown the hill, you see an improvised stage.\nThe live music cuts right through you,something about the singer voice.\nThe hill is dotted with colorful rugs and people. some dance, some just lay back and look at the sky.\n“oh! Hey guys, pizza man here!”\nThe people around the picnic table smile at you, maybe give them pizza?')
+                    self.picnic_went = True
+
             elif commonChoiceObject.check_player_input(self.inventory):
                 pass

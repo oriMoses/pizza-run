@@ -12,7 +12,7 @@ class PizzaPlace():
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 100, pizza_temprature.HOT)
 
     def __str__(self):
-        return f"pizza place!"
+        return f"Pizza Place"
 
 
     def print_first_arrival(self):

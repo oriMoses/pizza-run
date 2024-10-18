@@ -12,6 +12,9 @@ class HippieHouse(suburbsQuarter):
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
 
+    def __str__(self):
+        return f"Hippie House"
+
     def print_first_arrival(self):
         print('You see a small apartment and smell rather... Earthy smell \nThere is a car parked outside with a bumper sticker that says "gas, grass or..." \nYou know what, nevermind the sticker.')
 

@@ -10,6 +10,9 @@ class Parking(suburbsQuarter):
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
 
+    def __str__(self):
+        return f"Parking"
+    
     def print_first_arrival(self):
         print("You are in the pizza parking lot.")
 

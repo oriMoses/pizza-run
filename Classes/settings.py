@@ -7,6 +7,9 @@ from Rooms.hippie_house import HippieHouse
 from Rooms.gatekeeper import Gatekeeper
 from Rooms.mini_market import MiniMarket
 from Rooms.green_house import GreenHouse
+from Rooms.yellow_house import YellowHouse
+from Rooms.pink_house import PinkHouse
+from Rooms.bush_garden import BushGarden 
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
 #constants
@@ -27,7 +30,7 @@ AMOOUNT_OF_ORDERS_IN_SUBURBS = 11
 
 def init_orders():
     global suburbsOrders
-    suburbsOrders = [(3, blueHouseObject),(5, teenHouseObject), (3, hippieHouseObject), (1, gatekeeperObject), (1, miniMarketObject), (1, GreenHouse), (2, 'Yellow House'), (1, 'Pink House'), (5, 'Bush Garden')]
+    suburbsOrders = [(3, blueHouseObject),(5, teenHouseObject), (3, hippieHouseObject), (1, gatekeeperObject), (1, miniMarketObject), (1, greenHouseObject), (2, yellowHouseObject), (1, pinkHouseObject), (5, bushGardenObject)]
 
 def get_orders_for(object):
     for item in suburbsOrders:
@@ -69,6 +72,9 @@ def init_suburbs():
     Suburbs[5][2] = gatekeeperObject
     Suburbs[1][3] = miniMarketObject
     Suburbs[4][4] = greenHouseObject
+    Suburbs[0][3] = yellowHouseObject
+    Suburbs[2][4] = pinkHouseObject
+    Suburbs[0][0] = bushGardenObject
 
     ######Debug
     # for i in range(suburbs_cols):
@@ -79,7 +85,7 @@ def init_suburbs():
 def init():
     global pizzaPlaceObject, parkingObject, player, commonChoiceObject, querters \
             ,teenHouseObject, blueHouseObject, hippieHouseObject, gatekeeperObject, miniMarketObject\
-                , greenHouseObject, goNextRoom
+                , greenHouseObject, yellowHouseObject, pinkHouseObject, bushGardenObject, goNextRoom
     parkingObject = Parking()
     pizzaPlaceObject = PizzaPlace()
     commonChoiceObject = HandleChoices()
@@ -89,7 +95,9 @@ def init():
     gatekeeperObject = Gatekeeper()
     miniMarketObject = MiniMarket()
     greenHouseObject = GreenHouse()
-
+    yellowHouseObject = YellowHouse()
+    pinkHouseObject = PinkHouse()
+    bushGardenObject = BushGarden()
     player = Player(pizzaPlaceObject.location) # Starting point for player
 
 

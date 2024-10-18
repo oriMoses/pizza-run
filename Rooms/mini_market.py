@@ -11,6 +11,9 @@ class MiniMarket(suburbsQuarter):
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
 
+    def __str__(self):
+        return f"Mini Market"
+
     def print_first_arrival(self):
         print("You see a local shop, it seems to be open.")
 

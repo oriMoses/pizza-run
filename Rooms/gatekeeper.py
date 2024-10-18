@@ -12,6 +12,9 @@ class Gatekeeper(suburbsQuarter):
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
 
+    def __str__(self):
+        return f"Gatekeeper"
+
     def print_first_arrival(self):
         print("You see a man wearing a yellow vest.\nHe sits on a lawn chair by a small security booth.\nThere's a close gate to the south")
 

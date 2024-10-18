@@ -12,6 +12,9 @@ class BlueHouse(suburbsQuarter):
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
 
+    def __str__(self):
+        return f"Blue House"
+
     def print_first_arrival(self):
         print("You see a blue house, with a lawn full of garden gnomes.\n \
               It feels like the gnomes are looking at you. \nmaybe it's better not to think about the garden gnomes so much.")

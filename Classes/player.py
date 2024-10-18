@@ -6,6 +6,7 @@ class Player():
         self.position = playerPosition
         self.quarter = "Suburbs"
         self.choice = ""
+        self.score = 0
         self.inventory = Inventory()
         self.inventory.add_item(Settings.COIN_ID, "coin", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "HotPizza", 0)

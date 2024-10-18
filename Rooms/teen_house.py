@@ -13,7 +13,7 @@ class TeenHouse(suburbsQuarter):
         self.door_knocked = False
 
     def __str__(self):
-        return f"TeenHouse"
+        return f"Teen House"
 
     def print_first_arrival(self):
         print("You see a family house, no cars in front.\nIt's sounds like there's about million teenagers inside")
