@@ -25,6 +25,7 @@ class MiniMarket(suburbsQuarter):
             self.firstArrival = False
         else:
             print("Still open.")
+            Settings.print_items_in_room(self)
 
 
     def give_pizza(self):

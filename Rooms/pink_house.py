@@ -25,6 +25,7 @@ class PinkHouse(suburbsQuarter):
             self.firstArrival = False
         else:
             print("What's up with that fence?")
+            Settings.print_items_in_room(self)
     
     def give_pizza(self):
         if "give" in Settings.player.choice:

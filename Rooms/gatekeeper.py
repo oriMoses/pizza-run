@@ -27,7 +27,7 @@ class Gatekeeper(suburbsQuarter):
             self.firstArrival = False
         else:
             print("You see a man wearing a yellow vest.\nThere's an close\open gate to the", Settings.underline("south"))
-
+            Settings.print_items_in_room(self)
 
     def give_pizza(self):
         if "give" in Settings.player.choice:

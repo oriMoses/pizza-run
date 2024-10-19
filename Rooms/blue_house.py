@@ -29,6 +29,7 @@ class BlueHouse(suburbsQuarter):
             self.firstArrival = False
         else:
             print("The one with all the garden gnomes..")
+            Settings.print_items_in_room(self)
 
 
     def give_pizza(self):

@@ -12,6 +12,8 @@ class PizzaPlace():
         self.firstArrival = True
         self.inventory = Inventory()
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 100, pizza_temprature.HOT)
+        self.inventory.add_item(Settings.MainPizzaKey_ID, "main pizza key", 1)
+
         self.door = mainPizzaPlaceDoor()
 
     def __str__(self):
@@ -35,7 +37,7 @@ class PizzaPlace():
             self.print_first_arrival()
             self.firstArrival = False
 
-    def dialog_circle(self, commonChoiceObject):
+    def dialog_circle(self, handleChoiceObject):
         print("Main Pizza Place")
 
         self.first_arrival()
@@ -60,8 +62,8 @@ class PizzaPlace():
                 if self.door.locked:
                     print("The door is locked (as doors should be)")
                 else:
-                    commonChoiceObject.check_player_input(self.inventory)
+                    handleChoiceObject.check_player_input(self.inventory)
                     break
 
-            elif commonChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.check_player_input(self.inventory):
                 pass

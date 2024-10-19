@@ -7,8 +7,9 @@ class Inventory():
     def add_item(self, item_id, item_name, stock_count, pizza_temprature = pizza_temprature.NOT_A_PIZZA):
         self.inventory[item_id] = {"item_name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature}
 
-    def drop_item(self, item_id):
-        del self.inventory[item_id]
+    def move_item(self, item_id, secondInventory):
+        secondInventory.add_item(item_id, self.inventory[item_id]["item_name"], self.inventory[item_id]["stock_count"])
+        self.inventory.pop(item_id)
 
     def update_item(self, item_id, stock_count):
         if item_id in self.inventory:

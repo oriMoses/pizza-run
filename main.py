@@ -15,7 +15,7 @@ def choose_player_room():
     Settings.goNextRoom = False
     Settings.print_address(Settings.player.position[0], Settings.player.position[1])
 
-    Settings.Suburbs[Settings.player.position[0]][Settings.player.position[1]].dialog_circle(Settings.commonChoiceObject)
+    Settings.Suburbs[Settings.player.position[0]][Settings.player.position[1]].dialog_circle(Settings.handleChoiceObject)
 
 def main():
     Settings.init()

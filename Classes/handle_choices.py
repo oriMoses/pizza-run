@@ -7,15 +7,17 @@ class HandleChoices():
     def check_player_input(self, roomInventory):
         if self.check_inventory_input() or self.check_help_input()      \
             or self.check_bike_input() or self.check_read_note_input()  \
-            or self.check_pick_key_input() or self.check_go_input() or \
-                self.check_pick_pizza_input(roomInventory) or self.check_notebook():
+            or self.check_pick_key_input(roomInventory) or self.check_go_input() or \
+                self.check_pick_pizza_input(roomInventory) or self.check_pick_notebook(roomInventory):
                 return True
     
-    def check_notebook(self):
-        if "notebook" in Settings.player.choice:
+    def check_pick_notebook(self, roomInventory):
+        if "notebook" in Settings.player.choice and "suburbs" in Settings.player.choice:
+            self.deal_with_pick_and_drop(roomInventory, Settings.SUBURBS_NOTEBOOK_ID, "main pizza key")
+            
             if "read" in Settings.player.choice:
-                if Settings.player.inventory.item_exist(Settings.NOTEBOOK_ID):
-                    Settings.notebookObject.print_notebook()
+                if Settings.player.inventory.item_exist(Settings.SUBURBS_NOTEBOOK_ID):
+                    Settings.SuburbsNotebookObject.examine()
 
     def check_inventory_input(self):
         if "inventory" in Settings.player.choice:
@@ -38,29 +40,37 @@ class HandleChoices():
         
     def check_read_note_input(self):
         if "read" in Settings.player.choice and "note" in Settings.player.choice:
-            print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)")
+            if "notebook" in Settings.player.choice:
+                return
+            else:
+                if Settings.player.position == Settings.pizzaPlaceObject.location:
+                    print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)")
 
-    def check_pick_key_input(self):
+    def deal_with_pick_and_drop(self, roomInventory, item_id, item_name):
+        if "pick" in Settings.player.choice or "take" in Settings.player.choice:
+            if roomInventory.item_exist(item_id):                            
+                roomInventory.move_item(item_id, Settings.player.inventory)
+                print("Key added to your inventory")
+                return True
+            elif Settings.player.inventory.item_exist(item_id):
+                print("You already have the key.")
+                return True
+
+        elif "drop" in Settings.player.choice:
+            Settings.itemList[item_id].position = Settings.player.position
+            if Settings.player.inventory.item_exist(item_id):
+                Settings.player.inventory.move_item(item_id, roomInventory)
+                print("item dropped.")
+                return True
+            else:
+                print("You don't have ", item_name)
+                return True
+        
+    def check_pick_key_input(self, roomInventory):
         if "key" in Settings.player.choice:
             if "pizza" in Settings.player.choice:
-                if "pick" in Settings.player.choice or "take" in Settings.player.choice:
-                    if Settings.mainPizzaKeyObject.position == Settings.player.position:
-                        if not Settings.player.inventory.item_exist(0):
-                            Settings.player.inventory.add_item(Settings.MainPizzaKey_ID, "Main Pizza Key", 1)
-                            print("Key added to your inventory")
-                            return True
-                        else:
-                            print("You already have the key.")
-                            return True
-                elif "drop" in Settings.player.choice: #TODO: check drop system
-                    if Settings.player.inventory.item_exist(Settings.MainPizzaKey_ID):
-                        Settings.itemList[Settings.MainPizzaKey_ID].position = Settings.player.position
-                        Settings.player.inventory.drop_item(Settings.MainPizzaKey_ID)
-                        print("item dropped.")
-                        return True
-                    else:
-                        print("You don't have main pizza key.")
-                        return True
+                self.deal_with_pick_and_drop(roomInventory, Settings.MainPizzaKey_ID, "main pizza key")
+
     
     def check_pick_pizza_input(self, roomInventory):
         if "pick" in Settings.player.choice and "pizza" in Settings.player.choice:

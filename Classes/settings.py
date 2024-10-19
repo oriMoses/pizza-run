@@ -23,10 +23,10 @@ SUBURBS_MIN_STREET_NUMBER_BOUNDARY = 0
 SUBURBS_MAX_STREET_NUMBER_BOUNDARY = 4
 
 MainPizzaKey_ID = 0
-COLD_PIZZA_ID = 1
-HOT_PIZZA_ID = 2
-COIN_ID = 3
-SUBURBS_NOTEBOOK_ID = 4
+SUBURBS_NOTEBOOK_ID = 1
+COLD_PIZZA_ID = 2
+HOT_PIZZA_ID = 3
+COIN_ID = 4
 
 MAX_PIZZA_ON_PLAYER = 5
 AMOOUNT_OF_ORDERS_IN_SUBURBS = 11
@@ -54,13 +54,14 @@ def remove_orderes_for(object):
 
 def print_items_in_room(self):
     for item in enumerate(itemList):
-        if player.inventory.item_exist(item[1].ID):
-            return
-        if item[1].position == player.position:
+        if self.inventory.item_exist(item[1].ID):
             item[1].print_in_room()
+        # elif player.inventory.item_exist(item[1].ID):
+        #     pass
 
 def init_items():
     global itemList, SuburbsNotebookObject, mainPizzaKeyObject
+
     SuburbsNotebookObject = SuburbsNotebook(parkingObject.location)
     mainPizzaKeyObject = MainPizzaKey(pizzaPlaceObject.location)
 
@@ -102,12 +103,12 @@ def init_suburbs():
     #         print(j, i, Suburbs[j][i])
 
 def init():
-    global pizzaPlaceObject, parkingObject, player, commonChoiceObject, querters \
+    global pizzaPlaceObject, parkingObject, player, handleChoiceObject, querters \
             ,teenHouseObject, blueHouseObject, hippieHouseObject, gatekeeperObject, miniMarketObject\
                 , greenHouseObject, yellowHouseObject, pinkHouseObject, bushGardenObject, goNextRoom
     parkingObject = Parking()
     pizzaPlaceObject = PizzaPlace()
-    commonChoiceObject = HandleChoices()
+    handleChoiceObject = HandleChoices()
     teenHouseObject = TeenHouse()
     blueHouseObject = BlueHouse()
     hippieHouseObject = HippieHouse()

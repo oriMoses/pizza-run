@@ -25,6 +25,7 @@ class HippieHouse(suburbsQuarter):
             self.firstArrival = False
         else:
             print("Still with that strange smell.")
+            Settings.print_items_in_room(self)
 
     def give_pizza(self):
         if "give" in Settings.player.choice:
