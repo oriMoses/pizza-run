@@ -57,6 +57,9 @@ def init_items():
     notebooknotebookObject = Notebook()
     #notebooknotebookObject.print_notebook()
 
+def underline(text):
+    print("\u0332".join(text + " "))
+
 def init_suburbs():
     global Suburbs
     suburbs_rows, suburbs_cols = (6, 5)

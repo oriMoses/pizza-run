@@ -5,7 +5,7 @@ class Box():
         self.quarter = "Suburbs"
         self.position = 3,3
         self.notebook = Notebook()
-        self.items = notebook, bikeKey
+        self.items = Notebook(), bikeKey#TODO: bike Key
 
     def print_notebook(self):
         notebookList = list(self.notebook)

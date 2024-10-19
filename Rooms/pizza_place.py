@@ -16,13 +16,14 @@ class PizzaPlace():
 
 
     def print_first_arrival(self):
-        print("It's your basic pizza place, the floor is sticky and the cook is probably 16..\
+        print("It's your basic pizza place, the floor is sticky and the cook is probably 16.\
                 \n\nYou know that place.\n")
         #TODO:        small/medium/massive
         print("You see massive pile of hot pizza and a small note on the counter")
 
         if self.firstArrival:
-              print("There's a locked door to the west.")
+              print("There's a locked door to the", end=" ") 
+              Settings.underline("west")
 
     def first_arrival(self):
         if self.firstArrival:

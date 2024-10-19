@@ -16,14 +16,15 @@ class Gatekeeper(suburbsQuarter):
         return f"Gatekeeper"
 
     def print_first_arrival(self):
-        print("You see a man wearing a yellow vest.\nHe sits on a lawn chair by a small security booth.\nThere's a close gate to the south")
+        print("you see a man wearing a yellow vest.\nHe sits on a lawn chair by a small security booth.\nThere's a close gate to the", end=" ")
+        Settings.underline("south")
 
     def first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("You see a man wearing a yellow vest.\nThere's an close\open gate to the south")
+            print("You see a man wearing a yellow vest.\nThere's an close\open gate to the", Settings.underline("south"))
 
 
     def give_pizza(self):
