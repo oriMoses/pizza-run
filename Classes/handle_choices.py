@@ -41,15 +41,26 @@ class HandleChoices():
             print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)")
 
     def check_pick_key_input(self):
-        if "pick" in Settings.player.choice and "key" in Settings.player.choice:
-            if not Settings.player.inventory.item_exist(0):
-                #TODO: add if key.position == player.position
-                Settings.player.inventory.add_item(0, "key", 1)
-                print("Key added to your inventory")
-                return True
-            else:
-                print("You already have the key.")
-                return True
+        if "key" in Settings.player.choice:
+            if "pizza" in Settings.player.choice:
+                if "pick" in Settings.player.choice or "take" in Settings.player.choice:
+                    if Settings.mainPizzaKeyObject.position == Settings.player.position:
+                        if not Settings.player.inventory.item_exist(0):
+                            Settings.player.inventory.add_item(Settings.MainPizzaKey_ID, "Main Pizza Key", 1)
+                            print("Key added to your inventory")
+                            return True
+                        else:
+                            print("You already have the key.")
+                            return True
+                elif "drop" in Settings.player.choice: #TODO: check drop system
+                    if Settings.player.inventory.item_exist(Settings.MainPizzaKey_ID):
+                        Settings.itemList[Settings.MainPizzaKey_ID].position = Settings.player.position
+                        Settings.player.inventory.drop_item(Settings.MainPizzaKey_ID)
+                        print("item dropped.")
+                        return True
+                    else:
+                        print("You don't have main pizza key.")
+                        return True
     
     def check_pick_pizza_input(self, roomInventory):
         if "pick" in Settings.player.choice and "pizza" in Settings.player.choice:

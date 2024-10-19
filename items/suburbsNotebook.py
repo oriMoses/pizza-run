@@ -1,11 +1,15 @@
 import Classes.settings as Settings
-class Notebook():
-    def __init__(self):
+from items.basic_item import BasicItem
+class SuburbsNotebook(BasicItem):
+    def __init__(self, position):
+        super().__init__(position, Settings.SUBURBS_NOTEBOOK_ID) 
         self.quarter = "Suburbs"
-        self.position = 3,3
         self.orders = Settings.suburbsOrders
 
-    def print_notebook(self):
+    def print_in_room(self):
+        print("There's a suburbs notebook on the floor")
+
+    def examine(self): #TODO: use in read suburbs notebook
         ordersList = list(self.orders)
         for i, note in enumerate(ordersList):
             print("x", note[0], " ", end='')

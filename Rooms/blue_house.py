@@ -15,9 +15,13 @@ class BlueHouse(suburbsQuarter):
     def __str__(self):
         return f"Blue House"
 
+    def get_address(self):
+        return f"Blue House, {Settings.STREET}, {Settings.STREET_NUMBER}"
+
     def print_first_arrival(self):
         print("You see a blue house, with a lawn full of garden gnomes.\n \
               It feels like the gnomes are looking at you. \nmaybe it's better not to think about the garden gnomes so much.")
+        Settings.print_items_in_room()
 
     def first_arrival(self):
         if self.firstArrival:

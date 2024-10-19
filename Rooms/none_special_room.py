@@ -5,6 +5,7 @@ from Utils import pizza_temprature
 class NoneSpecialRoom(suburbsQuarter):
     def __init__(self, street, streetNumber):
         suburbsQuarter.__init__(self, [street,streetNumber])
+        self.first_arrival = True
         self.firstArrival = True
         self.inventory = Inventory()
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
@@ -13,8 +14,17 @@ class NoneSpecialRoom(suburbsQuarter):
     def __str__(self):
         return f"None Special Room"
 
+    def print_first_arrival(self):
+        Settings.print_items_in_room(self)
+
+    def first_arrival(self):
+        if self.firstArrival:
+            self.print_first_arrival()
+            self.firstArrival = False
+
     def dialog_circle(self, commonChoiceObject):
         print("...")
+        Settings.print_items_in_room(self)
 
         while True:
             if Settings.goNextRoom:
@@ -22,6 +32,7 @@ class NoneSpecialRoom(suburbsQuarter):
             Settings.player.choice = input("> ").lower()
 
             if "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
+                self.print_first_arrival()
                 print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
 
             elif commonChoiceObject.check_player_input(self.inventory):

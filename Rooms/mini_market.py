@@ -16,6 +16,8 @@ class MiniMarket(suburbsQuarter):
 
     def print_first_arrival(self):
         print("You see a local shop, it seems to be open.")
+        Settings.print_items_in_room(self)
+
 
     def first_arrival(self):
         if self.firstArrival:

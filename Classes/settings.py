@@ -10,7 +10,8 @@ from Rooms.green_house import GreenHouse
 from Rooms.yellow_house import YellowHouse
 from Rooms.pink_house import PinkHouse
 from Rooms.bush_garden import BushGarden
-from items.notebook import Notebook
+from items.suburbsNotebook import SuburbsNotebook
+from items.mainPizzaKey import MainPizzaKey
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
 #constants
@@ -21,11 +22,11 @@ SUBURBS_MAX_STREET_BOUNDARY = 5
 SUBURBS_MIN_STREET_NUMBER_BOUNDARY = 0
 SUBURBS_MAX_STREET_NUMBER_BOUNDARY = 4
 
-KEY_ID = 0
+MainPizzaKey_ID = 0
 COLD_PIZZA_ID = 1
 HOT_PIZZA_ID = 2
 COIN_ID = 3
-NOTEBOOK_ID = 4
+SUBURBS_NOTEBOOK_ID = 4
 
 MAX_PIZZA_ON_PLAYER = 5
 AMOOUNT_OF_ORDERS_IN_SUBURBS = 11
@@ -51,11 +52,19 @@ def remove_orderes_for(object):
             suburbsOrders = tuple(suburbsOrders_list)
         i += 1
 
+def print_items_in_room(self):
+    for item in enumerate(itemList):
+        if player.inventory.item_exist(item[1].ID):
+            return
+        if item[1].position == player.position:
+            item[1].print_in_room()
+
 def init_items():
-    pass
-    global notebooknotebookObject
-    notebooknotebookObject = Notebook()
-    #notebooknotebookObject.print_notebook()
+    global itemList, SuburbsNotebookObject, mainPizzaKeyObject
+    SuburbsNotebookObject = SuburbsNotebook(parkingObject.location)
+    mainPizzaKeyObject = MainPizzaKey(pizzaPlaceObject.location)
+
+    itemList = [SuburbsNotebookObject, mainPizzaKeyObject]
 
 def underline(text):
     print("\u0332".join(text + " "))
@@ -92,7 +101,6 @@ def init_suburbs():
     #     for j in range(suburbs_rows):
     #         print(j, i, Suburbs[j][i])
 
-    
 def init():
     global pizzaPlaceObject, parkingObject, player, commonChoiceObject, querters \
             ,teenHouseObject, blueHouseObject, hippieHouseObject, gatekeeperObject, miniMarketObject\
@@ -109,6 +117,7 @@ def init():
     yellowHouseObject = YellowHouse()
     pinkHouseObject = PinkHouse()
     bushGardenObject = BushGarden()
+
     player = Player(pizzaPlaceObject.location) # Starting point for player
 
 

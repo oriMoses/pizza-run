@@ -14,7 +14,10 @@ class Parking(suburbsQuarter):
         return f"Parking"
     
     def print_first_arrival(self):
+        Settings.print_items_in_room(self)
         print("You are in the pizza parking lot.")
+        Settings.print_items_in_room(self)
+
 
     def first_arrival(self):
         if self.firstArrival:

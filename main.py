@@ -11,6 +11,7 @@ def startGame():
         Settings.player.choice = input("> ")
 
 def choose_player_room():
+    #TODO: when drop item update its position
     Settings.goNextRoom = False
     Settings.print_address(Settings.player.position[0], Settings.player.position[1])
 

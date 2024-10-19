@@ -1,5 +1,5 @@
 import Classes.settings as Settings
-import items.notebook as Notebook
+import items.suburbsNotebook as Notebook
 class BikeKey():
     def __init__(self):
         self.quarter = "Suburbs"

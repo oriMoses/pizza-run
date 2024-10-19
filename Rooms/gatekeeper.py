@@ -17,7 +17,9 @@ class Gatekeeper(suburbsQuarter):
 
     def print_first_arrival(self):
         print("you see a man wearing a yellow vest.\nHe sits on a lawn chair by a small security booth.\nThere's a close gate to the", end=" ")
-        Settings.underline("south")
+        Settings.underline("South")
+        Settings.print_items_in_room(self)
+
 
     def first_arrival(self):
         if self.firstArrival:
