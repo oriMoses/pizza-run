@@ -73,56 +73,54 @@ class HandleChoices():
 
     
     def check_pick_pizza_input(self, roomInventory):
-        if "pick" in Settings.player.choice and "pizza" in Settings.player.choice:
-            pizzasOnPlayer = Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) + \
-                            Settings.player.inventory.get_amount(Settings.COLD_PIZZA_ID)
+        if "key" in Settings.player.choice:
+            return
+        if "pizza" in Settings.player.choice:
+            if "pick" in Settings.player.choice or "take" in Settings.player.choice:
+                pizzasOnPlayer = Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) + \
+                                Settings.player.inventory.get_amount(Settings.COLD_PIZZA_ID)
 
-            if pizzasOnPlayer < Settings.MAX_PIZZA_ON_PLAYER:
-                pizzasToAdd = 0
-                if "1" in Settings.player.choice:
-                    if 1 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
-                        pizzasToAdd = 1
+                if pizzasOnPlayer < Settings.MAX_PIZZA_ON_PLAYER:
+                    pizzasToAdd = 0
+                    if "1 " in Settings.player.choice:
+                        if 1 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
+                            pizzasToAdd = 1
+
+                    elif "2 " in Settings.player.choice:
+                        if 2 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
+                            pizzasToAdd = 2
+                            
+                    elif "3 " in Settings.player.choice:
+                        if 3 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
+                            pizzasToAdd = 3
+
+                    elif "4 " in Settings.player.choice:
+                        if 4 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
+                            pizzasToAdd = 4
+
+                    elif "5 " in Settings.player.choice:
+                        if 5 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
+                            pizzasToAdd = 5
                     else:
                         print("You can't carry more than 5 pizzas")
 
-                elif "2" in Settings.player.choice:
-                    if 2 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
-                        pizzasToAdd = 2
-                    else:
-                        print("You can't carry more than 5 pizzas")
-                        
-                elif "3" in Settings.player.choice:
-                    if 3 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
-                        pizzasToAdd = 3
-                    else:
-                        print("You can't carry more than 5 pizzas")
+                    if pizzasToAdd != 0:
+                        hotPizzaInRoom = roomInventory.get_amount(Settings.HOT_PIZZA_ID)
+                        if hotPizzaInRoom < pizzasToAdd:
+                            coldPizzaInRoom = roomInventory.get_amount(Settings.COLD_PIZZA_ID)
+                            if coldPizzaInRoom < pizzasToAdd:
+                                print("Not enough pizza in the room")
+                            else:
+                                print("x", pizzasToAdd, " (on hands)")
+                                roomInventory.update_item(Settings.COLD_PIZZA_ID, coldPizzaInRoom - pizzasToAdd)
+                                Settings.player.inventory.update_item(Settings.COLD_PIZZA_ID, pizzasOnPlayer + pizzasToAdd)
 
-                elif "4" in Settings.player.choice:
-                    if 4 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
-                        pizzasToAdd = 4
-                    else:
-                        print("You can't carry more than 5 pizzas")
 
-                elif "5" in Settings.player.choice:
-                    if 5 + pizzasOnPlayer <= Settings.MAX_PIZZA_ON_PLAYER:
-                        pizzasToAdd = 5
-                    else:
-                        print("You can't carry more than 5 pizzas")
-
-                if pizzasToAdd != 0:
-                    hotPizzaInRoom = roomInventory.get_amount(Settings.HOT_PIZZA_ID)
-                    if hotPizzaInRoom < pizzasToAdd:
-                        coldPizzaInRoom = roomInventory.get_amount(Settings.COLD_PIZZA_ID)
-                        if coldPizzaInRoom < pizzasToAdd:
-                            print("Not enough pizza in the room")
                         else:
-                            roomInventory.update_item(Settings.COLD_PIZZA_ID, coldPizzaInRoom - pizzasToAdd)
-                            Settings.player.inventory.update_item(Settings.COLD_PIZZA_ID, pizzasOnPlayer + pizzasToAdd)
+                            print(pizzasToAdd, "pizzas\n(on hands)\n")
 
-
-                    else:
-                        roomInventory.update_item(Settings.HOT_PIZZA_ID, hotPizzaInRoom - pizzasToAdd)
-                        Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, pizzasOnPlayer + pizzasToAdd)
+                            roomInventory.update_item(Settings.HOT_PIZZA_ID, hotPizzaInRoom - pizzasToAdd)
+                            Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, pizzasOnPlayer + pizzasToAdd)
 
     def check_go_input(self):
         if "south" in Settings.player.choice:

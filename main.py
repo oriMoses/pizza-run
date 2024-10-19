@@ -9,6 +9,7 @@ def startGame():
     while Settings.player.choice != "start" and Settings.player.choice != "yes":
         print("start?")
         Settings.player.choice = input("> ")
+        print()
 
 def choose_player_room():
     if Settings.goNextRoom == True:

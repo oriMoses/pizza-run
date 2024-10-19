@@ -2,7 +2,7 @@ from suburbsQuarter import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-
+import sys
 class BushGarden(suburbsQuarter):
     def __init__(self):
         suburbsQuarter.__init__(self, [0,0])
@@ -17,7 +17,7 @@ class BushGarden(suburbsQuarter):
 
     def print_first_arrival(self):
         print("Flowers and butterflies…\nThere's a light smell of oak trees.\nyou feel calmness wash over you.\nYou see a far picnic table with some people having a quiet conversation.")
-        Settings.print_items_in_room()
+        Settings.print_items_in_room(self)
 
     def first_arrival(self):
         if self.firstArrival:
@@ -39,6 +39,7 @@ class BushGarden(suburbsQuarter):
         print("You join the festival and have the time of your life.\nsuddenly, all of the things that used to worry and upset you seem to just fade away.\nYou decide to live your life truly, as one could.")
         print("congratulations! you beat the game! (END 1)")
         print("Score: ", Settings.player.score , "(who cares right? you get to live your life as a free man! or women, you do you)\n\nEND")
+        sys.exit()
 
     def dialog_circle(self, commonChoiceObject):
         self.first_arrival()
@@ -63,15 +64,17 @@ class BushGarden(suburbsQuarter):
                             Settings.remove_orderes_for(Settings.bushGardenObject)
 
                             print("thanks man! we don't have any money for tip,\nbut you join us!\ntake a slice of pizza, kick your shoes off and enjoy yourself!")
-                            print("stay at the festival?")
+                            print("stay at the festival?(yes/no)")
 
-                            Settings.player.choice = input("> ").lower()
+                            while Settings.player.choice != "yes" and Settings.player.choice != "no":
+                                Settings.player.choice = input("> ").lower()
 
-                            if "yes" in Settings.player.choice:
-                                self.print_end_1()
-                            elif "no" in Settings.player.choice:
-                                print("I get it man, show must go on… anyway, happy new year!!!")
-                            
+                                if "yes" in Settings.player.choice:
+                                    self.print_end_1()
+                                elif "no" in Settings.player.choice:
+                                    print("I get it man, show must go on… anyway, happy new year!!!")
+                                else:
+                                    print("\nstay at the festival? yes/no")
                             break
                         else:
                             print("give me pizza!!!! only one pizza!")

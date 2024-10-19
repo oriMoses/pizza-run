@@ -21,8 +21,7 @@ class PizzaPlace():
 
 
     def print_first_arrival(self):
-        print("It's your basic pizza place, the floor is sticky and the cook is probably 16.\
-                \n\nYou know that place.\n")
+        print("""you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is probably 16. \n\nYou know the place. \n\nYou see a massive pile of hot pizza and a small note on the counter. \n\nThere's a locked door to the west. \n""")
         #TODO:        small/medium/massive
         print("You see massive pile of hot pizza and a small note on the counter")
         Settings.print_items_in_room(self)
@@ -44,6 +43,7 @@ class PizzaPlace():
             if Settings.goNextRoom:
                 break
             Settings.player.choice = input("> ").lower()
+            print()
 
             if "look" in Settings.player.choice or "lookaround" in Settings.player.choice:
                 self.print_first_arrival()
