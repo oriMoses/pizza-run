@@ -22,8 +22,6 @@ class BushGarden(suburbsQuarter):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
-        else:
-            print("What's up with that fence?")
     
     def give_pizza(self):
         if "give" in Settings.player.choice:
@@ -57,13 +55,13 @@ class BushGarden(suburbsQuarter):
                     numberOfPizza = self.howMuchPizza()
 
                     if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
-                        orders = Settings.get_orders_for(Settings.pinkHouseObject)
+                        orders = Settings.get_orders_for(Settings.bushGardenObject)
                         if orders == -1:
                             print("You already delivered this order")
                         elif orders == numberOfPizza:
                             Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
 
-                            Settings.remove_orderes_for(Settings.pinkHouseObject)
+                            Settings.remove_orderes_for(Settings.bushGardenObject)
 
                             print("thanks man! we don't have any money for tip,\nbut you join us!\ntake a slice of pizza, kick your shoes off and enjoy yourself!")
                             print("stay at the festival?")

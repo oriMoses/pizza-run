@@ -9,7 +9,8 @@ from Rooms.mini_market import MiniMarket
 from Rooms.green_house import GreenHouse
 from Rooms.yellow_house import YellowHouse
 from Rooms.pink_house import PinkHouse
-from Rooms.bush_garden import BushGarden 
+from Rooms.bush_garden import BushGarden
+from items.notebook import Notebook
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
 #constants
@@ -24,13 +25,14 @@ KEY_ID = 0
 COLD_PIZZA_ID = 1
 HOT_PIZZA_ID = 2
 COIN_ID = 3
+NOTEBOOK_ID = 4
 
 MAX_PIZZA_ON_PLAYER = 5
 AMOOUNT_OF_ORDERS_IN_SUBURBS = 11
 
 def init_orders():
     global suburbsOrders
-    suburbsOrders = [(3, blueHouseObject),(5, teenHouseObject), (3, hippieHouseObject), (1, gatekeeperObject), (1, miniMarketObject), (1, greenHouseObject), (2, yellowHouseObject), (1, pinkHouseObject), (5, bushGardenObject)]
+    suburbsOrders = [(5, bushGardenObject),  (3, hippieHouseObject), (5, teenHouseObject), (3, blueHouseObject), (1, gatekeeperObject), (2, yellowHouseObject), (1, miniMarketObject), (1, pinkHouseObject), (1, greenHouseObject)]
 
 def get_orders_for(object):
     for item in suburbsOrders:
@@ -48,6 +50,12 @@ def remove_orderes_for(object):
             
             suburbsOrders = tuple(suburbsOrders_list)
         i += 1
+
+def init_items():
+    pass
+    global notebooknotebookObject
+    notebooknotebookObject = Notebook()
+    #notebooknotebookObject.print_notebook()
 
 def init_suburbs():
     global Suburbs
@@ -103,39 +111,40 @@ def init():
 
     init_suburbs()
     init_orders()
+    init_items()
 
     goNextRoom = False
     querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]
 
-def print_address():
-    address = get_current_street_name()
-    address += get_current_street_number()
-    print("\n" + address + "\n")
+def print_address(street, street_number):
+    address = get_street_name(street)
+    address += get_street_number(street_number)
+    print(address)
 
-def get_current_street_number():
-    if player.position[STREET_NUMBER] == 0:
+def get_street_number(street_number):
+    if street_number == 0:
         return "I"
-    elif player.position[STREET_NUMBER] == 1:
+    if street_number == 1:
         return "II"
-    elif player.position[STREET_NUMBER] == 2:
+    if street_number == 2:
         return "III"
-    elif player.position[STREET_NUMBER] == 3:
+    if street_number == 3:
         return "IV"
-    elif player.position[STREET_NUMBER] == 4:
+    if street_number == 4:
         return "V"
 
-def get_current_street_name():
-    if player.position[STREET] == 0:
+def get_street_name(street):
+    if street == 0:
         return "Bush St. "
-    elif player.position[STREET] == 1:
+    elif street == 1:
         return "Love St. "
-    elif player.position[STREET] == 2:
+    elif street == 2:
         return "Freedom St. "
-    elif player.position[STREET] == 3:
+    elif street == 3:
         return "First St. "
-    elif player.position[STREET] == 4:
+    elif street == 4:
         return "Tree St. "
-    elif player.position[STREET] == 5:
+    elif street == 5:
         return "Duck St. "
 
 def street_in_boundary(streetPoition, streetNumberPosition):

@@ -52,7 +52,7 @@ class Gatekeeper(suburbsQuarter):
                 numberOfPizza = self.howMuchPizza()
 
                 if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
-                    orders = Settings.get_ordexrs_for(Settings.gatekeeperObject)
+                    orders = Settings.get_orders_for(Settings.gatekeeperObject)
                     if orders == -1:
                         print("You already delivered this order")
                     elif orders == numberOfPizza:

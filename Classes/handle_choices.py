@@ -8,9 +8,15 @@ class HandleChoices():
         if self.check_inventory_input() or self.check_help_input()      \
             or self.check_bike_input() or self.check_read_note_input()  \
             or self.check_pick_key_input() or self.check_go_input() or \
-                self.check_pick_pizza_input(roomInventory):
+                self.check_pick_pizza_input(roomInventory) or self.check_notebook():
                 return True
-        
+    
+    def check_notebook(self):
+        if "notebook" in Settings.player.choice:
+            if "read" in Settings.player.choice:
+                if Settings.player.inventory.item_exist(Settings.NOTEBOOK_ID):
+                    Settings.notebookObject.print_notebook()
+
     def check_inventory_input(self):
         if "inventory" in Settings.player.choice:
             Settings.player.inventory.print_all()
