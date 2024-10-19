@@ -41,8 +41,6 @@ class BushGarden(suburbsQuarter):
         print("Score: ", Settings.player.score , "(who cares right? you get to live your life as a free man! or women, you do you)\n\nEND")
 
     def dialog_circle(self, commonChoiceObject):
-        print("Bush Garden")
-
         self.first_arrival()
 
         while True:

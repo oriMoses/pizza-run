@@ -68,7 +68,7 @@ class HandleChoices():
         
     def check_pick_key_input(self, roomInventory):
         if "key" in Settings.player.choice:
-            if "pizza" in Settings.player.choice:
+            if "pizza" in Settings.player.choice or "pizzas" in Settings.player.choice:
                 self.deal_with_pick_and_drop(roomInventory, Settings.MainPizzaKey_ID, "main pizza key")
 
     

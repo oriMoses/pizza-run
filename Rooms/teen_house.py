@@ -36,8 +36,6 @@ class TeenHouse(suburbsQuarter):
         return 0
 
     def dialog_circle(self, commonChoiceObject):
-        print("Teen House:")
-
         self.first_arrival()
 
         while True:

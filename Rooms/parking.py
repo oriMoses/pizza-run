@@ -25,8 +25,6 @@ class Parking(suburbsQuarter):
             self.firstArrival = False
 
     def dialog_circle(self, commonChoiceObject):
-        print("Parking")
-
         self.first_arrival()
 
         while True:

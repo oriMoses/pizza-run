@@ -79,6 +79,7 @@ def init_suburbs():
         for j in range(suburbs_rows):
             Suburbs[j][i] = NoneSpecialRoom(j, i)
 
+    #TODO: remove for lop behind note
     for i in range(suburbs_cols):
         for j in range(suburbs_rows):
             if i == 3:
@@ -129,10 +130,10 @@ def init():
     goNextRoom = False
     querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]
 
-def print_address(street, street_number):
+def get_address(street, street_number):
     address = get_street_name(street)
     address += get_street_number(street_number)
-    print(address)
+    return address
 
 def get_street_number(street_number):
     if street_number == 0:

@@ -11,13 +11,17 @@ def startGame():
         Settings.player.choice = input("> ")
 
 def choose_player_room():
-    #TODO: when drop item update its position
-    Settings.goNextRoom = False
-    Settings.print_address(Settings.player.position[0], Settings.player.position[1])
+    if Settings.goNextRoom == True:
+        print(Settings.get_address(Settings.player.position[0], Settings.player.position[1]))
+        print(Settings.Suburbs[Settings.player.position[0]][Settings.player.position[1]])
+        
+        Settings.goNextRoom = False
 
     Settings.Suburbs[Settings.player.position[0]][Settings.player.position[1]].dialog_circle(Settings.handleChoiceObject)
 
 def main():
+    global last_address
+    last_address = ""
     Settings.init()
     
     startGame()

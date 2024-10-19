@@ -17,7 +17,7 @@ class PizzaPlace():
         self.door = mainPizzaPlaceDoor()
 
     def __str__(self):
-        return f"Pizza Place"
+        return f"Main Pizza Place"
 
 
     def print_first_arrival(self):
@@ -38,8 +38,6 @@ class PizzaPlace():
             self.firstArrival = False
 
     def dialog_circle(self, handleChoiceObject):
-        print("Main Pizza Place")
-
         self.first_arrival()
 
         while True:

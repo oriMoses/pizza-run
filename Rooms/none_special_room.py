@@ -11,7 +11,7 @@ class NoneSpecialRoom(suburbsQuarter):
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
 
     def __str__(self):
-        return f"None Special Room"
+        return f"..."
 
     def print_first_arrival(self):
         Settings.print_items_in_room(self)
@@ -22,7 +22,6 @@ class NoneSpecialRoom(suburbsQuarter):
             self.firstArrival = False
 
     def dialog_circle(self, commonChoiceObject):
-        print("...")
         Settings.print_items_in_room(self)
 
         while True:
