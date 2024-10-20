@@ -15,9 +15,8 @@ class Parking(suburbsQuarter):
         return f"Parking"
     
     def print_first_arrival(self):
-        print("You are in the pizza parking lot.")
+        print("You are in the pizza parking lot.\n\nThere's a box on the floor")
         Settings.print_items_in_room(self)
-
 
     def first_arrival(self):
         if self.firstArrival:
@@ -32,7 +31,13 @@ class Parking(suburbsQuarter):
                 break
             Settings.player.choice = input("> ").lower()
 
-            if "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
+            if "box" in Settings.player.choice:
+                if "open" in Settings.player.choice or "examine" in Settings.player.choice:
+                    Settings.boxObject.open()
+                if "look" in Settings.player.choice:
+                    print("it's a regular cardbox.")
+
+            elif "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
                 self.print_first_arrival()
 
             elif commonChoiceObject.check_player_input(self.inventory):

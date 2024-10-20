@@ -8,12 +8,22 @@ class HandleChoices():
         if self.check_inventory_input() or self.check_help_input()      \
             or self.check_bike_input() or self.check_read_note_input()  \
             or self.check_pick_key_input(roomInventory) or self.check_go_input() or \
-                self.check_pick_pizza_input(roomInventory) or self.check_pick_notebook(roomInventory):
+                self.check_pick_pizza_input(roomInventory) or self.check_pick_notebook(roomInventory)\
+                    or self.check_bike_key():
                 return True
     
+    def check_bike_key(self):
+        if "bike" in Settings.player.choice and "key" in Settings.player.choice:
+            self.deal_with_pick_and_drop(Settings.boxObject.inventory, Settings.BIKE_KEY_ID, "bike key")
+            Settings.bikeKeyObject.inBox = False
+
+            if "examine" in Settings.player.choice:
+                if Settings.player.inventory.item_exist(Settings.BIKE_KEY_ID):
+                    Settings.bikeKeyObject.examine()
+
     def check_pick_notebook(self, roomInventory):
         if "notebook" in Settings.player.choice and "suburbs" in Settings.player.choice:
-            self.deal_with_pick_and_drop(roomInventory, Settings.SUBURBS_NOTEBOOK_ID, "main pizza key")
+            self.deal_with_pick_and_drop(roomInventory, Settings.SUBURBS_NOTEBOOK_ID, "suburbs notebook")
             
             if "read" in Settings.player.choice:
                 if Settings.player.inventory.item_exist(Settings.SUBURBS_NOTEBOOK_ID):
@@ -35,7 +45,8 @@ class HandleChoices():
                 #TODO: chekBikeAvailability
                 return True
             elif "climb" in Settings.player.choice or "ride" in Settings.player.choice or "get on" in Settings.player.choice:
-                #TODO: chekBikeAvailability
+                if Settings.bikeObject.is_vehicle_availabe():
+                    print("you are on the ", Settings.bikeObject.name)
                 return True
         
     def check_read_note_input(self):
@@ -50,7 +61,7 @@ class HandleChoices():
         if "pick" in Settings.player.choice or "take" in Settings.player.choice:
             if roomInventory.item_exist(item_id):                            
                 roomInventory.move_item(item_id, Settings.player.inventory)
-                print("Key added to your inventory")
+                print(item_name, "added to your inventory")
                 return True
             elif Settings.player.inventory.item_exist(item_id):
                 print("You already have the key.")

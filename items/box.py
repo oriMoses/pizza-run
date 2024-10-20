@@ -1,14 +1,16 @@
 import Classes.settings as Settings
-import items.notebook as Notebook
+import items.suburbsNotebook as Notebook
+import items.bike_key as BikeKey
+from Classes.inventory import Inventory
 class Box():
     def __init__(self):
         self.quarter = "Suburbs"
-        self.position = 3,3
-        self.notebook = Notebook()
-        self.items = Notebook(), bikeKey#TODO: bike Key
+        self.position = 3,2
+        self.ID = 100
 
-    def print_notebook(self):
-        notebookList = list(self.notebook)
-        for i, note in enumerate(notebookList):
-            print("x", note[0], " ", end='')
-            Settings.print_address(note[1].location[0], note[1].location[1])
+        self.inventory = Inventory()
+        self.inventory.add_item(Settings.BIKE_KEY_ID, "bike key", 1)
+        self.inventory.add_item(Settings.SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1)
+
+    def open(self):
+        print("You see the suburbs notebook and a bike key")

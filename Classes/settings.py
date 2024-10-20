@@ -12,6 +12,9 @@ from Rooms.pink_house import PinkHouse
 from Rooms.bush_garden import BushGarden
 from items.suburbsNotebook import SuburbsNotebook
 from items.mainPizzaKey import MainPizzaKey
+from items.bike_key import BikeKey
+from items.box import Box
+from vehicles.bike import Bike
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
 #constants
@@ -27,9 +30,13 @@ SUBURBS_NOTEBOOK_ID = 1
 COLD_PIZZA_ID = 2
 HOT_PIZZA_ID = 3
 COIN_ID = 4
+BIKE_ID = 5
+BIKE_KEY_ID = 6
 
 MAX_PIZZA_ON_PLAYER = 5
+MAX_PIZZA_ON_BIKE = 5
 AMOOUNT_OF_ORDERS_IN_SUBURBS = 11
+
 
 def init_orders():
     global suburbsOrders
@@ -54,18 +61,27 @@ def remove_orderes_for(object):
 
 def print_items_in_room(self):
     for item in enumerate(itemList):
-        if self.inventory.item_exist(item[1].ID):
+        if item[1].ID == SUBURBS_NOTEBOOK_ID or item[1].ID == BIKE_KEY_ID:
+            if item[1].inBox:
+                pass
+        elif self.inventory.item_exist(item[1].ID):
             item[1].print_in_room()
         # elif player.inventory.item_exist(item[1].ID):
         #     pass
 
 def init_items():
-    global itemList, SuburbsNotebookObject, mainPizzaKeyObject
+    global itemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject
 
     SuburbsNotebookObject = SuburbsNotebook(parkingObject.location)
     mainPizzaKeyObject = MainPizzaKey(pizzaPlaceObject.location)
+    boxObject = Box()
 
-    itemList = [SuburbsNotebookObject, mainPizzaKeyObject]
+    itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject]
+
+def init_vehicle():
+    global bikeKeyObject, bikeObject
+    bikeKeyObject = BikeKey(parkingObject.location)
+    bikeObject = Bike(parkingObject.location)
 
 def underline(text):
     print("\u0332".join(text + " "))
@@ -126,6 +142,7 @@ def init():
     init_suburbs()
     init_orders()
     init_items()
+    init_vehicle()
 
     goNextRoom = False
     querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]
