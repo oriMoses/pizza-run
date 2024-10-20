@@ -16,7 +16,13 @@ class Gatekeeper(suburbsQuarter):
         return f"Gatekeeper"
 
     def print_first_arrival(self):
-        print("you see a man wearing a yellow vest.\nHe sits on a lawn chair by a small security booth.\nThere's a close gate to the", end=" ")
+        print("you see a man wearing a yellow vest.\nHe sits on a lawn chair by a small security booth.\nThere's a ", end="")
+        if self.gateOpen:
+            print("open ", end=" ")
+        else:
+            print("closed ", end=" ")
+
+        print("gate to the ", end="")
         Settings.underline("South")
         Settings.print_items_in_room(self)
 
@@ -26,7 +32,13 @@ class Gatekeeper(suburbsQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("You see a man wearing a yellow vest.\nThere's an close\open gate to the", Settings.underline("south"))
+            print("You see a man wearing a yellow vest.\nThere's an ", end="")
+            if self.gateOpen:
+                print("open ", end="")
+            else:
+                print("closed", end="")
+            print("gate to the ", end="")
+            Settings.underline("South")
             Settings.print_items_in_room(self)
 
     def give_pizza(self):
@@ -41,7 +53,8 @@ class Gatekeeper(suburbsQuarter):
         return 0
 
     def dialog_circle(self, commonChoiceObject):
-        self.first_arrival()
+        if not self.gateOpen:
+            self.first_arrival()
 
         while True:
             if Settings.goNextRoom:
