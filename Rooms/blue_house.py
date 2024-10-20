@@ -22,6 +22,8 @@ class BlueHouse(suburbsQuarter):
         print("You see a blue house, with a lawn full of garden gnomes.\n \
               It feels like the gnomes are looking at you. \nmaybe it's better not to think about the garden gnomes so much.")
         Settings.print_items_in_room(self)
+        Settings.print_vehicles_in_room(self)
+
 
     def first_arrival(self):
         if self.firstArrival:
@@ -30,6 +32,7 @@ class BlueHouse(suburbsQuarter):
         else:
             print("The one with all the garden gnomes..")
             Settings.print_items_in_room(self)
+            Settings.print_vehicles_in_room(self)
 
 
     def give_pizza(self):

@@ -25,6 +25,7 @@ class PizzaPlace():
         #TODO:        small/medium/massive
         print("You see massive pile of hot pizza and a small note on the counter")
         Settings.print_items_in_room(self)
+        Settings.print_vehicles_in_room(self)
 
         if self.door.locked:
                 print("There's a locked door to the", end=" ") 

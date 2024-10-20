@@ -35,7 +35,8 @@ class Inventory():
 
     def item_exist(self, item_id):
         if item_id in self.inventory:
-            return True
+            if self.inventory[item_id]['stock_count'] != 0:
+                return True
         else:
             return False
 

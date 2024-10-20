@@ -66,22 +66,27 @@ def print_items_in_room(self):
                 pass
         elif self.inventory.item_exist(item[1].ID):
             item[1].print_in_room()
-        # elif player.inventory.item_exist(item[1].ID):
-        #     pass
 
+def print_vehicles_in_room(self):
+    for vehicle in enumerate(vehicleList):
+        if vehicle[1].position == player.position:
+            vehicle[1].print_in_room()
+    
 def init_items():
-    global itemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject
+    global itemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject
 
     SuburbsNotebookObject = SuburbsNotebook(parkingObject.location)
     mainPizzaKeyObject = MainPizzaKey(pizzaPlaceObject.location)
     boxObject = Box()
+    bikeKeyObject = BikeKey()
 
-    itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject]
+    itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject]
 
 def init_vehicle():
-    global bikeKeyObject, bikeObject
-    bikeKeyObject = BikeKey(parkingObject.location)
-    bikeObject = Bike(parkingObject.location)
+    global bikeObject, vehicleList
+    bikeObject = Bike()
+
+    vehicleList = [bikeObject]
 
 def underline(text):
     print("\u0332".join(text + " "))

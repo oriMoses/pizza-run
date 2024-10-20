@@ -19,6 +19,7 @@ class GreenHouse(suburbsQuarter):
     def print_first_arrival(self):
         print("You see a greenhouse.\nThe front lawn is overgrown.\nThere's a big, rideable lawn mower.\nThere's a note on the door.")
         Settings.print_items_in_room(self)
+        Settings.print_vehicles_in_room(self)
 
     def first_arrival(self):
         if self.firstArrival:

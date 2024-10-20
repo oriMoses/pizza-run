@@ -18,6 +18,7 @@ class PinkHouse(suburbsQuarter):
     def print_first_arrival(self):
         print("You see a pink house.\nThere's a big barbed fence to the", Settings.underline("East"), ".\nyou can't really see past the fence.\nstrange vibes over here.")
         Settings.print_items_in_room(self)
+        Settings.print_vehicles_in_room(self)
 
     def first_arrival(self):
         if self.firstArrival:
@@ -26,7 +27,8 @@ class PinkHouse(suburbsQuarter):
         else:
             print("What's up with that fence?")
             Settings.print_items_in_room(self)
-    
+            Settings.print_vehicles_in_room(self)
+
     def give_pizza(self):
         if "give" in Settings.player.choice:
             if "pizza" in Settings.player.choice:

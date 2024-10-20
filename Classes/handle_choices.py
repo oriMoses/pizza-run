@@ -42,11 +42,19 @@ class HandleChoices():
     def check_bike_input(self):
         if "bike" in Settings.player.choice:
             if "get down" in Settings.player.choice or "leave" in Settings.player.choice or "get off" in Settings.player.choice:
-                #TODO: chekBikeAvailability
-                return True
+                if Settings.bikeObject.player_on_vehacle():
+                    print("you got down from ", Settings.bikeObject.name)
+                    Settings.bikeObject.playerOnVehicle = False
+                    return True
+                else:
+                    print("you are not on a", Settings.bikeObject.name)
+                    return False
+
             elif "climb" in Settings.player.choice or "ride" in Settings.player.choice or "get on" in Settings.player.choice:
+                
                 if Settings.bikeObject.is_vehicle_availabe():
-                    print("you are on the ", Settings.bikeObject.name)
+                    Settings.bikeObject.playerOnVehicle = True
+                    print("you are on the", Settings.bikeObject.name)
                 return True
         
     def check_read_note_input(self):
@@ -133,35 +141,49 @@ class HandleChoices():
                             roomInventory.update_item(Settings.HOT_PIZZA_ID, hotPizzaInRoom - pizzasToAdd)
                             Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, pizzasOnPlayer + pizzasToAdd)
 
+    def go_south(self):
+        if(Settings.street_in_boundary(Settings.player.position[0] + 1, \
+                                        Settings.player.position[1])):
+            Settings.player.position[0] = Settings.player.position[0] + 1
+            Settings.goNextRoom = True
+        else:
+            print("place out of bounds")
+    def go_north(self):
+        if(Settings.street_in_boundary(Settings.player.position[0] - 1, \
+                                Settings.player.position[1])):
+            Settings.player.position[0] = Settings.player.position[0] - 1
+            Settings.goNextRoom = True
+        else:
+            print("place out of bounds")
+    def go_west(self):
+        if(Settings.street_in_boundary(Settings.player.position[0], \
+                                    Settings.player.position[1] - 1)):
+            Settings.player.position[1] = Settings.player.position[1] - 1
+            Settings.goNextRoom = True
+        else:
+            print("place out of bounds")
+
+    def go_east(self):
+        if(Settings.street_in_boundary(Settings.player.position[0], \
+                                        Settings.player.position[1] + 1)):
+            Settings.player.position[1] = Settings.player.position[1] + 1
+            Settings.goNextRoom = True
+        else:
+            print("place out of bounds")
+
     def check_go_input(self):
         if "south" in Settings.player.choice:
-            if(Settings.street_in_boundary(Settings.player.position[0] + 1, \
-                                            Settings.player.position[1])):
-                Settings.player.position[0] = Settings.player.position[0] + 1
-                Settings.goNextRoom = True
-            else:
-                print("place out of bounds")
+            self.go_south()
 
         elif "north" in Settings.player.choice:
-            if(Settings.street_in_boundary(Settings.player.position[0] - 1, \
-                                            Settings.player.position[1])):
-                Settings.player.position[0] = Settings.player.position[0] - 1
-                Settings.goNextRoom = True
-            else:
-                print("place out of bounds")
+            self.go_north()
 
         elif "west" in Settings.player.choice:
-            if(Settings.street_in_boundary(Settings.player.position[0], \
-                                            Settings.player.position[1] - 1)):
-                Settings.player.position[1] = Settings.player.position[1] - 1
-                Settings.goNextRoom = True
-            else:
-                print("place out of bounds")
+            self.go_west()
             
         elif "east" in Settings.player.choice:
-            if(Settings.street_in_boundary(Settings.player.position[0], \
-                                            Settings.player.position[1] + 1)):
-                Settings.player.position[1] = Settings.player.position[1] + 1
-                Settings.goNextRoom = True
-            else:
-                print("place out of bounds")
+            self.go_east()
+
+        for vehicle in enumerate(Settings.vehicleList):
+            if vehicle[1].playerOnVehicle:
+                vehicle[1].position = Settings.player.position[:]

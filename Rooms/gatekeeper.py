@@ -25,6 +25,8 @@ class Gatekeeper(suburbsQuarter):
         print("gate to the ", end="")
         Settings.underline("South")
         Settings.print_items_in_room(self)
+        Settings.print_vehicles_in_room(self)
+
 
 
     def first_arrival(self):
@@ -40,6 +42,8 @@ class Gatekeeper(suburbsQuarter):
             print("gate to the ", end="")
             Settings.underline("South")
             Settings.print_items_in_room(self)
+            Settings.print_vehicles_in_room(self)
+
 
     def give_pizza(self):
         if "give" in Settings.player.choice:
