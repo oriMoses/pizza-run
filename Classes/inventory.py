@@ -7,9 +7,16 @@ class Inventory():
     def add_item(self, item_id, item_name, stock_count, pizza_temprature = pizza_temprature.NOT_A_PIZZA):
         self.inventory[item_id] = {"item_name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature}
 
-    def move_item(self, item_id, secondInventory):
-        secondInventory.add_item(item_id, self.inventory[item_id]["item_name"], self.inventory[item_id]["stock_count"])
+    def move_item(self, item_id, toInventory):
+        toInventory.add_item(item_id, self.inventory[item_id]["item_name"], self.inventory[item_id]["stock_count"])
         self.inventory.pop(item_id)
+
+    def move_items(self, item_id, toInventory, amount):
+        self.inventory[item_id]["stock_count"] -= amount
+        toInventory.inventory[item_id]["stock_count"] += amount
+        print (amount)
+        print(self.inventory[item_id]["stock_count"])
+        print(toInventory.inventory[item_id]["stock_count"])
 
     def update_item(self, item_id, stock_count):
         if item_id in self.inventory:
@@ -28,7 +35,6 @@ class Inventory():
             return "Item not found in inventory."
         
     def print_all(self):
-        print("Inventory:")
         for item in self.inventory:
             if self.inventory[item]['stock_count'] != 0:
                 print(self.inventory[item]['item_name'], self.inventory[item]['stock_count'], "\n")

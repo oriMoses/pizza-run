@@ -1,12 +1,12 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
-class MainPizzaKey(BasicItem):
+class WristWatch(BasicItem):
     def __init__(self, position):
-        super().__init__(position, Settings.MainPizzaKey_ID)
+        super().__init__(position, Settings.WRIST_WATCH_ID) 
         self.quarter = "Suburbs"
 
     def print_in_room(self):
-        print("The Main pizza key is on the floor")
+        print("There's a wristwatch on the floor.")
 
     def examine(self):
-        print("I guess it's open the door")
+        print("It tells the time.")

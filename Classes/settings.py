@@ -13,7 +13,13 @@ from Rooms.bush_garden import BushGarden
 from Items.suburbsNotebook import SuburbsNotebook
 from Items.Keys.mainPizzaKey import MainPizzaKey
 from Items.Keys.bike_key import BikeKey
-from Items.hair_dryer import HairDryer
+from Items.Keys.green_lawn_mower_key import GreenLawnMowerKey
+from Items.Shop.hair_dryer import HairDryer
+from Items.Shop.pizza_locator import PizzaLocator
+from Items.Shop.tripper_guide import TripperGuide
+from Items.Shop.wrist_watch import WristWatch
+from Items.lawn_mower import LawnMower
+from Items.shiny_dice import ShinyDice
 from Items.box import Box
 from vehicles.bike import Bike
 from Classes.player import Player
@@ -29,16 +35,23 @@ SUBURBS_MAX_STREET_NUMBER_BOUNDARY = 4
 MainPizzaKey_ID = 0
 SUBURBS_NOTEBOOK_ID = 1
 HAIR_DRYER_ID = 2
-COLD_PIZZA_ID = 3
-HOT_PIZZA_ID = 4
-COIN_ID = 5
-BIKE_ID = 6
-BIKE_KEY_ID = 7
+BACKPACK_ID = 3
+BIKE_KEY_ID = 4
+WRIST_WATCH_ID = 5
+PIZZA_LOCATOR_ID = 6
+TRIPPER_GUIDE_ID = 7
+COLD_PIZZA_ID = 8
+HOT_PIZZA_ID = 9
+COIN_ID = 10
+GREEN_LAWN_MOWER_KEY_ID = 11
+LAWN_MOWER_ID = 12
+SHINY_DICE_ID = 13
+BIKE_ID = 14
 
 MAX_PIZZA_ON_PLAYER = 5
 MAX_PIZZA_ON_BIKE = 5
 AMOOUNT_OF_ORDERS_IN_SUBURBS = 11
-
+shop_location = [10,10]
 
 def init_orders():
     global suburbsOrders
@@ -74,15 +87,21 @@ def print_vehicles_in_room(self):
             vehicle[1].print_in_room()
     
 def init_items():
-    global itemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject
+    global itemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject
 
     SuburbsNotebookObject = SuburbsNotebook(parkingObject.location)
     mainPizzaKeyObject = MainPizzaKey(pizzaPlaceObject.location)
     boxObject = Box()
     bikeKeyObject = BikeKey()
-    hairDryerObject = HairDryer(miniMarketObject.location)
+    hairDryerObject = HairDryer(shop_location)
+    greenLawnMowerKeyObject = GreenLawnMowerKey()
+    PizzaLocatorObject = PizzaLocator(shop_location)
+    TripperGuideObject = TripperGuide(shop_location)
+    WristWatchObject = WristWatch(shop_location)
+    LawnMowerObject = LawnMower()
+    ShinyDiceObject = ShinyDice()
 
-    itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject]
+    itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject]
 
 def init_vehicle():
     global bikeObject, vehicleList

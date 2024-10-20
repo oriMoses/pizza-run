@@ -11,5 +11,7 @@ class mainPizzaPlaceDoor():
             if Settings.player.inventory.item_exist(Settings.MainPizzaKey_ID):
                 print("Door unlocked")
                 self.locked = False
+            else:
+                print("the door is locked")
         else:
             print("the door already open")
