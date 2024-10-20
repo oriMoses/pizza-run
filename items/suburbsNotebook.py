@@ -1,5 +1,5 @@
 import Classes.settings as Settings
-from items.basic_item import BasicItem
+from Items.basic_item import BasicItem
 class SuburbsNotebook(BasicItem):
     def __init__(self, position):
         super().__init__(position, Settings.SUBURBS_NOTEBOOK_ID) 

@@ -10,10 +10,11 @@ from Rooms.green_house import GreenHouse
 from Rooms.yellow_house import YellowHouse
 from Rooms.pink_house import PinkHouse
 from Rooms.bush_garden import BushGarden
-from items.suburbsNotebook import SuburbsNotebook
-from items.mainPizzaKey import MainPizzaKey
-from items.bike_key import BikeKey
-from items.box import Box
+from Items.suburbsNotebook import SuburbsNotebook
+from Items.Keys.mainPizzaKey import MainPizzaKey
+from Items.Keys.bike_key import BikeKey
+from Items.hair_dryer import HairDryer
+from Items.box import Box
 from vehicles.bike import Bike
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
@@ -27,11 +28,12 @@ SUBURBS_MAX_STREET_NUMBER_BOUNDARY = 4
 
 MainPizzaKey_ID = 0
 SUBURBS_NOTEBOOK_ID = 1
-COLD_PIZZA_ID = 2
-HOT_PIZZA_ID = 3
-COIN_ID = 4
-BIKE_ID = 5
-BIKE_KEY_ID = 6
+HAIR_DRYER_ID = 2
+COLD_PIZZA_ID = 3
+HOT_PIZZA_ID = 4
+COIN_ID = 5
+BIKE_ID = 6
+BIKE_KEY_ID = 7
 
 MAX_PIZZA_ON_PLAYER = 5
 MAX_PIZZA_ON_BIKE = 5
@@ -66,21 +68,21 @@ def print_items_in_room(self):
                 pass
         elif self.inventory.item_exist(item[1].ID):
             item[1].print_in_room()
-
 def print_vehicles_in_room(self):
     for vehicle in enumerate(vehicleList):
         if vehicle[1].position == player.position:
             vehicle[1].print_in_room()
     
 def init_items():
-    global itemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject
+    global itemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject
 
     SuburbsNotebookObject = SuburbsNotebook(parkingObject.location)
     mainPizzaKeyObject = MainPizzaKey(pizzaPlaceObject.location)
     boxObject = Box()
     bikeKeyObject = BikeKey()
+    hairDryerObject = HairDryer(miniMarketObject.location)
 
-    itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject]
+    itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject]
 
 def init_vehicle():
     global bikeObject, vehicleList

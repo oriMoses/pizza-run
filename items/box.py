@@ -1,6 +1,6 @@
 import Classes.settings as Settings
-import items.suburbsNotebook as Notebook
-import items.bike_key as BikeKey
+import Items.suburbsNotebook as Notebook
+import Items.Keys.bike_key as BikeKey
 from Classes.inventory import Inventory
 class Box():
     def __init__(self):

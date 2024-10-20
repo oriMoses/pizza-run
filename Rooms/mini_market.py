@@ -10,6 +10,7 @@ class MiniMarket(suburbsQuarter):
         self.inventory = Inventory()
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(Settings.HAIR_DRYER_ID, "Hair Dryer", 1)
 
     def __str__(self):
         return f"Mini Market"
@@ -42,7 +43,7 @@ class MiniMarket(suburbsQuarter):
                 return numberOfPizza
         return 0
 
-    def dialog_circle(self, commonChoiceObject):
+    def dialog_circle(self, handleChoiceObject):
         self.first_arrival()
 
         while True:
@@ -95,5 +96,5 @@ class MiniMarket(suburbsQuarter):
                         print('"I have got some stuff you might find useful"')
                         #TODO: add minimarket sht
 
-            elif commonChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.check_player_input(self.inventory):
                 pass

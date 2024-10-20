@@ -9,9 +9,17 @@ class HandleChoices():
             or self.check_bike_input() or self.check_read_note_input()  \
             or self.check_pick_key_input(roomInventory) or self.check_go_input() or \
                 self.check_pick_pizza_input(roomInventory) or self.check_pick_notebook(roomInventory)\
-                    or self.check_bike_key():
+                    or self.check_bike_key() or self.check_hair_dryer(roomInventory):
                 return True
     
+    def check_hair_dryer(self, roomInventory):
+        if "hair" in Settings.player.choice and "dryer" in Settings.player.choice:
+            self.deal_with_pick_and_drop(roomInventory, Settings.HAIR_DRYER_ID, "hair dryer")
+
+            if "examine" in Settings.player.choice:
+                if Settings.player.inventory.item_exist(Settings.HAIR_DRYER_ID):
+                    Settings.hairDryerObject.examine()
+
     def check_bike_key(self):
         if "bike" in Settings.player.choice and "key" in Settings.player.choice:
             self.deal_with_pick_and_drop(Settings.boxObject.inventory, Settings.BIKE_KEY_ID, "bike key")

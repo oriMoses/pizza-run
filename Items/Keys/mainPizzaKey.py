@@ -1,6 +1,6 @@
 import Classes.settings as Settings
-import items.suburbsNotebook as Notebook
-from items.basic_item import BasicItem
+import Items.suburbsNotebook as Notebook
+from Items.basic_item import BasicItem
 class MainPizzaKey(BasicItem):
     def __init__(self, position):
         super().__init__(position, Settings.MainPizzaKey_ID)

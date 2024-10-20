@@ -16,7 +16,9 @@ class PinkHouse(suburbsQuarter):
         return f"Pink House"
 
     def print_first_arrival(self):
-        print("You see a pink house.\nThere's a big barbed fence to the", Settings.underline("East"), ".\nyou can't really see past the fence.\nstrange vibes over here.")
+        print("You see a pink house.\nThere's a big barbed fence to the", end="")
+        print(Settings.underline("East"), end="")
+        print(".\nyou can't really see past the fence.\nstrange vibes over here.")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
 
