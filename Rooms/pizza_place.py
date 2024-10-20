@@ -21,14 +21,17 @@ class PizzaPlace():
 
 
     def print_first_arrival(self):
-        print("""you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is probably 16. \n\nYou know the place. \n\nYou see a massive pile of hot pizza and a small note on the counter. \n\nThere's a locked door to the west. \n""")
+        print("""you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is propably 16.""")
         #TODO:        small/medium/massive
         print("You see massive pile of hot pizza and a small note on the counter")
         Settings.print_items_in_room(self)
 
-        if self.firstArrival:
-              print("There's a locked door to the", end=" ") 
-              Settings.underline("West")
+        if self.door.locked:
+                print("There's a locked door to the", end=" ") 
+                Settings.underline("West")
+        else:
+                print("There's a opened door to the", end=" ") 
+                Settings.underline("West")
 
 
     def first_arrival(self):
