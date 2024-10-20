@@ -171,7 +171,7 @@ class HandleChoices():
         else:
             print("place out of bounds")
 
-    def check_go_input(self):
+    def check_go_input(self):            
         if "south" in Settings.player.choice:
             self.go_south()
 

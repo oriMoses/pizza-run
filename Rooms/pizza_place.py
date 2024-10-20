@@ -55,6 +55,7 @@ class PizzaPlace():
             elif "north" in Settings.player.choice or "south" in Settings.player.choice \
                                                     or "east" in Settings.player.choice:
                 print("You can't go that way")
+                Settings.player.choice = ""
 
             if "door" in Settings.player.choice:
                 if "unlock" in Settings.player.choice or "open" in Settings.player.choice:
