@@ -37,7 +37,7 @@ class GreenHouse(suburbsQuarter):
                 return numberOfPizza
         return 0
 
-    def dialog_circle(self, commonChoiceObject):
+    def dialog_circle(self, handleChoiceObject):
         self.first_arrival()
 
         while True:
@@ -98,5 +98,5 @@ class GreenHouse(suburbsQuarter):
                     print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n \
                           “Did we order pizza?”\n\n“Hah, guess we did.“')
             #TODO: keep working from docx on Shiny dice/ basic adds
-            elif commonChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory):
                 pass

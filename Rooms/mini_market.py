@@ -99,5 +99,5 @@ class MiniMarket(suburbsQuarter):
                         print('"I have got some stuff you might find useful"')
                         #TODO: add minimarket sht
 
-            elif handleChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory):
                 pass

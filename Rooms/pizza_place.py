@@ -49,6 +49,13 @@ class PizzaPlace():
             Settings.player.choice = input("> ").lower()
             print()
 
+            if "read" in Settings.player.choice and "note" in Settings.player.choice:
+                if "notebook" in Settings.player.choice:
+                    return
+                else:
+                    if Settings.player.position == Settings.pizzaPlaceObject.location:
+                        print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)")
+
             if "look" in Settings.player.choice or "lookaround" in Settings.player.choice:
                 self.print_first_arrival()
 
@@ -65,8 +72,8 @@ class PizzaPlace():
                 if self.door.locked:
                     print("The door is locked (as doors should be)")
                 else:
-                    handleChoiceObject.check_player_input(self.inventory)
+                    handleChoiceObject.player_input(self.inventory)
                     break
 
-            elif handleChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory):
                 pass

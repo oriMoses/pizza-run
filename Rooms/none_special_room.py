@@ -23,7 +23,7 @@ class NoneSpecialRoom(suburbsQuarter):
             self.print_first_arrival()
             self.firstArrival = False
 
-    def dialog_circle(self, commonChoiceObject):
+    def dialog_circle(self, handleChoiceObject):
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
 
@@ -37,5 +37,5 @@ class NoneSpecialRoom(suburbsQuarter):
                 print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
                 self.print_first_arrival()
 
-            elif commonChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory):
                 pass

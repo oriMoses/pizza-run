@@ -14,9 +14,6 @@ class Inventory():
     def move_items(self, item_id, toInventory, amount):
         self.inventory[item_id]["stock_count"] -= amount
         toInventory.inventory[item_id]["stock_count"] += amount
-        print (amount)
-        print(self.inventory[item_id]["stock_count"])
-        print(toInventory.inventory[item_id]["stock_count"])
 
     def update_item(self, item_id, stock_count):
         if item_id in self.inventory:

@@ -24,7 +24,7 @@ class Parking(suburbsQuarter):
             self.print_first_arrival()
             self.firstArrival = False
 
-    def dialog_circle(self, commonChoiceObject):
+    def dialog_circle(self, handleChoiceObject):
         self.first_arrival()
 
         while True:
@@ -41,5 +41,5 @@ class Parking(suburbsQuarter):
             elif "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
                 self.print_first_arrival()
 
-            elif commonChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory):
                 pass

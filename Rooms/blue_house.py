@@ -47,7 +47,7 @@ class BlueHouse(suburbsQuarter):
         return 0
 
 
-    def dialog_circle(self, commonChoiceObject):
+    def dialog_circle(self, handleChoiceObject):
         self.first_arrival()
 
         while True:
@@ -100,5 +100,5 @@ class BlueHouse(suburbsQuarter):
                     self.door_knocked = True
                     print("(door opened) \nhello there, young man")
 
-            elif commonChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory):
                 pass

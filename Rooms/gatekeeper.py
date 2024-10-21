@@ -56,7 +56,7 @@ class Gatekeeper(suburbsQuarter):
                 return numberOfPizza
         return 0
 
-    def dialog_circle(self, commonChoiceObject):
+    def dialog_circle(self, handleChoiceObject):
         if not self.gateOpen:
             self.first_arrival()
 
@@ -106,5 +106,5 @@ class Gatekeeper(suburbsQuarter):
                 if "talk" in Settings.player.choice or "approach" in Settings.player.choice or "look" in Settings.player.choice:
                     print('hi there!')
 
-            elif commonChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory):
                 pass

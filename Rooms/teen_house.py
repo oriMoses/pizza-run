@@ -36,7 +36,7 @@ class TeenHouse(suburbsQuarter):
                 return numberOfPizza
         return 0
 
-    def dialog_circle(self, commonChoiceObject):
+    def dialog_circle(self, handleChoiceObject):
         self.first_arrival()
 
         while True:
@@ -83,5 +83,5 @@ class TeenHouse(suburbsQuarter):
                     self.door_knocked = True
                     print('(door opened)\n "Pizzas hereeee"')
 
-            elif commonChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory):
                 pass

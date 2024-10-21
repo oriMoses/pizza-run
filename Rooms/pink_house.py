@@ -42,7 +42,7 @@ class PinkHouse(suburbsQuarter):
                 return numberOfPizza
         return 0
 
-    def dialog_circle(self, commonChoiceObject):
+    def dialog_circle(self, handleChoiceObject):
         self.first_arrival()
 
         while True:
@@ -89,5 +89,5 @@ class PinkHouse(suburbsQuarter):
                     self.door_knocked = True
                     print('You hear dogs barking and running.\nbang!\n\nsomeone crashed on the door!\nThe door opens to a crack and a man shouts:\n“who are you? go away!”')
 
-            elif commonChoiceObject.check_player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory):
                 pass
