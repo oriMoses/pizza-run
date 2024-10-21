@@ -154,6 +154,7 @@ class HandleChoices():
             coldPizzaInRoom = fromInventory.get_amount(Settings.COLD_PIZZA_ID)
             if coldPizzaInRoom < pizzasToAdd:
                 print("Not enough pizza in inventory")
+                return False
             else:
                 fromInventory.move_items(Settings.COLD_PIZZA_ID, toInventory, pizzasToAdd)
         else:
@@ -190,10 +191,11 @@ class HandleChoices():
             print(inventoryName, "can't carry more than 5 pizzas")
             return -1
         if "take" in Settings.player.choice and "bike" in Settings.player.choice:
-            pass
-        else:
-            if pizzasToAdd + pizzasOnInventory > Settings.MAX_PIZZA_ON_PLAYER:
-                pizzasToAdd = 0
+            if "drop" in Settings.player.choice:
+                pass
+            else:
+                if pizzasToAdd + pizzasOnInventory > Settings.MAX_PIZZA_ON_PLAYER:
+                    pizzasToAdd = 0
         return pizzasToAdd
 
     def deal_with_pick_and_drop(self, roomInventory, item_id, item_name, amount):
@@ -257,12 +259,10 @@ class HandleChoices():
                     return False
                 if pizzasToAdd == 0:
                     if pizzasOnPlayer == Settings.MAX_PIZZA_ON_PLAYER:
-                        print("max pizza on player")
-                        return False
+                        if "drop" not in Settings.player.choice:
+                            print("max pizza on player")
 
             if "pick" in Settings.player.choice or "take" in Settings.player.choice:
-
-                
                 if playerOnBike:
                     self.move_pizza_bike(Settings.bikeObject.inventory, Settings.player.inventory, pizzasToAdd)
                 else:
@@ -275,7 +275,14 @@ class HandleChoices():
                 self.move_pizza_bike(Settings.player.inventory, Settings.bikeObject.inventory, pizzasToAdd)
             
             elif "drop" in Settings.player.choice:
-                print("TODO: drop pizza system")
+                Settings.player.inventory.move_items(Settings.HOT_PIZZA_ID, roomInventory, pizzasToAdd)
+                print("item dropped.")
+                return True
+
+#                    print("You don't have ", item_name)
+#                    return True
+
+
 
     def cold_or_hot_pizza_in(inventory, secondInventory, pizzasToAdd):
         hotPizzaInRoom = inventory.get_amount(Settings.HOT_PIZZA_ID)

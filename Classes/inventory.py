@@ -12,8 +12,11 @@ class Inventory():
         self.inventory.pop(item_id)
 
     def move_items(self, item_id, toInventory, amount):
-        self.inventory[item_id]["stock_count"] -= amount
-        toInventory.inventory[item_id]["stock_count"] += amount
+        if self.inventory[item_id]["stock_count"] - amount >= 0:
+            self.inventory[item_id]["stock_count"] -= amount
+            toInventory.inventory[item_id]["stock_count"] += amount
+        else:
+            print("Not enough stock of the item to move.")
 
     def update_item(self, item_id, stock_count):
         if item_id in self.inventory:
