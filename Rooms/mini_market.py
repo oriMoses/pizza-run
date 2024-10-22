@@ -64,7 +64,7 @@ class MiniMarket(suburbsQuarter):
             if Settings.goNextRoom:
                 break
             Settings.player.choice = input("> ").lower()
-
+            print("")
             if self.give_pizza():
                 numberOfPizza = self.howMuchPizza()
 
@@ -102,6 +102,7 @@ class MiniMarket(suburbsQuarter):
 
                 while "yes" not in Settings.player.choice and "no" not in Settings.player.choice and "buy" not in Settings.player.choice:
                     Settings.player.choice = input("> ").lower()
+                    print("")
                     if "yes" not in Settings.player.choice and "no" not in Settings.player.choice and "buy" not in Settings.player.choice:
                         print("it's either yes or no, dont waste my time!")
 
@@ -115,7 +116,7 @@ class MiniMarket(suburbsQuarter):
                 
                 while "exit" not in Settings.player.choice:
                     Settings.player.choice = input("> ").lower()
-
+                    print("")
                     if "buy" in Settings.player.choice:
                         if "hair dryer" in Settings.player.choice:
                             if not self.inventory.item_exist(Settings.HAIR_DRYER_ID):
@@ -174,7 +175,7 @@ class MiniMarket(suburbsQuarter):
                                 self.print_on_buy()
                                 Settings.TripperGuideObject.inShop = False
                             else:
-                                print('"sorry bud, come back when you got enough money."\n')
+                                print('"sorry bud, come back when you got enough money."')
                                 break
                     
                     elif "exit" not in Settings.player.choice:
