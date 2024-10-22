@@ -4,7 +4,9 @@ class HairDryer(BasicItem):
     def __init__(self, position):
         super().__init__(position, Settings.HAIR_DRYER_ID) 
         self.quarter = "Suburbs"
-
+        self.inShop = True
+        self.price = 2
+    
     def print_in_room(self):
         print("There's Hair dryer on the floor")
 

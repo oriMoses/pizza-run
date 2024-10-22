@@ -75,12 +75,19 @@ def remove_orderes_for(object):
         i += 1
 
 def print_items_in_room(self):
+    inBox = False
+    inShop = False
     for item in enumerate(itemList):
         if item[1].ID == SUBURBS_NOTEBOOK_ID or item[1].ID == BIKE_KEY_ID:
             if item[1].inBox:
-                pass
-        elif self.inventory.item_exist(item[1].ID):
-            item[1].print_in_room()
+                inBox = True
+        elif item[1].ID == HAIR_DRYER_ID or item[1].ID == PIZZA_LOCATOR_ID or item[1].ID == TRIPPER_GUIDE_ID or item[1].ID == WRIST_WATCH_ID:
+            if item[1].inShop:
+                inShop = True
+        if inShop == False and inBox == False:
+            if self.inventory.item_exist(item[1].ID):
+                item[1].print_in_room()
+                
 def print_vehicles_in_room(self):
     for vehicle in enumerate(vehicleList):
         if vehicle[1].position == player.position:

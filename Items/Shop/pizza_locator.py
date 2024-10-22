@@ -4,6 +4,8 @@ class PizzaLocator(BasicItem):
     def __init__(self, position):
         super().__init__(position, Settings.PIZZA_LOCATOR_ID) 
         self.quarter = "Suburbs"
+        self.inShop = True
+        self.price = 20
 
     def print_in_room(self):
         print("There's a Pizza locator on the floor.")

@@ -10,6 +10,7 @@ class MiniMarket(suburbsQuarter):
         self.inventory = Inventory()
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
+
         self.inventory.add_item(Settings.HAIR_DRYER_ID, "Hair Dryer", 1)
         self.inventory.add_item(Settings.WRIST_WATCH_ID, "Wrist Watch", 1)
         self.inventory.add_item(Settings.PIZZA_LOCATOR_ID, "Pizza Locator", 1)
@@ -47,32 +48,37 @@ class MiniMarket(suburbsQuarter):
                 return numberOfPizza
         return 0
 
+    def go_to_shop(self):
+        if "get in" in Settings.player.choice or "go" in Settings.player.choice:
+            if "shop" in Settings.player.choice or "minimarket" in Settings.player.choice or "mini market" in Settings.player.choice:
+                return True
+        return False
+
+    def print_on_buy(self):
+        print("""cha ching! \n\n“I hope you like it. no refunds!”""")
+
     def dialog_circle(self, handleChoiceObject):
         self.first_arrival()
-
         while True:
             if Settings.goNextRoom:
                 break
             Settings.player.choice = input("> ").lower()
 
-
             if self.give_pizza():
                 numberOfPizza = self.howMuchPizza()
 
                 if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
-                    orders = Settings.get_ordexrs_for(Settings.gatekeeperObject)
+                    orders = Settings.get_orders_for(Settings.miniMarketObject)
                     if orders == -1:
                         print("You already delivered this order")
                     elif orders == numberOfPizza:
                         Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                         Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
 
-                        Settings.remove_orderes_for(Settings.gatekeeperObject)
+                        Settings.remove_orderes_for(Settings.miniMarketObject)
 
-                        print('Thank you, you just made my shift way better')
+                        print('"Perfect"')
                         print(numberOfPizza*2, " coin up tip")
-                        print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.')
-                        self.gateOpen = True
                         break
                     else:
                         print("Thats not the correct order")
@@ -81,10 +87,8 @@ class MiniMarket(suburbsQuarter):
                     Settings.player.inventory.update_item(Settings.COLD_PIZZA_ID, Settings.player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
                     Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + 5)
 
-                    print("Thank you, too bad its cold")
+                    print('"Thanks, kind of cold tho"')
                     print(numberOfPizza, " coin up tip")
-                    print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.')
-                    self.gateOpen = True
                     break
                 else:
                     print("Not enough pizza in inventory")
@@ -92,13 +96,52 @@ class MiniMarket(suburbsQuarter):
             if "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
                 self.print_first_arrival()
 
-            elif "get in" in Settings.player.choice or "go to" in Settings.player.choice:
-                if "shop" in Settings.player.choice or "minimarket" in Settings.player.choice or "mini market" in Settings.player.choice:
-                    print('(Inside the shop)\nCashier: "hey there, would you like anything?"')
-                    Settings.player.choice = input("> ").lower()
-                    if "yes" in Settings.player.choice or "buy" in Settings.player.choice:
-                        print('"I have got some stuff you might find useful"')
-                        #TODO: add minimarket sht
+            elif self.go_to_shop():
+                print('(Inside the shop)\nCashier: "hey there, would you like anything?" yes/no\n\n')
 
+                while "yes" not in Settings.player.choice and "no" not in Settings.player.choice and "buy" not in Settings.player.choice:
+                    Settings.player.choice = input("> ").lower()
+                    if "yes" not in Settings.player.choice and "no" not in Settings.player.choice and "buy" not in Settings.player.choice:
+                        print("it's either yes or no, dont waste my time!")
+
+                if "no" in Settings.player.choice:
+                    return False
+                
+                print("""I've got some stuff you might find useful"\n\n(7 coins) Delivery backpack - you can keep up to 10 pizzas in this bag, the bag will make sure the pizza stays hot! You can drive with the backpack on you, or put it on a vehicle. \n\n(2 coins) Hair dryer - can heat cold pizza (probably not the original use of this device. no warranty) \n\n(3 coins) wristwatch - tells the time. \n\n(20 coins) Pizza locator - This phone will track down any lost pizza (but try not to lose them) \n\n(1 coin) The tipper guide - Will tell you how to get better tips. \n\n""")
+                Settings.player.choice = input("> ").lower()
+                
+                if "buy" in Settings.player.choice:
+                    if "hair dryer" in Settings.player.choice:
+                        if Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.hairDryerObject.price:
+                            self.inventory.move_item(Settings.HAIR_DRYER_ID, Settings.player.inventory)
+                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.hairDryerObject.price)
+                            self.print_on_buy()
+                        else:
+                            print('"sorry bud, come back when you got enough money."')
+
+                    elif "wrist watch" in Settings.player.choice:
+                        if Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.WristWatchObject.price:
+                            self.inventory.move_item(Settings.WRIST_WATCH_ID, Settings.player.inventory)
+                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.WristWatchObject.price)
+                            self.print_on_buy()
+                        else:
+                            print('"sorry bud, come back when you got enough money."')
+
+                    elif "pizza locator" in Settings.player.choice:
+                        if Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.PizzaLocatorObject.price:
+                            self.inventory.move_item(Settings.PIZZA_LOCATOR_ID, Settings.player.inventory)
+                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.PizzaLocatorObject.price)
+                            self.print_on_buy()
+                        else:
+                            print('"sorry bud, come back when you got enough money."')
+
+                    elif "tripper guide" in Settings.player.choice:
+                        if Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.TripperGuideObject.price:
+                            self.inventory.move_item(Settings.TRIPPER_GUIDE_ID, Settings.player.inventory)
+                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.TripperGuideObject.price)
+                            self.print_on_buy()
+                        else:
+                            print('"sorry bud, come back when you got enough money."')
+    
             elif handleChoiceObject.player_input(self.inventory):
                 pass

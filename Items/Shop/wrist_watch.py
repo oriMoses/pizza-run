@@ -4,6 +4,8 @@ class WristWatch(BasicItem):
     def __init__(self, position):
         super().__init__(position, Settings.WRIST_WATCH_ID) 
         self.quarter = "Suburbs"
+        self.inShop = True
+        self.price = 3
 
     def print_in_room(self):
         print("There's a wristwatch on the floor.")
