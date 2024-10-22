@@ -12,6 +12,7 @@ class MiniMarket(suburbsQuarter):
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
 
         self.inventory.add_item(Settings.HAIR_DRYER_ID, "Hair Dryer", 1)
+        self.inventory.add_item(Settings.BACKPACK_ID, "Delivery Backpack", 1)
         self.inventory.add_item(Settings.WRIST_WATCH_ID, "Wrist Watch", 1)
         self.inventory.add_item(Settings.PIZZA_LOCATOR_ID, "Pizza Locator", 1)
         self.inventory.add_item(Settings.TRIPPER_GUIDE_ID, "Tripper Guide", 1)
@@ -107,41 +108,79 @@ class MiniMarket(suburbsQuarter):
                 if "no" in Settings.player.choice:
                     return False
                 
-                print("""I've got some stuff you might find useful"\n\n(7 coins) Delivery backpack - you can keep up to 10 pizzas in this bag, the bag will make sure the pizza stays hot! You can drive with the backpack on you, or put it on a vehicle. \n\n(2 coins) Hair dryer - can heat cold pizza (probably not the original use of this device. no warranty) \n\n(3 coins) wristwatch - tells the time. \n\n(20 coins) Pizza locator - This phone will track down any lost pizza (but try not to lose them) \n\n(1 coin) The tipper guide - Will tell you how to get better tips. \n\n""")
-                Settings.player.choice = input("> ").lower()
+                print("""I've got some stuff you might find useful"\n""")
+                for item in enumerate(Settings.shopItemList):
+                    if item[1].inShop == True:
+                        item[1].print_in_shop()
                 
-                if "buy" in Settings.player.choice:
-                    if "hair dryer" in Settings.player.choice:
-                        if Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.hairDryerObject.price:
-                            self.inventory.move_item(Settings.HAIR_DRYER_ID, Settings.player.inventory)
-                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.hairDryerObject.price)
-                            self.print_on_buy()
-                        else:
-                            print('"sorry bud, come back when you got enough money."')
+                while "exit" not in Settings.player.choice:
+                    Settings.player.choice = input("> ").lower()
 
-                    elif "wrist watch" in Settings.player.choice:
-                        if Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.WristWatchObject.price:
-                            self.inventory.move_item(Settings.WRIST_WATCH_ID, Settings.player.inventory)
-                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.WristWatchObject.price)
-                            self.print_on_buy()
-                        else:
-                            print('"sorry bud, come back when you got enough money."')
+                    if "buy" in Settings.player.choice:
+                        if "hair dryer" in Settings.player.choice:
+                            if not self.inventory.item_exist(Settings.HAIR_DRYER_ID):
+                                print ("item not in shop")
+                            elif Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.hairDryerObject.price:
+                                self.inventory.move_item(Settings.HAIR_DRYER_ID, Settings.player.inventory)
+                                Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.hairDryerObject.price)
+                                self.print_on_buy()
+                                Settings.hairDryerObject.inShop = False
+                            else:
+                                print('"sorry bud, come back when you got enough money."')
+                                break
 
-                    elif "pizza locator" in Settings.player.choice:
-                        if Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.PizzaLocatorObject.price:
-                            self.inventory.move_item(Settings.PIZZA_LOCATOR_ID, Settings.player.inventory)
-                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.PizzaLocatorObject.price)
-                            self.print_on_buy()
-                        else:
-                            print('"sorry bud, come back when you got enough money."')
+                        elif "backpack" in Settings.player.choice:
+                            if not self.inventory.item_exist(Settings.BACKPACK_ID):
+                                print ("item not in shop")                            
+                            elif Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.backpackObject.price:
+                                self.inventory.move_item(Settings.BACKPACK_ID, Settings.player.inventory)
+                                Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.backpackObject.price)
+                                self.print_on_buy()
+                                Settings.backpackObject.inShop = False
+                            else:
+                                print('"sorry bud, come back when you got enough money."')
+                                break
 
-                    elif "tripper guide" in Settings.player.choice:
-                        if Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.TripperGuideObject.price:
-                            self.inventory.move_item(Settings.TRIPPER_GUIDE_ID, Settings.player.inventory)
-                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.TripperGuideObject.price)
-                            self.print_on_buy()
-                        else:
-                            print('"sorry bud, come back when you got enough money."')
+                        elif "wrist watch" in Settings.player.choice:
+                            if not self.inventory.item_exist(Settings.BACKPACK_ID):
+                                print ("item not in shop")
+                            elif Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.WristWatchObject.price:
+                                self.inventory.move_item(Settings.WRIST_WATCH_ID, Settings.player.inventory)
+                                Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.WristWatchObject.price)
+                                self.print_on_buy()
+                                Settings.WristWatchObject.inShop = False
+                            else:
+                                print('"sorry bud, come back when you got enough money."')
+                                break
+
+                        elif "pizza locator" in Settings.player.choice:
+                            if not self.inventory.item_exist(Settings.PIZZA_LOCATOR_ID):
+                                print ("item not in shop")
+                            elif Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.PizzaLocatorObject.price:
+                                self.inventory.move_item(Settings.PIZZA_LOCATOR_ID, Settings.player.inventory)
+                                Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.PizzaLocatorObject.price)
+                                self.print_on_buy()
+                                Settings.PizzaLocatorObject.inShop = False
+                            else:
+                                print('"sorry bud, come back when you got enough money."')
+                                break
+
+                        elif "tripper guide" in Settings.player.choice:
+                            if not self.inventory.item_exist(Settings.TRIPPER_GUIDE_ID):
+                                print ("item not in shop")                            
+                            elif Settings.player.inventory.get_amount(Settings.COIN_ID) >= Settings.TripperGuideObject.price:
+                                self.inventory.move_item(Settings.TRIPPER_GUIDE_ID, Settings.player.inventory)
+                                Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) - Settings.TripperGuideObject.price)
+                                self.print_on_buy()
+                                Settings.TripperGuideObject.inShop = False
+                            else:
+                                print('"sorry bud, come back when you got enough money."\n')
+                                break
+                    
+                    elif "exit" not in Settings.player.choice:
+                        print("you still in shop\n")
+                print("(exit shop)\n")
+                    
     
             elif handleChoiceObject.player_input(self.inventory):
                 pass

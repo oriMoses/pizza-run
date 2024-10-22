@@ -7,6 +7,9 @@ class WristWatch(BasicItem):
         self.inShop = True
         self.price = 3
 
+    def print_in_shop(self):
+        print("(3 coins) wristwatch - tells the time. \n")
+
     def print_in_room(self):
         print("There's a wristwatch on the floor.")
 

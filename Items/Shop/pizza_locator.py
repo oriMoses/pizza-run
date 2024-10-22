@@ -7,6 +7,9 @@ class PizzaLocator(BasicItem):
         self.inShop = True
         self.price = 20
 
+    def print_in_shop(self):
+        print("(20 coins) Pizza locator - This phone will track down any lost pizza (but try not to lose them) \n")
+
     def print_in_room(self):
         print("There's a Pizza locator on the floor.")
 

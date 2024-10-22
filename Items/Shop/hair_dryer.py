@@ -6,9 +6,12 @@ class HairDryer(BasicItem):
         self.quarter = "Suburbs"
         self.inShop = True
         self.price = 2
-    
+
+    def print_in_shop(self):
+        print("(2 coins) Hair dryer - can heat cold pizza (probably not the original use of this device. no warranty) \n")
+
     def print_in_room(self):
-        print("There's Hair dryer on the floor")
+        print("The hair dryer is on the floor.")
 
     def examine(self):
         print("can heat cold pizza (probably not the original use of this device.\nno warranty")

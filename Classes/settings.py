@@ -15,6 +15,7 @@ from Items.Keys.mainPizzaKey import MainPizzaKey
 from Items.Keys.bike_key import BikeKey
 from Items.Keys.green_lawn_mower_key import GreenLawnMowerKey
 from Items.Shop.hair_dryer import HairDryer
+from Items.Shop.backpack import Backpack
 from Items.Shop.pizza_locator import PizzaLocator
 from Items.Shop.tripper_guide import TripperGuide
 from Items.Shop.wrist_watch import WristWatch
@@ -81,7 +82,7 @@ def print_items_in_room(self):
         if item[1].ID == SUBURBS_NOTEBOOK_ID or item[1].ID == BIKE_KEY_ID:
             if item[1].inBox:
                 inBox = True
-        elif item[1].ID == HAIR_DRYER_ID or item[1].ID == PIZZA_LOCATOR_ID or item[1].ID == TRIPPER_GUIDE_ID or item[1].ID == WRIST_WATCH_ID:
+        elif item[1].ID == HAIR_DRYER_ID or item[1].ID == PIZZA_LOCATOR_ID or item[1].ID == TRIPPER_GUIDE_ID or item[1].ID == WRIST_WATCH_ID or item[1].ID == BACKPACK_ID:
             if item[1].inShop:
                 inShop = True
         if inShop == False and inBox == False:
@@ -105,13 +106,14 @@ def print_pizza_in_room(self):
 
 
 def init_items():
-    global itemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject
+    global itemList, shopItemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, backpackObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject
 
     SuburbsNotebookObject = SuburbsNotebook(parkingObject.location)
     mainPizzaKeyObject = MainPizzaKey(pizzaPlaceObject.location)
     boxObject = Box()
     bikeKeyObject = BikeKey()
     hairDryerObject = HairDryer(shop_location)
+    backpackObject = Backpack(shop_location)
     greenLawnMowerKeyObject = GreenLawnMowerKey()
     PizzaLocatorObject = PizzaLocator(shop_location)
     TripperGuideObject = TripperGuide(shop_location)
@@ -119,7 +121,8 @@ def init_items():
     LawnMowerObject = LawnMower()
     ShinyDiceObject = ShinyDice()
 
-    itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject]
+    shopItemList = [PizzaLocatorObject, TripperGuideObject, WristWatchObject, backpackObject, hairDryerObject]
+    itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject, backpackObject]
 
 def init_vehicle():
     global bikeObject, vehicleList
