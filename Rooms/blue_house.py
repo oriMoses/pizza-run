@@ -23,6 +23,7 @@ class BlueHouse(suburbsQuarter):
               It feels like the gnomes are looking at you. \nmaybe it's better not to think about the garden gnomes so much.")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
+        Settings.print_pizza_in_room(self)
 
 
     def first_arrival(self):

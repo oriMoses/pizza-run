@@ -18,6 +18,7 @@ class Parking(suburbsQuarter):
         print("You are in the pizza parking lot.\n\nThere's a box on the floor")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
+        Settings.print_pizza_in_room(self)
 
     def first_arrival(self):
         if self.firstArrival:

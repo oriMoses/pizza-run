@@ -26,6 +26,7 @@ class Gatekeeper(suburbsQuarter):
         Settings.underline("South")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
+        Settings.print_pizza_in_room(self)
 
 
 

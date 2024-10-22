@@ -19,6 +19,7 @@ class YellowHouse(suburbsQuarter):
         print("You see a yellow house.\nNothing much over here.")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
+        Settings.print_pizza_in_room(self)
 
 
     def first_arrival(self):

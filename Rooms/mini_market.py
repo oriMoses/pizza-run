@@ -22,7 +22,7 @@ class MiniMarket(suburbsQuarter):
         print("You see a local shop, it seems to be open.")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
-
+        Settings.print_pizza_in_room(self)
 
 
     def first_arrival(self):
@@ -33,6 +33,7 @@ class MiniMarket(suburbsQuarter):
             print("Still open.")
             Settings.print_items_in_room(self)
             Settings.print_vehicles_in_room(self)
+            Settings.print_pizza_in_room(self)
 
 
     def give_pizza(self):

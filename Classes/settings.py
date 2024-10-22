@@ -85,7 +85,18 @@ def print_vehicles_in_room(self):
     for vehicle in enumerate(vehicleList):
         if vehicle[1].position == player.position:
             vehicle[1].print_in_room()
-    
+
+def print_pizza_in_room(self):
+    hotPizzasInRoom = self.inventory.get_amount(HOT_PIZZA_ID)
+    coldPizzasInRoom = self.inventory.get_amount(COLD_PIZZA_ID)
+
+    if hotPizzasInRoom != 0:
+        print("There are", str(hotPizzasInRoom), "hot pizzas in here")
+
+    elif coldPizzasInRoom != 0:
+        print("There are", str(coldPizzasInRoom), "hot pizzas in here")
+
+
 def init_items():
     global itemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject
 
@@ -146,7 +157,7 @@ def init_suburbs():
     #         print(j, i, Suburbs[j][i])
 
 def init():
-    global pizzaPlaceObject, parkingObject, player, handleChoiceObject, querters \
+    global pizzaPlaceObject, parkingObject, player, handleChoiceObject, querters, roomList \
             ,teenHouseObject, blueHouseObject, hippieHouseObject, gatekeeperObject, miniMarketObject\
                 , greenHouseObject, yellowHouseObject, pinkHouseObject, bushGardenObject, goNextRoom
     parkingObject = Parking()
@@ -161,6 +172,8 @@ def init():
     yellowHouseObject = YellowHouse()
     pinkHouseObject = PinkHouse()
     bushGardenObject = BushGarden()
+
+    roomList = [parkingObject, pizzaPlaceObject, handleChoiceObject, teenHouseObject, blueHouseObject, hippieHouseObject, gatekeeperObject, miniMarketObject, greenHouseObject, yellowHouseObject, pinkHouseObject, bushGardenObject]
 
     player = Player(pizzaPlaceObject.location) # Starting point for player
 

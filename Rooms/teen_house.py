@@ -19,6 +19,7 @@ class TeenHouse(suburbsQuarter):
         print("You see a family house, no cars in front.\nIt's sounds like there's about million teenagers inside")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
+        Settings.print_pizza_in_room(self)
 
     def first_arrival(self):
         if self.firstArrival:

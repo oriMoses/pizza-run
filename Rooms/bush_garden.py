@@ -19,6 +19,7 @@ class BushGarden(suburbsQuarter):
         print("Flowers and butterflies…\nThere's a light smell of oak trees.\nyou feel calmness wash over you.\nYou see a far picnic table with some people having a quiet conversation.")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
+        Settings.print_pizza_in_room(self)
 
 
     def first_arrival(self):

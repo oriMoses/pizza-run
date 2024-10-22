@@ -21,6 +21,7 @@ class PinkHouse(suburbsQuarter):
         print(".\nyou can't really see past the fence.\nstrange vibes over here.")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
+        Settings.print_pizza_in_room(self)
 
     def first_arrival(self):
         if self.firstArrival:
@@ -30,6 +31,7 @@ class PinkHouse(suburbsQuarter):
             print("What's up with that fence?")
             Settings.print_items_in_room(self)
             Settings.print_vehicles_in_room(self)
+            Settings.print_pizza_in_room(self)
 
     def give_pizza(self):
         if "give" in Settings.player.choice:
