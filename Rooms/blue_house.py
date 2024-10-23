@@ -20,7 +20,7 @@ class BlueHouse(suburbsQuarter):
 
     def print_first_arrival(self):
         print("You see a blue house, with a lawn full of garden gnomes.\n \
-              It feels like the gnomes are looking at you. \nmaybe it's better not to think about the garden gnomes so much.")
+              It feels like the gnomes are looking at you.\n\nmaybe it's better not to think about the garden gnomes so much.\n")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
         Settings.print_pizza_in_room(self)

@@ -9,5 +9,5 @@ class Player():
         self.score = 0
         self.inventory = Inventory()
         self.inventory.add_item(Settings.COIN_ID, "coin", 0)
-        self.inventory.add_item(Settings.HOT_PIZZA_ID, "HotPizza", 0)
-        self.inventory.add_item(Settings.COLD_PIZZA_ID, "ColdPizza", 0)
+        self.inventory.add_item(Settings.HOT_PIZZA_ID, "hot pizza", 0)
+        self.inventory.add_item(Settings.COLD_PIZZA_ID, "pizza", 0)

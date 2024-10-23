@@ -18,16 +18,16 @@ class Vehicle():
     def turn_on(self):
         if Settings.player.inventory.item_exist(self.vehicleKeyID):
             self.vehicleOn = True
-            print("the ", self.vehicleName, " is on")
+            print("the", self.name, "is on")
         else:
-            print("You don't have the key to the ", self.vehicleName)
+            print("You don't have the key to the", self.name)
     
     def is_vehicle_availabe(self):
         if self.position != Settings.player.position:
             print(self.name, "not nearby")
             return False
         if Settings.player.inventory.item_exist(Settings.HOT_PIZZA_ID) or Settings.player.inventory.item_exist(Settings.COLD_PIZZA_ID):
-            print("""You can't ride a """, self.name,  " with pizza on your hands (and probably shouldn't try)""")
+            print("""You can't ride a""", self.name,  "with pizza on your hands (and probably shouldn't try)""")
             return False
         if not Settings.player.inventory.item_exist(Settings.BIKE_KEY_ID):
             print(self.name, "you don't have the key to the ", self.name)

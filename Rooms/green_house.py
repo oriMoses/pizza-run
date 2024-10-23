@@ -12,12 +12,13 @@ class GreenHouse(suburbsQuarter):
         self.inventory = Inventory()
         self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(Settings.LAWN_MOWER_ID, "Lawn mower key", 1)
 
     def __str__(self):
         return f"Green House"
 
     def print_first_arrival(self):
-        print("You see a greenhouse.\nThe front lawn is overgrown.\nThere's a big, rideable lawn mower.\nThere's a note on the door.")
+        print("You see a greenhouse.\n\nThe front lawn is overgrown.\nThere's a big, rideable lawn mower.\n\nThere's a note on the door.")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
         Settings.print_pizza_in_room(self)
@@ -82,13 +83,24 @@ class GreenHouse(suburbsQuarter):
                     if self.lawn_mower_key_taken:
                         print('“Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”')
                     else:
-                        print('“Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”\nthere is a green lawn mower key taped to the note.')
+                        print('“Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”\n**There is a green lawn mower key taped to the note.**')
                 if "take" in Settings.player.choice:
-                    print("Don’t bother - the note is glued to the door")
+                    print("Don't bother - the note is glued to the door")
             if "key" in Settings.player.choice:
                 if "take" in Settings.player.choice or "examine":
                     print("lawn mower key added to your inventory")
-                    #TODO: create lawn mower key item and add it to inventory
+                    self.inventory.move_item(Settings.GREEN_LAWN_MOWER_KEY_ID, Settings.player.inventory)
+
+            if "lawn mower" in Settings.player.choice or Settings.LawnMowerObject.turned_on:
+                if "turn on" in Settings.player.choice or Settings.LawnMowerObject.turned_on:
+                    Settings.LawnMowerObject.turned_on = True
+                    if "lawn" in Settings.player.choice:
+                        if "mow" in Settings.player.choice or "cut" in Settings.player.choice:
+                            print("well done! The grass is evenly cut.\nyou see a shiny dice on the grass.")
+
+            if "shiny dice" in Settings.player.choice:
+                if "examine" in Settings.player.choice or "look" in Settings.player.choice:
+                    print("It looks like a regular casino dice. When shaken, a quiet metallic sound rings from inside.\nI wonder why…")
 
             if "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
                 self.print_first_arrival()

@@ -80,7 +80,7 @@ class HandleChoices():
         if "notebook" in Settings.player.choice and "suburbs" in Settings.player.choice:
             self.deal_with_pick_and_drop(roomInventory, Settings.SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1)
             
-            if "read" in Settings.player.choice:
+            if "read" in Settings.player.choice or "examine" in Settings.player.choice:
                 if Settings.player.inventory.item_exist(Settings.SUBURBS_NOTEBOOK_ID):
                     Settings.SuburbsNotebookObject.examine()
 
@@ -110,39 +110,17 @@ class HandleChoices():
                     return False
 
             elif "climb" in Settings.player.choice or "ride" in Settings.player.choice or "get on" in Settings.player.choice:
-                
                 if Settings.bikeObject.is_vehicle_availabe():
                     Settings.bikeObject.playerOnVehicle = True
                     print("you are on the", Settings.bikeObject.name)
                 return True
             
-            # elif "pizza" in Settings.player.choice or "pizzas" in Settings.player.choice:
-            #     pizzasOnBike = Settings.bikeObject.inventory.get_amount(Settings.HOT_PIZZA_ID) + \
-            #                     Settings.bikeObject.inventory.get_amount(Settings.COLD_PIZZA_ID)
-            #     pizzasToAdd = self.get_number_of_(pizzasOnBike, "bike")
-            #     if pizzasToAdd == 0:
-            #         return False
+            elif "turn" in Settings.player.choice and "on" in Settings.player.choice:
+                Settings.bikeObject.turn_on()
                 
-                #if "take" in Settings.player.choice or "pick" in Settings.player.choice:
-                #    self.move_pizza_bike(Settings.bikeObject.inventory, Settings.player.inventory, pizzasToAdd)
-
-                #elif "put" in Settings.player.choice or "give" in Settings.player.choice:
-                    #self.move_pizza_bike(Settings.player.inventory, Settings.bikeObject.inventory, pizzasToAdd)
-                 
-            
-            
-                # if "1 " in Settings.player.choice:
-                #     self.deal_with_pick_and_drop(Settings.bikeObject.inventory, Settings.HOT_PIZZA_ID, "Hot Pizza", 1)
-                # if "2 " in Settings.player.choice:
-                #     self.deal_with_pick_and_drop(Settings.bikeObject.inventory, Settings.HOT_PIZZA_ID, "Hot Pizza", 2)
-                # if "3 " in Settings.player.choice:
-                #     self.deal_with_pick_and_drop(Settings.bikeObject.inventory, Settings.HOT_PIZZA_ID, "Hot Pizza", 3)
-                # if "4 " in Settings.player.choice:
-                #     self.deal_with_pick_and_drop(Settings.bikeObject.inventory, Settings.HOT_PIZZA_ID, "Hot Pizza", 4)
-                # if "5 " in Settings.player.choice:
-                #     self.deal_with_pick_and_drop(Settings.bikeObject.inventory, Settings.HOT_PIZZA_ID, "Hot Pizza", 5)
+            elif "turn" in Settings.player.choice and "off" in Settings.player.choice:
+                Settings.bikeObject.turn_on()
                 
-
             elif "inventory" in Settings.player.choice:
                 print("\nbike inventory:")
                 Settings.bikeObject.inventory.print_all()
@@ -328,7 +306,10 @@ class HandleChoices():
         else:
             print("place out of bounds")
 
-    def go_input(self):            
+    def go_input(self):
+        if "drive" in Settings.player.choice:
+            print("fist you need to climb a vehicle\n")
+            return False
         if "south" in Settings.player.choice:
             self.go_south()
 

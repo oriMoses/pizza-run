@@ -25,6 +25,7 @@ from Items.box import Box
 from vehicles.bike import Bike
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
+from Classes.color import Colors
 #constants
 STREET = 0
 STREET_NUMBER = 1
@@ -130,8 +131,6 @@ def init_vehicle():
 
     vehicleList = [bikeObject]
 
-def underline(text):
-    print("\u0332".join(text + " "))
 
 def init_suburbs():
     global Suburbs
@@ -167,12 +166,13 @@ def init_suburbs():
     #         print(j, i, Suburbs[j][i])
 
 def init():
-    global pizzaPlaceObject, parkingObject, player, handleChoiceObject, querters, roomList \
+    global pizzaPlaceObject, colorsObject, parkingObject, player, handleChoiceObject, querters, roomList \
             ,teenHouseObject, blueHouseObject, hippieHouseObject, gatekeeperObject, miniMarketObject\
                 , greenHouseObject, yellowHouseObject, pinkHouseObject, bushGardenObject, goNextRoom
     parkingObject = Parking()
     pizzaPlaceObject = PizzaPlace()
     handleChoiceObject = HandleChoices()
+    colorsObject = Colors()
     teenHouseObject = TeenHouse()
     blueHouseObject = BlueHouse()
     hippieHouseObject = HippieHouse()

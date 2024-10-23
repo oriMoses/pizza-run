@@ -16,7 +16,7 @@ class BushGarden(suburbsQuarter):
         return f"Bush Garden"
 
     def print_first_arrival(self):
-        print("Flowers and butterflies…\nThere's a light smell of oak trees.\nyou feel calmness wash over you.\nYou see a far picnic table with some people having a quiet conversation.")
+        print("Flowers and butterflies… \nThere's a light smell of oak trees. \nyou feel calmness wash over you. \n\nYou see a far picnic table with some people having a quiet conversation. \n")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
         Settings.print_pizza_in_room(self)
@@ -66,8 +66,7 @@ class BushGarden(suburbsQuarter):
 
                             Settings.remove_orderes_for(Settings.bushGardenObject)
 
-                            print("thanks man! we don't have any money for tip,\nbut you join us!\ntake a slice of pizza, kick your shoes off and enjoy yourself!")
-                            print("stay at the festival?(yes/no)")
+                            print('''"thanks man! We don't have any money for tips… \n\nbut you can join us! \nTake a slice of pizza, kick your shoes off and enjoy yourself!" \n\nstay at the festival? yes/no''')
 
                             while Settings.player.choice != "yes" and Settings.player.choice != "no":
                                 Settings.player.choice = input("> ").lower()
@@ -97,7 +96,7 @@ class BushGarden(suburbsQuarter):
 
             elif "table" in Settings.player.choice or "picnic" in Settings.player.choice:
                 if "go" in Settings.player.choice:
-                    print('you hike your way to the table, from up close, you see the table is on top of a hill.\nDown the hill, you see an improvised stage.\nThe live music cuts right through you,something about the singer voice.\nThe hill is dotted with colorful rugs and people. some dance, some just lay back and look at the sky.\n“oh! Hey guys, pizza man here!”\nThe people around the picnic table smile at you, maybe give them pizza?')
+                    print("""you hike your way to the table. \nfrom up close, you see the table is on top of a hill. \nDown the hill, you see an improvised stage. \n\nThe live music cuts right through you… \nsomething about the singer's voice. \n\nThe hill is dotted with colorful rugs and people.\nsome dance, some just lay back and look at the sky. \n\n"oh! Hey guys, pizza man here!" \n\nThe people around the picnic table smile at you, maybe give them pizza? \n""")
                     self.picnic_went = True
 
             elif handleChoiceObject.player_input(self.inventory):

@@ -3,7 +3,6 @@ from Classes.handle_choices import HandleChoices
 from Classes.inventory import Inventory
 import Classes.settings as Settings
 from Doors.main_pizza_place_door import mainPizzaPlaceDoor
-
 from Utils import pizza_temprature
 
 class PizzaPlace():
@@ -21,18 +20,18 @@ class PizzaPlace():
 
 
     def print_first_arrival(self):
-        print("""you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is propably 16.""")
+        print("""you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is propably 16.\n""")
         #TODO:        small/medium/massive
-        print("You see massive pile of hot pizza and a small note on the counter")
+        print("You see massive pile of hot pizza and a small note on the counter\n")
+        if self.door.locked:
+            print("There's a locked door to the", end=" ") 
+        else:
+            print("There's a opened door to the", end=" ") 
+
+        print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END)
+        
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
-
-        if self.door.locked:
-                print("There's a locked door to the", end=" ") 
-                Settings.underline("West")
-        else:
-                print("There's a opened door to the", end=" ") 
-                Settings.underline("West")
 
 
     def first_arrival(self):

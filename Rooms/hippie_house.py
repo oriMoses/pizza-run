@@ -16,7 +16,7 @@ class HippieHouse(suburbsQuarter):
         return f"Hippie House"
 
     def print_first_arrival(self):
-        print('You see a small apartment and smell rather... Earthy smell \nThere is a car parked outside with a bumper sticker that says "gas, grass or..." \nYou know what, nevermind the sticker.')
+        print('You see a small apartment and smell rather... Earthy smell\n\nThere is a car parked outside with a bumper sticker that says "gas, grass or..." \nYou know what, nevermind the sticker.\n')
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
         Settings.print_pizza_in_room(self)

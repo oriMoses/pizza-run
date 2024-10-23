@@ -17,8 +17,8 @@ class PinkHouse(suburbsQuarter):
 
     def print_first_arrival(self):
         print("You see a pink house.\nThere's a big barbed fence to the", end="")
-        print(Settings.underline("East"), end="")
-        print(".\nyou can't really see past the fence.\nstrange vibes over here.")
+        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END)
+        print(".\nyou can't really see past the fence.\n\nstrange vibes over here.\n")
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
         Settings.print_pizza_in_room(self)
@@ -28,7 +28,7 @@ class PinkHouse(suburbsQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("What's up with that fence?")
+            print("What's up with that fence?\n")
             Settings.print_items_in_room(self)
             Settings.print_vehicles_in_room(self)
             Settings.print_pizza_in_room(self)
