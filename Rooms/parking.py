@@ -4,6 +4,7 @@ from Classes.inventory import Inventory
 from Utils import pizza_temprature
 from Constants.enums import Street_Number, Street_Name
 from Constants.constants import *
+from Classes.player import *
 
 class Parking(suburbsQuarter):
     def __init__(self):
@@ -28,26 +29,27 @@ class Parking(suburbsQuarter):
             self.print_first_arrival()
             self.firstArrival = False
 
-    def dialog_circle(self, handleChoiceObject):
+    def dialog_circle(self, handleChoiceObject, player):
         self.first_arrival()
         self.box_open = False
         while True:
             if Settings.goNextRoom:
                 break
-            Settings.player.choice = input("> ").lower()
+            self.player.choice = input("> ").lower()
 
-            if "box" in Settings.player.choice:
-                if "open" in Settings.player.choice or "examine" in Settings.player.choice:
+            if "box" in player.choice:
+                if "open" in player.choice or "examine" in player.choice:
                     Settings.boxObject.open()
                     self.box_open = True
-                if "look" in Settings.player.choice:
+                if "look" in player.choice:
                     print("it's a regular cardbox.")
-                if "close" in Settings.player.choice:
+                if "close" in player.choice:
                     self.box_open = False
                     print("(box closed)")
 
-            elif "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
+            elif "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
+                self.inventory.print_all()
 
             elif self.box_open:
                 handleChoiceObject.player_input(Settings.boxObject.inventory)

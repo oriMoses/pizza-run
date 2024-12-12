@@ -26,7 +26,7 @@ class NoneSpecialRoom(suburbsQuarter):
             self.print_first_arrival()
             self.firstArrival = False
 
-    def dialog_circle(self, handleChoiceObject):
+    def dialog_circle(self, handleChoiceObject, player):
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
         Settings.print_pizza_in_room(self)
@@ -35,13 +35,14 @@ class NoneSpecialRoom(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            Settings.player.choice = input("> ").lower()
+            player.choice = input("> ").lower()
 
-            if "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
+            if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background\n")
                 self.print_first_arrival()
+                self.inventory.print_all()
 
-            elif "examine" in Settings.player.choice and self.inventory.is_inventory_empty():
+            elif "examine" in player.choice and self.inventory.is_inventory_empty():
                 print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background\n")
                 self.print_first_arrival()
 

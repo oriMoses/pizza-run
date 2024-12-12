@@ -36,8 +36,9 @@ class Inventory():
         
     def print_all(self):
         for item in self.inventory:
-            if self.inventory[item]['stock_count'] != 0:
-                print(self.inventory[item]['item_name'], self.inventory[item]['stock_count'], "\n")
+            if self.inventory[item]['item_name'] != "Pizza":
+                if self.inventory[item]['stock_count'] != 0:
+                    print("There's ", self.inventory[item]['item_name'], "on the floor\n")
 
     def item_exist(self, item_id):
         if item_id in self.inventory:

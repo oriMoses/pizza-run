@@ -60,6 +60,7 @@ def print_items_in_room(self):
                 item[1].print_in_room()
                 
 def print_vehicles_in_room(self):
+    player = Player.getInstance()
     for vehicle in enumerate(vehicleList):
         if vehicle[1].position == player.position:
             vehicle[1].print_in_room()
@@ -102,12 +103,10 @@ def init_vehicle(map):
 
 
 def init(map):
-    global colorsObject, player, handleChoiceObject, querters, goNextRoom
+    global colorsObject, handleChoiceObject, goNextRoom
     handleChoiceObject = HandleChoices()
     colorsObject = Colors()
     
-    player = Player([3,3]) # Starting point for player
-
     init_orders(map)
     init_items(map)
     init_vehicle(map)
@@ -146,6 +145,7 @@ def get_street_name(street):
         return "Duck St. "
 
 def street_in_boundary(streetPoition, streetNumberPosition):
+    player = Player.getInstance()
     if player.quarter == "Suburbs":
         if streetPoition < SUBURBS_MIN_STREET_BOUNDARY or \
             streetPoition > SUBURBS_MAX_STREET_BOUNDARY:

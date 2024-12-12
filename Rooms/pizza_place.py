@@ -10,6 +10,7 @@ from Constants.constants import *
 class PizzaPlace():
     def __init__(self):
         suburbsQuarter.__init__(self, [Street_Name.FIRST,Street_Number.IV])
+        self.inputLegit = False
         self.firstArrival = True
         self.inventory = Inventory()
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 100, pizza_temprature.HOT)
@@ -39,50 +40,58 @@ class PizzaPlace():
     def first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
+            self.inventory.print_all()
             self.firstArrival = False
 
-    def dialog_circle(self, handleChoiceObject):
+    def dialog_circle(self, handleChoiceObject, player):
         self.first_arrival()
 
         while True:
             if Settings.goNextRoom:
                 break
-            Settings.player.choice = input("> ").lower()
+            player.choice = input("> ").lower()
             print()
 
-            if "read" in Settings.player.choice and "note" in Settings.player.choice:
-                if "notebook" in Settings.player.choice:
-                    return
-                else:
-                    if Settings.player.position == Settings.pizzaPlaceObject.location:
+            if "note" in player.choice:
+                if "read" in player.choice:
+                    if "notebook" in player.choice:
+                        return
+                    else:
                         print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)")
+                        self.inputLegit = True
+                elif "take" in player.choice:
+                    print("the note glued to the counter, you can't take it")
+                    self.inputLegit = True
 
-            if "look" in Settings.player.choice or "lookaround" in Settings.player.choice:
+            if "look" in player.choice or "lookaround" in player.choice:
                 self.print_first_arrival()
+                self.inventory.print_all()
+                self.inputLegit = True
 
-            elif "north" in Settings.player.choice:
+            elif "north" in player.choice:
                 print("There is a wall to the north")
-                Settings.player.choice = ""
-            elif "south" in Settings.player.choice:
+                player.choice = ""
+            elif "south" in player.choice:
                 print("There is a wall to the south")
-                Settings.player.choice = ""
-            elif "east" in Settings.player.choice:
+                player.choice = ""
+            elif "east" in player.choice:
                 print("There is a wall to the east")
-                Settings.player.choice = ""
+                player.choice = ""
                 
-            if "door" in Settings.player.choice and "unlock" in Settings.player.choice or \
-                "door" in Settings.player.choice and "open" in Settings.player.choice:
-                    self.door.unlock()
+            if "door" in player.choice and "unlock" in player.choice or \
+                "door" in player.choice and "open" in player.choice:
+                    self.door.unlock(player)
 
-            elif "west" in Settings.player.choice or \
-                "through" in Settings.player.choice and "door" in Settings.player.choice or \
-                    "get" in Settings.player.choice and "out" in Settings.player.choice:
+            elif "west" in player.choice or \
+                "through" in player.choice and "door" in player.choice or \
+                    "get" in player.choice and "out" in player.choice:
                 if self.door.locked:
                     print("The door is locked (as doors should be)")
                 else:
-                    Settings.player.choice = "west"
-                    handleChoiceObject.player_input(self.inventory)
+                    player.choice = "west"
+                    handleChoiceObject.player_input(self.inventory, self.inputLegit)
                     break
 
-            elif handleChoiceObject.player_input(self.inventory):
-                pass
+            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+                pass    
+            self.inputLegit = False

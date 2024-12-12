@@ -5,8 +5,9 @@ from Utils import pizza_temprature
 import sys
 from Constants.enums import Street_Number, Street_Name
 from Constants.constants import *
+from Classes.player import *
 
-class BushGarden(suburbsQuarter):
+class BushGarden(suburbsQuarter):    
     def __init__(self):
         suburbsQuarter.__init__(self, [0,0])
         self.firstArrival = True
@@ -30,53 +31,53 @@ class BushGarden(suburbsQuarter):
             self.print_first_arrival()
             self.firstArrival = False
     
-    def give_pizza(self):
-        if "give" in Settings.player.choice:
-            if "pizza" in Settings.player.choice:
+    def give_pizza(self, player):
+        if "give" in player.choice:
+            if "pizza" in player.choice:
                 return True
     
-    def howMuchPizza(self):
+    def howMuchPizza(self, player):
         for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER+1):
-            if str(numberOfPizza) in Settings.player.choice:
+            if str(numberOfPizza) in player.choice:
                 return numberOfPizza
         return 0
 
-    def print_end_1(self):
+    def print_end_1(self, player):
         print("You join the festival and have the time of your life.\nsuddenly, all of the things that used to worry and upset you seem to just fade away.\nYou decide to live your life truly, as one could.")
         print("congratulations! you beat the game! (END 1)")
-        print("Score: ", Settings.player.score , "(who cares right? you get to live your life as a free man! or women, you do you)\n\nEND")
+        print("Score: ", player.score , "(who cares right? you get to live your life as a free man! or women, you do you)\n\nEND")
         sys.exit()
 
-    def dialog_circle(self, handleChoiceObject):
+    def dialog_circle(self, handleChoiceObject, player):
         self.first_arrival()
 
         while True:
             if Settings.goNextRoom:
                 break
-            Settings.player.choice = input("> ").lower()
+            player.choice = input("> ").lower()
 
 
             if self.picnic_went:
-                if self.give_pizza():
-                    numberOfPizza = self.howMuchPizza()
+                if self.give_pizza(player):
+                    numberOfPizza = self.howMuchPizza(player)
 
-                    if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
+                    if player.inventory.hot_pizza_exists(numberOfPizza):
                         orders = Settings.get_orders_for(Street_Name.BUSH,Street_Number.I)
                         if orders == -1:
                             print("You already delivered this order")
                         elif orders == numberOfPizza:
-                            Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
 
                             Settings.remove_orderes_for(Street_Name.BUSH,Street_Number.I)
 
                             print('''"thanks man! We don't have any money for tips… \n\nbut you can join us! \nTake a slice of pizza, kick your shoes off and enjoy yourself!" \n\nstay at the festival? yes/no''')
 
-                            while Settings.player.choice != "yes" and Settings.player.choice != "no":
-                                Settings.player.choice = input("> ").lower()
+                            while player.choice != "yes" and player.choice != "no":
+                                player.choice = input("> ").lower()
 
-                                if "yes" in Settings.player.choice:
-                                    self.print_end_1()
-                                elif "no" in Settings.player.choice:
+                                if "yes" in player.choice:
+                                    self.print_end_1(player)
+                                elif "no" in player.choice:
                                     print("I get it man, show must go on… anyway, happy new year!!!")
                                 else:
                                     print("\nstay at the festival? yes/no")
@@ -84,9 +85,9 @@ class BushGarden(suburbsQuarter):
                         else:
                             print("give me pizza!!!! only one pizza!")
 
-                    elif Settings.player.inventory.cold_pizza_exists(numberOfPizza):
-                        Settings.player.inventory.update_item(Settings.COLD_PIZZA_ID, Settings.player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                        Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + 5)
+                    elif player.inventory.cold_pizza_exists(numberOfPizza):
+                        player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
 
                         print("The man grabs the pizza and shut the door with a slam!")
                         print(numberOfPizza, " coin up tip")
@@ -94,11 +95,12 @@ class BushGarden(suburbsQuarter):
                     else:
                         print("Not enough pizza in inventory")
 
-            if "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
+            if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
+                self.inventory.print_all()
 
-            elif "table" in Settings.player.choice or "picnic" in Settings.player.choice:
-                if "go" in Settings.player.choice:
+            elif "table" in player.choice or "picnic" in player.choice:
+                if "go" in player.choice:
                     print("""you hike your way to the table. \nfrom up close, you see the table is on top of a hill. \nDown the hill, you see an improvised stage. \n\nThe live music cuts right through you… \nsomething about the singer's voice. \n\nThe hill is dotted with colorful rugs and people.\nsome dance, some just lay back and look at the sky. \n\n"oh! Hey guys, pizza man here!" \n\nThe people around the picnic table smile at you, maybe give them pizza? \n""")
                     self.picnic_went = True
 

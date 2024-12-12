@@ -35,37 +35,37 @@ class HippieHouse(suburbsQuarter):
             Settings.print_pizza_in_room(self)
 
 
-    def give_pizza(self):
-        if "give" in Settings.player.choice:
-            if "pizza" in Settings.player.choice:
+    def give_pizza(self, player):
+        if "give" in player.choice:
+            if "pizza" in player.choice:
                 return True
     
-    def howMuchPizza(self):
+    def howMuchPizza(self, player):
         for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER+1):
-            if str(numberOfPizza) in Settings.player.choice:
+            if str(numberOfPizza) in player.choice:
                 return numberOfPizza
         return 0
 
-    def dialog_circle(self, handleChoiceObject):
+    def dialog_circle(self, handleChoiceObject, player):
         self.first_arrival()
 
         while True:
             if Settings.goNextRoom:
                 break
-            Settings.player.choice = input("> ").lower()
+            player.choice = input("> ").lower()
 
 
             if self.door_knocked:
-                if self.give_pizza():
-                    numberOfPizza = self.howMuchPizza()
+                if self.give_pizza(player):
+                    numberOfPizza = self.howMuchPizza(player)
 
-                    if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
+                    if player.inventory.hot_pizza_exists(numberOfPizza):
                         orders = Settings.get_orders_for(Street_Name.LOVE,Street_Number.I)
                         if orders == -1:
                             print("You already delivered this order")
                         elif orders == numberOfPizza:
-                            Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                            Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+                            player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
 
                             Settings.remove_orderes_for(Street_Name.LOVE,Street_Number.I)
 
@@ -75,9 +75,9 @@ class HippieHouse(suburbsQuarter):
                         else:
                             print("Thats not the correct order")
 
-                    elif Settings.player.inventory.cold_pizza_exists(numberOfPizza):
-                        Settings.player.inventory.update_item(Settings.COLD_PIZZA_ID, Settings.player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                        Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + 5)
+                    elif player.inventory.cold_pizza_exists(numberOfPizza):
+                        player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
 
                         print("hmm, thanks man")
                         print(numberOfPizza, " coin up tip")
@@ -85,11 +85,12 @@ class HippieHouse(suburbsQuarter):
                     else:
                         print("Not enough pizza in inventory")
 
-            if "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
+            if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
+                self.inventory.print_all()
 
-            elif "knock" in Settings.player.choice:
-                if "door" in Settings.player.choice or "house" in Settings.player.choice:
+            elif "knock" in player.choice:
+                if "door" in player.choice or "house" in player.choice:
                     self.door_knocked = True
                     print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n \
                           “Did we order pizza?”\n\n“Hah, guess we did.“')

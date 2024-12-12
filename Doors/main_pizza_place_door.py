@@ -1,14 +1,14 @@
 from Classes.inventory import Inventory
 import Classes.settings as Settings
-import Utils
+from Constants.constants import MainPizzaKey_ID
 class mainPizzaPlaceDoor():
     def __init__(self):
         self.location = 3,3
         self.locked = True
 
-    def unlock(self):
+    def unlock(self, player):
         if self.locked:
-            if Settings.player.inventory.item_exist(Settings.MainPizzaKey_ID):
+            if player.inventory.item_exist(MainPizzaKey_ID):
                 print("click")
                 self.locked = False
             else:
