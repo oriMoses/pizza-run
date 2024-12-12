@@ -1,15 +1,3 @@
-from Rooms.pizza_place import PizzaPlace
-from Rooms.parking import Parking
-from Rooms.none_special_room import NoneSpecialRoom
-from Rooms.teen_house import TeenHouse
-from Rooms.blue_house import BlueHouse
-from Rooms.hippie_house import HippieHouse
-from Rooms.gatekeeper import Gatekeeper
-from Rooms.mini_market import MiniMarket
-from Rooms.green_house import GreenHouse
-from Rooms.yellow_house import YellowHouse
-from Rooms.pink_house import PinkHouse
-from Rooms.bush_garden import BushGarden
 from Items.suburbsNotebook import SuburbsNotebook
 from Items.Keys.mainPizzaKey import MainPizzaKey
 from Items.Keys.bike_key import BikeKey
@@ -26,51 +14,32 @@ from vehicles.bike import Bike
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
 from Classes.color import Colors
-#constants
-STREET = 0
-STREET_NUMBER = 1
-SUBURBS_MIN_STREET_BOUNDARY = 0
-SUBURBS_MAX_STREET_BOUNDARY = 5
-SUBURBS_MIN_STREET_NUMBER_BOUNDARY = 0
-SUBURBS_MAX_STREET_NUMBER_BOUNDARY = 4
+from Constants.constants import *
 
-MainPizzaKey_ID = 0
-SUBURBS_NOTEBOOK_ID = 1
-HAIR_DRYER_ID = 2
-BACKPACK_ID = 3
-BIKE_KEY_ID = 4
-WRIST_WATCH_ID = 5
-PIZZA_LOCATOR_ID = 6
-TRIPPER_GUIDE_ID = 7
-COLD_PIZZA_ID = 8
-HOT_PIZZA_ID = 9
-COIN_ID = 10
-GREEN_LAWN_MOWER_KEY_ID = 11
-LAWN_MOWER_ID = 12
-SHINY_DICE_ID = 13
-BIKE_ID = 14
-
-MAX_PIZZA_ON_PLAYER = 5
-MAX_PIZZA_ON_BIKE = 5
-AMOOUNT_OF_ORDERS_IN_SUBURBS = 11
 shop_location = [10,10]
+mapInstance = None
 
-def init_orders():
-    global suburbsOrders
-    suburbsOrders = [(5, bushGardenObject),  (3, hippieHouseObject), (5, teenHouseObject), (3, blueHouseObject), (1, gatekeeperObject), (2, yellowHouseObject), (1, miniMarketObject), (1, pinkHouseObject), (1, greenHouseObject)]
+def init_orders(map):
+    global suburbsOrders, mapInstance
+    mapInstance = map
+    suburbsOrders = [(5, map.suburbs.position[0][0]),  (3, map.suburbs.position[1][0]), (5, map.suburbs.position[2][1]), (3, map.suburbs.position[4][1]), (1, map.suburbs.position[5][2]), (2, map.suburbs.position[0][3]), (1, map.suburbs.position[1][3]), (1, map.suburbs.position[2][4]), (1, map.suburbs.position[4][4])]
 
-def get_orders_for(object):
-    for item in suburbsOrders:
-        if object in item:
-            return item[0]
+def get_orders_for(streetPosition : int, addressPosition : int):
+    global mapInstance
+    orderAddress = mapInstance.suburbs.position[streetPosition.value[0]][addressPosition.value[0]]
+    for order in suburbsOrders:
+        if orderAddress in order:
+            return order[0]
     return -1
 
-def remove_orderes_for(object):
+def remove_orderes_for(streetPosition : int, addressPosition : int):
     global suburbsOrders
     suburbsOrders_list = list(suburbsOrders)
     i=0
-    for item in suburbsOrders:
-        if object in item:
+    orderAddress = mapInstance.suburbs.position[streetPosition.value[0]][addressPosition.value[0]]
+
+    for order in suburbsOrders:
+        if orderAddress in order:
             suburbsOrders_list.pop(i)
             
             suburbsOrders = tuple(suburbsOrders_list)
@@ -106,95 +75,44 @@ def print_pizza_in_room(self):
         print("There are", str(coldPizzasInRoom), "hot pizzas in here")
 
 
-def init_items():
+def init_items(map):
     global itemList, shopItemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, backpackObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject
 
-    SuburbsNotebookObject = SuburbsNotebook(parkingObject.location)
-    mainPizzaKeyObject = MainPizzaKey(pizzaPlaceObject.location)
+    SuburbsNotebookObject = SuburbsNotebook(map.suburbs.position[3][2].location)
+    mainPizzaKeyObject = MainPizzaKey(map.suburbs.position[3][3].location)
     boxObject = Box()
-    bikeKeyObject = BikeKey()
+    bikeKeyObject = BikeKey(map)
     hairDryerObject = HairDryer(shop_location)
     backpackObject = Backpack(shop_location)
-    greenLawnMowerKeyObject = GreenLawnMowerKey()
+    greenLawnMowerKeyObject = GreenLawnMowerKey(map)
     PizzaLocatorObject = PizzaLocator(shop_location)
     TripperGuideObject = TripperGuide(shop_location)
     WristWatchObject = WristWatch(shop_location)
-    LawnMowerObject = LawnMower()
-    ShinyDiceObject = ShinyDice()
+    LawnMowerObject = LawnMower(map)
+    ShinyDiceObject = ShinyDice(map)
 
     shopItemList = [PizzaLocatorObject, TripperGuideObject, WristWatchObject, backpackObject, hairDryerObject]
     itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject, backpackObject]
 
-def init_vehicle():
+def init_vehicle(map):
     global bikeObject, vehicleList
-    bikeObject = Bike()
+    bikeObject = Bike(map)
 
     vehicleList = [bikeObject]
 
 
-def init_suburbs():
-    global Suburbs
-    suburbs_rows, suburbs_cols = (6, 5)
-    Suburbs = [[0 for _ in range(suburbs_cols)] for _ in range(suburbs_rows)]
-
-    for i in range(suburbs_cols):
-        for j in range(suburbs_rows):
-            Suburbs[j][i] = NoneSpecialRoom(j, i)
-
-    #TODO: remove for lop behind note
-    for i in range(suburbs_cols):
-        for j in range(suburbs_rows):
-            if i == 3:
-                if j == 3:
-                    Suburbs[j][i] = NoneSpecialRoom(j, i)
-
-    Suburbs[3][3] = pizzaPlaceObject
-    Suburbs[3][2] = parkingObject
-    Suburbs[2][1] = teenHouseObject
-    Suburbs[4][1] = blueHouseObject
-    Suburbs[1][0] = hippieHouseObject
-    Suburbs[5][2] = gatekeeperObject
-    Suburbs[1][3] = miniMarketObject
-    Suburbs[4][4] = greenHouseObject
-    Suburbs[0][3] = yellowHouseObject
-    Suburbs[2][4] = pinkHouseObject
-    Suburbs[0][0] = bushGardenObject
-
-    ######Debug
-    # for i in range(suburbs_cols):
-    #     for j in range(suburbs_rows):
-    #         print(j, i, Suburbs[j][i])
-
-def init():
-    global pizzaPlaceObject, colorsObject, parkingObject, player, handleChoiceObject, querters, roomList \
-            ,teenHouseObject, blueHouseObject, hippieHouseObject, gatekeeperObject, miniMarketObject\
-                , greenHouseObject, yellowHouseObject, pinkHouseObject, bushGardenObject, goNextRoom
-    parkingObject = Parking()
-    pizzaPlaceObject = PizzaPlace()
+def init(map):
+    global colorsObject, player, handleChoiceObject, querters, goNextRoom
     handleChoiceObject = HandleChoices()
     colorsObject = Colors()
-    teenHouseObject = TeenHouse()
-    blueHouseObject = BlueHouse()
-    hippieHouseObject = HippieHouse()
-    gatekeeperObject = Gatekeeper()
-    miniMarketObject = MiniMarket()
-    greenHouseObject = GreenHouse()
-    yellowHouseObject = YellowHouse()
-    pinkHouseObject = PinkHouse()
-    bushGardenObject = BushGarden()
+    
+    player = Player([3,3]) # Starting point for player
 
-    roomList = [parkingObject, pizzaPlaceObject, handleChoiceObject, teenHouseObject, blueHouseObject, hippieHouseObject, gatekeeperObject, miniMarketObject, greenHouseObject, yellowHouseObject, pinkHouseObject, bushGardenObject]
-
-    player = Player(pizzaPlaceObject.location) # Starting point for player
-
-
-    init_suburbs()
-    init_orders()
-    init_items()
-    init_vehicle()
+    init_orders(map)
+    init_items(map)
+    init_vehicle(map)
 
     goNextRoom = False
-    querters = {"Suburbs": Suburbs} #, "Skyscrapers", "Shakedown", "Hood", "Square"]
 
 def get_address(street, street_number):
     address = get_street_name(street)

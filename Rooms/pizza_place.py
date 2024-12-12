@@ -4,14 +4,16 @@ from Classes.inventory import Inventory
 import Classes.settings as Settings
 from Doors.main_pizza_place_door import mainPizzaPlaceDoor
 from Utils import pizza_temprature
+from Constants.enums import Street_Number, Street_Name
+from Constants.constants import *
 
 class PizzaPlace():
     def __init__(self):
-        suburbsQuarter.__init__(self, [3,3])
+        suburbsQuarter.__init__(self, [Street_Name.FIRST,Street_Number.IV])
         self.firstArrival = True
         self.inventory = Inventory()
-        self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 100, pizza_temprature.HOT)
-        self.inventory.add_item(Settings.MainPizzaKey_ID, "main pizza key", 1)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 100, pizza_temprature.HOT)
+        self.inventory.add_item(MainPizzaKey_ID, "main pizza key", 1)
 
         self.door = mainPizzaPlaceDoor()
 
@@ -58,19 +60,27 @@ class PizzaPlace():
             if "look" in Settings.player.choice or "lookaround" in Settings.player.choice:
                 self.print_first_arrival()
 
-            elif "north" in Settings.player.choice or "south" in Settings.player.choice \
-                                                    or "east" in Settings.player.choice:
-                print("You can't go that way")
+            elif "north" in Settings.player.choice:
+                print("There is a wall to the north")
                 Settings.player.choice = ""
-
-            if "door" in Settings.player.choice:
-                if "unlock" in Settings.player.choice or "open" in Settings.player.choice:
+            elif "south" in Settings.player.choice:
+                print("There is a wall to the south")
+                Settings.player.choice = ""
+            elif "east" in Settings.player.choice:
+                print("There is a wall to the east")
+                Settings.player.choice = ""
+                
+            if "door" in Settings.player.choice and "unlock" in Settings.player.choice or \
+                "door" in Settings.player.choice and "open" in Settings.player.choice:
                     self.door.unlock()
 
-            elif "west" in Settings.player.choice or "get" in Settings.player.choice and "out" in Settings.player.choice:
+            elif "west" in Settings.player.choice or \
+                "through" in Settings.player.choice and "door" in Settings.player.choice or \
+                    "get" in Settings.player.choice and "out" in Settings.player.choice:
                 if self.door.locked:
                     print("The door is locked (as doors should be)")
                 else:
+                    Settings.player.choice = "west"
                     handleChoiceObject.player_input(self.inventory)
                     break
 

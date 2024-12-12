@@ -3,14 +3,17 @@ import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
 import sys
+from Constants.enums import Street_Number, Street_Name
+from Constants.constants import *
+
 class BushGarden(suburbsQuarter):
     def __init__(self):
         suburbsQuarter.__init__(self, [0,0])
         self.firstArrival = True
         self.picnic_went = False
         self.inventory = Inventory()
-        self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
 
     def __str__(self):
         return f"Bush Garden"
@@ -58,13 +61,13 @@ class BushGarden(suburbsQuarter):
                     numberOfPizza = self.howMuchPizza()
 
                     if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
-                        orders = Settings.get_orders_for(Settings.bushGardenObject)
+                        orders = Settings.get_orders_for(Street_Name.BUSH,Street_Number.I)
                         if orders == -1:
                             print("You already delivered this order")
                         elif orders == numberOfPizza:
                             Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
 
-                            Settings.remove_orderes_for(Settings.bushGardenObject)
+                            Settings.remove_orderes_for(Street_Name.BUSH,Street_Number.I)
 
                             print('''"thanks man! We don't have any money for tips… \n\nbut you can join us! \nTake a slice of pizza, kick your shoes off and enjoy yourself!" \n\nstay at the festival? yes/no''')
 

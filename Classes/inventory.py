@@ -48,7 +48,7 @@ class Inventory():
 
     def hot_pizza_exists(self, amount):
         for item in self.inventory:
-            if self.inventory[item]['item_name'] == "HotPizza":
+            if self.inventory[item]['item_name'] == "hot pizza":
                 if type(amount) != None:
                     if self.inventory[item]['stock_count'] == amount:
                         return True
@@ -57,10 +57,16 @@ class Inventory():
 
     def cold_pizza_exists(self, amount):
         for item in self.inventory:
-            if self.inventory[item]['item_name'] == "ColdPizza":
+            if self.inventory[item]['item_name'] == "pizza":
                 if self.inventory[item]['stock_count'] >= amount:
                     return True
 
+    def is_inventory_empty(self):
+        for item in self.inventory:
+            if self.inventory[item]['stock_count'] >= 1:
+                return False
+            else:
+                return True
 
     def get_amount(self, item_id):
         if item_id in self.inventory:

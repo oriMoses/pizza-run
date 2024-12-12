@@ -1,10 +1,12 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
-class LawnMower(BasicItem):
-    def __init__(self):
-        super().__init__(Settings.greenHouseObject.location, Settings.LAWN_MOWER_ID)
-        self.quarter = "Suburbs"
+from Constants.constants import *
 
+class LawnMower(BasicItem):
+    def __init__(self, map):
+        super().__init__(map.suburbs.position[4][4].location, LAWN_MOWER_ID)
+        self.quarter = "Suburbs"
+        self.turned_on = False
     def print_in_room(self):
         print("There's a big, rideable lawn mower.")
 

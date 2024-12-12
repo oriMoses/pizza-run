@@ -2,13 +2,15 @@ from suburbsQuarter import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
+from Constants.constants import *
+
 class NoneSpecialRoom(suburbsQuarter):
     def __init__(self, street, streetNumber):
         suburbsQuarter.__init__(self, [street,streetNumber])
         self.firstArrival = True
         self.inventory = Inventory()
-        self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
 
     def __str__(self):
         return f"..."
@@ -36,7 +38,11 @@ class NoneSpecialRoom(suburbsQuarter):
             Settings.player.choice = input("> ").lower()
 
             if "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
-                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
+                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background\n")
+                self.print_first_arrival()
+
+            elif "examine" in Settings.player.choice and self.inventory.is_inventory_empty():
+                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background\n")
                 self.print_first_arrival()
 
             elif handleChoiceObject.player_input(self.inventory):

@@ -1,10 +1,12 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
+from Constants.constants import *
+
 class BikeKey(BasicItem):
-    def __init__(self):
-        super().__init__(Settings.parkingObject.location, Settings.BIKE_KEY_ID) 
+    def __init__(self, map):
+        super().__init__(map.suburbs.position[3][2].location, BIKE_KEY_ID) 
         self.quarter = "Suburbs"
-        self.unlockes = Settings.BIKE_ID
+        self.unlockes = BIKE_ID
         self.inBox = True
 
     def print_in_room(self):

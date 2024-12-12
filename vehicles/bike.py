@@ -1,9 +1,11 @@
 import Classes.settings as Settings
 from vehicles.vehicle import Vehicle
 from Classes.inventory import Inventory
+from Constants.constants import *
+
 class Bike(Vehicle):
-    def __init__(self):
-        super().__init__(Settings.parkingObject.location, Settings.BIKE_ID, Settings.MAX_PIZZA_ON_BIKE, "Bike", Settings.BIKE_KEY_ID)
+    def __init__(self, map):
+        super().__init__(map.suburbs.position[3][2].location, BIKE_ID, MAX_PIZZA_ON_BIKE, "Bike", BIKE_KEY_ID)
         self.quarter = "Suburbs"
 
     def __str__(self):

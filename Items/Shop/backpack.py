@@ -1,8 +1,10 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
+from Constants.constants import *
+
 class Backpack(BasicItem):
     def __init__(self, position):
-        super().__init__(position, Settings.BACKPACK_ID) 
+        super().__init__(position, BACKPACK_ID) 
         self.quarter = "Suburbs"
         self.inShop = True
         self.price = 7

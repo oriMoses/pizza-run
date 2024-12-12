@@ -2,14 +2,17 @@ from suburbsQuarter import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
+from Constants.enums import Street_Number, Street_Name
+from Constants.constants import *
+
 class Parking(suburbsQuarter):
     def __init__(self):
-        suburbsQuarter.__init__(self, [3,2])
+        suburbsQuarter.__init__(self, [Street_Name.FIRST,Street_Number.III])
         self.firstArrival = True
         self.inventory = Inventory()
-        self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(Settings.SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1)
 
     def __str__(self):
         return f"Parking"

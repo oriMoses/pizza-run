@@ -2,15 +2,17 @@ from suburbsQuarter import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
+from Constants.enums import Street_Number, Street_Name
+from Constants.constants import *
 
 class HippieHouse(suburbsQuarter):
     def __init__(self):
-        suburbsQuarter.__init__(self, [1,0])
+        suburbsQuarter.__init__(self, [Street_Name.LOVE,Street_Number.I])
         self.firstArrival = True
         self.door_knocked = False
         self.inventory = Inventory()
-        self.inventory.add_item(Settings.COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(Settings.HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
 
     def __str__(self):
         return f"Hippie House"
@@ -58,14 +60,14 @@ class HippieHouse(suburbsQuarter):
                     numberOfPizza = self.howMuchPizza()
 
                     if Settings.player.inventory.hot_pizza_exists(numberOfPizza):
-                        orders = Settings.get_orders_for(Settings.hippieHouseObject)
+                        orders = Settings.get_orders_for(Street_Name.LOVE,Street_Number.I)
                         if orders == -1:
                             print("You already delivered this order")
                         elif orders == numberOfPizza:
                             Settings.player.inventory.update_item(Settings.HOT_PIZZA_ID, Settings.player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                             Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
 
-                            Settings.remove_orderes_for(Settings.hippieHouseObject)
+                            Settings.remove_orderes_for(Street_Name.LOVE,Street_Number.I)
 
                             print('far out man!"')
                             print(numberOfPizza*2, " coin up tip")

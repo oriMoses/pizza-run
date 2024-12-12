@@ -1,8 +1,10 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
+from Constants.constants import *
+
 class WristWatch(BasicItem):
     def __init__(self, position):
-        super().__init__(position, Settings.WRIST_WATCH_ID) 
+        super().__init__(position, WRIST_WATCH_ID) 
         self.quarter = "Suburbs"
         self.inShop = True
         self.price = 3

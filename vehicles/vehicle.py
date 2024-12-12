@@ -1,5 +1,7 @@
 from Classes.inventory import Inventory
 import Classes.settings as Settings
+from Constants.constants import *
+
 class Vehicle():
     def __init__(self, position, itemID, max_pizza_in_inventory, vehicleName, vehicleKeyID):
         self.position = position
@@ -12,8 +14,8 @@ class Vehicle():
         self.vehicleKeyID = vehicleKeyID
 
         self.inventory = Inventory()
-        self.inventory.add_item(Settings.HOT_PIZZA_ID, "HotPizza", 0)
-        self.inventory.add_item(Settings.COLD_PIZZA_ID, "ColdPizza", 0)
+        self.inventory.add_item(HOT_PIZZA_ID, "HotPizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "ColdPizza", 0)
 
     def turn_on(self):
         if Settings.player.inventory.item_exist(self.vehicleKeyID):

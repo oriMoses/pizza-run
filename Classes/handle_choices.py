@@ -277,30 +277,35 @@ class HandleChoices():
 
 
     def go_south(self):
-        if(Settings.street_in_boundary(Settings.player.position[0] + 1, \
-                                        Settings.player.position[1])):
+        if Settings.player.position == [2,3]:
+            print("There's wall to the south")
+            return False
+        if(Settings.street_in_boundary(Settings.player.position[0] + 1, Settings.player.position[1])):
             Settings.player.position[0] = Settings.player.position[0] + 1
             Settings.goNextRoom = True
         else:
             print("place out of bounds")
     def go_north(self):
-        if(Settings.street_in_boundary(Settings.player.position[0] - 1, \
-                                Settings.player.position[1])):
+        if Settings.player.position == [4,3]:
+            print("There's wall to the north")
+            return False
+        if Settings.street_in_boundary(Settings.player.position[0] - 1, Settings.player.position[1]):
             Settings.player.position[0] = Settings.player.position[0] - 1
             Settings.goNextRoom = True
         else:
             print("place out of bounds")
     def go_west(self):
-        if(Settings.street_in_boundary(Settings.player.position[0], \
-                                    Settings.player.position[1] - 1)):
+        if Settings.player.position == [3,4]: #TODO: move this line to dialog loop of pizza place
+            print("There's wall to the left")
+            return False
+        if Settings.street_in_boundary(Settings.player.position[0], Settings.player.position[1] - 1):
             Settings.player.position[1] = Settings.player.position[1] - 1
             Settings.goNextRoom = True
         else:
             print("place out of bounds")
 
-    def go_east(self):
-        if(Settings.street_in_boundary(Settings.player.position[0], \
-                                        Settings.player.position[1] + 1)):
+    def go_east(self):        
+        if Settings.street_in_boundary(Settings.player.position[0], Settings.player.position[1] + 1):
             Settings.player.position[1] = Settings.player.position[1] + 1
             Settings.goNextRoom = True
         else:

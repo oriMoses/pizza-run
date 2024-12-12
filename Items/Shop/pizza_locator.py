@@ -1,8 +1,10 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
+from Constants.constants import *
+
 class PizzaLocator(BasicItem):
     def __init__(self, position):
-        super().__init__(position, Settings.PIZZA_LOCATOR_ID) 
+        super().__init__(position, PIZZA_LOCATOR_ID)
         self.quarter = "Suburbs"
         self.inShop = True
         self.price = 20

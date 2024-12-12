@@ -1,8 +1,10 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
+from Constants.constants import *
+
 class SuburbsNotebook(BasicItem):
     def __init__(self, position):
-        super().__init__(position, Settings.SUBURBS_NOTEBOOK_ID) 
+        super().__init__(position, SUBURBS_NOTEBOOK_ID) 
         self.quarter = "Suburbs"
         self.orders = Settings.suburbsOrders
         self.inBox = True
