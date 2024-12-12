@@ -9,10 +9,10 @@ class Parking(suburbsQuarter):
     def __init__(self):
         suburbsQuarter.__init__(self, [Street_Name.FIRST,Street_Number.III])
         self.firstArrival = True
+        self.box_open = False
         self.inventory = Inventory()
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1)
 
     def __str__(self):
         return f"Parking"
@@ -30,7 +30,7 @@ class Parking(suburbsQuarter):
 
     def dialog_circle(self, handleChoiceObject):
         self.first_arrival()
-
+        self.box_open = False
         while True:
             if Settings.goNextRoom:
                 break
@@ -39,11 +39,19 @@ class Parking(suburbsQuarter):
             if "box" in Settings.player.choice:
                 if "open" in Settings.player.choice or "examine" in Settings.player.choice:
                     Settings.boxObject.open()
+                    self.box_open = True
                 if "look" in Settings.player.choice:
                     print("it's a regular cardbox.")
+                if "close" in Settings.player.choice:
+                    self.box_open = False
+                    print("(box closed)")
 
             elif "look" in Settings.player.choice or "lookaround" in Settings.player.choice or "lookup" in Settings.player.choice:
                 self.print_first_arrival()
 
+            elif self.box_open:
+                handleChoiceObject.player_input(Settings.boxObject.inventory)
+                self.box_open = False
+                
             elif handleChoiceObject.player_input(self.inventory):
                 pass
