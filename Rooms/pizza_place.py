@@ -40,7 +40,7 @@ class PizzaPlace():
     def first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
-            self.inventory.print_all()
+            self.inventory.print_room_inventory()
             self.firstArrival = False
 
     def dialog_circle(self, handleChoiceObject, player):
@@ -65,7 +65,7 @@ class PizzaPlace():
 
             if "look" in player.choice or "lookaround" in player.choice:
                 self.print_first_arrival()
-                self.inventory.print_all()
+                self.inventory.print_room_inventory()
                 self.inputLegit = True
 
             elif "north" in player.choice:

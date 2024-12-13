@@ -49,7 +49,7 @@ class Parking(suburbsQuarter):
 
             elif "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
-                self.inventory.print_all()
+                self.inventory.print_room_inventory()
 
             elif self.box_open:
                 handleChoiceObject.player_input(Settings.boxObject.inventory)

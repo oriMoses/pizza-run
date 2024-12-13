@@ -97,7 +97,7 @@ class BushGarden(suburbsQuarter):
 
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
-                self.inventory.print_all()
+                self.inventory.print_room_inventory()
 
             elif "table" in player.choice or "picnic" in player.choice:
                 if "go" in player.choice:

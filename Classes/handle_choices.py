@@ -23,6 +23,7 @@ class HandleChoices():
             if "examine" in player.choice:
                 if player.inventory.item_exist(GREEN_LAWN_MOWER_KEY_ID):
                     Settings.greenLawnMowerKeyObject.examine()
+                return True
 
     def shiny_dice(self, roomInventory, player):
         if "shiny dice" in player.choice:
@@ -31,6 +32,8 @@ class HandleChoices():
             if "examine" in player.choice:
                 if player.inventory.item_exist(SHINY_DICE_ID):
                     Settings.shinyDiceObject.examine()
+                return True
+
 
     def lawn_mower(self, roomInventory, player):
         if "lawn mower" in player.choice:
@@ -39,6 +42,7 @@ class HandleChoices():
             if "examine" in player.choice:
                 if player.inventory.item_exist(LAWN_MOWER_ID):
                     Settings.lawnMowerObject.examine()
+                return True
 
     def wrist_watch(self, roomInventory, player):
         if "wrist watch" in player.choice:
@@ -47,6 +51,7 @@ class HandleChoices():
             if "examine" in player.choice:
                 if player.inventory.item_exist(WRIST_WATCH_ID):
                     Settings.wristWatchObject.examine()
+                return True
 
     def tripper_guide(self, roomInventory, player):
         if "tripper guide" in player.choice:
@@ -55,6 +60,8 @@ class HandleChoices():
             if "examine" in player.choice:
                 if player.inventory.item_exist(TRIPPER_GUIDE_ID):
                     Settings.tripperLocationObject.examine()
+                return True
+
 
     def pizza_locator(self, roomInventory, player):
         if "pizza locator" in player.choice:
@@ -64,6 +71,9 @@ class HandleChoices():
                 if player.inventory.item_exist(PIZZA_LOCATOR_ID):
                     Settings.pizzaLocatorObject.examine()
 
+                return True
+
+
     def hair_dryer(self, roomInventory, player):
         if "hair" in player.choice and "dryer" in player.choice:
             self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1)
@@ -71,6 +81,7 @@ class HandleChoices():
             if "examine" in player.choice:
                 if player.inventory.item_exist(HAIR_DRYER_ID):
                     Settings.hairDryerObject.examine()
+                    return True
 
     def bike_key(self, player):
         if "bike" in player.choice and "key" in player.choice:
@@ -81,6 +92,7 @@ class HandleChoices():
             if "examine" in player.choice:
                 if player.inventory.item_exist(BIKE_KEY_ID):
                     Settings.bikeKeyObject.examine()
+            return True
 
     def notebook(self, roomInventory, player):
         if "notebook" in player.choice and "suburbs" in player.choice:
@@ -89,12 +101,13 @@ class HandleChoices():
             if "read" in player.choice or "examine" in player.choice:
                 if player.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
                     Settings.SuburbsNotebookObject.examine()
+            return True
 
     def inventory_input(self, player):
         if "inventory" in player.choice:
             if not "bike inventory" in player.choice:
                 print("\ninventory:")
-                player.inventory.print_all()
+                player.inventory.print_player_inventory()
                 return True
 
     def help_input(self, player):
@@ -104,7 +117,7 @@ class HandleChoices():
     
     def bike_input(self, player):
         if Settings.bikeObject.position != player.position:
-            return
+            return False
         if "bike" in player.choice:
             if "get down" in player.choice or "leave" in player.choice or "get off" in player.choice:
                 if Settings.bikeObject.player_on_vehacle():
@@ -113,7 +126,7 @@ class HandleChoices():
                     return True
                 else:
                     print("you are not on a", Settings.bikeObject.name)
-                    return False
+                    return True
 
             elif "climb" in player.choice or "ride" in player.choice or "get on" in player.choice:
                 if Settings.bikeObject.is_vehicle_availabe():
@@ -123,9 +136,11 @@ class HandleChoices():
             
             elif "turn" in player.choice and "on" in player.choice:
                 Settings.bikeObject.turn_on()
+                return True
                 
             elif "turn" in player.choice and "off" in player.choice:
                 Settings.bikeObject.turn_on()
+                return True
                 
             elif "inventory" in player.choice:
                 print("\nbike inventory:")
@@ -217,13 +232,14 @@ class HandleChoices():
         if "key" in player.choice:
             if "pizza" in player.choice or "pizzas" in player.choice:
                 self.deal_with_pick_and_drop(roomInventory, MainPizzaKey_ID, "main pizza key", 1, player)
+                return True
 
     def get_all_pizza_from_(self, inventory):
         return inventory.get_amount(HOT_PIZZA_ID) + inventory.get_amount(COLD_PIZZA_ID)
     
     def pizza_input(self, roomInventory, player):
         if "key" in player.choice:
-            return
+            return False
         playerOnBike = False
         if "bike" in player.choice: playerOnBike = True
         if "pizza" in player.choice or "pizzas" in player.choice:
@@ -235,7 +251,7 @@ class HandleChoices():
                 if pizzasToAdd == 0: 
                     if pizzasOnBike == MAX_PIZZA_ON_BIKE:
                         print("max pizza on bike")
-                        return False
+                        return True
             else:
                 pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
                 pizzasToAdd = self.get_number_of_(pizzasOnPlayer, "player", player)
@@ -245,6 +261,7 @@ class HandleChoices():
                     if pizzasOnPlayer == MAX_PIZZA_ON_PLAYER:
                         if "drop" not in player.choice:
                             print("max pizza on player")
+                            return True
 
             if "pick" in player.choice or "take" in player.choice:
                 if playerOnBike:
@@ -255,7 +272,7 @@ class HandleChoices():
             
             elif "put" in player.choice or "give" in player.choice:
                 if not playerOnBike:
-                    return
+                    return False
                 
                 self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToAdd)
                 return True
@@ -321,19 +338,19 @@ class HandleChoices():
     def go_input(self, player):
         if "drive" in player.choice:
             print("fist you need to climb a vehicle\n")
-            return False
+            return True
         if "south" in player.choice:
             self.go_south(player)
-
+            return True
         elif "north" in player.choice:
             self.go_north(player)
-
+            return True
         elif "west" in player.choice:
             self.go_west(player)
-            
+            return True
         elif "east" in player.choice:
             self.go_east(player)
-
+            return True
         for vehicle in enumerate(Settings.vehicleList):
             if vehicle[1].playerOnVehicle:
                 vehicle[1].position = player.position[:]
