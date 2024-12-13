@@ -2,18 +2,20 @@ import Classes.settings as Settings
 from vehicles.vehicle import Vehicle
 from Classes.inventory import Inventory
 from Constants.constants import *
+from Classes.player import Player
 
 class Bike(Vehicle):
     def __init__(self, map):
-        super().__init__(map.suburbs.position[3][2].location, BIKE_ID, MAX_PIZZA_ON_BIKE, "Bike", BIKE_KEY_ID)
+        super().__init__([3,2], BIKE_ID, MAX_PIZZA_ON_BIKE, "Bike", BIKE_KEY_ID)
         self.quarter = "Suburbs"
 
     def __str__(self):
         return f"bike"
 
     def print_in_room(self):
+        player = Player.getInstance()
         if not self.player_on_vehacle():
-            if Settings.player.position == Settings.bikeObject.position:
+            if player.position == Settings.bikeObject.position:
                 print("There's a delivery bike in here")
 
     def examine(self):

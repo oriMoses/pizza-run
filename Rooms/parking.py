@@ -11,6 +11,7 @@ class Parking(suburbsQuarter):
         suburbsQuarter.__init__(self, [Street_Name.FIRST,Street_Number.III])
         self.firstArrival = True
         self.box_open = False
+        self.inputLegit = False
         self.inventory = Inventory()
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
@@ -35,25 +36,29 @@ class Parking(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            self.player.choice = input("> ").lower()
+            player.choice = input("> ").lower()
 
             if "box" in player.choice:
                 if "open" in player.choice or "examine" in player.choice:
                     Settings.boxObject.open()
                     self.box_open = True
+                    self.inputLegit = True
                 if "look" in player.choice:
                     print("it's a regular cardbox.")
+                    self.inputLegit = True
                 if "close" in player.choice:
                     self.box_open = False
                     print("(box closed)")
+                    self.inputLegit = True
 
             elif "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
                 self.inventory.print_room_inventory()
 
             elif self.box_open:
-                handleChoiceObject.player_input(Settings.boxObject.inventory)
+                handleChoiceObject.player_input(Settings.boxObject.inventory, self.inputLegit)
                 self.box_open = False
                 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            self.inputLegit = False

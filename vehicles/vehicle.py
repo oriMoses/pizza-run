@@ -1,6 +1,6 @@
 from Classes.inventory import Inventory
-import Classes.settings as Settings
 from Constants.constants import *
+from Classes.player import Player
 
 class Vehicle():
     def __init__(self, position, itemID, max_pizza_in_inventory, vehicleName, vehicleKeyID):
@@ -18,21 +18,24 @@ class Vehicle():
         self.inventory.add_item(COLD_PIZZA_ID, "ColdPizza", 0)
 
     def turn_on(self):
-        if Settings.player.inventory.item_exist(self.vehicleKeyID):
+        player = Player.getInstance()
+        if player.inventory.item_exist(self.vehicleKeyID):
             self.vehicleOn = True
             print("the", self.name, "is on")
         else:
             print("You don't have the key to the", self.name)
     
     def is_vehicle_availabe(self):
-        if self.position != Settings.player.position:
+        player = Player.getInstance()
+        
+        if self.position != player.position:
             print(self.name, "not nearby")
             return False
-        if Settings.player.inventory.item_exist(Settings.HOT_PIZZA_ID) or Settings.player.inventory.item_exist(Settings.COLD_PIZZA_ID):
+        if player.inventory.item_exist(HOT_PIZZA_ID) or player.inventory.item_exist(COLD_PIZZA_ID):
             print("""You can't ride a""", self.name,  "with pizza on your hands (and probably shouldn't try)""")
             return False
-        if not Settings.player.inventory.item_exist(Settings.BIKE_KEY_ID):
-            print(self.name, "you don't have the key to the ", self.name)
+        if not player.inventory.item_exist(BIKE_KEY_ID):
+            print("you don't have the key to the", self.name)
             return False
     
         return True
