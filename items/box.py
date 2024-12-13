@@ -16,9 +16,10 @@ class Box():
 
     def open(self):
         if self.inventory.item_exist(SUBURBS_NOTEBOOK_ID) and self.inventory.item_exist(BIKE_KEY_ID):
-            print("You see the suburbs notebook and a bike key")
+            print("You see the suburbs notebook and a bike key\n")
         elif self.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
-            print("You see the suburbs notebook")
+            print("You see the suburbs notebook\n")
         elif self.inventory.item_exist(BIKE_KEY_ID):
-            print("You see bike key")
-        
+            print("You see bike key\n")
+        else:
+            print("(box is empty)\n")

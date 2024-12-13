@@ -44,11 +44,11 @@ class Parking(suburbsQuarter):
                     self.box_open = True
                     self.inputLegit = True
                 if "look" in player.choice:
-                    print("it's a regular cardbox.")
+                    print("it's a regular cardbox.\n")
                     self.inputLegit = True
                 if "close" in player.choice:
                     self.box_open = False
-                    print("(box closed)")
+                    print("(box closed)\n")
                     self.inputLegit = True
 
             elif "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
@@ -57,6 +57,7 @@ class Parking(suburbsQuarter):
 
             elif self.box_open:
                 handleChoiceObject.player_input(Settings.boxObject.inventory, self.inputLegit)
+                print("(box closed)\n")
                 self.box_open = False
                 
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):

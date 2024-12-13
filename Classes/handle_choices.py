@@ -10,7 +10,7 @@ class HandleChoices():
         player = Player.getInstance()
         if self.inventory_input(player) or self.help_input(player) or self.bike_input(player) or self.pizza_key_input(roomInventory, player) \
                 or self.go_input(player) or self.pizza_input(roomInventory, player) or self.notebook(roomInventory, player) \
-                or self.bike_key(player) or self.hair_dryer(roomInventory, player) or self.pizza_locator(roomInventory, player) or self.tripper_guide(roomInventory, player) or self.wrist_watch(roomInventory, player) or self.lawn_mower(roomInventory, player) or self.shiny_dice(roomInventory, player) or self.green_lawn_mower_key(roomInventory, player):
+                or self.bike_key(roomInventory, player) or self.hair_dryer(roomInventory, player) or self.pizza_locator(roomInventory, player) or self.tripper_guide(roomInventory, player) or self.wrist_watch(roomInventory, player) or self.lawn_mower(roomInventory, player) or self.shiny_dice(roomInventory, player) or self.green_lawn_mower_key(roomInventory, player):
                 return True
         else:
             if not inputLegit:
@@ -18,7 +18,7 @@ class HandleChoices():
 
     def green_lawn_mower_key(self, roomInventory, player):
         if "green lawn mower key" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, GREEN_LAWN_MOWER_KEY_ID, "green lawn mower key", 1)
+            self.deal_with_pick_and_drop(roomInventory, GREEN_LAWN_MOWER_KEY_ID, "green lawn mower key", 1, player)
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(GREEN_LAWN_MOWER_KEY_ID):
@@ -27,7 +27,7 @@ class HandleChoices():
 
     def shiny_dice(self, roomInventory, player):
         if "shiny dice" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, SHINY_DICE_ID, "shiny dice", 1)
+            self.deal_with_pick_and_drop(roomInventory, SHINY_DICE_ID, "shiny dice", 1, player)
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(SHINY_DICE_ID):
@@ -37,7 +37,7 @@ class HandleChoices():
 
     def lawn_mower(self, roomInventory, player):
         if "lawn mower" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, LAWN_MOWER_ID, "lawn mower", 1)
+            self.deal_with_pick_and_drop(roomInventory, LAWN_MOWER_ID, "lawn mower", 1, player)
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(LAWN_MOWER_ID):
@@ -46,7 +46,7 @@ class HandleChoices():
 
     def wrist_watch(self, roomInventory, player):
         if "wrist watch" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, WRIST_WATCH_ID, "wrist watch", 1)
+            self.deal_with_pick_and_drop(roomInventory, WRIST_WATCH_ID, "wrist watch", 1, player)
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(WRIST_WATCH_ID):
@@ -55,7 +55,7 @@ class HandleChoices():
 
     def tripper_guide(self, roomInventory, player):
         if "tripper guide" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, TRIPPER_GUIDE_ID, "tripper guide", 1)
+            self.deal_with_pick_and_drop(roomInventory, TRIPPER_GUIDE_ID, "tripper guide", 1, player)
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(TRIPPER_GUIDE_ID):
@@ -65,7 +65,7 @@ class HandleChoices():
 
     def pizza_locator(self, roomInventory, player):
         if "pizza locator" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, PIZZA_LOCATOR_ID, "pizza locator", 1)
+            self.deal_with_pick_and_drop(roomInventory, PIZZA_LOCATOR_ID, "pizza locator", 1, player)
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(PIZZA_LOCATOR_ID):
@@ -76,17 +76,17 @@ class HandleChoices():
 
     def hair_dryer(self, roomInventory, player):
         if "hair" in player.choice and "dryer" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1)
+            self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1, player)
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(HAIR_DRYER_ID):
                     Settings.hairDryerObject.examine()
                     return True
 
-    def bike_key(self, player):
+    def bike_key(self, roomInventory, player):
         if "bike" in player.choice and "key" in player.choice:
-            if player.inventory.item_exist(BIKE_KEY_ID) or Settings.bikeKeyObject.position == player.position:
-                self.deal_with_pick_and_drop(Settings.boxObject.inventory, BIKE_KEY_ID, "bike key", 1)
+            if player.inventory.item_exist(BIKE_KEY_ID) or roomInventory.item_exist(BIKE_KEY_ID):
+                self.deal_with_pick_and_drop(roomInventory, BIKE_KEY_ID, "bike key", 1, player)
                 Settings.bikeKeyObject.inBox = False
 
             if "examine" in player.choice:
@@ -96,7 +96,7 @@ class HandleChoices():
 
     def notebook(self, roomInventory, player):
         if "notebook" in player.choice and "suburbs" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1)
+            self.deal_with_pick_and_drop(roomInventory, SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1, player)
             
             if "read" in player.choice or "examine" in player.choice:
                 if player.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
