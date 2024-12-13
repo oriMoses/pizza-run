@@ -211,7 +211,7 @@ class HandleChoices():
                     print(item_name, "added to your inventory")
                 
             elif player.inventory.item_exist(item_id):
-                print("You already have ", item_name)
+                print("You already have ", item_name, "\n")
             
             return True
 
@@ -222,9 +222,9 @@ class HandleChoices():
                     player.inventory.move_items(item_id, roomInventory, amount)
                 else:
                     player.inventory.move_item(item_id, roomInventory)
-                print("item dropped.")
+                print("item dropped.\n")
             else:
-                print("You don't have ", item_name)
+                print("You don't have ", item_name, "\n")
             
             return True
         
@@ -278,7 +278,7 @@ class HandleChoices():
                 return True
             elif "drop" in player.choice:
                 player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToAdd)
-                print("item dropped.")
+                print("item dropped.\n")
                 return True
 
 #                    print("You don't have ", item_name)
@@ -289,7 +289,7 @@ class HandleChoices():
     def cold_or_hot_pizza_in(inventory, secondInventory, pizzasToAdd):
         hotPizzaInRoom = inventory.get_amount(HOT_PIZZA_ID)
         if hotPizzaInRoom > pizzasToAdd:
-            print("x", pizzasToAdd, " (on hands)")
+            print("x", pizzasToAdd, " (on hands)\n")
             inventory.move_items(HOT_PIZZA_ID, secondInventory, pizzasToAdd)
 
         coldPizzaInRoom = inventory.get_amount(COLD_PIZZA_ID)
@@ -302,31 +302,31 @@ class HandleChoices():
 
     def go_south(self, player):
         if player.position == [2,3]:
-            print("There's wall to the south")
+            print("There's wall to the south\n")
             return False
         if(Settings.street_in_boundary(player.position[0] + 1, player.position[1])):
             player.position[0] = player.position[0] + 1
             Settings.goNextRoom = True
         else:
-            print("place out of bounds")
+            print("place out of bounds\n")
     def go_north(self, player):
         if player.position == [4,3]:
-            print("There's wall to the north")
+            print("There's wall to the north\n")
             return False
         if Settings.street_in_boundary(player.position[0] - 1, player.position[1]):
             player.position[0] = player.position[0] - 1
             Settings.goNextRoom = True
         else:
-            print("place out of bounds")
+            print("place out of bounds\n")
     def go_west(self, player):
-        if player.position == [3,4]: #TODO: move this line to dialog loop of pizza place
-            print("There's wall to the left")
+        if player.position == [3,4] and player.quarter == "Suburbs":
+            print("There's wall to the left\n")
             return False
         if Settings.street_in_boundary(player.position[0], player.position[1] - 1):
             player.position[1] = player.position[1] - 1
             Settings.goNextRoom = True
         else:
-            print("place out of bounds")
+            print("place out of bounds\n")
 
     def go_east(self, player):        
         if Settings.street_in_boundary(player.position[0], player.position[1] + 1):
