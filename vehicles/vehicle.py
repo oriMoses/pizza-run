@@ -32,14 +32,20 @@ class Vehicle():
             print(self.name, "not nearby")
             return False
         if player.inventory.item_exist(HOT_PIZZA_ID) or player.inventory.item_exist(COLD_PIZZA_ID):
-            print("""You can't ride a""", self.name,  "with pizza on your hands (and probably shouldn't try)""")
+            print("""You can't ride a""", self.name,  "with pizza on your hands (and probably shouldn't try)\n""")
             return False
         if not player.inventory.item_exist(BIKE_KEY_ID):
             print("you don't have the key to the", self.name)
             return False
     
         return True
-
+    
+    def can_vehicle_ride(self):
+        if not self.vehicleOn:
+            print("You have to turn the", self.name, "on")
+            return False
+        return True
+    
     def player_on_vehacle(self):
         return self.playerOnVehicle
     

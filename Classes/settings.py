@@ -22,7 +22,6 @@ mapInstance = None
 def init_orders(map):
     global suburbsOrders, mapInstance
     mapInstance = map
-#    suburbsOrders = [(5, map.suburbs.position[0][0]),  (3, map.suburbs.position[1][0]), (5, map.suburbs.position[2][1]), (3, map.suburbs.position[4][1]), (1, map.suburbs.position[5][2]), (2, map.suburbs.position[0][3]), (1, map.suburbs.position[1][3]), (1, map.suburbs.position[2][4]), (1, map.suburbs.position[4][4])]
     suburbsOrders = [(5, [0,0]),  (3, [1,0]), (5, [2,1]), (3, [4,1]), (1, [5,2]), (2, [0,3]), (1, [1,3]), (1, [2,4]), (1, [4,4])]
 
 

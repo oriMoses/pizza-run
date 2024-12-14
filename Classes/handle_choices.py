@@ -147,7 +147,7 @@ class HandleChoices():
                 
             elif "inventory" in player.choice:
                 print("\nbike inventory:")
-                Settings.bikeObject.inventory.print_all()
+                Settings.bikeObject.inventory.print_player_inventory()
                 return True
 
     def move_pizza(self, fromInventory, toInventory, pizzasToAdd, playerChoice):
@@ -250,7 +250,7 @@ class HandleChoices():
         if "pizza" in player.choice or "pizzas" in player.choice:
             if playerOnBike:
                 pizzasOnBike = self.get_all_pizza_from_(Settings.bikeObject.inventory)
-                pizzasToAdd = self.get_number_of_(pizzasOnBike, "bike")
+                pizzasToAdd = self.get_number_of_(pizzasOnBike, "bike", player)
                 if pizzasToAdd == -1:
                     return False
                 if pizzasToAdd == 0: 
@@ -279,7 +279,7 @@ class HandleChoices():
                 if not playerOnBike:
                     return False
                 
-                self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToAdd)
+                self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToAdd, player.choice)
                 return True
             elif "drop" in player.choice:
                 player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToAdd)
@@ -306,7 +306,10 @@ class HandleChoices():
 
 
     def go_south(self, player):
-        if player.position == [2,3]:
+        if Settings.bikeObject.playerOnVehicle:
+            if not Settings.bikeObject.can_vehicle_ride():
+                return False
+        elif player.position == [2,3]:
             print("There's wall to the south\n")
             return False
         if(Settings.street_in_boundary(player.position[0] + 1, player.position[1])):
@@ -315,6 +318,9 @@ class HandleChoices():
         else:
             print("place out of bounds\n")
     def go_north(self, player):
+        if Settings.bikeObject.playerOnVehicle:
+            if not Settings.bikeObject.can_vehicle_ride():
+                return False
         if player.position == [4,3]:
             print("There's wall to the north\n")
             return False
@@ -324,6 +330,9 @@ class HandleChoices():
         else:
             print("place out of bounds\n")
     def go_west(self, player):
+        if Settings.bikeObject.playerOnVehicle:
+            if not Settings.bikeObject.can_vehicle_ride():
+                return False
         if player.position == [3,4] and player.quarter == "Suburbs":
             print("There's wall to the left\n")
             return False
@@ -333,13 +342,17 @@ class HandleChoices():
         else:
             print("place out of bounds\n")
 
-    def go_east(self, player):        
+    def go_east(self, player):   
+        if Settings.bikeObject.playerOnVehicle:
+            if not Settings.bikeObject.can_vehicle_ride():
+                return False     
         if Settings.street_in_boundary(player.position[0], player.position[1] + 1):
             player.position[1] = player.position[1] + 1
             Settings.goNextRoom = True
         else:
             print("place out of bounds")
-
+            
+            
     def go_input(self, player):
         if "drive" in player.choice:
             print("fist you need to climb a vehicle\n")
