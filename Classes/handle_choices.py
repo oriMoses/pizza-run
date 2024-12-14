@@ -214,7 +214,7 @@ class HandleChoices():
                     print(item_name, "added to your inventory")
                 
             elif player.inventory.item_exist(item_id):
-                print("You already have ", item_name, "\n")
+                print("You already have", item_name, "\n")
             
             return True
 
@@ -227,7 +227,7 @@ class HandleChoices():
                     player.inventory.move_item(item_id, roomInventory)
                 print("item dropped.\n")
             else:
-                print("You don't have ", item_name, "\n")
+                print("You don't have", item_name, "\n")
             
             return True
         else:
