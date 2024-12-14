@@ -9,6 +9,7 @@ class MiniMarket(suburbsQuarter):
     def __init__(self):
         suburbsQuarter.__init__(self, [Street_Name.LOVE,Street_Number.IV])
         self.firstArrival = True
+        self.inputLegit = False
         self.inventory = Inventory()
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
@@ -95,11 +96,13 @@ class MiniMarket(suburbsQuarter):
                     break
                 else:
                     print("Not enough pizza in inventory")
+                self.inputLegit = True
 
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
                 self.inventory.print_room_inventory()
-
+                self.inputLegit = True
+                
             elif self.go_to_shop(player):
                 print('(Inside the shop)\nCashier: "hey there, would you like anything?" yes/no\n\n')
 
@@ -186,5 +189,6 @@ class MiniMarket(suburbsQuarter):
                 print("(exit shop)\n")
                     
     
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            self.inputLegit = False

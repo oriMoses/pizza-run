@@ -10,6 +10,7 @@ class YellowHouse(suburbsQuarter):
         suburbsQuarter.__init__(self, [Street_Name.BUSH,Street_Number.IV])
         self.firstArrival = True
         self.door_knocked = False
+        self.inputLegit = False
         self.inventory = Inventory()
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
@@ -78,15 +79,19 @@ class YellowHouse(suburbsQuarter):
                         break
                     else:
                         print("Not enough pizza in inventory")
+                    self.inputLegit = True
 
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
                 self.inventory.print_room_inventory()
+                self.inputLegit = True
 
             elif "knock" in player.choice:
                 if "door" in player.choice or "house" in player.choice:
                     self.door_knocked = True
                     print('“honey go get the door”\n(door opened)\n“oh, i didn’t expect for you to be here so soon“')
+                    self.inputLegit = True
 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            self.inputLegit = False

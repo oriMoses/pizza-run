@@ -12,6 +12,7 @@ class BushGarden(suburbsQuarter):
         suburbsQuarter.__init__(self, [0,0])
         self.firstArrival = True
         self.picnic_went = False
+        self.inputLegit = False
         self.inventory = Inventory()
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
@@ -94,15 +95,18 @@ class BushGarden(suburbsQuarter):
                         break
                     else:
                         print("Not enough pizza in inventory")
+                    self.inputLegit = True
 
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
                 self.inventory.print_room_inventory()
-
+                self.inputLegit = True
+                
             elif "table" in player.choice or "picnic" in player.choice:
                 if "go" in player.choice:
                     print("""you hike your way to the table. \nfrom up close, you see the table is on top of a hill. \nDown the hill, you see an improvised stage. \n\nThe live music cuts right through you… \nsomething about the singer's voice. \n\nThe hill is dotted with colorful rugs and people.\nsome dance, some just lay back and look at the sky. \n\n"oh! Hey guys, pizza man here!" \n\nThe people around the picnic table smile at you, maybe give them pizza? \n""")
                     self.picnic_went = True
-
-            elif handleChoiceObject.player_input(self.inventory):
+                    self.inputLegit = True
+            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            self.inputLegit = False

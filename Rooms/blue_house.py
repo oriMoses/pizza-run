@@ -10,6 +10,7 @@ class BlueHouse(suburbsQuarter):
         suburbsQuarter.__init__(self, [4,1])
         self.firstArrival = True
         self.door_knocked = False
+        self.inputLegit = False
         self.inventory = Inventory()
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
@@ -58,7 +59,6 @@ class BlueHouse(suburbsQuarter):
                 break
             player.choice = input("> ").lower()
 
-
             if self.door_knocked:
                 if self.give_pizza(player):
                     numberOfPizza = self.howMuchPizza(player)
@@ -78,6 +78,7 @@ class BlueHouse(suburbsQuarter):
                             break
                         else:
                             print("Thats not the correct order")
+                        self.inputLegit = True
 
                     elif player.inventory.cold_pizza_exists(numberOfPizza):
                         player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
@@ -88,7 +89,7 @@ class BlueHouse(suburbsQuarter):
                         break
                     else:
                         print("Not enough pizza in inventory")
-
+                    self.inputLegit = True
             if "gnomes" in player.choice:
                 if "kick" in player.choice or "punch" in player.choice \
                     or "move" in player.choice or "take" in player.choice \
@@ -104,5 +105,6 @@ class BlueHouse(suburbsQuarter):
                     self.door_knocked = True
                     print("(door opened) \nhello there, young man")
 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            self.inputLegit = False

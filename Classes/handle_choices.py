@@ -96,12 +96,15 @@ class HandleChoices():
 
     def notebook(self, roomInventory, player):
         if "notebook" in player.choice and "suburbs" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1, player)
+            
+            if self.deal_with_pick_and_drop(roomInventory, SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1, player):
+                return True
             
             if "read" in player.choice or "examine" in player.choice:
                 if player.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
                     Settings.SuburbsNotebookObject.examine()
-            return True
+                    return True
+            return False
 
     def inventory_input(self, player):
         if "inventory" in player.choice:
@@ -227,6 +230,8 @@ class HandleChoices():
                 print("You don't have ", item_name, "\n")
             
             return True
+        else:
+            return False
         
     def pizza_key_input(self, roomInventory, player):
         if "key" in player.choice:

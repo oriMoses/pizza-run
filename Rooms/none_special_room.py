@@ -8,6 +8,7 @@ class NoneSpecialRoom(suburbsQuarter):
     def __init__(self, street, streetNumber):
         suburbsQuarter.__init__(self, [street,streetNumber])
         self.firstArrival = True
+        self.inputLegit = False
         self.inventory = Inventory()
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
@@ -40,11 +41,14 @@ class NoneSpecialRoom(suburbsQuarter):
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background\n")
                 self.print_first_arrival()
-                self.inventory.print_all()
-
+                self.inventory.print_room_inventory()
+                self.inputLegit = True
+            
             elif "examine" in player.choice and self.inventory.is_inventory_empty():
                 print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background\n")
                 self.print_first_arrival()
+                self.inputLegit = True
 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            self.inputLegit = False

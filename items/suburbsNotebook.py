@@ -17,4 +17,4 @@ class SuburbsNotebook(BasicItem):
         ordersList = list(self.orders)
         for i, note in enumerate(ordersList):
             print("x", note[0], " ", end='')
-            print(Settings.get_address(note[1].location[0], note[1].location[1]))
+            print(Settings.get_address(note[1], note[1]))
