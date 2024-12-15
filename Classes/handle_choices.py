@@ -333,9 +333,10 @@ class HandleChoices():
         if Settings.bikeObject.playerOnVehicle:
             if not Settings.bikeObject.can_vehicle_ride():
                 return False
-        if player.position == [3,4] and player.quarter == "Suburbs":
-            print("There's wall to the left\n")
-            return False
+        if player.quarter == "Suburbs":
+            if player.position == [3,4]:
+                print("There's wall to the left\n")
+                return False
         if Settings.street_in_boundary(player.position[0], player.position[1] - 1):
             player.position[1] = player.position[1] - 1
             Settings.goNextRoom = True
@@ -344,8 +345,13 @@ class HandleChoices():
 
     def go_east(self, player):   
         if Settings.bikeObject.playerOnVehicle:
+            if player.quarter == "Suburbs":
+                if player.position == [3,2]:
+                    print("You can't ride bike to the pizza place")
+                    return False
             if not Settings.bikeObject.can_vehicle_ride():
-                return False     
+                return False
+        
         if Settings.street_in_boundary(player.position[0], player.position[1] + 1):
             player.position[1] = player.position[1] + 1
             Settings.goNextRoom = True
