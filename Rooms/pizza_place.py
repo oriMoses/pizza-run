@@ -36,6 +36,7 @@ class PizzaPlace():
 
         print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END)
         
+        #note: I do not use Settings.print_objects_in_room(self) because I dont want to print pizzas
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
 
@@ -68,12 +69,15 @@ class PizzaPlace():
             elif "north" in player.choice:
                 print("There is a wall to the north\n")
                 player.choice = ""
+                self.inputLegit = True
             elif "south" in player.choice:
                 print("There is a wall to the south\n")
                 player.choice = ""
+                self.inputLegit = True
             elif "east" in player.choice:
                 print("There is a wall to the east\n")
                 player.choice = ""
+                self.inputLegit = True
                 
             if "door" in player.choice and "unlock" in player.choice or \
                 "door" in player.choice and "open" in player.choice:

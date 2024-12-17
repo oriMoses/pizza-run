@@ -28,9 +28,7 @@ class Gatekeeper(suburbsQuarter):
 
         print("gate to the ", end="")
         print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END)
-        Settings.print_items_in_room(self)
-        Settings.print_vehicles_in_room(self)
-        Settings.print_pizza_in_room(self)
+        Settings.print_objects_in_room(self)
 
 
     def first_arrival(self):
@@ -45,12 +43,13 @@ class Gatekeeper(suburbsQuarter):
                 print("closed", end="")
             print("gate to the ", end="")
             print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END)
-            Settings.print_items_in_room(self)
-            Settings.print_vehicles_in_room(self)
+            Settings.print_objects_in_room(self)
 
     def dialog_circle(self, handleChoiceObject, player):
         if not self.gateOpen:
             self.first_arrival()
+        else:
+            Settings.print_objects_in_room(self)
 
         while True:
             if Settings.goNextRoom:

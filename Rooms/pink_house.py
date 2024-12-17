@@ -22,9 +22,7 @@ class PinkHouse(suburbsQuarter):
         print("You see a pink house.\nThere's a big barbed fence to the ", end="")
         print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END)
         print(".\nyou can't really see past the fence.\n\nstrange vibes over here.\n")
-        Settings.print_items_in_room(self)
-        Settings.print_vehicles_in_room(self)
-        Settings.print_pizza_in_room(self)
+        Settings.print_objects_in_room(self)
 
     def first_arrival(self):
         if self.firstArrival:
@@ -32,9 +30,7 @@ class PinkHouse(suburbsQuarter):
             self.firstArrival = False
         else:
             print("What's up with that fence?\n")
-            Settings.print_items_in_room(self)
-            Settings.print_vehicles_in_room(self)
-            Settings.print_pizza_in_room(self)
+            Settings.print_objects_in_room(self)
 
 
     def dialog_circle(self, handleChoiceObject, player):

@@ -21,9 +21,7 @@ class TeenHouse(suburbsQuarter):
 
     def print_first_arrival(self):
         print("You see a family house, no cars in front.\n\nIt's sounds like there's about million teenagers inside\n")
-        Settings.print_items_in_room(self)
-        Settings.print_vehicles_in_room(self)
-        Settings.print_pizza_in_room(self)
+        Settings.print_objects_in_room(self)
 
 
     def dialog_circle(self, handleChoiceObject, player):

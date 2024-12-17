@@ -20,9 +20,7 @@ class HippieHouse(suburbsQuarter):
 
     def print_first_arrival(self):
         print('You see a small apartment and smell rather... Earthy smell\n\nThere is a car parked outside with a bumper sticker that says "gas, grass or..." \nYou know what, nevermind the sticker.\n')
-        Settings.print_items_in_room(self)
-        Settings.print_vehicles_in_room(self)
-        Settings.print_pizza_in_room(self)
+        Settings.print_objects_in_room(self)
 
 
     def first_arrival(self):
@@ -31,9 +29,8 @@ class HippieHouse(suburbsQuarter):
             self.firstArrival = False
         else:
             print("Still with that strange smell.")
-            Settings.print_items_in_room(self)
-            Settings.print_vehicles_in_room(self)
-            Settings.print_pizza_in_room(self)
+            Settings.print_objects_in_room(self)
+
 
     def dialog_circle(self, handleChoiceObject, player):
         self.first_arrival()

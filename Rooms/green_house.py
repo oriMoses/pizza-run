@@ -22,9 +22,7 @@ class GreenHouse(suburbsQuarter):
 
     def print_first_arrival(self):
         print("You see a greenhouse.\n\nThe front lawn is overgrown.\nThere's a big, rideable lawn mower.\n\nThere's a note on the door.")
-        Settings.print_items_in_room(self)
-        Settings.print_vehicles_in_room(self)
-        Settings.print_pizza_in_room(self)
+        Settings.print_objects_in_room(self)
 
     def dialog_circle(self, handleChoiceObject, player):
         Settings.first_arrival(self)

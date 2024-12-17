@@ -17,7 +17,7 @@ def startGame():
 
 def choose_player_room(map, player):
     if Settings.goNextRoom == True:
-        print(Settings.get_address(player.position[0], player.position[1]))
+        print(Settings.colorsObject.BOLD, Settings.get_address(player.position[0], player.position[1]), Settings.colorsObject.END)
         print(map.suburbs.position[player.position[0]][player.position[1]])
         
         Settings.goNextRoom = False

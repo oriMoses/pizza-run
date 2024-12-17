@@ -45,9 +45,22 @@ def remove_orderes_for(streetPosition : int, addressPosition : int):
             suburbsOrders = tuple(suburbsOrders_list)
         i += 1
 
+def print_objects_in_room(self):
+    counter = 0
+    if print_items_in_room(self) == NO_ITEMS_IN_ROOM:
+        counter += 1
+    if print_vehicles_in_room(self) == NO_VEHICLES_IN_ROOM:
+        counter += 1
+    if print_pizza_in_room(self) == NO_PIZZAS_IN_ROOM:
+        counter += 1
+    if counter == 3:
+        print() #note: if room is empty print 1 empty line to currect spacing
+
+
 def print_items_in_room(self):
     inBox = False
     inShop = False
+    itemInRoom = False
     for item in enumerate(itemList):
         if item[1].ID == SUBURBS_NOTEBOOK_ID or item[1].ID == BIKE_KEY_ID:
             if item[1].inBox:
@@ -58,12 +71,26 @@ def print_items_in_room(self):
         if inShop == False and inBox == False:
             if self.inventory.item_exist(item[1].ID):
                 item[1].print_in_room()
+                itemInRoom = True
+    
+    if itemInRoom:
+        return OK
+    else:
+        return NO_ITEMS_IN_ROOM
                 
 def print_vehicles_in_room(self):
     player = Player.getInstance()
+    vehicleInRoom = False
     for vehicle in enumerate(vehicleList):
         if vehicle[1].position == player.position:
             vehicle[1].print_in_room()
+            vehicleInRoom = True
+
+    if vehicleInRoom:
+        return OK
+    else:
+        return NO_VEHICLES_IN_ROOM
+    
 
 def print_pizza_in_room(self):
     hotPizzasInRoom = self.inventory.get_amount(HOT_PIZZA_ID)
@@ -71,14 +98,20 @@ def print_pizza_in_room(self):
 
     if hotPizzasInRoom != 0:
         print("There are", str(hotPizzasInRoom), "hot pizzas in here")
-
+        return OK
     elif coldPizzasInRoom != 0:
         print("There are", str(coldPizzasInRoom), "hot pizzas in here")
+        return OK
+    else:
+        return NO_PIZZAS_IN_ROOM
 
 def first_arrival(self):
     if self.firstArrival:
         self.print_first_arrival()
         self.firstArrival = False
+    else:
+        print_objects_in_room(self)
+
 
 def howMuchPizza(self, player):
     for numberOfPizza in range(0, MAX_PIZZA_ON_PLAYER+1):

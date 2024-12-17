@@ -20,9 +20,7 @@ class YellowHouse(suburbsQuarter):
     
     def print_first_arrival(self):
         print("You see a yellow house.\nNothing much over here.")
-        Settings.print_items_in_room(self)
-        Settings.print_vehicles_in_room(self)
-        Settings.print_pizza_in_room(self)
+        Settings.print_objects_in_room(self)
 
     def dialog_circle(self, handleChoiceObject, player):
         Settings.first_arrival(self)

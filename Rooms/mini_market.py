@@ -25,9 +25,7 @@ class MiniMarket(suburbsQuarter):
 
     def print_first_arrival(self):
         print("You see a local shop, it seems to be open.")
-        Settings.print_items_in_room(self)
-        Settings.print_vehicles_in_room(self)
-        Settings.print_pizza_in_room(self)
+        Settings.print_objects_in_room(self)
 
 
     def first_arrival(self):
@@ -36,9 +34,8 @@ class MiniMarket(suburbsQuarter):
             self.firstArrival = False
         else:
             print("Still open.")
-            Settings.print_items_in_room(self)
-            Settings.print_vehicles_in_room(self)
-            Settings.print_pizza_in_room(self)
+            Settings.print_objects_in_room(self)
+
     
     def go_to_shop(self, player):
         if "get in" in player.choice or "go" in player.choice:

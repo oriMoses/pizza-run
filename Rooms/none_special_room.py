@@ -17,15 +17,11 @@ class NoneSpecialRoom(suburbsQuarter):
         return f"..."
 
     def print_first_arrival(self):
-        Settings.print_items_in_room(self)
-        Settings.print_vehicles_in_room(self)
-        Settings.print_pizza_in_room(self)
+        Settings.print_objects_in_room(self)
 
     def dialog_circle(self, handleChoiceObject, player):
-        Settings.print_items_in_room(self)
-        Settings.print_vehicles_in_room(self)
-        Settings.print_pizza_in_room(self)
-
+        Settings.print_objects_in_room(self)
+        self.inventory.print_room_inventory()
 
         while True:
             if Settings.goNextRoom:
