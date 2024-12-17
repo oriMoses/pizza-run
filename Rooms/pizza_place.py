@@ -25,7 +25,10 @@ class PizzaPlace():
     def print_first_arrival(self):
         print("""you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is propably 16.\n""")
         #TODO:        small/medium/massive
-        print("You see massive pile of hot pizza and a small note on the counter\n")
+        print("You see massive pile of hot pizza and a small ", end="")
+        print(Settings.colorsObject.GREEN + "note" + Settings.colorsObject.END, end="")
+        print(" on the counter\n")
+
         if self.door.locked:
             print("There's a locked door to the", end=" ") 
         else:

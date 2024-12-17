@@ -21,7 +21,7 @@ class Vehicle():
         player = Player.getInstance()
         if player.inventory.item_exist(self.vehicleKeyID):
             self.vehicleOn = True
-            print("the", self.name, "is on")
+            print("the", self.name, "is on\n")
         else:
             print("You don't have the key to the", self.name)
     
@@ -51,7 +51,7 @@ class Vehicle():
     
     def turn_off(self):
         self.vehicleOn = False
-        print(self.vehicleName, "is off")
+        print(self.vehicleName, "is off\n")
 
     def print_in_room(self):
         pass

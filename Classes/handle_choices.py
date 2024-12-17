@@ -107,7 +107,7 @@ class HandleChoices():
             return False
 
     def inventory_input(self, player):
-        if "inventory" in player.choice:
+        if "inventory" in player.choice and len(player.choice) <= 10 :
             if not "bike inventory" in player.choice:
                 print("\ninventory:")
                 player.inventory.print_player_inventory()
@@ -198,6 +198,10 @@ class HandleChoices():
             else:
                 if pizzasToAdd + pizzasOnInventory > MAX_PIZZA_ON_PLAYER:
                     pizzasToAdd = 0
+        elif "drop" in player.choice:
+            if pizzasToAdd > pizzasOnInventory:
+                print("not enough pizza in inventory")
+                return -1
         return pizzasToAdd
 
     def deal_with_pick_and_drop(self, roomInventory, item_id, item_name, amount, player):
@@ -242,52 +246,108 @@ class HandleChoices():
     def get_all_pizza_from_(self, inventory):
         return inventory.get_amount(HOT_PIZZA_ID) + inventory.get_amount(COLD_PIZZA_ID)
     
-    def pizza_input(self, roomInventory, player):
+    def pizza_input(self, roomInventory, player): #TODO: refactor all function
+        #inputs to avoid in pizza input
         if "key" in player.choice:
             return False
-        playerOnBike = False
-        if "bike" in player.choice: playerOnBike = True
+        
+        bikeInChoice = False
         if "pizza" in player.choice or "pizzas" in player.choice:
-            if playerOnBike:
-                pizzasOnBike = self.get_all_pizza_from_(Settings.bikeObject.inventory)
-                pizzasToAdd = self.get_number_of_(pizzasOnBike, "bike", player)
-                if pizzasToAdd == -1:
-                    return False
-                if pizzasToAdd == 0: 
-                    if pizzasOnBike == MAX_PIZZA_ON_BIKE:
-                        print("max pizza on bike")
-                        return True
-            else:
-                pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
-                pizzasToAdd = self.get_number_of_(pizzasOnPlayer, "player", player)
-                if pizzasToAdd == -1:
-                    return False
-                if pizzasToAdd == 0:
-                    if pizzasOnPlayer == MAX_PIZZA_ON_PLAYER:
-                        if "drop" not in player.choice:
-                            print("max pizza on player")
-                            return True
+            if "bike" in player.choice: bikeInChoice = True
 
-            if "pick" in player.choice or "take" in player.choice:
-                if playerOnBike:
-                    self.move_pizza(Settings.bikeObject.inventory, player.inventory, pizzasToAdd, player.choice)
-                else:
-                    self.move_pizza(roomInventory, player.inventory, pizzasToAdd, player.choice)
-                return True
-            
-            elif "put" in player.choice or "give" in player.choice:
-                if not playerOnBike:
-                    return False
+            if bikeInChoice:
+                if "pick" in player.choice or "take" in player.choice:
+                    pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
+                    pizzasToMove = self.get_number_of_(pizzasOnPlayer, "bike", player)
+
+                    if pizzasToMove == -1:
+                        return True
+                    
+                    self.move_pizza(Settings.bikeObject.inventory, player.inventory, pizzasToMove, player.choice)
+                    return True
+    
+                elif "put" in player.choice or "give" in player.choice:
+                    pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
+                    pizzasToMove = self.get_number_of_(pizzasOnPlayer, "player", player)
+                    if pizzasToMove == -1:
+                        return True
+                    self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToMove, player.choice)
+                    return True
+            else:
+                if "pick" in player.choice or "take" in player.choice:
+                    pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
+                    pizzasToMove = self.get_number_of_(pizzasOnPlayer, "player", player)
+                    if pizzasToMove == -1:
+                        return True
+                    if pizzasOnPlayer + pizzasToMove > player.inventory.max_pizza_capacity:
+                        print("can't carry more than 5 pizza")
+                        return True
                 
-                self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToAdd, player.choice)
-                return True
-            elif "drop" in player.choice:
-                player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToAdd)
+                    self.move_pizza(roomInventory, player.inventory, pizzasToMove, player.choice)
+                    return True
+                
+
+            if "drop" in player.choice:
+                pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
+                pizzasToMove = self.get_number_of_(pizzasOnPlayer, "player", player)
+                if pizzasToMove == -1:
+                    return True
+                
+                player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToMove)
                 print("item dropped.\n")
                 return True
 
 #                    print("You don't have ", item_name)
 #                    return True
+
+#     def pizza_input(self, roomInventory, player): #TODO: refactor all function
+#         #inputs to avoid in pizza input
+#         if "key" in player.choice:
+#             return False
+        
+#         bikeInChoice = False
+#         if "bike" in player.choice: bikeInChoice = True
+#         if "pizza" in player.choice or "pizzas" in player.choice:
+#             if bikeInChoice:
+#                 pizzasOnBike = self.get_all_pizza_from_(Settings.bikeObject.inventory)
+#                 pizzasToAdd = self.get_number_of_(pizzasOnBike, "bike", player)
+#                 if pizzasToAdd == -1:
+#                     return False
+#                 if pizzasToAdd == 0: 
+#                     if pizzasOnBike == MAX_PIZZA_ON_BIKE:
+#                         print("max pizza on bike")
+#                         return True
+#             else:
+#                 pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
+#                 pizzasToAdd = self.get_number_of_(pizzasOnPlayer, "player", player)
+#                 if pizzasToAdd == -1:
+#                     return False
+#                 if pizzasToAdd == 0:
+#                     if pizzasOnPlayer == MAX_PIZZA_ON_PLAYER:
+#                         if "drop" not in player.choice:
+#                             print("max pizza on player")
+#                             return True
+
+#             if "pick" in player.choice or "take" in player.choice:
+#                 if bikeInChoice:
+#                     self.move_pizza(Settings.bikeObject.inventory, player.inventory, pizzasToAdd, player.choice)
+#                 else:
+#                     self.move_pizza(roomInventory, player.inventory, pizzasToAdd, player.choice)
+#                 return True
+            
+#             elif "put" in player.choice or "give" in player.choice:
+#                 if not bikeInChoice:
+#                     return False
+                
+#                 self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToAdd, player.choice)
+#                 return True
+#             elif "drop" in player.choice:
+#                 player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToAdd)
+#                 print("item dropped.\n")
+#                 return True
+
+# #                    print("You don't have ", item_name)
+# #                    return True
 
 
 
@@ -308,10 +368,10 @@ class HandleChoices():
     def go_south(self, player):
         if Settings.bikeObject.playerOnVehicle:
             if not Settings.bikeObject.can_vehicle_ride():
-                return False
+                return True
         elif player.position == [2,3]:
             print("There's wall to the south\n")
-            return False
+            return True
         if(Settings.street_in_boundary(player.position[0] + 1, player.position[1])):
             player.position[0] = player.position[0] + 1
             Settings.goNextRoom = True
@@ -320,37 +380,38 @@ class HandleChoices():
     def go_north(self, player):
         if Settings.bikeObject.playerOnVehicle:
             if not Settings.bikeObject.can_vehicle_ride():
-                return False
+                return True
         if player.position == [4,3]:
             print("There's wall to the north\n")
-            return False
+            return True
         if Settings.street_in_boundary(player.position[0] - 1, player.position[1]):
             player.position[0] = player.position[0] - 1
             Settings.goNextRoom = True
         else:
             print("place out of bounds\n")
+            return True
     def go_west(self, player):
         if Settings.bikeObject.playerOnVehicle:
             if not Settings.bikeObject.can_vehicle_ride():
-                return False
+                return True
         if player.quarter == "Suburbs":
             if player.position == [3,4]:
                 print("There's wall to the left\n")
-                return False
+                return True
         if Settings.street_in_boundary(player.position[0], player.position[1] - 1):
             player.position[1] = player.position[1] - 1
             Settings.goNextRoom = True
         else:
             print("place out of bounds\n")
-
+            return True
     def go_east(self, player):   
         if Settings.bikeObject.playerOnVehicle:
             if player.quarter == "Suburbs":
                 if player.position == [3,2]:
                     print("You can't ride bike to the pizza place")
-                    return False
+                    return True
             if not Settings.bikeObject.can_vehicle_ride():
-                return False
+                return True
         
         if Settings.street_in_boundary(player.position[0], player.position[1] + 1):
             player.position[1] = player.position[1] + 1

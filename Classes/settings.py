@@ -27,9 +27,9 @@ def init_orders(map):
 
 def get_orders_for(streetPosition : int, addressPosition : int):
     global mapInstance
-    orderAddress = mapInstance.suburbs.position[streetPosition.value[0]][addressPosition.value[0]]
+    orderAddress = [streetPosition.value[0], addressPosition.value[0]]
     for order in suburbsOrders:
-        if orderAddress in order:
+        if orderAddress == order[1]:
             return order[0]
     return -1
 

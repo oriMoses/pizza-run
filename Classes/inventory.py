@@ -3,6 +3,7 @@ import Classes.settings as Settings
 class Inventory():
     def __init__(self):
         self.inventory = {}
+        self.max_pizza_capacity = 5
 
     def add_item(self, item_id, item_name, stock_count, pizza_temprature = pizza_temprature.NOT_A_PIZZA):
         self.inventory[item_id] = {"item_name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature}

@@ -92,8 +92,11 @@ class HippieHouse(suburbsQuarter):
                 self.inventory.print_room_inventory()
                 self.inputLegit = True
 
-            elif "knock" in player.choice:
+            elif "knock" in player.choice: #TODO: move the check if knock door to function in Settings, and use it in every room
                 if "door" in player.choice or "house" in player.choice:
+                    if Settings.bikeObject.player_on_vehacle():
+                        print("You can't knock on door while on bike")
+                        return False
                     self.door_knocked = True
                     print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n"Did we order pizza?"\n\n"Hah, guess we did."')
                     self.inputLegit = True
