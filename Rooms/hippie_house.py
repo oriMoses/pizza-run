@@ -35,12 +35,6 @@ class HippieHouse(suburbsQuarter):
             Settings.print_vehicles_in_room(self)
             Settings.print_pizza_in_room(self)
 
-
-    def give_pizza(self, player):
-        if "give" in player.choice:
-            if "pizza" in player.choice:
-                return True
-    
     def howMuchPizza(self, player):
         for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER+1):
             if str(numberOfPizza) in player.choice:
@@ -57,7 +51,7 @@ class HippieHouse(suburbsQuarter):
 
 
             if self.door_knocked:
-                if self.give_pizza(player):
+                if handleChoiceObject.give_pizza(player):
                     numberOfPizza = self.howMuchPizza(player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):

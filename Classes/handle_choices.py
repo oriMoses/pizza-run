@@ -16,6 +16,13 @@ class HandleChoices():
             if not inputLegit:
                 print("pardon me?")
 
+    def give_pizza(self, player):
+        if "give" in player.choice:
+            if "pizza" in player.choice:
+                return True
+            else:
+                return False
+            
     def green_lawn_mower_key(self, roomInventory, player):
         if "green lawn mower key" in player.choice:
             self.deal_with_pick_and_drop(roomInventory, GREEN_LAWN_MOWER_KEY_ID, "green lawn mower key", 1, player)

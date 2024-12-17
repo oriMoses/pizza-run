@@ -30,11 +30,6 @@ class GreenHouse(suburbsQuarter):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
-
-    def give_pizza(self, player):
-        if "give" in player.choice:
-            if "pizza" in player.choice:
-                return True
     
     def howMuchPizza(self, player):
         for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER+1):
@@ -52,7 +47,7 @@ class GreenHouse(suburbsQuarter):
 
 
             if self.door_knocked:
-                if self.give_pizza(player):
+                if handleChoiceObject.give_pizza(player):
                     numberOfPizza = self.howMuchPizza(player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
