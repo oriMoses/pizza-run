@@ -74,9 +74,9 @@ class Gatekeeper(suburbsQuarter):
                 numberOfPizza = self.howMuchPizza(player)
 
                 if player.inventory.hot_pizza_exists(numberOfPizza):
-                    orders = Settings.get_orders_for(5,2)
+                    orders = Settings.get_orders_for(Street_Name.DUCK,Street_Number.III)
                     if orders == -1:
-                        print("You already delivered this order")
+                        print("You already delivered this order\n")
                     elif orders == numberOfPizza:
                         player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                         player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
@@ -85,11 +85,11 @@ class Gatekeeper(suburbsQuarter):
 
                         print('Thank you, you just made my shift way better')
                         print(numberOfPizza*2, " coin up tip")
-                        print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.')
+                        print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.\n')
                         self.gateOpen = True
                         break
                     else:
-                        print("Thats not the correct order")
+                        print("Thats not the correct order\n")
 
                 elif player.inventory.cold_pizza_exists(numberOfPizza):
                     player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
@@ -97,11 +97,11 @@ class Gatekeeper(suburbsQuarter):
 
                     print("Thank you, too bad its cold")
                     print(numberOfPizza, " coin up tip")
-                    print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.')
+                    print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.\n')
                     self.gateOpen = True
                     break
                 else:
-                    print("Not enough pizza in inventory")
+                    print("Not enough pizza in inventory\n")
                 self.inputLegit = True
             
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
@@ -110,7 +110,7 @@ class Gatekeeper(suburbsQuarter):
                 self.inputLegit = True
             elif "man" in player.choice or "gatekeeper" in player.choice:
                 if "talk" in player.choice or "approach" in player.choice or "look" in player.choice:
-                    print('hi there!')
+                    print('hi there!\n')
                     self.inputLegit = True
                     
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):

@@ -59,7 +59,7 @@ class MiniMarket(suburbsQuarter):
         return False
 
     def print_on_buy(self):
-        print("""cha ching! \n\n“I hope you like it. no refunds!”""")
+        print("""cha ching! \n\n“I hope you like it. no refunds!”\n""")
 
     def dialog_circle(self, handleChoiceObject, player):
         self.first_arrival()
@@ -74,7 +74,7 @@ class MiniMarket(suburbsQuarter):
                 if player.inventory.hot_pizza_exists(numberOfPizza):
                     orders = Settings.get_orders_for(Street_Name.LOVE,Street_Number.IV)
                     if orders == -1:
-                        print("You already delivered this order")
+                        print("You already delivered this order\n")
                     elif orders == numberOfPizza:
                         player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                         player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
@@ -82,20 +82,20 @@ class MiniMarket(suburbsQuarter):
                         Settings.remove_orderes_for(Street_Name.LOVE,Street_Number.IV)
 
                         print('"Perfect"')
-                        print(numberOfPizza*2, " coin up tip")
+                        print(numberOfPizza*2, " coin up tip\n")
                         break
                     else:
-                        print("Thats not the correct order")
+                        print("Thats not the correct order\n")
 
                 elif player.inventory.cold_pizza_exists(numberOfPizza):
                     player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
                     player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
 
                     print('"Thanks, kind of cold tho"')
-                    print(numberOfPizza, " coin up tip")
+                    print(numberOfPizza, " coin up tip\n")
                     break
                 else:
-                    print("Not enough pizza in inventory")
+                    print("Not enough pizza in inventory\n")
                 self.inputLegit = True
 
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
@@ -110,7 +110,7 @@ class MiniMarket(suburbsQuarter):
                     player.choice = input("> ").lower()
                     print("")
                     if "yes" not in player.choice and "no" not in player.choice and "buy" not in player.choice:
-                        print("it's either yes or no, dont waste my time!")
+                        print("it's either yes or no, dont waste my time!\n")
 
                 if "no" in player.choice:
                     return False
@@ -126,50 +126,50 @@ class MiniMarket(suburbsQuarter):
                     if "buy" in player.choice:
                         if "hair dryer" in player.choice:
                             if not self.inventory.item_exist(Settings.HAIR_DRYER_ID):
-                                print ("item not in shop")
+                                print ("item not in shop\n")
                             elif player.inventory.get_amount(Settings.COIN_ID) >= Settings.hairDryerObject.price:
                                 self.inventory.move_item(Settings.HAIR_DRYER_ID, player.inventory)
                                 player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) - Settings.hairDryerObject.price)
                                 self.print_on_buy()
                                 Settings.hairDryerObject.inShop = False
                             else:
-                                print('"sorry bud, come back when you got enough money."')
+                                print('"sorry bud, come back when you got enough money."\n')
                                 break
 
                         elif "backpack" in player.choice:
                             if not self.inventory.item_exist(Settings.BACKPACK_ID):
-                                print ("item not in shop")                            
+                                print ("item not in shop\n")                            
                             elif player.inventory.get_amount(Settings.COIN_ID) >= Settings.backpackObject.price:
                                 self.inventory.move_item(Settings.BACKPACK_ID, player.inventory)
                                 player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) - Settings.backpackObject.price)
                                 self.print_on_buy()
                                 Settings.backpackObject.inShop = False
                             else:
-                                print('"sorry bud, come back when you got enough money."')
+                                print('"sorry bud, come back when you got enough money."\n')
                                 break
 
                         elif "wrist watch" in player.choice:
                             if not self.inventory.item_exist(Settings.BACKPACK_ID):
-                                print ("item not in shop")
+                                print ("item not in shop\n")
                             elif player.inventory.get_amount(Settings.COIN_ID) >= Settings.WristWatchObject.price:
                                 self.inventory.move_item(Settings.WRIST_WATCH_ID, player.inventory)
                                 player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) - Settings.WristWatchObject.price)
                                 self.print_on_buy()
                                 Settings.WristWatchObject.inShop = False
                             else:
-                                print('"sorry bud, come back when you got enough money."')
+                                print('"sorry bud, come back when you got enough money."\n')
                                 break
 
                         elif "pizza locator" in player.choice:
                             if not self.inventory.item_exist(Settings.PIZZA_LOCATOR_ID):
-                                print ("item not in shop")
+                                print ("item not in shop\n")
                             elif player.inventory.get_amount(Settings.COIN_ID) >= Settings.PizzaLocatorObject.price:
                                 self.inventory.move_item(Settings.PIZZA_LOCATOR_ID, player.inventory)
                                 player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) - Settings.PizzaLocatorObject.price)
                                 self.print_on_buy()
                                 Settings.PizzaLocatorObject.inShop = False
                             else:
-                                print('"sorry bud, come back when you got enough money."')
+                                print('"sorry bud, come back when you got enough money."\n')
                                 break
 
                         elif "tripper guide" in player.choice:
@@ -181,7 +181,7 @@ class MiniMarket(suburbsQuarter):
                                 self.print_on_buy()
                                 Settings.TripperGuideObject.inShop = False
                             else:
-                                print('"sorry bud, come back when you got enough money."')
+                                print('"sorry bud, come back when you got enough money."\n')
                                 break
                     
                     elif "exit" not in player.choice:

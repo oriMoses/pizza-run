@@ -66,7 +66,7 @@ class BlueHouse(suburbsQuarter):
                     if player.inventory.hot_pizza_exists(numberOfPizza):
                         orders = Settings.get_orders_for(Street_Name.TREE,Street_Number.II)
                         if orders == -1:
-                            print("You already delivered this order")
+                            print("You already delivered this order\n")
                         elif orders == numberOfPizza:
                             player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                             player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
@@ -74,10 +74,10 @@ class BlueHouse(suburbsQuarter):
                             Settings.remove_orderes_for(Street_Name.TREE,Street_Number.II)
 
                             print("my my, what a wonderful pizza!")
-                            print(numberOfPizza*2, " coin up tip")
+                            print(numberOfPizza*2, " coin up tip\n")
                             break
                         else:
-                            print("Thats not the correct order")
+                            print("Thats not the correct order\n")
                         self.inputLegit = True
 
                     elif player.inventory.cold_pizza_exists(numberOfPizza):

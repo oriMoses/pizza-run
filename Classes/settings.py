@@ -27,7 +27,7 @@ def init_orders(map):
 
 def get_orders_for(streetPosition : int, addressPosition : int):
     global mapInstance
-    orderAddress = [streetPosition.value[0], addressPosition.value[0]]
+    orderAddress = [streetPosition.value, addressPosition.value]
     for order in suburbsOrders:
         if orderAddress == order[1]:
             return order[0]
@@ -37,12 +37,11 @@ def remove_orderes_for(streetPosition : int, addressPosition : int):
     global suburbsOrders
     suburbsOrders_list = list(suburbsOrders)
     i=0
-    orderAddress = mapInstance.suburbs.position[streetPosition.value[0]][addressPosition.value[0]]
+    orderAddress = [streetPosition.value, addressPosition.value]
 
     for order in suburbsOrders:
-        if orderAddress in order:
+        if orderAddress == order[1]:
             suburbsOrders_list.pop(i)
-            
             suburbsOrders = tuple(suburbsOrders_list)
         i += 1
 

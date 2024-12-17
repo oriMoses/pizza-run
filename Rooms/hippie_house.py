@@ -71,20 +71,20 @@ class HippieHouse(suburbsQuarter):
                             Settings.remove_orderes_for(Street_Name.LOVE,Street_Number.I)
 
                             print('far out man!"')
-                            print(numberOfPizza*2, " coin up tip")
+                            print(numberOfPizza*2, " coin up tip\n")
                             break
                         else:
-                            print("Thats not the correct order")
+                            print("Thats not the correct order\n")
 
                     elif player.inventory.cold_pizza_exists(numberOfPizza):
                         player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
                         player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
 
                         print("hmm, thanks man")
-                        print(numberOfPizza, " coin up tip")
+                        print(numberOfPizza, " coin up tip\n")
                         break
                     else:
-                        print("Not enough pizza in inventory")
+                        print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
@@ -95,10 +95,10 @@ class HippieHouse(suburbsQuarter):
             elif "knock" in player.choice: #TODO: move the check if knock door to function in Settings, and use it in every room
                 if "door" in player.choice or "house" in player.choice:
                     if Settings.bikeObject.player_on_vehacle():
-                        print("You can't knock on door while on bike")
+                        print("You can't knock on door while on bike\n")
                         return False
                     self.door_knocked = True
-                    print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n"Did we order pizza?"\n\n"Hah, guess we did."')
+                    print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n"Did we order pizza?"\n\n"Hah, guess we did."\n')
                     self.inputLegit = True
                     
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):

@@ -57,7 +57,7 @@ class YellowHouse(suburbsQuarter):
                     if player.inventory.hot_pizza_exists(numberOfPizza):
                         orders = Settings.get_orders_for(Street_Name.BUSH,Street_Number.IV)
                         if orders == -1:
-                            print("You already delivered this order")
+                            print("You already delivered this order\n")
                         elif orders == numberOfPizza:
                             player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                             player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
@@ -65,20 +65,20 @@ class YellowHouse(suburbsQuarter):
                             Settings.remove_orderes_for(Street_Name.BUSH,Street_Number.IV)
 
                             print('"that is what im talking about! happy new year!"')
-                            print(numberOfPizza*2, " coin up tip")
+                            print(numberOfPizza*2, " coin up tip\n")
                             break
                         else:
-                            print("Thats not the correct order")
+                            print("Thats not the correct order\n")
 
                     elif player.inventory.cold_pizza_exists(numberOfPizza):
                         player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
                         player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
 
                         print("cold pizza… well, still pizza")
-                        print(numberOfPizza, " coin up tip")
+                        print(numberOfPizza, " coin up tip\n")
                         break
                     else:
-                        print("Not enough pizza in inventory")
+                        print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
@@ -89,7 +89,7 @@ class YellowHouse(suburbsQuarter):
             elif "knock" in player.choice:
                 if "door" in player.choice or "house" in player.choice:
                     self.door_knocked = True
-                    print('“honey go get the door”\n(door opened)\n“oh, i didn’t expect for you to be here so soon“')
+                    print('“honey go get the door”\n(door opened)\n“oh, i didn’t expect for you to be here so soon“\n')
                     self.inputLegit = True
 
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):

@@ -215,7 +215,7 @@ class HandleChoices():
                     roomInventory.move_items(item_id, player.inventory, amount)
                 else:
                     roomInventory.move_item(item_id, player.inventory)
-                    print(item_name, "added to your inventory")
+                    print(item_name, "added to your inventory\n")
                 
             elif player.inventory.item_exist(item_id):
                 print("You already have", item_name, "\n")

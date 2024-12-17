@@ -65,13 +65,13 @@ class BushGarden(suburbsQuarter):
                     if player.inventory.hot_pizza_exists(numberOfPizza):
                         orders = Settings.get_orders_for(Street_Name.BUSH,Street_Number.I)
                         if orders == -1:
-                            print("You already delivered this order")
+                            print("You already delivered this order\n")
                         elif orders == numberOfPizza:
                             player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
 
                             Settings.remove_orderes_for(Street_Name.BUSH,Street_Number.I)
 
-                            print('''"thanks man! We don't have any money for tips… \n\nbut you can join us! \nTake a slice of pizza, kick your shoes off and enjoy yourself!" \n\nstay at the festival? yes/no''')
+                            print('''"thanks man! We don't have any money for tips… \n\nbut you can join us! \nTake a slice of pizza, kick your shoes off and enjoy yourself!" \n\nstay at the festival? yes/no\n''')
 
                             while player.choice != "yes" and player.choice != "no":
                                 player.choice = input("> ").lower()
@@ -79,12 +79,12 @@ class BushGarden(suburbsQuarter):
                                 if "yes" in player.choice:
                                     self.print_end_1(player)
                                 elif "no" in player.choice:
-                                    print("I get it man, show must go on… anyway, happy new year!!!")
+                                    print("I get it man, show must go on… anyway, happy new year!!!\n")
                                 else:
-                                    print("\nstay at the festival? yes/no")
+                                    print("\nstay at the festival? yes/no\n")
                             break
                         else:
-                            print("give me pizza!!!! only one pizza!")
+                            print("give me pizza!!!! only one pizza!\n")
 
                     elif player.inventory.cold_pizza_exists(numberOfPizza):
                         player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
@@ -94,7 +94,7 @@ class BushGarden(suburbsQuarter):
                         print(numberOfPizza, " coin up tip")
                         break
                     else:
-                        print("Not enough pizza in inventory")
+                        print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:

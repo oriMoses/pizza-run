@@ -60,10 +60,10 @@ class PizzaPlace():
                     if "notebook" in player.choice:
                         return
                     else:
-                        print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)")
+                        print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)\n")
                         self.inputLegit = True
                 elif "take" in player.choice:
-                    print("the note glued to the counter, you can't take it")
+                    print("the note glued to the counter, you can't take it\n")
                     self.inputLegit = True
 
             if "look" in player.choice or "lookaround" in player.choice:
@@ -72,13 +72,13 @@ class PizzaPlace():
                 self.inputLegit = True
 
             elif "north" in player.choice:
-                print("There is a wall to the north")
+                print("There is a wall to the north\n")
                 player.choice = ""
             elif "south" in player.choice:
-                print("There is a wall to the south")
+                print("There is a wall to the south\n")
                 player.choice = ""
             elif "east" in player.choice:
-                print("There is a wall to the east")
+                print("There is a wall to the east\n")
                 player.choice = ""
                 
             if "door" in player.choice and "unlock" in player.choice or \
@@ -89,7 +89,7 @@ class PizzaPlace():
                 "through" in player.choice and "door" in player.choice or \
                     "get" in player.choice and "out" in player.choice:
                 if self.door.locked:
-                    print("The door is locked (as doors should be)")
+                    print("The door is locked (as doors should be)\n")
                 else:
                     player.choice = "west"
                     handleChoiceObject.player_input(self.inventory, self.inputLegit)

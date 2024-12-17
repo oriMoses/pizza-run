@@ -63,7 +63,7 @@ class PinkHouse(suburbsQuarter):
                     if player.inventory.hot_pizza_exists(numberOfPizza):
                         orders = Settings.get_orders_for(Street_Name.FREEDOM,Street_Number.V)
                         if orders == -1:
-                            print("You already delivered this order")
+                            print("You already delivered this order\n")
                         elif orders == numberOfPizza:
                             player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                             player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
@@ -71,20 +71,20 @@ class PinkHouse(suburbsQuarter):
                             Settings.remove_orderes_for(Street_Name.FREEDOM,Street_Number.V)
 
                             print('The man grabs the pizza and shut the door with a slam!')
-                            print(numberOfPizza*2, " coin up tip")
+                            print(numberOfPizza*2, " coin up tip\n")
                             break
                         else:
-                            print("give me pizza!!!! only one pizza!")
+                            print("give me pizza!!!! only one pizza!\n")
 
                     elif player.inventory.cold_pizza_exists(numberOfPizza):
                         player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
                         player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
 
                         print("The man grabs the pizza and shut the door with a slam!")
-                        print(numberOfPizza, " coin up tip")
+                        print(numberOfPizza, " coin up tip\n")
                         break
                     else:
-                        print("Not enough pizza in inventory")
+                        print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
@@ -95,7 +95,7 @@ class PinkHouse(suburbsQuarter):
             elif "knock" in player.choice:
                 if "door" in player.choice or "house" in player.choice:
                     self.door_knocked = True
-                    print('You hear dogs barking and running.\nbang!\n\nsomeone crashed on the door!\nThe door opens to a crack and a man shouts:\n“who are you? go away!”')
+                    print('You hear dogs barking and running.\nbang!\n\nsomeone crashed on the door!\nThe door opens to a crack and a man shouts:\n“who are you? go away!”\n')
                     self.inputLegit = True
 
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
