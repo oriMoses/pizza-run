@@ -40,14 +40,8 @@ class PizzaPlace():
         Settings.print_vehicles_in_room(self)
 
 
-    def first_arrival(self):
-        if self.firstArrival:
-            self.print_first_arrival()
-            self.inventory.print_room_inventory()
-            self.firstArrival = False
-
     def dialog_circle(self, handleChoiceObject, player):
-        self.first_arrival()
+        Settings.first_arrival(self)
 
         while True:
             if Settings.goNextRoom:

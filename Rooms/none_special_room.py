@@ -21,12 +21,6 @@ class NoneSpecialRoom(suburbsQuarter):
         Settings.print_vehicles_in_room(self)
         Settings.print_pizza_in_room(self)
 
-
-    def first_arrival(self):
-        if self.firstArrival:
-            self.print_first_arrival()
-            self.firstArrival = False
-
     def dialog_circle(self, handleChoiceObject, player):
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)

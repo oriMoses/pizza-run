@@ -26,18 +26,6 @@ class BushGarden(suburbsQuarter):
         Settings.print_vehicles_in_room(self)
         Settings.print_pizza_in_room(self)
 
-
-    def first_arrival(self):
-        if self.firstArrival:
-            self.print_first_arrival()
-            self.firstArrival = False
-    
-    def howMuchPizza(self, player):
-        for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER+1):
-            if str(numberOfPizza) in player.choice:
-                return numberOfPizza
-        return 0
-
     def print_end_1(self, player):
         print("You join the festival and have the time of your life.\nsuddenly, all of the things that used to worry and upset you seem to just fade away.\nYou decide to live your life truly, as one could.")
         print("congratulations! you beat the game! (END 1)")
@@ -45,7 +33,7 @@ class BushGarden(suburbsQuarter):
         sys.exit()
 
     def dialog_circle(self, handleChoiceObject, player):
-        self.first_arrival()
+        Settings.first_arrival(self)
 
         while True:
             if Settings.goNextRoom:
@@ -55,7 +43,7 @@ class BushGarden(suburbsQuarter):
 
             if self.picnic_went:
                 if handleChoiceObject.give_pizza(player):
-                    numberOfPizza = self.howMuchPizza(player)
+                    numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
                         orders = Settings.get_orders_for(Street_Name.BUSH,Street_Number.I)

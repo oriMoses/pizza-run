@@ -40,12 +40,6 @@ class MiniMarket(suburbsQuarter):
             Settings.print_vehicles_in_room(self)
             Settings.print_pizza_in_room(self)
     
-    def howMuchPizza(self, player):
-        for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER+1):
-            if str(numberOfPizza) in player.choice:
-                return numberOfPizza
-        return 0
-
     def go_to_shop(self, player):
         if "get in" in player.choice or "go" in player.choice:
             if "shop" in player.choice or "minimarket" in player.choice or "mini market" in player.choice:
@@ -63,7 +57,7 @@ class MiniMarket(suburbsQuarter):
             player.choice = input("> ").lower()
             print("")
             if handleChoiceObject.give_pizza(player):
-                numberOfPizza = self.howMuchPizza(player)
+                numberOfPizza = Settings.howMuchPizza(self, player)
 
                 if player.inventory.hot_pizza_exists(numberOfPizza):
                     orders = Settings.get_orders_for(Street_Name.LOVE,Street_Number.IV)

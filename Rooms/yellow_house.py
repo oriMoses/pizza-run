@@ -24,20 +24,8 @@ class YellowHouse(suburbsQuarter):
         Settings.print_vehicles_in_room(self)
         Settings.print_pizza_in_room(self)
 
-
-    def first_arrival(self):
-        if self.firstArrival:
-            self.print_first_arrival()
-            self.firstArrival = False
-    
-    def howMuchPizza(self, player):
-        for numberOfPizza in range(0, Settings.MAX_PIZZA_ON_PLAYER+1):
-            if str(numberOfPizza) in player.choice:
-                return numberOfPizza
-        return 0
-
     def dialog_circle(self, handleChoiceObject, player):
-        self.first_arrival()
+        Settings.first_arrival(self)
 
         while True:
             if Settings.goNextRoom:
@@ -47,7 +35,7 @@ class YellowHouse(suburbsQuarter):
 
             if self.door_knocked:
                 if handleChoiceObject.give_pizza(player):
-                    numberOfPizza = self.howMuchPizza(player)
+                    numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
                         orders = Settings.get_orders_for(Street_Name.BUSH,Street_Number.IV)

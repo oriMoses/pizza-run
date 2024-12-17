@@ -75,7 +75,17 @@ def print_pizza_in_room(self):
     elif coldPizzasInRoom != 0:
         print("There are", str(coldPizzasInRoom), "hot pizzas in here")
 
+def first_arrival(self):
+    if self.firstArrival:
+        self.print_first_arrival()
+        self.firstArrival = False
 
+def howMuchPizza(self, player):
+    for numberOfPizza in range(0, MAX_PIZZA_ON_PLAYER+1):
+        if str(numberOfPizza) in player.choice:
+            return numberOfPizza
+    return 0
+    
 def init_items(map):
     global itemList, shopItemList, SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, backpackObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject
 
