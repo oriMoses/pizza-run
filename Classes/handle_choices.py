@@ -14,7 +14,7 @@ class HandleChoices():
                 return True
         else:
             if not inputLegit:
-                print("pardon me?")
+                print("pardon me?\n")
 
     def give_pizza(self, player):
         if "give" in player.choice:
