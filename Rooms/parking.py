@@ -35,8 +35,10 @@ class Parking(suburbsQuarter):
 
             if "box" in player.choice:
                 if "open" in player.choice or "examine" in player.choice:
-                    Settings.boxObject.open()
-                    self.box_open = True
+                    if Settings.boxObject.open() == BOX_EMPTY:
+                        self.box_open = False
+                    else:
+                        self.box_open = True
                     self.inputLegit = True
                 if "look" in player.choice:
                     print("it's a regular cardbox.\n")
