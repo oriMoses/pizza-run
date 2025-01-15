@@ -41,10 +41,6 @@ class Parking(suburbsQuarter):
                 if "look" in player.choice:
                     print("it's a regular cardbox.\n")
                     self.inputLegit = True
-                if "close" in player.choice:
-                    self.box_open = False
-                    print("(box closed)\n")
-                    self.inputLegit = True
 
             if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
