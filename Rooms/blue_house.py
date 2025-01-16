@@ -37,7 +37,7 @@ class BlueHouse(suburbsQuarter):
 
 
     def dialog_circle(self, handleChoiceObject, player):
-        self.first_arrival(self)
+        self.first_arrival()
 
         while True:
             if Settings.goNextRoom:
