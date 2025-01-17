@@ -2,4 +2,6 @@
 main
 main.spec
 .DS_Store
-Classes/__pycache__/*
+**/__pycache__/
+!**/migrations/
+Classes/player.py
