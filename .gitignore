@@ -2,3 +2,7 @@
 main
 main.spec
 .DS_Store
+/Classes/__pycache__
+/Items/__pycache__
+/Constants/__pycache__
+/Rooms/__pycache__
