@@ -6,3 +6,13 @@ main.spec
 /Items/__pycache__
 /Constants/__pycache__
 /Rooms/__pycache__
+Classes/__pycache__/handle_choices.cpython-311.pyc
+Classes/__pycache__/inventory.cpython-311.pyc
+Classes/__pycache__/player.cpython-311.pyc
+Classes/player.py
+Constants/__pycache__/constants.cpython-311.pyc
+Items/__pycache__/box.cpython-311.pyc
+Items/__pycache__/suburbsNotebook.cpython-311.pyc
+Rooms/__pycache__/blue_house.cpython-311.pyc
+Rooms/__pycache__/parking.cpython-311.pyc
+Rooms/__pycache__/pizza_place.cpython-311.pyc
