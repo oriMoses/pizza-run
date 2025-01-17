@@ -2,5 +2,4 @@
 main
 main.spec
 .DS_Store
-**/__pycache__/
-*/.pyc
+Classes/__pycache__/*
