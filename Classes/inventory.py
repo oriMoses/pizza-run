@@ -9,8 +9,11 @@ class Inventory():
         self.inventory[item_id] = {"item_name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature}
 
     def move_item(self, item_id, toInventory):
-        toInventory.add_item(item_id, self.inventory[item_id]["item_name"], self.inventory[item_id]["stock_count"])
-        self.inventory.pop(item_id)
+        if item_id in self.inventory:
+            toInventory.add_item(item_id, self.inventory[item_id]["item_name"], self.inventory[item_id]["stock_count"])
+            self.inventory.pop(item_id)
+        else:
+            print("Item not in room.")
 
     def move_items(self, item_id, toInventory, amount):
         if self.inventory[item_id]["stock_count"] - amount >= 0:
