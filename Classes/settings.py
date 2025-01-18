@@ -135,7 +135,7 @@ def init_items(map):
     LawnMowerObject = LawnMower(map)
     ShinyDiceObject = ShinyDice(map)
 
-    shopItemList = [PizzaLocatorObject, TripperGuideObject, WristWatchObject, backpackObject, hairDryerObject]
+    shopItemList = [backpackObject, hairDryerObject, WristWatchObject, PizzaLocatorObject, TripperGuideObject]
     itemList = [SuburbsNotebookObject, mainPizzaKeyObject, boxObject, bikeKeyObject, hairDryerObject, greenLawnMowerKeyObject, PizzaLocatorObject, TripperGuideObject, WristWatchObject, LawnMowerObject, ShinyDiceObject, backpackObject]
 
 def init_vehicle(map):
