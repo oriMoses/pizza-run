@@ -20,12 +20,13 @@ class TeenHouse(suburbsQuarter):
         return f"Teen House"
 
     def print_first_arrival(self):
-        print("You see a family house, no cars in front.\n\nIt's sounds like there's about million teenagers inside\n")
+        print("You see a family house, no cars in front.\n\nIt's sounds like there's about million teenagers inside")
         Settings.print_objects_in_room(self)
 
 
     def dialog_circle(self, handleChoiceObject, player):
-        Settings.first_arrival(self)
+        self.firstArrival = True
+        self.print_first_arrival()
 
         while True:
             if Settings.goNextRoom:
