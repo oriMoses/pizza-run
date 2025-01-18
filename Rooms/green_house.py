@@ -15,7 +15,8 @@ class GreenHouse(suburbsQuarter):
         self.inventory = Inventory()
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(LAWN_MOWER_ID, "Lawn mower key", 1)
+        self.inventory.add_item(GREEN_LAWN_MOWER_KEY_ID, "Lawn mower key", 1)
+        self.inventory.add_item(LAWN_MOWER_ID, "Lawn mower", 1)
 
     def __str__(self):
         return f"Green House"
@@ -65,24 +66,25 @@ class GreenHouse(suburbsQuarter):
                     self.inputLegit = True
 
             if "note" in player.choice:
-                if "read" in player.choice or "examine":
+                if "read" in player.choice or "examine" in player.choice:
                     if self.lawn_mower_key_taken:
-                        print('“Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”\n')
+                        print('"Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”\n')
                     else:
-                        print('“Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”\n**There is a green lawn mower key taped to the note.**\n')
+                        print('"Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”\n**There is a green lawn mower key taped to the note.**\n')
                     self.inputLegit = True
                     
                 if "take" in player.choice:
                     print("Don't bother - the note is glued to the door\n")
                     self.inputLegit = True
                     
-            if "key" in player.choice:
+            elif "key" in player.choice:
                 if "take" in player.choice or "examine":
                     print("lawn mower key added to your inventory\n")
                     self.inventory.move_item(Settings.GREEN_LAWN_MOWER_KEY_ID, player.inventory)
                     self.inputLegit = True
+                    self.lawn_mower_key_taken = True
                     
-            if "lawn mower" in player.choice or Settings.LawnMowerObject.turned_on:
+            elif "lawn mower" in player.choice or Settings.LawnMowerObject.turned_on:
                 if "turn on" in player.choice or Settings.LawnMowerObject.turned_on:
                     Settings.LawnMowerObject.turned_on = True
                     if "lawn" in player.choice:
@@ -90,12 +92,12 @@ class GreenHouse(suburbsQuarter):
                             print("well done! The grass is evenly cut.\nyou see a shiny dice on the grass.\n")
                             self.inputLegit = True
                             
-            if "shiny dice" in player.choice:
+            elif "shiny dice" in player.choice:
                 if "examine" in player.choice or "look" in player.choice:
                     print("It looks like a regular casino dice. When shaken, a quiet metallic sound rings from inside.\nI wonder why…\n")
                     self.inputLegit = True
                     
-            if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
+            elif "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
                 self.inventory.print_room_inventory()
                 self.inputLegit = True

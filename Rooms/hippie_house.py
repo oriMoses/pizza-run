@@ -24,7 +24,7 @@ class HippieHouse(suburbsQuarter):
 
 
     def first_arrival(self):
-        if Settings.firstArrival:
+        if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
         else:

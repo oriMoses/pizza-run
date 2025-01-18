@@ -91,7 +91,9 @@ class Gatekeeper(suburbsQuarter):
                     print("Not enough pizza in inventory\n")
                 self.inputLegit = True
             
-            if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
+            if "look" in player.choice and "man" in player.choice:
+                print("hi there!\n")
+            elif "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
                 self.print_first_arrival()
                 self.inventory.print_room_inventory()
                 self.inputLegit = True
