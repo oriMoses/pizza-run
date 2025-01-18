@@ -22,8 +22,7 @@ class BlueHouse(suburbsQuarter):
         return f"Blue House, {Settings.STREET}, {Settings.STREET_NUMBER}"
 
     def print_first_arrival(self):
-        print("You see a blue house, with a lawn full of garden gnomes.\n \
-              It feels like the gnomes are looking at you.\n\nmaybe it's better not to think about the garden gnomes so much.\n")
+        print("You see a blue house, with a lawn full of garden gnomes.\nIt feels like the gnomes are looking at you.\n\nmaybe it's better not to think about the garden gnomes so much.\n")
         Settings.print_objects_in_room(self)
 
     def first_arrival(self):
