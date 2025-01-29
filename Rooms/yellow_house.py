@@ -62,12 +62,7 @@ class YellowHouse(suburbsQuarter):
                         print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
-            if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
-                self.print_first_arrival()
-                self.inventory.print_room_inventory()
-                self.inputLegit = True
-
-            elif "knock" in player.choice:
+            if "knock" in player.choice:
                 if "door" in player.choice or "house" in player.choice:
                     self.door_knocked = True
                     print('“honey go get the door”\n(door opened)\n“oh, i didn’t expect for you to be here so soon“\n')
