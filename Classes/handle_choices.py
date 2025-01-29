@@ -2,13 +2,16 @@ import Classes.settings as Settings
 from Utils import pizza_temprature
 from Classes.player import Player
 from Constants.constants import *
+from Rooms.none_special_room import NoneSpecialRoom
+from Rooms.parking import Parking
+
 class HandleChoices():
     def __init__(self):
         pass
 
     def player_input(self, roomInventory, inputLegit):
         player = Player.getInstance()
-        if self.inventory_input(player) or self.help_input(player) or self.bike_input(player) or self.pizza_key_input(roomInventory, player) \
+        if self.short_input(player) or self.look_input(player) or self.inventory_input(player) or self.help_input(player) or self.bike_input(player) or self.pizza_key_input(roomInventory, player) \
                 or self.go_input(player) or self.pizza_input(roomInventory, player) or self.notebook(roomInventory, player) \
                 or self.bike_key(roomInventory, player) or self.hair_dryer(roomInventory, player) or self.pizza_locator(roomInventory, player) or self.tripper_guide(roomInventory, player) or self.wrist_watch(roomInventory, player) or self.lawn_mower(roomInventory, player) or self.shiny_dice(roomInventory, player) or self.green_lawn_mower_key(roomInventory, player):
                 return True
@@ -16,6 +19,30 @@ class HandleChoices():
             if not inputLegit:
                 print("pardon me?\n")
 
+    def look_input(self, player):
+        if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
+            if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == NoneSpecialRoom:
+                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
+            if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
+                if "box" in player.choice: return False #TODO: after "look at box" in Parking, the code print vehicles in room
+
+            
+            Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_first_arrival()
+            Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
+            Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+            return True
+    
+    def short_input(self, player):
+        if len(player.choice) == 1:
+            if player.choice == "i":
+                player.choice = "inventory"
+                self.inventory_input(player)
+                return True
+            elif player.choice == "l":
+                player.choice = "look"
+                self.look_input(player)
+                return True
+        
     def give_pizza(self, player):
         if "give" in player.choice:
             if "pizza" in player.choice:
@@ -122,7 +149,25 @@ class HandleChoices():
 
     def help_input(self, player):
         if "help" in player.choice:
-            print("Help yourself Geez.")
+            print("Useful commands:")
+            print(" The 'INVENTORY' command lists the objects in your possession.")
+            print(" The 'LOOK' command prints a description of your surroundings.\n")
+            print(" The 'KNOCK DOOR' command knock on door.\n")
+            print("Command abbreviations:")
+            print(" The 'INVENTORY' command may be abbreviated 'I'.")
+            print(" The 'LOOK' command may be abbreviated 'L'.\n")
+            
+            print("Command parser:")
+            print(" You are dealing with a fairly stupid parser, which understands the following types of things--\n")
+            print("Actions:")
+            print(" Among the more obvious of these, such as TAKE, PUT, DROP, etc.")
+            print(" Fairly general forms of these may be used, such as PICK UP, PUT DOWN, etc.\n")
+            print(" Directions:")
+            print(" NORTH, SOUTH, UP, DOWN, etc. and their various abbreviations. \n")
+            
+            print("Objects:") 
+            print(" Most objects have names and can be referenced by them.\n")
+            
             return True
     
     def bike_input(self, player):

@@ -83,12 +83,7 @@ class MiniMarket(suburbsQuarter):
                     print("Not enough pizza in inventory\n")
                 self.inputLegit = True
 
-            if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
-                self.print_first_arrival()
-                self.inventory.print_room_inventory()
-                self.inputLegit = True
-                
-            elif self.go_to_shop(player):
+            if self.go_to_shop(player):
                 print('(Inside the shop)\nCashier: "hey there, would you like anything?" yes/no\n\n')
 
                 while "yes" not in player.choice and "no" not in player.choice and "buy" not in player.choice:

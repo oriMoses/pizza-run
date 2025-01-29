@@ -72,11 +72,6 @@ class HippieHouse(suburbsQuarter):
                         print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
-            if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
-                self.print_first_arrival()
-                self.inventory.print_room_inventory()
-                self.inputLegit = True
-
             elif "knock" in player.choice: #TODO: move the check if knock door to function in Settings, and use it in every room
                 if "door" in player.choice or "house" in player.choice:
                     if Settings.bikeObject.player_on_vehacle():

@@ -7,6 +7,7 @@ class LawnMower(BasicItem):
         super().__init__(map.suburbs.position[4][4].location, LAWN_MOWER_ID)
         self.quarter = "Suburbs"
         self.turned_on = False
+        self.player_riding = False
     def print_in_room(self):
         print("There's a big, rideable lawn mower.")
 

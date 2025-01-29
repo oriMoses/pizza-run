@@ -93,10 +93,7 @@ class Gatekeeper(suburbsQuarter):
             
             if "look" in player.choice and "man" in player.choice:
                 print("hi there!\n")
-            elif "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
-                self.print_first_arrival()
-                self.inventory.print_room_inventory()
-                self.inputLegit = True
+
             elif "man" in player.choice or "gatekeeper" in player.choice:
                 if "talk" in player.choice or "approach" in player.choice or "look" in player.choice:
                     print('hi there!\n')

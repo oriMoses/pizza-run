@@ -44,11 +44,6 @@ class Parking(suburbsQuarter):
                     print("it's a regular cardbox.\n")
                     self.inputLegit = True
 
-            elif "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
-                if "box" in player.choice: break #TODO: after "look at box" in Parking, the code print vehicles in room
-                self.print_first_arrival()
-                self.inventory.print_room_inventory()
-
             elif self.box_open:
                 handleChoiceObject.player_input(Settings.boxObject.inventory, self.inputLegit)
                 if not self.inputLegit:

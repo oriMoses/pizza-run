@@ -80,9 +80,6 @@ class BlueHouse(suburbsQuarter):
                     or "destroy" in player.choice or "examine" in player.choice \
                     or "look at" in player.choice:
                     print("They seem to be unmovable and indestructible. they still look at you")
-            elif "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
-                self.print_first_arrival()
-                self.inventory.print_room_inventory()
 
             elif "knock" in player.choice:
                 if "door" in player.choice or "house" in player.choice:

@@ -61,11 +61,6 @@ class PizzaPlace():
                     print("the note glued to the counter, you can't take it\n")
                     self.inputLegit = True
 
-            if "look" in player.choice or "lookaround" in player.choice:
-                self.print_first_arrival()
-                self.inventory.print_room_inventory()
-                self.inputLegit = True
-
             elif "north" in player.choice:
                 print("There is a wall to the north\n")
                 player.choice = ""
