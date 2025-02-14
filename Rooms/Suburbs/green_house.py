@@ -86,7 +86,7 @@ class GreenHouse(suburbsQuarter):
                     self.lawn_mower_key_taken = True
                     player.choice = ""
                     
-            elif "lawn mower" in player.choice or Settings.LawnMowerObject.turned_on:
+            if "lawn mower" in player.choice or Settings.LawnMowerObject.turned_on:
                 if "turn" in player.choice and "on" in player.choice: 
                     if Settings.LawnMowerObject.turned_on:
                         print("lawn mower already turned on")
@@ -105,6 +105,8 @@ class GreenHouse(suburbsQuarter):
                         print("You are riding the lawn mower\n")
                         self.inputLegit = True
                         player.choice = ""
+                    else:
+                        print("You first need to turn on the lawn mower")
 
                         
             if Settings.LawnMowerObject.turned_on and Settings.LawnMowerObject.player_riding:
@@ -121,8 +123,7 @@ class GreenHouse(suburbsQuarter):
             elif "knock" in player.choice:
                 if "door" in player.choice or "house" in player.choice:
                     self.door_knocked = True
-                    print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n \
-                          “Did we order pizza?”\n\n“Hah, guess we did.“\n')
+                    print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n“Did we order pizza?”\n\n“Hah, guess we did.“\n')
                     self.inputLegit = True
             #TODO: keep working from docx on Shiny dice/ basic adds
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):

@@ -28,13 +28,8 @@ class NoneSpecialRoom(suburbsQuarter):
                 break
             player.choice = input("> ").lower()
 
-            if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
-                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background\n")
-                self.print_first_arrival()
-                self.inventory.print_room_inventory()
-                self.inputLegit = True
-            
-            elif "examine" in player.choice and self.inventory.is_inventory_empty():
+                
+            if "examine" in player.choice and self.inventory.is_inventory_empty():
                 print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background\n")
                 self.print_first_arrival()
                 self.inputLegit = True
