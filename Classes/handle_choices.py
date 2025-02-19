@@ -210,8 +210,16 @@ class HandleChoices():
                 print("Not enough pizza in inventory")
                 return False
             else:
+                if Settings.player.position.x == 4 and Settings.player.position.y == 4 and Settings.player.quarter == "skyscrapers":
+                    if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
+                        print("You can't put more than 10 pizza in the elevator!")
+                        return True
                 fromInventory.move_items(COLD_PIZZA_ID, toInventory, pizzasToAdd)
         else:
+            if Settings.player.position.x == 4 and Settings.player.position.y == 4 and Settings.player.quarter == "skyscrapers":
+                if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
+                    print("You can't put more than 10 pizza in the elevator!")
+                    return True
 
             fromInventory.move_items(HOT_PIZZA_ID, toInventory, pizzasToAdd)
 

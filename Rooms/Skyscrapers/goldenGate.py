@@ -57,31 +57,30 @@ class GoldenGate(suburbsQuarter):
                 break
             player.choice = input("> ").lower()
 
-            if "look" in player.choice and "man" in player.choice:
-                print("hi there!\n")
-
-            elif "man" in player.choice or "gatekeeper" in player.choice:
-                if "talk" in player.choice or "approach" in player.choice or "look" in player.choice:
+            if "talk" in player.choice or "approach" in player.choice or "look" in player.choice:
+                if "guard" in player.choice:
                     print('hey kiddo, got a ticket?\n')
                     self.inputLegit = True
-            
-                    if "give" in player.choice or "use" in player.choice:
-                        if "ticket" in player.choice:
-                            if player.inventory.item_exist(goldenTicket):
-                                print('The guard looks surprised. \nHe stands back as the gate opens. \n\n"Go on kiddo, ', end="")
-                                print("you're ", end="")
-                                print('on the clear." \n\n')
-                                self.gateOpen = True
-                                print("(Go ", end="")
-                                print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END)
-
-                                print(" to pass through gate)")
-
-                            else:
-                                print("You have no ticket kiddo, go away\n")
                     
-            elif "east" in player.choice and self.gateOpen:
-                 
+            if "give" in player.choice or "use" in player.choice:
+                if "ticket" in player.choice:
+                    if player.inventory.item_exist(GOLDEN_TICKET_ID):
+                        print('The guard looks surprised. \nHe stands back as the gate opens. \n\n"Go on kiddo, ', end="")
+                        print("you're ", end="")
+                        print('on the clear." \n\n')
+                        self.gateOpen = True
+                        print("(Go ", end="")
+                        print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END)
+                        print(" to pass through gate)")
+
+                    else:
+                        print("You have no ticket kiddo, go away\n")
+                    
+            elif "east" in player.choice:
+                if self.gateOpen:
+                    
+                else:
+                    print('"Hey kiddo! dont land anoter foot in the gate direction\nYou clearly have no ticket\n"')
             
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
