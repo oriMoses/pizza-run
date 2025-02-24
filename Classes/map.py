@@ -9,7 +9,8 @@ from Rooms.Suburbs.mini_market import MiniMarket
 from Rooms.Suburbs.pizza_place import PizzaPlace
 from Rooms.Suburbs.hippie_house import HippieHouse
 from Rooms.Suburbs.yellow_house import YellowHouse
-from Rooms.Suburbs.none_special_room import NoneSpecialRoom
+from Rooms.Suburbs.suburbs_none_special_room import SuburbsNoneSpecialRoom
+from Rooms.Skyscrapers.skyscrapers_none_special_room import SkyscrapersNoneSpecialRoom
 from Rooms.Skyscrapers.tradeCenter import TradeCenter
 from Rooms.Skyscrapers.bank import Bank
 from Rooms.Skyscrapers.mainRoad import MainRoad
@@ -18,14 +19,12 @@ from Rooms.Skyscrapers.crossRoads import CrossRoads
 from Rooms.Skyscrapers.goldenGate import GoldenGate
 from Rooms.Skyscrapers.casinoParking import CasinoParking
 from Rooms.Skyscrapers.casinoLobby import CasinoLobby
-from Rooms.Skyscrapers.casinoRoot import CasinoRoot
+from Rooms.Skyscrapers.casinoRoof import CasinoRoof
 from Rooms.Skyscrapers.elevator import Elevator
 from Rooms.Skyscrapers.casinoMainHall import CasinoMainHall
 from Rooms.Skyscrapers.roadConstruction import RoadConstruction
-from Rooms.Skyscrapers.sideRoad_6_1 import SideRoad_6_1
+from Rooms.Skyscrapers.sideRoad import SideRoad
 from Rooms.Skyscrapers.endOfMainRoad import EndOfMainRoad
-from Rooms.Skyscrapers.sideRoad_6_3 import SideRoad_6_3
-from Rooms.Skyscrapers.sideRoad_6_4 import SideRoad_6_4
 from Constants.enums import Street_Number, Street_Name
 
 class Map():
@@ -49,7 +48,7 @@ class Map():
 
             for i in range(suburbs_cols):
                 for j in range(suburbs_rows):
-                    self.position[j][i] = NoneSpecialRoom(j, i)
+                    self.position[j][i] = SuburbsNoneSpecialRoom(j, i)
 
             self.position[3][3] = PizzaPlace()
             self.position[3][2] = Parking()
@@ -70,27 +69,27 @@ class Map():
 
             for i in range(skyscrapers_cols):
                 for j in range(skyscrapers_rows):
-                    self.position[j][i] = NoneSpecialRoom(j, i)
+                    self.position[j][i] = SkyscrapersNoneSpecialRoom(j, i)
 
             self.position[0][2] = TradeCenter()
             self.position[1][0] = Bank()
             self.position[1][2] = MainRoad(Street_Name.MAIN,Street_Number.II)
-            self.position[2][0] = SideRoad()
+            self.position[2][0] = SideRoad(Street_Name.CRASH,Street_Number.III)
             self.position[2][2] = CrossRoads()
             self.position[2][3] = GoldenGate()
             self.position[2][4] = CasinoParking()
             self.position[3][2] = MainRoad(Street_Name.MAIN,Street_Number.IV)
             self.position[3][4] = CasinoLobby()
             self.position[4][2] = MainRoad(Street_Name.MAIN,Street_Number.V)
-            self.position[4][3] = CasinoRoot()
+            self.position[4][3] = CasinoRoof()
             self.position[4][4] = Elevator()
             self.position[5][2] = MainRoad(Street_Name.MAIN,Street_Number.VI)
             self.position[5][4] = CasinoMainHall()
             self.position[6][0] = RoadConstruction()
-            self.position[6][1] = SideRoad_6_1()
+            self.position[6][1] = SideRoad(Street_Name.BURN,Street_Number.VII)
             self.position[6][2] = EndOfMainRoad()
-            self.position[6][3] = SideRoad_6_3()
-            self.position[6][4] = SideRoad_6_4()
+            self.position[6][3] = SideRoad(Street_Name.SECOND,Street_Number.VII)
+            self.position[6][4] = SideRoad(Street_Name.LUCK,Street_Number.VII)
             
     class ShakedownConstructor():
         def __init__(self):

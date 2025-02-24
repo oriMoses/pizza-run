@@ -1,6 +1,6 @@
 import sys
 import Classes.settings as Settings
-from Rooms.none_special_room import NoneSpecialRoom
+from Rooms.Suburbs.suburbs_none_special_room import SuburbsNoneSpecialRoom
 from Classes.map import *
 import os
 from Classes.player import *

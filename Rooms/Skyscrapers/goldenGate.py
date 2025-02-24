@@ -1,4 +1,4 @@
-from quarters import suburbsQuarter
+from Classes.quarters import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
@@ -78,10 +78,12 @@ class GoldenGate(suburbsQuarter):
                     
             elif "east" in player.choice:
                 if self.gateOpen:
-                    
+                    pass #TODO: code golden gate 
                 else:
                     print('"Hey kiddo! dont land anoter foot in the gate direction\nYou clearly have no ticket\n"')
             
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            if self.inputLegit == False:
+                print("pardon me?\n")
             self.inputLegit = False

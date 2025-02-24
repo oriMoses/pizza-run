@@ -2,8 +2,8 @@ import Classes.settings as Settings
 from Utils import pizza_temprature
 from Classes.player import Player
 from Constants.constants import *
-from Rooms.none_special_room import NoneSpecialRoom
-from Rooms.parking import Parking
+from Rooms.Suburbs.suburbs_none_special_room import SuburbsNoneSpecialRoom
+from Rooms.Suburbs.parking import Parking
 
 class HandleChoices():
     def __init__(self):

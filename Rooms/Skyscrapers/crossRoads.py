@@ -1,11 +1,11 @@
-from quarters import skyscrapersQuarter
+from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
 from Constants.enums import Street_Number, Street_Name
 from Constants.constants import *
 
-class Crossroads(skyscrapersQuarter):
+class CrossRoads(skyscrapersQuarter):
     def __init__(self):
         skyscrapersQuarter.__init__(self, [Street_Name.MAIN,Street_Number.III])
         self.inputLegit = False
@@ -48,4 +48,6 @@ class Crossroads(skyscrapersQuarter):
             
             if handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            if self.inputLegit == False:
+                print("pardon me?\n")
             self.inputLegit = False

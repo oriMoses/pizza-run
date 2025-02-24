@@ -1,10 +1,11 @@
-from suburbsQuarter import suburbsQuarter
+import sys
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
 from Constants.constants import *
+from Classes.quarters import suburbsQuarter 
 
-class NoneSpecialRoom(suburbsQuarter):
+class SuburbsNoneSpecialRoom(suburbsQuarter):
     def __init__(self, street, streetNumber):
         suburbsQuarter.__init__(self, [street,streetNumber])
         self.firstArrival = True
@@ -36,4 +37,6 @@ class NoneSpecialRoom(suburbsQuarter):
 
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            if self.inputLegit == False:
+                print("pardon me?\n")
             self.inputLegit = False

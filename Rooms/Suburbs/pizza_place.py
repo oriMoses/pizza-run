@@ -1,4 +1,4 @@
-from suburbsQuarter import suburbsQuarter
+from Classes.quarters import suburbsQuarter
 from Classes.handle_choices import HandleChoices
 from Classes.inventory import Inventory
 import Classes.settings as Settings
@@ -89,5 +89,7 @@ class PizzaPlace():
                     break
 
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
-                pass    
+                pass
+            if self.inputLegit == False:
+                print("pardon me?\n")
             self.inputLegit = False

@@ -1,4 +1,4 @@
-from quarters import skyscrapersQuarter
+from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
@@ -60,4 +60,6 @@ class SideRoad(skyscrapersQuarter):
             
             if handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            if self.inputLegit == False:
+                print("pardon me?\n")
             self.inputLegit = False

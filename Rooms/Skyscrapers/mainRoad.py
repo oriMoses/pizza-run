@@ -1,4 +1,4 @@
-from quarters import skyscrapersQuarter
+from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
@@ -54,4 +54,6 @@ class MainRoad(skyscrapersQuarter):
             elif player.position.x == 4 and player.position.y == 2:
                 handleChoiceObject.player_input(self.inventory_4_2, self.inputLegit)
                 print("use handle choices in 4,2 position on map")
+            if self.inputLegit == False:
+                print("pardon me?\n")
             self.inputLegit = False

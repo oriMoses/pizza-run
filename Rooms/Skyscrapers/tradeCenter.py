@@ -1,4 +1,4 @@
-from quarters import skyscrapersQuarter
+from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
@@ -19,7 +19,7 @@ class TradeCenter(skyscrapersQuarter):
 
     def print_first_arrival(self):
         print('You see a tall skyscraper.\nSuited people run in and out of the building. \n\nThey all got the same grin, like a kid with a stolen candy. \n\nWelcome to the trade center!\n\nYou see the main road to the', end =" ")
-        print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END)
+        print(Settings.colorsObject.UNDERLINE + "south" + Settings.colorsObject.END)
         Settings.print_objects_in_room(self)
 
 
@@ -43,4 +43,6 @@ class TradeCenter(skyscrapersQuarter):
                 
             if handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 pass
+            if self.inputLegit == False:
+                print("pardon me?\n")
             self.inputLegit = False
