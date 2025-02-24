@@ -57,7 +57,7 @@ class PizzaPlace():
                     else:
                         print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)\n")
                         self.inputLegit = True
-                elif "take" in player.choice:
+                elif "take" in player.choice or "pick" in player.choice:
                     print("the note glued to the counter, you can't take it\n")
                     self.inputLegit = True
 
@@ -77,10 +77,12 @@ class PizzaPlace():
             if "door" in player.choice and "unlock" in player.choice or \
                 "door" in player.choice and "open" in player.choice:
                     self.door.unlock(player)
+                    self.inputLegit = True
 
             elif "west" in player.choice or \
                 "through" in player.choice and "door" in player.choice or \
                     "get" in player.choice and "out" in player.choice:
+                self.inputLegit = True
                 if self.door.locked:
                     print("The door is locked (as doors should be)\n")
                 else:
@@ -89,7 +91,8 @@ class PizzaPlace():
                     break
 
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
-                pass
+                self.inputLegit = True
+                
             if self.inputLegit == False:
                 print("pardon me?\n")
             self.inputLegit = False

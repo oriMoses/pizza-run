@@ -57,7 +57,8 @@ class CasinoRoof(skyscrapersQuarter):
                     print("You don't feel okay with taking that much gold.")
                 
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
-                pass
+                self.inputLegit = True
+                
             if self.inputLegit == False:
                 print("pardon me?\n")
             self.inputLegit = False

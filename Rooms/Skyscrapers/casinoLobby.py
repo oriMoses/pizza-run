@@ -44,7 +44,8 @@ class CasinoLobby(skyscrapersQuarter):
             player.choice = input("> ").lower()
 
             if handleChoiceObject.player_input(self.inventory, self.inputLegit):
-                pass
+                self.inputLegit = True
+                
             if self.inputLegit == False:
                 print("pardon me?\n")
             self.inputLegit = False

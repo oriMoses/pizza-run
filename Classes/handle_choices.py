@@ -15,13 +15,10 @@ class HandleChoices():
                 or self.go_input(player) or self.pizza_input(roomInventory, player) or self.notebook(roomInventory, player) \
                 or self.bike_key(roomInventory, player) or self.hair_dryer(roomInventory, player) or self.pizza_locator(roomInventory, player) or self.tripper_guide(roomInventory, player) or self.wrist_watch(roomInventory, player) or self.lawn_mower(roomInventory, player) or self.shiny_dice(roomInventory, player) or self.green_lawn_mower_key(roomInventory, player):
                 return True
-        else:
-            if not inputLegit:
-                print("pardon me?\n")
 
     def look_input(self, player):
         if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
-            if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == NoneSpecialRoom:
+            if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom:
                 print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
             if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
                 if "box" in player.choice: return False #TODO: after "look at box" in Parking, the code print vehicles in room
@@ -202,7 +199,7 @@ class HandleChoices():
                 Settings.bikeObject.inventory.print_player_inventory()
                 return True
 
-    def move_pizza(self, fromInventory, toInventory, pizzasToAdd, playerChoice):
+    def move_pizza(self, fromInventory, toInventory, pizzasToAdd, playerChoice, player):
         hotPizzaInRoom = fromInventory.get_amount(HOT_PIZZA_ID)
         if hotPizzaInRoom < pizzasToAdd:
             coldPizzaInRoom = fromInventory.get_amount(COLD_PIZZA_ID)
@@ -210,13 +207,13 @@ class HandleChoices():
                 print("Not enough pizza in inventory")
                 return False
             else:
-                if Settings.player.position.x == 4 and Settings.player.position.y == 4 and Settings.player.quarter == "skyscrapers":
+                if player.position.x == 4 and player.position.y == 4 and player.quarter == "skyscrapers":
                     if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
                         print("You can't put more than 10 pizza in the elevator!")
                         return True
                 fromInventory.move_items(COLD_PIZZA_ID, toInventory, pizzasToAdd)
         else:
-            if Settings.player.position.x == 4 and Settings.player.position.y == 4 and Settings.player.quarter == "skyscrapers":
+            if player.position[0] == 4 and player.position[1] == 4 and player.quarter == "skyscrapers":
                 if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
                     print("You can't put more than 10 pizza in the elevator!")
                     return True
@@ -323,7 +320,7 @@ class HandleChoices():
                     if pizzasToMove == -1:
                         return True
                     
-                    self.move_pizza(Settings.bikeObject.inventory, player.inventory, pizzasToMove, player.choice)
+                    self.move_pizza(Settings.bikeObject.inventory, player.inventory, pizzasToMove, player.choice, player)
                     return True
     
                 elif "put" in player.choice or "give" in player.choice:
@@ -331,7 +328,7 @@ class HandleChoices():
                     pizzasToMove = self.get_number_of_(pizzasOnPlayer, "player", player)
                     if pizzasToMove == -1:
                         return True
-                    self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToMove, player.choice)
+                    self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToMove, player.choice, player)
                     return True
             else:
                 if "pick" in player.choice or "take" in player.choice:
@@ -343,7 +340,7 @@ class HandleChoices():
                         print("can't carry more than 5 pizza")
                         return True
                 
-                    self.move_pizza(roomInventory, player.inventory, pizzasToMove, player.choice)
+                    self.move_pizza(roomInventory, player.inventory, pizzasToMove, player.choice, player)
                     return True
                 
 

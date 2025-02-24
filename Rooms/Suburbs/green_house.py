@@ -127,7 +127,8 @@ class GreenHouse(suburbsQuarter):
                     self.inputLegit = True
             #TODO: keep working from docx on Shiny dice/ basic adds
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
-                pass
+                self.inputLegit = True
+                
             if self.inputLegit == False:
                 print("pardon me?\n")
             self.inputLegit = False

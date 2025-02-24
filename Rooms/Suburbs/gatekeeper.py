@@ -23,9 +23,9 @@ class Gatekeeper(suburbsQuarter):
         print("you see a man wearing a yellow vest.\n\nHe sits on a lawn chair by a small security booth.\nThere's a ", end="")
         
         if self.gateOpen:
-            print("open ", end=" ")
+            print("open", end=" ")
         else:
-            print("closed ", end=" ")
+            print("closed", end=" ")
 
         print("gate to the ", end="")
         print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END)
@@ -73,7 +73,7 @@ class Gatekeeper(suburbsQuarter):
 
                         print('Thank you, you just made my shift way better')
                         print(numberOfPizza*2, " coin up tip")
-                        print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.\n')
+                        print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.')
                         self.gateOpen = True
                         break
                     else:
@@ -85,7 +85,7 @@ class Gatekeeper(suburbsQuarter):
 
                     print("Thank you, too bad its cold")
                     print(numberOfPizza, " coin up tip")
-                    print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.\n')
+                    print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.')
                     self.gateOpen = True
                     break
                 else:
@@ -105,7 +105,8 @@ class Gatekeeper(suburbsQuarter):
                 #TOOD: continue push player to other map skyscrapers                 
             
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
-                pass
+                self.inputLegit = True
+                
             if self.inputLegit == False:
                 print("pardon me?\n")
             self.inputLegit = False

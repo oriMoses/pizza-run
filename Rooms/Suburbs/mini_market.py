@@ -170,7 +170,8 @@ class MiniMarket(suburbsQuarter):
                     
     
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
-                pass
+                self.inputLegit = True
+                
             if self.inputLegit == False:
                 print("pardon me?\n")
             self.inputLegit = False

@@ -188,6 +188,7 @@ def get_street_name(street):
         return "Duck St. "
 
 def street_in_boundary(streetPoition, streetNumberPosition):
+    global player
     player = Player.getInstance()
     if player.quarter == "Suburbs":
         if streetPoition < SUBURBS_MIN_STREET_BOUNDARY or \
