@@ -30,7 +30,7 @@ class EndOfMainRoad(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("End of main road\n")
+            #print("End of main road\n")
             Settings.print_objects_in_room(self)
 
 

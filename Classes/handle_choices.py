@@ -23,10 +23,14 @@ class HandleChoices():
             if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
                 if "box" in player.choice: return False #TODO: after "look at box" in Parking, the code print vehicles in room
 
-            
-            Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_first_arrival()
-            Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
-            Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+            if player.quarter == "Suburbs":
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_first_arrival()
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+            elif player.quarter == "Skyscrapers":
+                Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].print_first_arrival()
+                Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
+                Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inputLegit = True
             return True
     
     def short_input(self, player):
@@ -119,15 +123,18 @@ class HandleChoices():
             if player.inventory.item_exist(BIKE_KEY_ID) or roomInventory.item_exist(BIKE_KEY_ID):
                 self.deal_with_pick_and_drop(roomInventory, BIKE_KEY_ID, "bike key", 1, player)
                 Settings.bikeKeyObject.inBox = False
+                return True
 
-            if "examine" in player.choice:
+            elif "examine" in player.choice:
                 if player.inventory.item_exist(BIKE_KEY_ID):
                     Settings.bikeKeyObject.examine()
-            return True
-
+                return True
+        return False
     def notebook(self, roomInventory, player):
         if "notebook" in player.choice and "suburbs" in player.choice:
-            
+            if not roomInventory.item_exist(SUBURBS_NOTEBOOK_ID):
+                print("you can not see the suburbs notebook around\n")
+                
             if self.deal_with_pick_and_drop(roomInventory, SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1, player):
                 return True
             
@@ -160,7 +167,7 @@ class HandleChoices():
             print(" Among the more obvious of these, such as TAKE, PUT, DROP, etc.")
             print(" Fairly general forms of these may be used, such as PICK UP, PUT DOWN, etc.\n")
             print(" Directions:")
-            print(" NORTH, SOUTH, UP, DOWN, etc. and their various abbreviations. \n")
+            print(" NORTH, SOUTH, EAST, WEST, etc. and their various abbreviations. \n")
             
             print("Objects:") 
             print(" Most objects have names and can be referenced by them.\n")
@@ -426,9 +433,10 @@ class HandleChoices():
         if Settings.bikeObject.playerOnVehicle:
             if not Settings.bikeObject.can_vehicle_ride():
                 return True
-        elif player.position == [2,3]:
-            print("There's wall to the south\n")
-            return True
+        if player.quarter == "Suburbs":
+            if player.position == [2,3]:
+                print("There's wall to the south\n")
+                return True
         if(Settings.street_in_boundary(player.position[0] + 1, player.position[1])):
             player.position[0] = player.position[0] + 1
             Settings.goNextRoom = True
@@ -438,15 +446,18 @@ class HandleChoices():
         if Settings.bikeObject.playerOnVehicle:
             if not Settings.bikeObject.can_vehicle_ride():
                 return True
-        if player.position == [4,3]:
-            print("There's wall to the north\n")
-            return True
+        if player.quarter == "Suburbs":
+            
+            if player.position == [4,3]:
+                print("There's wall to the north\n")
+                return True
         if Settings.street_in_boundary(player.position[0] - 1, player.position[1]):
             player.position[0] = player.position[0] - 1
             Settings.goNextRoom = True
         else:
             print("place out of bounds\n")
             return True
+        
     def go_west(self, player):
         if Settings.bikeObject.playerOnVehicle:
             if not Settings.bikeObject.can_vehicle_ride():

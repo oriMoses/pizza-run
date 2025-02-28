@@ -28,7 +28,6 @@ class Bank(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Bank")
             Settings.print_objects_in_room(self)
 
 

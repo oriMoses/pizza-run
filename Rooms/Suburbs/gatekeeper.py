@@ -8,7 +8,7 @@ from Constants.constants import *
 
 class Gatekeeper(suburbsQuarter):
     def __init__(self):
-        suburbsQuarter.__init__(self, [5,2])
+        suburbsQuarter.__init__(self, [Street_Name.DUCK,Street_Number.III])
         self.firstArrival = True
         self.gateOpen = False
         self.inputLegit = False
@@ -73,8 +73,9 @@ class Gatekeeper(suburbsQuarter):
 
                         print('Thank you, you just made my shift way better')
                         print(numberOfPizza*2, " coin up tip")
-                        print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.')
+                        print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open\n')
                         self.gateOpen = True
+                        self.inputLegit = True
                         break
                     else:
                         print("Thats not the correct order\n")
@@ -101,7 +102,13 @@ class Gatekeeper(suburbsQuarter):
                     self.inputLegit = True
                     
             elif "south" in player.choice and self.gateOpen:
+                player.quarter = "Skyscrapers"
                 skyscrapersQuarter.__init__(self, [Street_Name.MAIN,Street_Number.I])
+                player.position[0] = 0
+                player.position[1] = 2
+                Settings.goNextRoom = True
+                self.inputLegit = True
+                print()
                 #TOOD: continue push player to other map skyscrapers                 
             
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):

@@ -31,7 +31,7 @@ class CasinoLobby(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Casino lobby (floor 0)\n")
+            print("(floor 0)\n")
             Settings.print_objects_in_room(self)
 
 

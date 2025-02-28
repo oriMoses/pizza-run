@@ -17,7 +17,7 @@ class CasinoParking(skyscrapersQuarter):
         return f"Casino Parking"
 
     def print_first_arrival(self):
-        print("Casino parking \n\nYou are in a massive parking lot. packed to the brim with cars, tour buses and drunks. \nBlue neon lights stretch above the building. \n\nGo ", end=" ")
+        print("\nYou are in a massive parking lot. packed to the brim with cars, tour buses and drunks. \nBlue neon lights stretch above the building. \n\nGo ", end=" ")
         print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END, end=" ")
         print("to enter the casino.\n")
 

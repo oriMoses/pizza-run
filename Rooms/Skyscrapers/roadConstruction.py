@@ -18,7 +18,7 @@ class RoadConstruction(skyscrapersQuarter):
         return f"Road Construction"
 
     def print_first_arrival(self):
-        print("Road construction \nWhat a mess! \n\nA worker signals you to turn around.")
+        print("What a mess! \n\nA worker signals you to turn around.")
         Settings.print_objects_in_room(self)
 
 

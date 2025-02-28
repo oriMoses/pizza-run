@@ -18,7 +18,7 @@ class CasinoRoof(skyscrapersQuarter):
         return f"Casino Roof"
 
     def print_first_arrival(self):
-        print("Casino roof (top floor) \n\nYou see a big circle with H in it. \n\nThere's an elevator to the ", end='')
+        print("(top floor) \n\nYou see a big circle with H in it. \n\nThere's an elevator to the ", end='')
         print(Settings.colorsObject.UNDERLINE + "east" + Settings.colorsObject.END)
         print(" and a golden note.")
         Settings.print_objects_in_room(self)

@@ -31,7 +31,7 @@ class CasinoMainHall(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Casino main hall (floor 1) \n\nThe dice dealer is staring at you, for some reason.\n")
+            print("(floor 1) \n\nThe dice dealer is staring at you, for some reason.\n")
             Settings.print_objects_in_room(self)
 
     def win_dice_roll(self):

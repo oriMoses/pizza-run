@@ -156,36 +156,64 @@ def init(map):
 
     goNextRoom = False
 
-def get_address(street, street_number):
-    address = get_street_name(street)
-    address += get_street_number(street_number)
+def get_address(street, street_number, player):
+    address = get_street_name(street, player)
+    address += get_street_number(street_number, player)
     return address
 
-def get_street_number(street_number):
-    if street_number == 0:
-        return "I"
-    if street_number == 1:
-        return "II"
-    if street_number == 2:
-        return "III"
-    if street_number == 3:
-        return "IV"
-    if street_number == 4:
-        return "V"
+def get_street_number(street_number, player):
+    if player.quarter == "Suburbs":
+        if street_number == 0:
+            return "I"
+        if street_number == 1:
+            return "II"
+        if street_number == 2:
+            return "III"
+        if street_number == 3:
+            return "IV"
+        if street_number == 4:
+            return "V"
+    if player.quarter == "Skyscrapers":
+        if street_number == 0:
+            return "I"
+        if street_number == 1:
+            return "II"
+        if street_number == 2:
+            return "III"
+        if street_number == 3:
+            return "IV"
+        if street_number == 4:
+            return "V"
+        if street_number == 4:
+            return "VI"
+        if street_number == 4:
+            return "VII"
 
-def get_street_name(street):
-    if street == 0:
-        return "Bush St. "
-    elif street == 1:
-        return "Love St. "
-    elif street == 2:
-        return "Freedom St. "
-    elif street == 3:
-        return "First St. "
-    elif street == 4:
-        return "Tree St. "
-    elif street == 5:
-        return "Duck St. "
+def get_street_name(street, player):
+    if player.quarter == "Suburbs":
+        if street == 0:
+            return "Bush St. "
+        elif street == 1:
+            return "Love St. "
+        elif street == 2:
+            return "Freedom St. "
+        elif street == 3:
+            return "First St. "
+        elif street == 4:
+            return "Tree St. "
+        elif street == 5:
+            return "Duck St. "
+    if player.quarter == "Skyscrapers":
+        if street == 0:
+            return "Crash St. "
+        elif street == 1:
+            return "Burn St. "
+        elif street == 2:
+            return "Main St. "
+        elif street == 3:
+            return "Second St. "
+        elif street == 4:
+            return "Luck St. "
 
 def street_in_boundary(streetPoition, streetNumberPosition):
     global player
@@ -198,6 +226,14 @@ def street_in_boundary(streetPoition, streetNumberPosition):
         if streetNumberPosition < SUBURBS_MIN_STREET_NUMBER_BOUNDARY or \
             streetNumberPosition > SUBURBS_MAX_STREET_NUMBER_BOUNDARY:
             return False
+    if player.quarter == "Skyscrapers":
+        if streetPoition < SKYSCRAPERS_MIN_STREET_BOUNDARY or \
+            streetPoition > SKYSCRAPERS_MAX_STREET_BOUNDARY:
+            return False
 
-        return True
+        if streetNumberPosition < SKYSCRAPERS_MIN_STREET_NUMBER_BOUNDARY or \
+            streetNumberPosition > SKYSCRAPERS_MAX_STREET_NUMBER_BOUNDARY:
+            return False
+
+    return True
     

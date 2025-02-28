@@ -10,6 +10,7 @@ class CrossRoads(skyscrapersQuarter):
         skyscrapersQuarter.__init__(self, [Street_Name.MAIN,Street_Number.III])
         self.inputLegit = False
         self.inventory = Inventory()
+        self.firstArrival = True
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
 
@@ -17,12 +18,14 @@ class CrossRoads(skyscrapersQuarter):
         return f"Crossroads"
 
     def print_first_arrival(self):
-        print("You are at a crossroad. \n\nIt's surprisingly empty. \n\nThe main road goes from ", end=" ")
+        print("You are at a crossroad. \n\nIt's surprisingly empty. \n\nThe main road goes from", end=" ")
         print(Settings.colorsObject.UNDERLINE + "North" + Settings.colorsObject.END, end=" ")
-        print("to ", end=" ")
+        print("to", end=" ")
         print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END, end=" ")
-        print(".\nThere's a side road to the West. \n\nYou see a massive gate to the East.", end=" ")
-        
+        print("\nThere's a side road to the", end=" ")
+        print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END, end=" ")
+        print("\nYou see a massive gate to the", end=" ")
+        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END)
         Settings.print_objects_in_room(self)
         
 
@@ -31,7 +34,7 @@ class CrossRoads(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Crossroads \n\nwent to the crossroad…\n")
+            print("\nwent to the crossroad…\n")
             Settings.print_objects_in_room(self)
 
 

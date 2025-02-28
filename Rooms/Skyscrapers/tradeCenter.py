@@ -28,7 +28,7 @@ class TradeCenter(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Trade center\nNot the nicest place to be. \n\nYou see the main road to the South.\n")
+            print("Not the nicest place to be. \n\nYou see the main road to the South.\n")
             Settings.print_objects_in_room(self)
 
 
@@ -40,8 +40,13 @@ class TradeCenter(skyscrapersQuarter):
                 break
             player.choice = input("> ").lower()
 
-                
-            if handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            if "north" in player.choice:
+                player.quarter = "Suburbs"
+                player.position[0] = Street_Name.DUCK.value
+                player.position[1] = Street_Number.III.value
+                Settings.goNextRoom = True
+                self.inputLegit = True 
+            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

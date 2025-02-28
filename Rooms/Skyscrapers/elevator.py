@@ -31,7 +31,7 @@ class Elevator(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Elevator \n\nPress 0 for lobby \n\nPress 1 for main hall \n\nPress 15 for top floor\n")
+            print("\nPress 0 for lobby \n\nPress 1 for main hall \n\nPress 15 for top floor\n")
             Settings.print_objects_in_room(self)
 
 

@@ -39,7 +39,7 @@ class GoldenGate(suburbsQuarter):
             self.firstArrival = False
         else:
             if self.gateOpen:
-                print("Golden Gate\nThere's a massive golden gate to the ", end="")
+                print("There's a massive golden gate to the ", end="")
                 print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END + ".`\n\n")
                 print("it is open.\n")
             else:
