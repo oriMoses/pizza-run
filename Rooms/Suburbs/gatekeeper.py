@@ -109,7 +109,6 @@ class Gatekeeper(suburbsQuarter):
                 Settings.goNextRoom = True
                 self.inputLegit = True
                 print()
-                #TOOD: continue push player to other map skyscrapers                 
             
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 self.inputLegit = True

@@ -20,7 +20,7 @@ class Player():
     getInstance = playerHelper()
 
     def __init__(self):
-        self.position = [3,2]
+        self.position = [5,2]
         self.inventory = Inventory()
         self.inventory.add_item(COIN_ID, "coin", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 10)

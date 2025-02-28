@@ -17,6 +17,8 @@ def startGame():
 
 def choose_player_room(map, player):
         if player.quarter == "Suburbs":
+            if "give" in player.choice and "pizza" in player.choice:
+                return
             print(Settings.colorsObject.BOLD, Settings.get_address(player.position[0], player.position[1], player), Settings.colorsObject.END)
             print(map.suburbs.position[player.position[0]][player.position[1]])
         
