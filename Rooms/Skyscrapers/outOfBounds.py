@@ -5,20 +5,15 @@ from Utils import pizza_temprature
 from Constants.enums import Street_Number, Street_Name
 from Constants.constants import *
 
-class TradeCenter(skyscrapersQuarter):
+class OutOfBounds(skyscrapersQuarter, street_name, street_number):
     def __init__(self):
-        skyscrapersQuarter.__init__(self, [Street_Number.I, Street_Name.MAIN]) #Passed code until this line
-        self.firstArrival = True
-        self.inputLegit = False
-        self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        skyscrapersQuarter.__init__(self, [street_name, street_number]) #Passed code until this line
 
     def __str__(self):
-        return f"Trade Center"
+        return f"Out of bounds"
 
     def print_first_arrival(self):
-        print('You see a tall skyscraper.\nSuited people run in and out of the building. \n\nThey all got the same grin, like a kid with a stolen candy. \n\nWelcome to the trade center!\n\nYou see the main road to the', end =" ")
+        print('Bank \n\nIt is closed.\nYou wonder if you ever saw it open.\n\nSide road to', end=" ")
         print(Settings.colorsObject.UNDERLINE + "south" + Settings.colorsObject.END)
         Settings.print_objects_in_room(self)
 
@@ -28,7 +23,6 @@ class TradeCenter(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Not the nicest place to be. \n\nYou see the main road to the South.\n")
             Settings.print_objects_in_room(self)
 
 
@@ -39,6 +33,7 @@ class TradeCenter(skyscrapersQuarter):
             if Settings.goNextRoom:
                 break
             player.choice = input("> ").lower()
+
 
             if handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 self.inputLegit = True

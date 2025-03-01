@@ -71,9 +71,9 @@ class Gatekeeper(suburbsQuarter):
 
                         Settings.remove_orderes_for(Street_Name.DUCK,Street_Number.III)
 
-                        print('Thank you, you just made my shift way better')
+                        print('\nThank you, you just made my shift way better')
                         print(numberOfPizza*2, " coin up tip")
-                        print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open\n')
+                        print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open')
                         self.gateOpen = True
                         self.inputLegit = True
                         break

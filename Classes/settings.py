@@ -23,7 +23,7 @@ def init_orders(map):
     global suburbsOrders, mapInstance
     mapInstance = map
     suburbsOrders = [(5, [0,0]),  (3, [1,0]), (5, [2,1]), (3, [4,1]), (1, [5,2]), (2, [0,3]), (1, [1,3]), (1, [2,4]), (1, [4,4])]
-
+    #TODO: add orders to skyscrapers
 
 def get_orders_for(streetPosition : int, addressPosition : int):
     global mapInstance

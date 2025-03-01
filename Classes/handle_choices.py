@@ -364,56 +364,6 @@ class HandleChoices():
 #                    print("You don't have ", item_name)
 #                    return True
 
-#     def pizza_input(self, roomInventory, player): #TODO: refactor all function
-#         #inputs to avoid in pizza input
-#         if "key" in player.choice:
-#             return False
-        
-#         bikeInChoice = False
-#         if "bike" in player.choice: bikeInChoice = True
-#         if "pizza" in player.choice or "pizzas" in player.choice:
-#             if bikeInChoice:
-#                 pizzasOnBike = self.get_all_pizza_from_(Settings.bikeObject.inventory)
-#                 pizzasToAdd = self.get_number_of_(pizzasOnBike, "bike", player)
-#                 if pizzasToAdd == -1:
-#                     return False
-#                 if pizzasToAdd == 0: 
-#                     if pizzasOnBike == MAX_PIZZA_ON_BIKE:
-#                         print("max pizza on bike")
-#                         return True
-#             else:
-#                 pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
-#                 pizzasToAdd = self.get_number_of_(pizzasOnPlayer, "player", player)
-#                 if pizzasToAdd == -1:
-#                     return False
-#                 if pizzasToAdd == 0:
-#                     if pizzasOnPlayer == MAX_PIZZA_ON_PLAYER:
-#                         if "drop" not in player.choice:
-#                             print("max pizza on player")
-#                             return True
-
-#             if "pick" in player.choice or "take" in player.choice:
-#                 if bikeInChoice:
-#                     self.move_pizza(Settings.bikeObject.inventory, player.inventory, pizzasToAdd, player.choice)
-#                 else:
-#                     self.move_pizza(roomInventory, player.inventory, pizzasToAdd, player.choice)
-#                 return True
-            
-#             elif "put" in player.choice or "give" in player.choice:
-#                 if not bikeInChoice:
-#                     return False
-                
-#                 self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToAdd, player.choice)
-#                 return True
-#             elif "drop" in player.choice:
-#                 player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToAdd)
-#                 print("item dropped.\n")
-#                 return True
-
-# #                    print("You don't have ", item_name)
-# #                    return True
-
-
 
     def cold_or_hot_pizza_in(inventory, secondInventory, pizzasToAdd):
         hotPizzaInRoom = inventory.get_amount(HOT_PIZZA_ID)
