@@ -18,7 +18,7 @@ class Bank(skyscrapersQuarter):
         return f"Bank"
 
     def print_first_arrival(self):
-        print('Bank \n\nIt is closed.\nYou wonder if you ever saw it open.\n\nSide road to', end=" ")
+        print('\nIt is closed.\nYou wonder if you ever saw it open.\n\nSide road to', end=" ")
         print(Settings.colorsObject.UNDERLINE + "south" + Settings.colorsObject.END)
         Settings.print_objects_in_room(self)
 

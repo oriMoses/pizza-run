@@ -24,6 +24,7 @@ from Rooms.Skyscrapers.elevator import Elevator
 from Rooms.Skyscrapers.casinoMainHall import CasinoMainHall
 from Rooms.Skyscrapers.roadConstruction import RoadConstruction
 from Rooms.Skyscrapers.sideRoad import SideRoad
+from Rooms.Skyscrapers.outOfBounds import OutOfBounds
 from Rooms.Skyscrapers.endOfMainRoad import EndOfMainRoad
 from Constants.enums import Street_Number, Street_Name
 
@@ -70,7 +71,21 @@ class Map():
             for i in range(skyscrapers_cols):
                 for j in range(skyscrapers_rows):
                     self.position[j][i] = SkyscrapersNoneSpecialRoom(j, i)
-            #TODO: turn the map in the docx to be street names to the left and street numbers up
+            self.position[0][0] = OutOfBounds(Street_Name.CRASH,Street_Number.I)
+            self.position[0][3] = OutOfBounds(Street_Name.CRASH,Street_Number.IV)
+            self.position[0][4] = OutOfBounds(Street_Name.CRASH,Street_Number.V)
+            self.position[0][5] = OutOfBounds(Street_Name.CRASH,Street_Number.VI)
+            self.position[1][0] = OutOfBounds(Street_Name.BURN,Street_Number.I)
+            self.position[1][1] = OutOfBounds(Street_Name.BURN,Street_Number.II)
+            self.position[1][3] = OutOfBounds(Street_Name.BURN,Street_Number.IV)
+            self.position[1][4] = OutOfBounds(Street_Name.BURN,Street_Number.V)
+            self.position[1][5] = OutOfBounds(Street_Name.BURN,Street_Number.VI)
+            self.position[3][0] = OutOfBounds(Street_Name.SECOND,Street_Number.I)
+            self.position[3][1] = OutOfBounds(Street_Name.SECOND,Street_Number.II)
+            self.position[3][3] = OutOfBounds(Street_Name.SECOND,Street_Number.IV)
+            self.position[3][5] = OutOfBounds(Street_Name.SECOND,Street_Number.VI)
+            self.position[4][0] = OutOfBounds(Street_Name.LUCK,Street_Number.I)
+            self.position[4][1] = OutOfBounds(Street_Name.LUCK,Street_Number.II)
             self.position[2][0] = TradeCenter()
             self.position[0][1] = Bank()
             self.position[2][1] = MainRoad(Street_Name.MAIN,Street_Number.II)

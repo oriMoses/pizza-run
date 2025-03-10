@@ -434,6 +434,8 @@ class HandleChoices():
         if Settings.street_in_boundary(player.position[0], player.position[1] + 1):
             player.position[1] = player.position[1] + 1
             Settings.goNextRoom = True
+            print(player.position[0])
+            print(player.position[1])
         else:
             print("place out of bounds")
             

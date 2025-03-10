@@ -48,7 +48,6 @@ class SideRoad(skyscrapersQuarter):
                 self.print_first_arrival()
                 self.firstArrival = False
         else:
-            print("Side road")
             Settings.print_objects_in_room(self)
 
 

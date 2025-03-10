@@ -22,13 +22,16 @@ def choose_player_room(map, player):
                 
                 print(Settings.colorsObject.BOLD, Settings.get_address(player.position[0], player.position[1], player), Settings.colorsObject.END)
                 print(map.suburbs.position[player.position[0]][player.position[1]])
-        
+
             Settings.goNextRoom = False
             map.suburbs.position[player.position[0]][player.position[1]].dialog_circle(Settings.handleChoiceObject, player)
 
         elif player.quarter == "Skyscrapers":
-            print(Settings.colorsObject.BOLD, Settings.get_address(player.position[0], player.position[1], player), Settings.colorsObject.END)
-            print(map.skyscrapers.position[player.position[0]][player.position[1]])
+            if "give" not in player.choice and "pizza" not in player.choice:
+                player.choice = ""
+                
+                print(Settings.colorsObject.BOLD, Settings.get_address(player.position[0], player.position[1], player), Settings.colorsObject.END)
+                print(map.skyscrapers.position[player.position[0]][player.position[1]])
         
             Settings.goNextRoom = False
             map.skyscrapers.position[player.position[0]][player.position[1]].dialog_circle(Settings.handleChoiceObject, player)

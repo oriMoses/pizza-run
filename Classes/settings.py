@@ -144,16 +144,18 @@ def init_vehicle(map):
 
     vehicleList = [bikeObject]
 
+global world_map
+world_map = None
 
 def init(map):
-    global colorsObject, handleChoiceObject, goNextRoom
+    global colorsObject, handleChoiceObject, goNextRoom, world_map
     handleChoiceObject = HandleChoices()
     colorsObject = Colors()
-    
     init_orders(map)
     init_items(map)
     init_vehicle(map)
 
+    world_map = map
     goNextRoom = False
 
 def get_address(street, street_number, player):
@@ -216,7 +218,7 @@ def get_street_name(street, player):
             return "Luck St. "
 
 def street_in_boundary(streetPoition, streetNumberPosition):
-    global player
+    global player, world_map
     player = Player.getInstance()
     if player.quarter == "Suburbs":
         if streetPoition < SUBURBS_MIN_STREET_BOUNDARY or \
@@ -227,6 +229,9 @@ def street_in_boundary(streetPoition, streetNumberPosition):
             streetNumberPosition > SUBURBS_MAX_STREET_NUMBER_BOUNDARY:
             return False
     if player.quarter == "Skyscrapers":
+        if type(world_map.skyscrapers.position[streetNumberPosition][streetPoition]).__name__ == "OutOfBounds":
+            return False
+        
         if streetPoition < SKYSCRAPERS_MIN_STREET_BOUNDARY or \
             streetPoition > SKYSCRAPERS_MAX_STREET_BOUNDARY:
             return False
