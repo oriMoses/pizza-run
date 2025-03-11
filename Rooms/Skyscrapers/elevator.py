@@ -17,11 +17,8 @@ class Elevator(skyscrapersQuarter):
         return f"Elevator"
 
     def print_first_arrival(self):
-        print("Casino lobby (floor 0) \n\nYou are in the lobby. \nThe sounds of the slot machine come from every direction. \n\nThere's an elevator to the", end=" ")
-        print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END, end=" ")
-        print("\n\nGo ", end='')
-        print(Settings.colorsObject.UNDERLINE + "North" + Settings.colorsObject.END, end=" ")
-        print("to exit the casino.")
+
+        print("\nPress 0 for lobby \n\nPress 1 for main hall \n\nPress 15 for top floor")
 
         Settings.print_objects_in_room(self)
         
@@ -38,6 +35,8 @@ class Elevator(skyscrapersQuarter):
     def dialog_circle(self, handleChoiceObject, player):
         self.first_arrival(player)
         print("DEBUG: TODO: not show location of elevator")
+        print("DEBUG: TODO: change dialogs of elevator")
+
         while True:
             if Settings.goNextRoom:
                 break
@@ -46,7 +45,7 @@ class Elevator(skyscrapersQuarter):
             if "north" in player.choice or "south" in player.choice or "east" in player.choice or "west" in player.choice:
                 player.choice = ""
                 print("pardon me?")
-                
+            
             if "0" in player.choice:
                 player.choice = "north"
             elif "1" in player.choice:

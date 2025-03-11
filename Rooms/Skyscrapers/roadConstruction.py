@@ -27,7 +27,7 @@ class RoadConstruction(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Road construction")
+#            print("Road construction")
             Settings.print_objects_in_room(self)
 
     def dialog_circle(self, handleChoiceObject, player):

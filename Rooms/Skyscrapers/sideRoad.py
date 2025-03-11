@@ -34,7 +34,6 @@ class SideRoad(skyscrapersQuarter):
         return f"Side road"
 
     def print_first_arrival(self):
-        print('It might get you somewhere.\n')
         Settings.print_objects_in_room(self)
         
 

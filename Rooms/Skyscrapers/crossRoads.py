@@ -34,7 +34,7 @@ class CrossRoads(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("\nwent to the crossroad…\n")
+            print("\nwent to the crossroad…")
             Settings.print_objects_in_room(self)
 
 

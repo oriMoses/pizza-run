@@ -18,12 +18,11 @@ class HandleChoices():
 
     def look_input(self, player):
         if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
-            if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom:
-                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
-            if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
-                if "box" in player.choice: return False #TODO: after "look at box" in Parking, the code print vehicles in room
-
             if player.quarter == "Suburbs":
+                if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom:
+                    print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
+                if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
+                    if "box" in player.choice: return False #TODO: after "look at box" in Parking, the code print vehicles in room
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_first_arrival()
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
@@ -214,16 +213,16 @@ class HandleChoices():
                 print("Not enough pizza in inventory")
                 return False
             else:
-                if player.position.x == 4 and player.position.y == 4 and player.quarter == "skyscrapers":
-                    if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
-                        print("You can't put more than 10 pizza in the elevator!")
-                        return True
+                # if player.position.x == 4 and player.position.y == 4 and player.quarter == "skyscrapers":
+                #     if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
+                #         print("You can't put more than 10 pizza in the elevator!")
+                #         return True
                 fromInventory.move_items(COLD_PIZZA_ID, toInventory, pizzasToAdd)
         else:
-            if player.position[0] == 4 and player.position[1] == 4 and player.quarter == "skyscrapers":
-                if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
-                    print("You can't put more than 10 pizza in the elevator!")
-                    return True
+            # if player.position[0] == 4 and player.position[1] == 4 and player.quarter == "skyscrapers":
+            #     if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
+            #         print("You can't put more than 10 pizza in the elevator!")
+            #         return True
 
             fromInventory.move_items(HOT_PIZZA_ID, toInventory, pizzasToAdd)
 
@@ -266,6 +265,10 @@ class HandleChoices():
             if pizzasToAdd > pizzasOnInventory:
                 print("not enough pizza in inventory")
                 return -1
+            elif player.quarter == "Skyscrapers" and player.position[0] == 4 and player.position[1] == 4:
+                if pizzasOnInventory + pizzasToAdd > 10:
+                    print("You can't put more than 10 pizzas in the elevator!")
+                    return -1
         return pizzasToAdd
 
     def deal_with_pick_and_drop(self, roomInventory, item_id, item_name, amount, player):
@@ -434,16 +437,14 @@ class HandleChoices():
         if Settings.street_in_boundary(player.position[0], player.position[1] + 1):
             player.position[1] = player.position[1] + 1
             Settings.goNextRoom = True
-            print(player.position[0])
-            print(player.position[1])
         else:
             print("place out of bounds")
             
             
     def go_input(self, player):
-        if "drive" in player.choice:
-            print("fist you need to climb a vehicle\n")
-            return True
+        # if "drive" in player.choice:
+        #     print("first you need to climb a vehicle\n")
+        #     return True
         if "south" in player.choice:
             self.go_south(player)
             return True

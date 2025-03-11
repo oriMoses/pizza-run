@@ -28,7 +28,9 @@ class TradeCenter(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Not the nicest place to be. \n\nYou see the main road to the South.\n")
+            print("Not the nicest place to be. \n\nYou see the main road to the ")
+            print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END)
+
             Settings.print_objects_in_room(self)
 
 

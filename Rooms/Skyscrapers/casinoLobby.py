@@ -14,10 +14,10 @@ class CasinoLobby(skyscrapersQuarter):
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
 
     def __str__(self):
-        return f"Casino Lobby"
+        return f"Casino Lobby (floor 0)"
 
     def print_first_arrival(self):
-        print("Casino lobby (floor 0) \n\nYou are in the lobby. \nThe sounds of the slot machine come from every direction. \n\nThere's an elevator to the", end=" ")
+        print("\nYou are in the lobby. \nThe sounds of the slot machine come from every direction. \n\nThere's an elevator to the", end=" ")
         print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END, end=" ")
         print("\n\nGo ", end='')
         print(Settings.colorsObject.UNDERLINE + "North" + Settings.colorsObject.END, end=" ")

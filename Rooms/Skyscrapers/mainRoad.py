@@ -45,7 +45,7 @@ class MainRoad(skyscrapersQuarter):
             player.choice = input("> ").lower()
 
             if "look" in player.choice:
-                print('buildings all around. \n\nnowhere to go but the road.\n')
+                print('buildings all around. \n\nnowhere to go but the road')
             
             if handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 self.inputLegit = True

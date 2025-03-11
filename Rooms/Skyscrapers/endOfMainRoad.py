@@ -19,9 +19,9 @@ class EndOfMainRoad(skyscrapersQuarter):
 
     def print_first_arrival(self):
         print('You see a side road goes from', end=" ")
-        print(Settings.colorsObject.UNDERLINE + "west" + Settings.colorsObject.END, end=" ")
+        print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END, end=" ")
         print("to", end=" ")
-        print(Settings.colorsObject.UNDERLINE + "east" + Settings.colorsObject.END, end=" ")
+        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END)
         Settings.print_objects_in_room(self)
 
 

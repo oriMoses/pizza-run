@@ -16,7 +16,7 @@ class GoldenGate(suburbsQuarter):
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
 
     def __str__(self):
-        return f"Golden Gate"
+        return f"Golden Gate\n"
 
     def print_first_arrival(self):
         print('To the', end=" ") 
@@ -43,7 +43,7 @@ class GoldenGate(suburbsQuarter):
                 print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END + ".`\n\n")
                 print("it is open.\n")
             else:
-                print("The Golden gate \n\ngot a ticket? ", end="")
+                print("\ngot a ticket? ", end="")
                 Settings.print_objects_in_room(self)
 
     def dialog_circle(self, handleChoiceObject, player):

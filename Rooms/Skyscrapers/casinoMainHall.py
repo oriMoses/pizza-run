@@ -16,10 +16,10 @@ class CasinoMainHall(skyscrapersQuarter):
         self.wins_with_shiny_dice = 0
         
     def __str__(self):
-        return f"Casino Main Hall"
+        return f"Casino Main Hall (floor 1)"
 
     def print_first_arrival(self):
-        print("Casino Main Hall (floor 1) \n\nThe heart of the casino… at least the middle of it. \n\nYou see a dice table in the middle of the room. \nThe dice dealer is staring at you, for some reason. \n\nThere's an elevator to the", end=" ")
+        print("\nThe heart of the casino… at least the middle of it. \n\nYou see a dice table in the middle of the room. \nThe dice dealer is staring at you, for some reason. \n\nThere's an elevator to the", end=" ")
         print(Settings.colorsObject.UNDERLINE + "North" + Settings.colorsObject.END, end=" ")
         print(".")
 
@@ -31,7 +31,7 @@ class CasinoMainHall(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("(floor 1) \n\nThe dice dealer is staring at you, for some reason.\n")
+            print("\nThe dice dealer is staring at you, for some reason.\n")
             Settings.print_objects_in_room(self)
 
     def win_dice_roll(self):

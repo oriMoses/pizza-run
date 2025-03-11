@@ -186,9 +186,9 @@ def get_street_number(street_number, player):
             return "IV"
         if street_number == 4:
             return "V"
-        if street_number == 4:
+        if street_number == 5:
             return "VI"
-        if street_number == 4:
+        if street_number == 6:
             return "VII"
 
 def get_street_name(street, player):
@@ -229,9 +229,6 @@ def street_in_boundary(streetPoition, streetNumberPosition):
             streetNumberPosition > SUBURBS_MAX_STREET_NUMBER_BOUNDARY:
             return False
     if player.quarter == "Skyscrapers":
-        if type(world_map.skyscrapers.position[streetNumberPosition][streetPoition]).__name__ == "OutOfBounds":
-            return False
-        
         if streetPoition < SKYSCRAPERS_MIN_STREET_BOUNDARY or \
             streetPoition > SKYSCRAPERS_MAX_STREET_BOUNDARY:
             return False
@@ -239,6 +236,9 @@ def street_in_boundary(streetPoition, streetNumberPosition):
         if streetNumberPosition < SKYSCRAPERS_MIN_STREET_NUMBER_BOUNDARY or \
             streetNumberPosition > SKYSCRAPERS_MAX_STREET_NUMBER_BOUNDARY:
             return False
+        if type(world_map.skyscrapers.position[streetPoition][streetNumberPosition]).__name__ == "OutOfBounds":
+            return False
+        
 
     return True
     

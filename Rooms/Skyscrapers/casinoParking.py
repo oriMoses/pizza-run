@@ -9,6 +9,7 @@ class CasinoParking(skyscrapersQuarter):
     def __init__(self):
         skyscrapersQuarter.__init__(self, [Street_Name.LUCK,Street_Number.III])
         self.inputLegit = False
+        self.firstArrival = True
         self.inventory = Inventory()
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)

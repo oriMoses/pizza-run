@@ -15,10 +15,10 @@ class CasinoRoof(skyscrapersQuarter):
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
 
     def __str__(self):
-        return f"Casino Roof"
+        return f"Casino Roof (top floor) \n"
 
     def print_first_arrival(self):
-        print("(top floor) \n\nYou see a big circle with H in it. \n\nThere's an elevator to the ", end='')
+        print("\nYou see a big circle with H in it. \n\nThere's an elevator to the ", end='')
         print(Settings.colorsObject.UNDERLINE + "east" + Settings.colorsObject.END)
         print(" and a golden note.")
         Settings.print_objects_in_room(self)
