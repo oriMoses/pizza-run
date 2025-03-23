@@ -15,6 +15,8 @@ class Box():
         self.inventory.add_item(SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1)
 
     def open(self):
+        print(Settings.colorsObject.BROWN + "(box opened)\n" + Settings.colorsObject.END)
+
         if self.inventory.item_exist(SUBURBS_NOTEBOOK_ID) and self.inventory.item_exist(BIKE_KEY_ID):
             print("You see the suburbs notebook and a bike key\n")
         elif self.inventory.item_exist(SUBURBS_NOTEBOOK_ID):

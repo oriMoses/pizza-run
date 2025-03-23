@@ -47,16 +47,18 @@ class Parking(suburbsQuarter):
             elif self.box_open:
                 if "read" in player.choice:
                     print("You can't read from the box")
-                    self.inputLegit = False
+                    self.inputLegit = True
                 else:
                     self.inputLegit = handleChoiceObject.player_input(Settings.boxObject.inventory, self.inputLegit)
-                if not self.inputLegit:
+                    
+                if self.box_open:
                     print(Settings.colorsObject.BROWN + "(box closed)\n" + Settings.colorsObject.END)
                     self.box_open = False
                 
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 self.inputLegit = True
-                
+
             if self.inputLegit == False:
                 print("pardon me?\n")
             self.inputLegit = False
+            
