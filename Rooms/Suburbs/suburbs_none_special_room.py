@@ -30,11 +30,16 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
             player.choice = input("> ").lower()
 
                 
-            if "examine" in player.choice and self.inventory.is_inventory_empty():
-                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background\n")
+            if "examine" in player.choice and self.inventory.is_inventory_empty(): #TODO: does this line make sense?
+                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
                 self.print_first_arrival()
                 self.inputLegit = True
 
+            if "look" in player.choice:
+                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
+                self.print_first_arrival()
+                self.inputLegit = True
+                
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 self.inputLegit = True
                 
