@@ -2,12 +2,12 @@ from Classes.quarters import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name
 from Constants.constants import *
 
 class YellowHouse(suburbsQuarter):
     def __init__(self):
-        suburbsQuarter.__init__(self, [Street_Name.BUSH,Street_Number.IV])
+        suburbsQuarter.__init__(self, [Suburbs_Street_Name.BUSH,Suburbs_Street_Number.IV])
         self.firstArrival = True
         self.door_knocked = False
         self.inputLegit = False
@@ -36,14 +36,14 @@ class YellowHouse(suburbsQuarter):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
-                        orders = Settings.get_orders_for(Street_Name.BUSH,Street_Number.IV)
+                        orders = Settings.get_orders_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.IV)
                         if orders == -1:
                             print("You already delivered this order\n")
                         elif orders == numberOfPizza:
                             player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                             player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
 
-                            Settings.remove_orderes_for(Street_Name.BUSH,Street_Number.IV)
+                            Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.IV)
 
                             print('"that is what im talking about! happy new year!"')
                             print(numberOfPizza*2, " coin up tip\n")

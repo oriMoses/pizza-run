@@ -2,12 +2,12 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
 from Constants.constants import *
 
 class CasinoRoof(skyscrapersQuarter):
     def __init__(self):
-        skyscrapersQuarter.__init__(self, [Street_Name.SECOND,Street_Number.V])
+        skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.SECOND,Skyscrapers_Street_Number.V])
         self.firstArrival = True
         self.inputLegit = False
         self.inventory = Inventory()
@@ -15,12 +15,12 @@ class CasinoRoof(skyscrapersQuarter):
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
 
     def __str__(self):
-        return f"Casino Roof (top floor) \n"
+        return f"Casino Roof (top floor)\n"
 
     def print_first_arrival(self):
-        print("\nYou see a big circle with H in it. \n\nThere's an elevator to the ", end='')
-        print(Settings.colorsObject.UNDERLINE + "east" + Settings.colorsObject.END)
-        print(" and a golden note.")
+        print("You see a big circle with H in it. \n\nThere's an elevator to the ", end='')
+        print(Settings.colorsObject.UNDERLINE + "east" + Settings.colorsObject.END, end=" ")
+        print("and a golden note.")
         Settings.print_objects_in_room(self)
 
 

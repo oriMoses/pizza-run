@@ -2,12 +2,12 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
 from Constants.constants import *
 
 class RoadConstruction(skyscrapersQuarter):
     def __init__(self):
-        skyscrapersQuarter.__init__(self, [Street_Name.CRASH,Street_Number.VII])
+        skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.CRASH,Skyscrapers_Street_Number.VII])
         self.firstArrival = True
         self.inputLegit = False
         self.inventory = Inventory()

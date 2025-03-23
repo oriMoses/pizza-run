@@ -119,6 +119,10 @@ class HandleChoices():
 
     def bike_key(self, roomInventory, player):
         if "bike" in player.choice and "key" in player.choice:
+            if not roomInventory.item_exist(BIKE_KEY_ID):
+                print("you can not see the bike key around\n")
+                return True
+            
             if player.inventory.item_exist(BIKE_KEY_ID) or roomInventory.item_exist(BIKE_KEY_ID):
                 self.deal_with_pick_and_drop(roomInventory, BIKE_KEY_ID, "bike key", 1, player)
                 Settings.bikeKeyObject.inBox = False
@@ -154,7 +158,8 @@ class HandleChoices():
         if "help" in player.choice:
             print("Useful commands:")
             print(" The 'INVENTORY' command lists the objects in your possession.")
-            print(" The 'LOOK' command prints a description of your surroundings.\n")
+            print(" The 'LOOK' command prints a description of your surroundings.")
+            print(" The 'READ <item>' command for reading.")
             print(" The 'KNOCK DOOR' command knock on door.\n")
             print("Command abbreviations:")
             print(" The 'INVENTORY' command may be abbreviated 'I'.")
@@ -167,9 +172,11 @@ class HandleChoices():
             print(" Fairly general forms of these may be used, such as PICK UP, PUT DOWN, etc.\n")
             print(" Directions:")
             print(" NORTH, SOUTH, EAST, WEST, etc. and their various abbreviations. \n")
+            print("Command parser only read one command at a time\nTwo commands may desolve unwanted behaviour")
             
             print("Objects:") 
             print(" Most objects have names and can be referenced by them.\n")
+            
             
             return True
     
@@ -438,7 +445,7 @@ class HandleChoices():
             player.position[1] = player.position[1] + 1
             Settings.goNextRoom = True
         else:
-            print("place out of bounds")
+            print("place out of bounds\n")
             
             
     def go_input(self, player):

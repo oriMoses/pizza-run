@@ -2,12 +2,12 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
 from Constants.constants import *
 
 class CasinoParking(skyscrapersQuarter):
     def __init__(self):
-        skyscrapersQuarter.__init__(self, [Street_Name.LUCK,Street_Number.III])
+        skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.LUCK,Skyscrapers_Street_Number.III])
         self.inputLegit = False
         self.firstArrival = True
         self.inventory = Inventory()
@@ -18,9 +18,9 @@ class CasinoParking(skyscrapersQuarter):
         return f"Casino Parking"
 
     def print_first_arrival(self):
-        print("\nYou are in a massive parking lot. packed to the brim with cars, tour buses and drunks. \nBlue neon lights stretch above the building. \n\nGo ", end=" ")
-        print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END, end=" ")
-        print("to enter the casino.\n")
+        print("\nYou are in a massive parking lot. packed to the brim with cars, tour buses and drunks\nBlue neon lights stretch above the building\n\nGo", end=" ")
+        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END, end=" ")
+        print("to enter the casino")
 
         Settings.print_objects_in_room(self)
         
@@ -30,9 +30,9 @@ class CasinoParking(skyscrapersQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Casino parking \n\nGo ")
-            print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END, end=" ")
-            print("to enter the casino.")
+            print("\nGo ", end='')
+            print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END, end=" ")
+            print("to enter the casino")
             Settings.print_objects_in_room(self)
 
 

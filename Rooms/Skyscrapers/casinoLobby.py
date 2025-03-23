@@ -2,13 +2,14 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
 from Constants.constants import *
 
 class CasinoLobby(skyscrapersQuarter):
     def __init__(self):
-        skyscrapersQuarter.__init__(self, [Street_Name.LUCK,Street_Number.IV])
+        skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.LUCK,Skyscrapers_Street_Number.IV])
         self.inputLegit = False
+        self.firstArrival = True
         self.inventory = Inventory()
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
@@ -17,7 +18,7 @@ class CasinoLobby(skyscrapersQuarter):
         return f"Casino Lobby (floor 0)"
 
     def print_first_arrival(self):
-        print("\nYou are in the lobby. \nThe sounds of the slot machine come from every direction. \n\nThere's an elevator to the", end=" ")
+        print("\nYou are in the lobby\nThe sounds of the slot machine come from every direction\n\nThere's an elevator to the", end=" ")
         print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END, end=" ")
         print("\n\nGo ", end='')
         print(Settings.colorsObject.UNDERLINE + "North" + Settings.colorsObject.END, end=" ")

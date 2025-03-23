@@ -3,12 +3,12 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number, Skyscrapers_Street_Name, Skyscrapers_Street_Number
 from Constants.constants import *
 
 class Gatekeeper(suburbsQuarter):
     def __init__(self):
-        suburbsQuarter.__init__(self, [Street_Name.DUCK,Street_Number.III])
+        suburbsQuarter.__init__(self, [Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III])
         self.firstArrival = True
         self.gateOpen = False
         self.inputLegit = False
@@ -62,14 +62,14 @@ class Gatekeeper(suburbsQuarter):
                 numberOfPizza = Settings.howMuchPizza(self, player)
 
                 if player.inventory.hot_pizza_exists(numberOfPizza):
-                    orders = Settings.get_orders_for(Street_Name.DUCK,Street_Number.III)
+                    orders = Settings.get_orders_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III)
                     if orders == -1:
                         print("You already delivered this order\n")
                     elif orders == numberOfPizza:
                         player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                         player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
 
-                        Settings.remove_orderes_for(Street_Name.DUCK,Street_Number.III)
+                        Settings.remove_orderes_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III)
 
                         print('\nThank you, you just made my shift way better')
                         print(numberOfPizza*2, " coin up tip")
@@ -103,7 +103,7 @@ class Gatekeeper(suburbsQuarter):
                     
             elif "south" in player.choice and self.gateOpen:
                 player.quarter = "Skyscrapers"
-                skyscrapersQuarter.__init__(self, [Street_Name.MAIN,Street_Number.I])
+                skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.MAIN,Skyscrapers_Street_Number.I])
                 player.position[0] = 0
                 player.position[1] = 2
                 Settings.goNextRoom = True

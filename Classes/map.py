@@ -26,7 +26,7 @@ from Rooms.Skyscrapers.roadConstruction import RoadConstruction
 from Rooms.Skyscrapers.sideRoad import SideRoad
 from Rooms.Skyscrapers.outOfBounds import OutOfBounds
 from Rooms.Skyscrapers.endOfMainRoad import EndOfMainRoad
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number, Skyscrapers_Street_Name, Skyscrapers_Street_Number,Shakedown_Street_Number
 
 class Map():
     instance = None
@@ -65,48 +65,54 @@ class Map():
             
     class SkyscrapersConstructor():
         def __init__(self):
-            skyscrapers_rows, skyscrapers_cols = (5, 7)
+            skyscrapers_rows, skyscrapers_cols = (7,5)
             self.position = [[0 for _ in range(skyscrapers_cols)] for _ in range(skyscrapers_rows)]
 
             for i in range(skyscrapers_cols):
                 for j in range(skyscrapers_rows):
                     self.position[j][i] = SkyscrapersNoneSpecialRoom(j, i)
-            self.position[0][0] = OutOfBounds(Street_Name.CRASH,Street_Number.I)
-            self.position[0][3] = OutOfBounds(Street_Name.CRASH,Street_Number.IV)
-            self.position[0][4] = OutOfBounds(Street_Name.CRASH,Street_Number.V)
-            self.position[0][5] = OutOfBounds(Street_Name.CRASH,Street_Number.VI)
-            self.position[1][0] = OutOfBounds(Street_Name.BURN,Street_Number.I)
-            self.position[1][1] = OutOfBounds(Street_Name.BURN,Street_Number.II)
-            self.position[1][3] = OutOfBounds(Street_Name.BURN,Street_Number.IV)
-            self.position[1][4] = OutOfBounds(Street_Name.BURN,Street_Number.V)
-            self.position[1][5] = OutOfBounds(Street_Name.BURN,Street_Number.VI)
-            self.position[3][0] = OutOfBounds(Street_Name.SECOND,Street_Number.I)
-            self.position[3][1] = OutOfBounds(Street_Name.SECOND,Street_Number.II)
-            self.position[3][3] = OutOfBounds(Street_Name.SECOND,Street_Number.IV)
-            self.position[3][5] = OutOfBounds(Street_Name.SECOND,Street_Number.VI)
-            self.position[4][0] = OutOfBounds(Street_Name.LUCK,Street_Number.I)
-            self.position[4][1] = OutOfBounds(Street_Name.LUCK,Street_Number.II)
-            self.position[2][0] = TradeCenter()
-            self.position[0][1] = Bank()
-            self.position[2][1] = MainRoad(Street_Name.MAIN,Street_Number.II)
-            self.position[0][2] = SideRoad(Street_Name.CRASH,Street_Number.III)
-            self.position[1][2] = SideRoad(Street_Name.BURN,Street_Number.III)
-            self.position[2][2] = CrossRoads()
-            self.position[3][2] = GoldenGate()
-            self.position[4][2] = CasinoParking()
-            self.position[2][3] = MainRoad(Street_Name.MAIN,Street_Number.IV)
-            self.position[4][3] = CasinoLobby()
-            self.position[2][4] = MainRoad(Street_Name.MAIN,Street_Number.V)
-            self.position[3][4] = CasinoRoof()
-            self.position[4][4] = Elevator()
-            self.position[2][5] = MainRoad(Street_Name.MAIN,Street_Number.VI)
-            self.position[4][5] = CasinoMainHall()
-            self.position[0][6] = RoadConstruction()
-            self.position[1][6] = SideRoad(Street_Name.BURN,Street_Number.VII)
-            self.position[2][6] = EndOfMainRoad()
-            self.position[3][6] = SideRoad(Street_Name.SECOND,Street_Number.VII)
-            self.position[4][6] = SideRoad(Street_Name.LUCK,Street_Number.VII)
+
+            self.position[0][0] = OutOfBounds(Skyscrapers_Street_Name.CRASH,Skyscrapers_Street_Number.I)
+            self.position[0][1] = OutOfBounds(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.I) #TODO: Create table in loop instead of by hand
+            self.position[1][1] = OutOfBounds(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.II)
+            self.position[0][3] = OutOfBounds(Skyscrapers_Street_Name.SECOND,Skyscrapers_Street_Number.I)
+            self.position[1][3] = OutOfBounds(Skyscrapers_Street_Name.SECOND,Skyscrapers_Street_Number.II)
+            self.position[0][4] = OutOfBounds(Skyscrapers_Street_Name.LUCK,Skyscrapers_Street_Number.I)
+            self.position[1][4] = OutOfBounds(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.II)
+            self.position[3][0] = OutOfBounds(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.IV)
+            self.position[3][1] = OutOfBounds(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.IV)
             
+            self.position[3][3] = OutOfBounds(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.VI)
+            self.position[4][0] = OutOfBounds(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.V)
+            self.position[4][1] = OutOfBounds(Skyscrapers_Street_Name.SECOND,Skyscrapers_Street_Number.V)
+            self.position[5][0] = OutOfBounds(Skyscrapers_Street_Name.SECOND,Skyscrapers_Street_Number.V)
+            self.position[5][1] = OutOfBounds(Skyscrapers_Street_Name.SECOND,Skyscrapers_Street_Number.V)
+            self.position[5][3] = OutOfBounds(Skyscrapers_Street_Name.SECOND,Skyscrapers_Street_Number.V)
+            self.position[0][2] = TradeCenter()
+            self.position[1][0] = Bank()
+            self.position[1][2] = MainRoad(Skyscrapers_Street_Name.MAIN,Skyscrapers_Street_Number.II)
+            self.position[3][2] = MainRoad(Skyscrapers_Street_Name.MAIN,Skyscrapers_Street_Number.IV)
+            self.position[4][2] = MainRoad(Skyscrapers_Street_Name.MAIN,Skyscrapers_Street_Number.V)
+            self.position[5][2] = MainRoad(Skyscrapers_Street_Name.MAIN,Skyscrapers_Street_Number.VI)
+            
+            self.position[2][1] = SideRoad(Skyscrapers_Street_Name.CRASH,Skyscrapers_Street_Number.III)
+            self.position[6][1] = SideRoad(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.VII)
+            self.position[6][3] = SideRoad(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.VII)
+            self.position[6][4] = SideRoad(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.VII)
+            
+            self.position[2][2] = CrossRoads()
+            self.position[2][3] = GoldenGate()
+            self.position[2][4] = CasinoParking()
+
+            self.position[3][4] = CasinoLobby()
+
+            self.position[4][3] = CasinoRoof()
+            self.position[4][4] = Elevator()
+
+            self.position[5][4] = CasinoMainHall()
+            self.position[6][0] = RoadConstruction()
+            self.position[6][2] = EndOfMainRoad()
+
     class ShakedownConstructor():
         def __init__(self):
             pass

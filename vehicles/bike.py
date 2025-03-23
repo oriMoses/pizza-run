@@ -16,7 +16,7 @@ class Bike(Vehicle):
         player = Player.getInstance()
         if not self.player_on_vehacle():
             if player.position == Settings.bikeObject.position:
-                print("There's a delivery bike in here")
+                print("\nThere's a delivery bike in here")
 
     def examine(self):
         print("An old, bumpy delivery bike. Can get the job done. You can store up to five pizzas on the bike. Faster than walking.")

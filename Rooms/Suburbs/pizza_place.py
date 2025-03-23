@@ -4,12 +4,12 @@ from Classes.inventory import Inventory
 import Classes.settings as Settings
 from Doors.main_pizza_place_door import mainPizzaPlaceDoor
 from Utils import pizza_temprature
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name
 from Constants.constants import *
 
 class PizzaPlace():
     def __init__(self):
-        suburbsQuarter.__init__(self, [Street_Name.FIRST,Street_Number.IV])
+        suburbsQuarter.__init__(self, [Suburbs_Street_Name.FIRST,Suburbs_Street_Number.IV])
         self.inputLegit = False
         self.firstArrival = True
         self.inventory = Inventory()

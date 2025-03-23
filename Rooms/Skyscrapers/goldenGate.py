@@ -1,13 +1,13 @@
-from Classes.quarters import suburbsQuarter
+from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Skyscrapers_Street_Name, Skyscrapers_Street_Number
 from Constants.constants import *
 
-class GoldenGate(suburbsQuarter):
+class GoldenGate(skyscrapersQuarter):
     def __init__(self):
-        suburbsQuarter.__init__(self, [Street_Name.SECOND,Street_Number.III])
+        skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.SECOND,Skyscrapers_Street_Number.III])
         self.firstArrival = True
         self.gateOpen = False
         self.inputLegit = False
@@ -19,14 +19,14 @@ class GoldenGate(suburbsQuarter):
         return f"Golden Gate\n"
 
     def print_first_arrival(self):
-        print('To the', end=" ") 
-        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END)
-        print(', stands a massive golden gate. \nit is closed, not to be opened from the outside. \n\nA guard approaches you. \n\n"Hey kiddo. no ticket - no pass!" \n\nThis guard is not one to mess with.')
+        print('To the', end=" ")
+        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END, end=" ")
+        print(', stands a massive golden gate\nit is closed, not to be opened from the outside\n\nA guard approaches you\n\n"Hey kiddo. no ticket - no pass!" \n\nThis guard is not one to mess with\n')
               
         if self.gateOpen:
-            print("open ", end=" ")
+            print("open", end=" ")
         else:
-            print("closed ", end=" ")
+            print("closed", end=" ")
 
         print("gate to the ", end="")
         print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END)
@@ -43,7 +43,7 @@ class GoldenGate(suburbsQuarter):
                 print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END + ".`\n\n")
                 print("it is open.\n")
             else:
-                print("\ngot a ticket? ", end="")
+                print("got a ticket?")
                 Settings.print_objects_in_room(self)
 
     def dialog_circle(self, handleChoiceObject, player):
@@ -70,18 +70,21 @@ class GoldenGate(suburbsQuarter):
                         print('on the clear." \n\n')
                         self.gateOpen = True
                         print("(Go ", end="")
-                        print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END)
+                        print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END, end="")
                         print(" to pass through gate)")
 
                     else:
                         print("You have no ticket kiddo, go away\n")
                     
+                    self.inputLegit = True
+                    
             elif "east" in player.choice:
                 if self.gateOpen:
                     pass #TODO: code golden gate 
                 else:
-                    print('"Hey kiddo! dont land anoter foot in the gate direction\nYou clearly have no ticket\n"')
-            
+                    print('"Hey kiddo! dont land anoter foot in the gate direction\nYou clearly have no ticket"\n')
+                    self.inputLegit = True
+                    
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
                 self.inputLegit = True
                 

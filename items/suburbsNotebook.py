@@ -1,6 +1,7 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
+from Classes.player import *
 from Constants.enums import *
 
 class SuburbsNotebook(BasicItem):
@@ -17,11 +18,11 @@ class SuburbsNotebook(BasicItem):
         print("\nYour boss again, do not lose this notebook! \nAll the address for the suburbs deliveries are here: \n")
         ordersList = list(self.orders)
         for i, note in enumerate(ordersList):
-            orders = Settings.get_orders_for(Street_Name(note[1][0]), Street_Number(note[1][1]))
+            orders = Settings.get_orders_for(Suburbs_Street_Name(note[1][0]), Suburbs_Street_Number(note[1][1]))
 
             if orders == -1:
                 print(Settings.colorsObject.GREEN + "x", str(note[0]) + Settings.colorsObject.END, " ", end='')
-                print(Settings.colorsObject.GREEN + Settings.get_address(note[1][0], note[1][1]) + Settings.colorsObject.END)
+                print(Settings.colorsObject.GREEN + Settings.get_address(note[1][0], note[1][1]) + Settings.colorsObject.END. Player.instance)
             else:
                 print("x", note[0], " ", end='')
-                print(Settings.get_address(note[1][0], note[1][1]))
+                print(Settings.get_address(note[1][0], note[1][1], Player.instance))

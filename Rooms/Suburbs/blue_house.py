@@ -2,7 +2,7 @@ from Classes.quarters import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name
 from Constants.constants import *
 
 class BlueHouse(suburbsQuarter):

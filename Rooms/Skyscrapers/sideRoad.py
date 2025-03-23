@@ -2,12 +2,12 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Street_Number, Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
 from Constants.constants import *
 
 class SideRoad(skyscrapersQuarter):
-    def __init__(self, street_Name, street_Number):
-        skyscrapersQuarter.__init__(self, [street_Name,street_Number]) #Passed code until this line
+    def __init__(self, Skyscrapers_Street_Name, Skyscrapers_Street_Number):
+        skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name,Skyscrapers_Street_Number]) #Passed code until this line
         self.inputLegit = False
         self.firstArrival = True
         self.inventory = Inventory()
@@ -61,8 +61,8 @@ class SideRoad(skyscrapersQuarter):
             if player.position[0] == 0 and player.position[1] == 2:
                 if "north" in player.choice:
                     player.quarter = "Suburbs"
-                    player.position[0] = Street_Name.DUCK.value
-                    player.position[1] = Street_Number.III.value
+                    player.position[0] = Skyscrapers_Street_Name.DUCK.value
+                    player.position[1] = Skyscrapers_Street_Number.III.value
                     Settings.goNextRoom = True
                     self.inputLegit = True
                 elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
