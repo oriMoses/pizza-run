@@ -230,8 +230,15 @@ class HandleChoices():
             #     if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
             #         print("You can't put more than 10 pizza in the elevator!")
             #         return True
-
-            fromInventory.move_items(HOT_PIZZA_ID, toInventory, pizzasToAdd)
+            
+            
+            if (toInventory.get_amount(HOT_PIZZA_ID) + toInventory.get_amount(COLD_PIZZA_ID)) < toInventory.max_pizza_capacity:        
+                fromInventory.move_items(HOT_PIZZA_ID, toInventory, pizzasToAdd)
+            else:
+                print("can't carry more than ", end="")
+                print(toInventory.max_pizza_capacity, end=" ")
+                print("pizzas")
+                return True
 
         if pizzasToAdd == 0:
             print("not enough pizza in inventory")
