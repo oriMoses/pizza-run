@@ -3,7 +3,7 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number, Skyscrapers_Street_Name, Skyscrapers_Street_Number
+from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number, Skyscrapers_Street_Name, Skyscrapers_Street_Number, Colors
 from Constants.constants import *
 
 class Gatekeeper(suburbsQuarter):
@@ -28,7 +28,7 @@ class Gatekeeper(suburbsQuarter):
             print("closed", end=" ")
 
         print("gate to the ", end="")
-        print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END)
+        print(Colors.UNDERLINE + "South" + Colors.END)
         Settings.print_objects_in_room(self)
 
 
@@ -43,7 +43,7 @@ class Gatekeeper(suburbsQuarter):
             else:
                 print("closed", end="")
             print("gate to the ", end="")
-            print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END)
+            print(Colors.UNDERLINE + "South" + Colors.END)
             Settings.print_objects_in_room(self)
 
     def dialog_circle(self, handleChoiceObject, player):

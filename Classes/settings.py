@@ -13,7 +13,6 @@ from Items.box import Box
 from vehicles.bike import Bike
 from Classes.player import Player
 from Classes.handle_choices import HandleChoices
-from Classes.color import Colors
 from Constants.constants import *
 
 shop_location = [10,10]
@@ -148,9 +147,8 @@ global world_map
 world_map = None
 
 def init(map):
-    global colorsObject, handleChoiceObject, goNextRoom, world_map
+    global handleChoiceObject, goNextRoom, world_map
     handleChoiceObject = HandleChoices()
-    colorsObject = Colors()
     init_orders(map)
     init_items(map)
     init_vehicle(map)

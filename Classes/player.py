@@ -13,8 +13,7 @@ class Player():
     class playerHelper(): #this class make sure Player is a singletone and instantiate only once
         def __call__( self, *args, **kw ):
             if Player.instance is None:
-                playerObject = Player()
-                Player.instance = playerObject        
+                Player.instance = Player()
             return Player.instance
     
     getInstance = playerHelper()

@@ -2,7 +2,7 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors
 from Constants.constants import *
 
 class CrossRoads(skyscrapersQuarter):
@@ -19,13 +19,13 @@ class CrossRoads(skyscrapersQuarter):
 
     def print_first_arrival(self):
         print("You are at a crossroad. \n\nIt's surprisingly empty. \n\nThe main road goes from", end=" ")
-        print(Settings.colorsObject.UNDERLINE + "North" + Settings.colorsObject.END, end=" ")
+        print(Colors.UNDERLINE + "North" + Colors.END, end=" ")
         print("to", end=" ")
-        print(Settings.colorsObject.UNDERLINE + "South" + Settings.colorsObject.END, end=" ")
+        print(Colors.UNDERLINE + "South" + Colors.END, end=" ")
         print("\nThere's a side road to the", end=" ")
-        print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END, end=" ")
+        print(Colors.UNDERLINE + "West" + Colors.END, end=" ")
         print("\nYou see a massive gate to the", end=" ")
-        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END)
+        print(Colors.UNDERLINE + "East" + Colors.END)
         Settings.print_objects_in_room(self)
         
 

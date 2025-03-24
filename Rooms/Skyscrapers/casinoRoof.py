@@ -2,7 +2,7 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors
 from Constants.constants import *
 
 class CasinoRoof(skyscrapersQuarter):
@@ -19,7 +19,7 @@ class CasinoRoof(skyscrapersQuarter):
 
     def print_first_arrival(self):
         print("You see a big circle with H in it. \n\nThere's an elevator to the ", end='')
-        print(Settings.colorsObject.UNDERLINE + "east" + Settings.colorsObject.END, end=" ")
+        print(Colors.UNDERLINE + "east" + Colors.END, end=" ")
         print("and a golden note.")
         Settings.print_objects_in_room(self)
 
@@ -48,9 +48,9 @@ class CasinoRoof(skyscrapersQuarter):
             elif "note" in player.choice:
                 if "read" in player.choice:
                     print('"Dear pizza delivery guy, please bring 30 ', end='')
-                    print(Settings.colorsObject.UNDERLINE + "hot" + Settings.colorsObject.END)
+                    print(Colors.UNDERLINE + "hot" + Colors.END)
                     print('pizzas to this roof. \n', end='')
-                    print(Settings.colorsObject.UNDERLINE + "Cold" + Settings.colorsObject.END)
+                    print(Colors.UNDERLINE + "Cold" + Colors.END)
                     print('pizza is not acceptable! \nYou will receive a generous tip for your hard work." \n\nThe note ends with an unreadable signature.\n')
                 
                 elif "take" in player.choice or "pick" in player.choice:

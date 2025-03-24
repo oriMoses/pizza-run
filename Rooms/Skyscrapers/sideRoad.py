@@ -2,7 +2,7 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors
 from Constants.constants import *
 
 class SideRoad(skyscrapersQuarter):
@@ -41,7 +41,7 @@ class SideRoad(skyscrapersQuarter):
         if self.firstArrival:
             if player.position[0] == 0 and player.position[1] == 2:
                 print("You see a bank,", end=" ") 
-                print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END, end=' ')
+                print(Colors.UNDERLINE + "West" + Colors.END, end=' ')
                 print("of you\n")
             else:
                 self.print_first_arrival()

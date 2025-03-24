@@ -2,7 +2,7 @@ from Classes.quarters import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name
+from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name, Colors
 from Constants.constants import *
 
 class PinkHouse(suburbsQuarter):
@@ -20,7 +20,7 @@ class PinkHouse(suburbsQuarter):
 
     def print_first_arrival(self):
         print("You see a pink house.\nThere's a big barbed fence to the ", end="")
-        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END)
+        print(Colors.UNDERLINE + "East" + Colors.END)
         print(".\nyou can't really see past the fence.\n\nstrange vibes over here.\n")
         Settings.print_objects_in_room(self)
 

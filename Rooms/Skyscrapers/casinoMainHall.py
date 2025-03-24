@@ -2,7 +2,7 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors
 from Constants.constants import *
 import random
 
@@ -20,7 +20,7 @@ class CasinoMainHall(skyscrapersQuarter):
 
     def print_first_arrival(self):
         print("\nThe heart of the casino… at least the middle of it. \n\nYou see a dice table in the middle of the room. \nThe dice dealer is staring at you, for some reason. \n\nThere's an elevator to the", end=" ")
-        print(Settings.colorsObject.UNDERLINE + "North" + Settings.colorsObject.END, end=" ")
+        print(Colors.UNDERLINE + "North" + Colors.END, end=" ")
         print(".")
 
         Settings.print_objects_in_room(self)

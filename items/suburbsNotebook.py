@@ -21,8 +21,8 @@ class SuburbsNotebook(BasicItem):
             orders = Settings.get_orders_for(Suburbs_Street_Name(note[1][0]), Suburbs_Street_Number(note[1][1]))
 
             if orders == -1:
-                print(Settings.colorsObject.GREEN + "x", str(note[0]) + Settings.colorsObject.END, " ", end='')
-                print(Settings.colorsObject.GREEN + Settings.get_address(note[1][0], note[1][1]) + Settings.colorsObject.END. Player.instance)
+                print(Colors.GREEN + "x", str(note[0]) + Colors.END, " ", end='')
+                print(Colors.GREEN + Settings.get_address(note[1][0], note[1][1]) + Colors.END. Player.instance)
             else:
                 print("x", note[0], " ", end='')
                 print(Settings.get_address(note[1][0], note[1][1], Player.instance))

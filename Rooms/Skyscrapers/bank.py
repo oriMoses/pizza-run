@@ -2,7 +2,7 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors
 from Constants.constants import *
 
 class Bank(skyscrapersQuarter):
@@ -19,7 +19,7 @@ class Bank(skyscrapersQuarter):
 
     def print_first_arrival(self):
         print('\nIt is closed.\nYou wonder if you ever saw it open.\n\nSide road to', end=" ")
-        print(Settings.colorsObject.UNDERLINE + "south" + Settings.colorsObject.END)
+        print(Colors.UNDERLINE + "south" + Colors.END)
         Settings.print_objects_in_room(self)
 
 

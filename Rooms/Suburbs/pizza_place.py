@@ -4,7 +4,7 @@ from Classes.inventory import Inventory
 import Classes.settings as Settings
 from Doors.main_pizza_place_door import mainPizzaPlaceDoor
 from Utils import pizza_temprature
-from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name
+from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name, Colors
 from Constants.constants import *
 
 class PizzaPlace():
@@ -26,7 +26,7 @@ class PizzaPlace():
         print("""you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is propably 16.\n""")
         #TODO:        small/medium/massive
         print("You see massive pile of hot pizza and a small ", end="")
-        print(Settings.colorsObject.GREEN + "note" + Settings.colorsObject.END, end="")
+        print(Colors.GREEN + "note" + Colors.END, end="")
         print(" on the counter\n")
 
         if self.door.locked:
@@ -34,7 +34,7 @@ class PizzaPlace():
         else:
             print("There's a opened door to the", end=" ") 
 
-        print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END)
+        print(Colors.UNDERLINE + "West" + Colors.END)
         
         #note: I do not use Settings.print_objects_in_room(self) because I dont want to print pizzas
         Settings.print_items_in_room(self)

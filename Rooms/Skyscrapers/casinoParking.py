@@ -2,7 +2,7 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors
 from Constants.constants import *
 
 class CasinoParking(skyscrapersQuarter):
@@ -19,7 +19,7 @@ class CasinoParking(skyscrapersQuarter):
 
     def print_first_arrival(self):
         print("\nYou are in a massive parking lot. packed to the brim with cars, tour buses and drunks\nBlue neon lights stretch above the building\n\nGo", end=" ")
-        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END, end=" ")
+        print(Colors.UNDERLINE + "East" + Colors.END, end=" ")
         print("to enter the casino")
 
         Settings.print_objects_in_room(self)
@@ -31,7 +31,7 @@ class CasinoParking(skyscrapersQuarter):
             self.firstArrival = False
         else:
             print("\nGo ", end='')
-            print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END, end=" ")
+            print(Colors.UNDERLINE + "East" + Colors.END, end=" ")
             print("to enter the casino")
             Settings.print_objects_in_room(self)
 

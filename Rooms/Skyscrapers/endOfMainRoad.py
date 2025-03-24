@@ -2,7 +2,7 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors
 from Constants.constants import *
 
 class EndOfMainRoad(skyscrapersQuarter):
@@ -19,9 +19,9 @@ class EndOfMainRoad(skyscrapersQuarter):
 
     def print_first_arrival(self):
         print('You see a side road goes from', end=" ")
-        print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END, end=" ")
+        print(Colors.UNDERLINE + "West" + Colors.END, end=" ")
         print("to", end=" ")
-        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END)
+        print(Colors.UNDERLINE + "East" + Colors.END)
         Settings.print_objects_in_room(self)
 
 

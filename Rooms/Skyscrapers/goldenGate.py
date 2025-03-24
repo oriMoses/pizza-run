@@ -2,7 +2,7 @@ from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Skyscrapers_Street_Name, Skyscrapers_Street_Number
+from Constants.enums import Skyscrapers_Street_Name, Skyscrapers_Street_Number, Colors
 from Constants.constants import *
 
 class GoldenGate(skyscrapersQuarter):
@@ -20,7 +20,7 @@ class GoldenGate(skyscrapersQuarter):
 
     def print_first_arrival(self):
         print('To the', end=" ")
-        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END, end=" ")
+        print(Colors.UNDERLINE + "East" + Colors.END, end=" ")
         print(', stands a massive golden gate\nit is closed, not to be opened from the outside\n\nA guard approaches you\n\n"Hey kiddo. no ticket - no pass!" \n\nThis guard is not one to mess with\n')
               
         if self.gateOpen:
@@ -29,7 +29,7 @@ class GoldenGate(skyscrapersQuarter):
             print("closed", end=" ")
 
         print("gate to the ", end="")
-        print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END)
+        print(Colors.UNDERLINE + "East" + Colors.END)
         Settings.print_objects_in_room(self)
 
 
@@ -40,7 +40,7 @@ class GoldenGate(skyscrapersQuarter):
         else:
             if self.gateOpen:
                 print("There's a massive golden gate to the ", end="")
-                print(Settings.colorsObject.UNDERLINE + "East" + Settings.colorsObject.END + ".`\n\n")
+                print(Colors.UNDERLINE + "East" + Colors.END + ".`\n\n")
                 print("it is open.\n")
             else:
                 print("got a ticket?")
@@ -70,7 +70,7 @@ class GoldenGate(skyscrapersQuarter):
                         print('on the clear." \n\n')
                         self.gateOpen = True
                         print("(Go ", end="")
-                        print(Settings.colorsObject.UNDERLINE + "West" + Settings.colorsObject.END, end="")
+                        print(Colors.UNDERLINE + "West" + Colors.END, end="")
                         print(" to pass through gate)")
 
                     else:

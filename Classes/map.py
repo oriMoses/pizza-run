@@ -44,13 +44,10 @@ class Map():
         
     class SuburbsConstructor():
         def __init__(self):
-            suburbs_rows, suburbs_cols = (6, 5)
-            self.position = [[0 for _ in range(suburbs_cols)] for _ in range(suburbs_rows)]
-
-            for i in range(suburbs_cols):
-                for j in range(suburbs_rows):
-                    self.position[j][i] = SuburbsNoneSpecialRoom(j, i)
-
+            streets_name_quantity, streets_number_quantity = (6, 5)
+            
+            self.position = [[SuburbsNoneSpecialRoom(street_number, street_name) for street_number in range(streets_number_quantity)] for street_name in range(streets_name_quantity)]
+            
             self.position[3][3] = PizzaPlace()
             self.position[3][2] = Parking()
             self.position[2][1] = TeenHouse()
@@ -65,12 +62,9 @@ class Map():
             
     class SkyscrapersConstructor():
         def __init__(self):
-            skyscrapers_rows, skyscrapers_cols = (7,5)
-            self.position = [[0 for _ in range(skyscrapers_cols)] for _ in range(skyscrapers_rows)]
-
-            for i in range(skyscrapers_cols):
-                for j in range(skyscrapers_rows):
-                    self.position[j][i] = SkyscrapersNoneSpecialRoom(j, i)
+            streets_name_quantity, streets_number_quantity = (7, 5)
+            
+            self.position = [[SkyscrapersNoneSpecialRoom(street_number, street_name) for street_number in range(streets_number_quantity)] for street_name in range(streets_name_quantity)]
 
             self.position[0][0] = OutOfBounds(Skyscrapers_Street_Name.CRASH,Skyscrapers_Street_Number.I)
             self.position[0][1] = OutOfBounds(Skyscrapers_Street_Name.BURN,Skyscrapers_Street_Number.I) #TODO: Create table in loop instead of by hand
@@ -114,6 +108,9 @@ class Map():
             self.position[6][2] = EndOfMainRoad()
 
     class ShakedownConstructor():
+        def __init__(self):
+            pass
+    class HoodConstructor():
         def __init__(self):
             pass
 

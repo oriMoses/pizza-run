@@ -2,7 +2,7 @@ from Classes.quarters import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number
+from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number, Colors
 from Constants.constants import *
 from Classes.player import *
 
@@ -52,7 +52,7 @@ class Parking(suburbsQuarter):
                     self.inputLegit = handleChoiceObject.player_input(Settings.boxObject.inventory, self.inputLegit)
                     
                 if self.box_open:
-                    print(Settings.colorsObject.BROWN + "(box closed)\n" + Settings.colorsObject.END)
+                    print(Colors.BROWN + "(box closed)\n" + Colors.END)
                     self.box_open = False
                 
             elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
