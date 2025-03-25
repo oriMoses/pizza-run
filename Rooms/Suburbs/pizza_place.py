@@ -24,7 +24,6 @@ class PizzaPlace():
 
     def print_first_arrival(self):
         print("""you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is propably 16.\n""")
-        #TODO:        small/medium/massive
         print("You see massive pile of hot pizza and a small ", end="")
         print(Colors.GREEN + "note" + Colors.END, end="")
         print(" on the counter\n")
@@ -39,6 +38,7 @@ class PizzaPlace():
         #note: I do not use Settings.print_objects_in_room(self) because I dont want to print pizzas
         Settings.print_items_in_room(self)
         Settings.print_vehicles_in_room(self)
+        self.do_not_print_pizza = True
 
 
     def dialog_circle(self, handleChoiceObject, player):
@@ -87,10 +87,10 @@ class PizzaPlace():
                     print("The door is locked (as doors should be)\n")
                 else:
                     player.choice = "west"
-                    handleChoiceObject.player_input(self.inventory, self.inputLegit)
+                    handleChoiceObject.player_input(self.inventory, self.inputLegit, self.do_not_print_pizza)
                     break
 
-            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            elif handleChoiceObject.player_input(self.inventory, self.inputLegit, self.do_not_print_pizza):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

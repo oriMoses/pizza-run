@@ -55,7 +55,7 @@ class Parking(suburbsQuarter):
                     print(Colors.BROWN + "(box closed)\n" + Colors.END)
                     self.box_open = False
                 
-            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            elif handleChoiceObject.player_input(self.inventory, self.inputLegit, False):
                 self.inputLegit = True
 
             if self.inputLegit == False:

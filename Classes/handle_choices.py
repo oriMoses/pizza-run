@@ -9,7 +9,7 @@ class HandleChoices():
     def __init__(self):
         pass
 
-    def player_input(self, roomInventory, inputLegit):
+    def player_input(self, roomInventory, inputLegit, do_not_print_pizza):
         player = Player.getInstance()
         if self.short_input(player) or self.look_input(player) or self.inventory_input(player) or self.help_input(player) or self.bike_input(player) or self.pizza_key_input(roomInventory, player) \
                 or self.go_input(player) or self.pizza_input(roomInventory, player) or self.notebook(roomInventory, player) \

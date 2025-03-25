@@ -50,8 +50,13 @@ def print_objects_in_room(self):
         counter += 1
     if print_vehicles_in_room(self) == NO_VEHICLES_IN_ROOM:
         counter += 1
-    if print_pizza_in_room(self) == NO_PIZZAS_IN_ROOM:
-        counter += 1
+    if player.quarter == "Suburbs":
+        if player.position[0] == 3 and player.position[1] == 3:
+            print_pizza_in_pizza_place(self)
+            counter +=1
+        else:
+            if print_pizza_in_room(self) == NO_PIZZAS_IN_ROOM:
+                counter += 1
     if counter == 3:
         print() #note: if room is empty print 1 empty line to currect spacing
 
@@ -90,6 +95,18 @@ def print_vehicles_in_room(self):
     else:
         return NO_VEHICLES_IN_ROOM
     
+    
+def print_pizza_in_pizza_place(self):
+    hotPizzasInRoom = self.inventory.get_amount(HOT_PIZZA_ID)
+
+    if hotPizzasInRoom > MASSIVE_AMOUNT_OF_HOT_PIZZA:
+        print("There is massive pile of hot pizzas in here")
+    
+    elif hotPizzasInRoom < MASSIVE_AMOUNT_OF_HOT_PIZZA and hotPizzasInRoom > MEDIUM_AMOUNT_OF_HOT_PIZZA:
+        print("There is medium pile of hot pizzas in here")
+    
+    elif hotPizzasInRoom < SMALL_AMOUNT_OF_HOT_PIZZA:    
+        print("There is small pile of hot pizzas in here")
 
 def print_pizza_in_room(self):
     hotPizzasInRoom = self.inventory.get_amount(HOT_PIZZA_ID)
