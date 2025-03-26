@@ -110,7 +110,7 @@ class Gatekeeper(suburbsQuarter):
                 self.inputLegit = True
                 print()
             
-            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            elif handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

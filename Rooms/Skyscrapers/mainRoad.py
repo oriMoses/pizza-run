@@ -13,18 +13,6 @@ class MainRoad(skyscrapersQuarter):
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
 
-        # self.inventory_1_2 = Inventory()
-        # self.inventory_1_2.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        # self.inventory_1_2.add_item(HOT_PIZZA_ID, "Pizza", 0)
-
-        # self.inventory_3_2 = Inventory()
-        # self.inventory_3_2.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        # self.inventory_3_2.add_item(HOT_PIZZA_ID, "Pizza", 0)
-
-        # self.inventory_4_2 = Inventory()
-        # self.inventory_4_2.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        # self.inventory_4_2.add_item(HOT_PIZZA_ID, "Pizza", 0)
-
     def __str__(self):
         return f"Main road"
 
@@ -47,18 +35,9 @@ class MainRoad(skyscrapersQuarter):
             if "look" in player.choice:
                 print('buildings all around. \n\nnowhere to go but the road')
             
-            if handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            if handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
-            # elif player.position.x == 1 and player.position.y == 2:
-            #     handleChoiceObject.player_input(self.inventory_1_2, self.inputLegit)
-            #     print("use handle choices in 1,2 position on map")
-            # elif player.position.x == 3 and player.position.y == 2:
-            #     handleChoiceObject.player_input(self.inventory_3_2, self.inputLegit)
-            #     print("use handle choices in 3,2 position on map")
-            # elif player.position.x == 4 and player.position.y == 2:
-            #     handleChoiceObject.player_input(self.inventory_4_2, self.inputLegit)
-            #     print("use handle choices in 4,2 position on map")
             if self.inputLegit == False:
                 print("pardon me?\n")
             self.inputLegit = False

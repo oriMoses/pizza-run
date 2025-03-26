@@ -40,7 +40,7 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
                 self.print_first_arrival()
                 self.inputLegit = True
                 
-            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            elif handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

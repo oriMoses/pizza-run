@@ -53,7 +53,7 @@ class Elevator(skyscrapersQuarter):
             elif "15" in player.choice:
                 player.choice = "west"
                 
-            if handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            if handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

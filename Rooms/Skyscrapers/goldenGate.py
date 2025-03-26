@@ -85,7 +85,7 @@ class GoldenGate(skyscrapersQuarter):
                     print('"Hey kiddo! dont land anoter foot in the gate direction\nYou clearly have no ticket"\n')
                     self.inputLegit = True
                     
-            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            elif handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

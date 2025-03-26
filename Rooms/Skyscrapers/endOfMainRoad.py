@@ -43,7 +43,7 @@ class EndOfMainRoad(skyscrapersQuarter):
             player.choice = input("> ").lower()
 
 
-            if handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            if handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

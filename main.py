@@ -31,7 +31,7 @@ def choose_player_room(map, player):
             if "give" not in player.choice and "pizza" not in player.choice:
                 player.choice = ""
                 
-                print(Colors.BOLD, Settings.get_address(player.position[0], player.position[1], player), Colors.END)
+                print(Colors.BOLD + Settings.get_address(player.position[0], player.position[1], player) + Colors.END)
                 print(map.skyscrapers.position[player.position[0]][player.position[1]])
         
             Settings.goNextRoom = False

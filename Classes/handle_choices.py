@@ -5,11 +5,13 @@ from Constants.constants import *
 from Rooms.Suburbs.suburbs_none_special_room import SuburbsNoneSpecialRoom
 from Rooms.Suburbs.parking import Parking
 
-class HandleChoices():
+#   START CHANGE HANDLEINPUT TO SINGLETON
+
+class HandleInputs():
     def __init__(self):
         pass
 
-    def player_input(self, roomInventory, inputLegit, do_not_print_pizza):
+    def player_input(self, roomInventory):
         player = Player.getInstance()
         if self.short_input(player) or self.look_input(player) or self.inventory_input(player) or self.help_input(player) or self.bike_input(player) or self.pizza_key_input(roomInventory, player) \
                 or self.go_input(player) or self.pizza_input(roomInventory, player) or self.notebook(roomInventory, player) \
@@ -459,6 +461,7 @@ class HandleChoices():
         # if "drive" in player.choice:
         #     print("first you need to climb a vehicle\n")
         #     return True
+        if player.item_exist()
         if "south" in player.choice:
             self.go_south(player)
             return True

@@ -169,7 +169,7 @@ class MiniMarket(suburbsQuarter):
                 print("(exit shop)\n")
                     
     
-            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            elif handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

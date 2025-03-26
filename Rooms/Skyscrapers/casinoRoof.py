@@ -40,7 +40,7 @@ class CasinoRoof(skyscrapersQuarter):
                 break
             player.choice = input("> ").lower()
 
-            if self.inventory[HOT_PIZZA_ID]["stock_count"] >= 30:
+            if (self.inventory[HOT_PIZZA_ID]["stock_count"] + self.inventory[COLD_PIZZA_ID]["stock_count"]) >= 30:
                 print("You jump away and duck as a gold-cover helicopter lands on the roof. \nA blinding light shines from it. \n\nThe helicopter and the pizza are gone! \n\nYou got 100 coin tip!") 
                 player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 100)
                 self.inventory.update_item(Settings.HOT_PIZZA_ID, player.self.get_amount(Settings.HOT_PIZZA_ID) - 30)
@@ -56,7 +56,7 @@ class CasinoRoof(skyscrapersQuarter):
                 elif "take" in player.choice or "pick" in player.choice:
                     print("You don't feel okay with taking that much gold.")
                 
-            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            elif handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

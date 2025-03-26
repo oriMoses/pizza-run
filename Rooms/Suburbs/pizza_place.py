@@ -87,10 +87,10 @@ class PizzaPlace():
                     print("The door is locked (as doors should be)\n")
                 else:
                     player.choice = "west"
-                    handleChoiceObject.player_input(self.inventory, self.inputLegit, self.do_not_print_pizza)
+                    handleChoiceObject.player_input(self.inventory)
                     break
 
-            elif handleChoiceObject.player_input(self.inventory, self.inputLegit, self.do_not_print_pizza):
+            elif handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

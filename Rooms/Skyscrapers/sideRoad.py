@@ -14,22 +14,6 @@ class SideRoad(skyscrapersQuarter):
         self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
 
-        # self.inventory_2_1 = Inventory()
-        # self.inventory_2_1.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        # self.inventory_2_1.add_item(HOT_PIZZA_ID, "Pizza", 0)
-
-        # self.inventory_6_1 = Inventory()
-        # self.inventory_6_1.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        # self.inventory_6_1.add_item(HOT_PIZZA_ID, "Pizza", 0)
-
-        # self.inventory_6_3 = Inventory()
-        # self.inventory_6_3.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        # self.inventory_6_3.add_item(HOT_PIZZA_ID, "Pizza", 0)
-
-        # self.inventory_6_4 = Inventory()
-        # self.inventory_6_4.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        # self.inventory_6_4.add_item(HOT_PIZZA_ID, "Pizza", 0)
-
     def __str__(self):
         return f"Side road"
 
@@ -65,7 +49,7 @@ class SideRoad(skyscrapersQuarter):
                     player.position[1] = Skyscrapers_Street_Number.III.value
                     Settings.goNextRoom = True
                     self.inputLegit = True
-                elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+                elif handleChoiceObject.player_input(self.inventory):
                     self.inputLegit = True
                 
             elif "look" in player.choice:
@@ -73,7 +57,7 @@ class SideRoad(skyscrapersQuarter):
                 Settings.print_objects_in_room(self)
                 self.inputLegit = True
                 
-            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            elif handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

@@ -145,7 +145,7 @@ class CasinoMainHall(skyscrapersQuarter):
             if ("go" in player.choice and "table" in player.choice) or ("talk" in player.choice and "dealer" in player.choice):
                 self.interaction_with_dealer()
                 
-            elif handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            elif handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

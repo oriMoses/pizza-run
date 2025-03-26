@@ -49,7 +49,7 @@ class CrossRoads(skyscrapersQuarter):
             if "look" in player.choice:
                 print('Side road \n\nIt might get you somewhere.\n')
             
-            if handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            if handleChoiceObject.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

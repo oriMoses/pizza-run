@@ -31,7 +31,7 @@ class Bank(skyscrapersQuarter):
             Settings.print_objects_in_room(self)
 
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, handlePlayerInput, player):
         self.first_arrival()
 
         while True:
@@ -40,7 +40,7 @@ class Bank(skyscrapersQuarter):
             player.choice = input("> ").lower()
 
 
-            if handleChoiceObject.player_input(self.inventory, self.inputLegit):
+            if handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:
