@@ -12,5 +12,5 @@ class OutOfBounds(skyscrapersQuarter):
     def __str__(self):
         return f"Out of bounds"
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, handlePlayerInput, player):
         pass

@@ -1,5 +1,4 @@
 from Classes.quarters import suburbsQuarter
-from Classes.handle_choices import HandleChoices
 from Classes.inventory import Inventory
 import Classes.settings as Settings
 from Doors.main_pizza_place_door import mainPizzaPlaceDoor
@@ -8,6 +7,7 @@ from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name, Colors
 from Constants.constants import *
 
 class PizzaPlace():
+    
     def __init__(self):
         suburbsQuarter.__init__(self, [Suburbs_Street_Name.FIRST,Suburbs_Street_Number.IV])
         self.inputLegit = False
@@ -40,8 +40,8 @@ class PizzaPlace():
         Settings.print_vehicles_in_room(self)
         self.do_not_print_pizza = True
 
-
-    def dialog_circle(self, handleChoiceObject, player):
+    
+    def dialog_circle(self, player, handlePlayerInput):
         Settings.first_arrival(self)
 
         while True:
@@ -49,6 +49,7 @@ class PizzaPlace():
                 break
             player.choice = input("> ").lower()
             print()
+            
 
             if "note" in player.choice:
                 if "read" in player.choice:
@@ -86,11 +87,12 @@ class PizzaPlace():
                 if self.door.locked:
                     print("The door is locked (as doors should be)\n")
                 else:
+                    
                     player.choice = "west"
-                    handleChoiceObject.player_input(self.inventory)
+                    handlePlayerInput.player_input(self.inventory)
                     break
 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

@@ -32,7 +32,7 @@ class Elevator(skyscrapersQuarter):
             Settings.print_objects_in_room(self)
 
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival(player)
         print("DEBUG: TODO: not show location of elevator")
         print("DEBUG: TODO: change dialogs of elevator")
@@ -53,7 +53,7 @@ class Elevator(skyscrapersQuarter):
             elif "15" in player.choice:
                 player.choice = "west"
                 
-            if handleChoiceObject.player_input(self.inventory):
+            if handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

@@ -46,7 +46,7 @@ class Gatekeeper(suburbsQuarter):
             print(Colors.UNDERLINE + "South" + Colors.END)
             Settings.print_objects_in_room(self)
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput, ):
         if not self.gateOpen:
             self.first_arrival()
         else:
@@ -58,7 +58,7 @@ class Gatekeeper(suburbsQuarter):
             player.choice = input("> ").lower()
 
 
-            if handleChoiceObject.give_pizza(player):
+            if handlePlayerInput.give_pizza(player):
                 numberOfPizza = Settings.howMuchPizza(self, player)
 
                 if player.inventory.hot_pizza_exists(numberOfPizza):
@@ -110,7 +110,7 @@ class Gatekeeper(suburbsQuarter):
                 self.inputLegit = True
                 print()
             
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

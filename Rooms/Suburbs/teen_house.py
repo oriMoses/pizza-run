@@ -24,7 +24,7 @@ class TeenHouse(suburbsQuarter):
         Settings.print_objects_in_room(self)
 
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.firstArrival = True
         self.print_first_arrival()
 
@@ -35,7 +35,7 @@ class TeenHouse(suburbsQuarter):
             player.choice = input("> ").lower()
 
             if self.door_knocked:
-                if handleChoiceObject.give_pizza(player):
+                if handlePlayerInput.give_pizza(player):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
@@ -71,7 +71,7 @@ class TeenHouse(suburbsQuarter):
                     print('(door opened)\n "Pizzas hereeee"\n')
                     self.inputLegit = True
 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

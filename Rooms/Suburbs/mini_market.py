@@ -46,14 +46,14 @@ class MiniMarket(suburbsQuarter):
     def print_on_buy(self):
         print("""cha ching! \n\n“I hope you like it. no refunds!”\n""")
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival()
         while True:
             if Settings.goNextRoom:
                 break
             player.choice = input("> ").lower()
             print("")
-            if handleChoiceObject.give_pizza(player):
+            if handlePlayerInput.give_pizza(player):
                 numberOfPizza = Settings.howMuchPizza(self, player)
 
                 if player.inventory.hot_pizza_exists(numberOfPizza):
@@ -169,7 +169,7 @@ class MiniMarket(suburbsQuarter):
                 print("(exit shop)\n")
                     
     
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

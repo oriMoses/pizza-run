@@ -20,7 +20,7 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
     def print_first_arrival(self):
         Settings.print_objects_in_room(self)
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         Settings.print_objects_in_room(self)
         self.inventory.print_room_inventory()
 
@@ -40,7 +40,7 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
                 self.print_first_arrival()
                 self.inputLegit = True
                 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

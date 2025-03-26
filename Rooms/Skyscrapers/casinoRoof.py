@@ -32,7 +32,7 @@ class CasinoRoof(skyscrapersQuarter):
             print("Casino roof (top floor)")
             Settings.print_objects_in_room(self)
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival()
 
         while True:
@@ -56,7 +56,7 @@ class CasinoRoof(skyscrapersQuarter):
                 elif "take" in player.choice or "pick" in player.choice:
                     print("You don't feel okay with taking that much gold.")
                 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

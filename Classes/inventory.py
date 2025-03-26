@@ -73,6 +73,7 @@ class Inventory():
                     return True
 
     def is_inventory_empty(self):
+        
         for item in self.inventory:
             if self.inventory[item]['stock_count'] >= 1:
                 return False

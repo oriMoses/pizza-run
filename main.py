@@ -5,6 +5,7 @@ from Classes.map import *
 import os
 from Classes.player import *
 from Constants.enums import Colors
+from Classes.handle_choices import *
 os.system('cls')
 
 def startGame():
@@ -16,7 +17,7 @@ def startGame():
         player.choice = input("> ")
         print()
 
-def choose_player_room(map, player):
+def choose_player_room(map, player, handlePlayerInput):
         if player.quarter == "Suburbs":
             if "give" not in player.choice and "pizza" not in player.choice:
                 player.choice = ""
@@ -25,7 +26,7 @@ def choose_player_room(map, player):
                 print(map.suburbs.position[player.position[0]][player.position[1]])
 
             Settings.goNextRoom = False
-            map.suburbs.position[player.position[0]][player.position[1]].dialog_circle(Settings.handleChoiceObject, player)
+            map.suburbs.position[player.position[0]][player.position[1]].dialog_circle(player, handlePlayerInput)
 
         elif player.quarter == "Skyscrapers":
             if "give" not in player.choice and "pizza" not in player.choice:
@@ -35,21 +36,21 @@ def choose_player_room(map, player):
                 print(map.skyscrapers.position[player.position[0]][player.position[1]])
         
             Settings.goNextRoom = False
-            map.skyscrapers.position[player.position[0]][player.position[1]].dialog_circle(Settings.handleChoiceObject, player)
+            map.skyscrapers.position[player.position[0]][player.position[1]].dialog_circle(player, handlePlayerInput)
             
 
-def main():
-    # global last_address
-    # last_address = ""
-    
+def main():    
     map = Map.getInstance()
     player = Player.getInstance()
+     
+    handlePlayerInput = HandleInputs.getInstance()
+    
     Settings.init(map)
 
     startGame()
 
     while True:
-        choose_player_room(map, player)
+        choose_player_room(map, player, handlePlayerInput)
 
 
 if __name__ == '__main__':

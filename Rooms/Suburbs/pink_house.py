@@ -33,7 +33,7 @@ class PinkHouse(suburbsQuarter):
             Settings.print_objects_in_room(self)
 
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival()
 
         while True:
@@ -43,7 +43,7 @@ class PinkHouse(suburbsQuarter):
 
 
             if self.door_knocked:
-                if handleChoiceObject.give_pizza(player):
+                if handlePlayerInput.give_pizza(player):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
@@ -79,7 +79,7 @@ class PinkHouse(suburbsQuarter):
                     print('You hear dogs barking and running.\nbang!\n\nsomeone crashed on the door!\nThe door opens to a crack and a man shouts:\n“who are you? go away!”\n')
                     self.inputLegit = True
 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

@@ -23,7 +23,7 @@ class Parking(suburbsQuarter):
         print("You are in the pizza parking lot.\n\nThere's a box on the floor")
         Settings.print_objects_in_room(self)
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.inventory.print_room_inventory()
         
         Settings.first_arrival(self)
@@ -49,13 +49,13 @@ class Parking(suburbsQuarter):
                     print("You can't read from the box")
                     self.inputLegit = True
                 else:
-                    self.inputLegit = handleChoiceObject.player_input(Settings.boxObject.inventory, self.inputLegit)
+                    self.inputLegit = handlePlayerInput.player_input(Settings.boxObject.inventory, self.inputLegit)
                     
                 if self.box_open:
                     print(Colors.BROWN + "(box closed)\n" + Colors.END)
                     self.box_open = False
                 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
 
             if self.inputLegit == False:

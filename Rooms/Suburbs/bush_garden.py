@@ -30,7 +30,7 @@ class BushGarden(suburbsQuarter):
         print("Score: ", player.score , "(who cares right? you get to live your life as a free man! or women, you do you)\n\nEND")
         sys.exit()
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         Settings.first_arrival(self)
 
         while True:
@@ -40,7 +40,7 @@ class BushGarden(suburbsQuarter):
 
 
             if self.picnic_went:
-                if handleChoiceObject.give_pizza(player):
+                if handlePlayerInput.give_pizza(player):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
@@ -83,7 +83,7 @@ class BushGarden(suburbsQuarter):
                     print("""you hike your way to the table. \nfrom up close, you see the table is on top of a hill. \nDown the hill, you see an improvised stage. \n\nThe live music cuts right through you… \nsomething about the singer's voice. \n\nThe hill is dotted with colorful rugs and people.\nsome dance, some just lay back and look at the sky. \n\n"oh! Hey guys, pizza man here!" \n\nThe people around the picnic table smile at you, maybe give them pizza? \n""")
                     self.picnic_went = True
                     self.inputLegit = True
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

@@ -8,6 +8,16 @@ from Rooms.Suburbs.parking import Parking
 #   START CHANGE HANDLEINPUT TO SINGLETON
 
 class HandleInputs():
+    instance = None
+    
+    class classHelper(): #this class make sure Player is a singletone and instantiate only once
+        def __call__( self, *args, **kw ):
+            if HandleInputs.instance is None:
+                HandleInputs.instance = HandleInputs()
+            return HandleInputs.instance
+    
+    getInstance = classHelper()
+    
     def __init__(self):
         pass
 
@@ -461,7 +471,6 @@ class HandleInputs():
         # if "drive" in player.choice:
         #     print("first you need to climb a vehicle\n")
         #     return True
-        if player.item_exist()
         if "south" in player.choice:
             self.go_south(player)
             return True

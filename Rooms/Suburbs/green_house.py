@@ -26,7 +26,7 @@ class GreenHouse(suburbsQuarter):
         print("You see a greenhouse.\n\nThe front lawn is overgrown.\nThere's a big, rideable lawn mower.\n\nThere's a note on the door.")
         Settings.print_objects_in_room(self)
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         Settings.first_arrival(self)
 
         while True:
@@ -36,7 +36,7 @@ class GreenHouse(suburbsQuarter):
 
 
             if self.door_knocked:
-                if handleChoiceObject.give_pizza(player):
+                if handlePlayerInput.give_pizza(player):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
@@ -126,7 +126,7 @@ class GreenHouse(suburbsQuarter):
                     print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n“Did we order pizza?”\n\n“Hah, guess we did.“\n')
                     self.inputLegit = True
             #TODO: keep working from docx on Shiny dice/ basic adds
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

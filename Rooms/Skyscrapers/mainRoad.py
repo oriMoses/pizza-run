@@ -24,7 +24,7 @@ class MainRoad(skyscrapersQuarter):
         self.print_first_arrival()
 
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival()
 
         while True:
@@ -35,7 +35,7 @@ class MainRoad(skyscrapersQuarter):
             if "look" in player.choice:
                 print('buildings all around. \n\nnowhere to go but the road')
             
-            if handleChoiceObject.player_input(self.inventory):
+            if handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

@@ -34,7 +34,7 @@ class SideRoad(skyscrapersQuarter):
             Settings.print_objects_in_room(self)
 
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival(player)
 
         while True:
@@ -49,7 +49,7 @@ class SideRoad(skyscrapersQuarter):
                     player.position[1] = Skyscrapers_Street_Number.III.value
                     Settings.goNextRoom = True
                     self.inputLegit = True
-                elif handleChoiceObject.player_input(self.inventory):
+                elif handlePlayerInput.player_input(self.inventory):
                     self.inputLegit = True
                 
             elif "look" in player.choice:
@@ -57,7 +57,7 @@ class SideRoad(skyscrapersQuarter):
                 Settings.print_objects_in_room(self)
                 self.inputLegit = True
                 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

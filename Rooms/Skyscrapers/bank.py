@@ -31,7 +31,7 @@ class Bank(skyscrapersQuarter):
             Settings.print_objects_in_room(self)
 
 
-    def dialog_circle(self, handlePlayerInput, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival()
 
         while True:

@@ -22,7 +22,7 @@ class YellowHouse(suburbsQuarter):
         print("You see a yellow house.\nNothing much over here.")
         Settings.print_objects_in_room(self)
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         Settings.first_arrival(self)
 
         while True:
@@ -32,7 +32,7 @@ class YellowHouse(suburbsQuarter):
 
 
             if self.door_knocked:
-                if handleChoiceObject.give_pizza(player):
+                if handlePlayerInput.give_pizza(player):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
@@ -68,7 +68,7 @@ class YellowHouse(suburbsQuarter):
                     print('“honey go get the door”\n(door opened)\n“oh, i didn’t expect for you to be here so soon“\n')
                     self.inputLegit = True
 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

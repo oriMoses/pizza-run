@@ -46,7 +46,7 @@ class GoldenGate(skyscrapersQuarter):
                 print("got a ticket?")
                 Settings.print_objects_in_room(self)
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         if not self.gateOpen:
             self.first_arrival()
         else:
@@ -85,7 +85,7 @@ class GoldenGate(skyscrapersQuarter):
                     print('"Hey kiddo! dont land anoter foot in the gate direction\nYou clearly have no ticket"\n')
                     self.inputLegit = True
                     
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

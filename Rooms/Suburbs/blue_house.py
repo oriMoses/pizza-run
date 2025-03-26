@@ -35,27 +35,27 @@ class BlueHouse(suburbsQuarter):
 
 
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival()
-
+        
         while True:
             if Settings.goNextRoom:
                 break
             player.choice = input("> ").lower()
 
             if self.door_knocked:
-                if handleChoiceObject.give_pizza(player):
+                if handlePlayerInput.give_pizza(player):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
-                        orders = Settings.get_orders_for(Street_Name.TREE,Street_Number.II)
+                        orders = Settings.get_orders_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II)
                         if orders == -1:
                             print("You already delivered this order\n")
                         elif orders == numberOfPizza:
                             player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                             player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
 
-                            Settings.remove_orderes_for(Street_Name.TREE,Street_Number.II)
+                            Settings.remove_orderes_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II)
 
                             print("my my, what a wonderful pizza!")
                             print(numberOfPizza*2, " coin up tip\n")
@@ -86,7 +86,7 @@ class BlueHouse(suburbsQuarter):
                     self.door_knocked = True
                     print("(door opened) \nhello there, young man")
 
-            elif handleChoiceObject.player_input(self.inventory):
+            elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

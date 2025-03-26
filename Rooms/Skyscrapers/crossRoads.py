@@ -38,7 +38,7 @@ class CrossRoads(skyscrapersQuarter):
             Settings.print_objects_in_room(self)
 
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival(player)
 
         while True:
@@ -49,7 +49,7 @@ class CrossRoads(skyscrapersQuarter):
             if "look" in player.choice:
                 print('Side road \n\nIt might get you somewhere.\n')
             
-            if handleChoiceObject.player_input(self.inventory):
+            if handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:

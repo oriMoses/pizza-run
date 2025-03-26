@@ -36,7 +36,7 @@ class CasinoParking(skyscrapersQuarter):
             Settings.print_objects_in_room(self)
 
 
-    def dialog_circle(self, handleChoiceObject, player):
+    def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival(player)
 
         while True:
@@ -44,7 +44,7 @@ class CasinoParking(skyscrapersQuarter):
                 break
             player.choice = input("> ").lower()
 
-            if handleChoiceObject.player_input(self.inventory):
+            if handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
             if self.inputLegit == False:
