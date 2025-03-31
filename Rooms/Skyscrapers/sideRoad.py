@@ -1,8 +1,9 @@
 from Classes.quarters import skyscrapersQuarter
+from Classes.quarters import shakedownQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Utils import pizza_temprature
-from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors
+from Constants.enums import Colors, Skyscrapers_Street_Number, Skyscrapers_Street_Name, Shakedown_Street_Name, Shakedown_Street_Number 
 from Constants.constants import *
 
 class SideRoad(skyscrapersQuarter):
@@ -51,6 +52,18 @@ class SideRoad(skyscrapersQuarter):
                     self.inputLegit = True
                 elif handlePlayerInput.player_input(self.inventory):
                     self.inputLegit = True
+            
+            elif player.position[0] == 6:
+                if player.position[1] == 1 or player.position[1] == 3 or player.position[1] == 4:
+                    if "south" in player.choice:
+                        player.quarter = "Shakedown"
+                        shakedownQuarter.__init__(self, [Shakedown_Street_Name.DUCK,Shakedown_Street_Number.III])
+                        player.position[0] = 0
+                        player.position[1] = 2
+                        Settings.goNextRoom = True
+                        self.inputLegit = True
+                        print()
+                
                 
             elif "look" in player.choice:
                 print('It might get you somewhere.\n')

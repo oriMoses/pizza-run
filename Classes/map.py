@@ -11,6 +11,7 @@ from Rooms.Suburbs.hippie_house import HippieHouse
 from Rooms.Suburbs.yellow_house import YellowHouse
 from Rooms.Suburbs.suburbs_none_special_room import SuburbsNoneSpecialRoom
 from Rooms.Skyscrapers.skyscrapers_none_special_room import SkyscrapersNoneSpecialRoom
+from Rooms.Shakedown.shakedown_none_special_room import ShakedownNoneSpecialRoom
 from Rooms.Skyscrapers.tradeCenter import TradeCenter
 from Rooms.Skyscrapers.bank import Bank
 from Rooms.Skyscrapers.mainRoad import MainRoad
@@ -109,7 +110,10 @@ class Map():
 
     class ShakedownConstructor():
         def __init__(self):
-            pass
+            streets_name_quantity, streets_number_quantity = (7, 7)
+            
+            self.position = [[ShakedownNoneSpecialRoom(street_number, street_name) for street_number in range(streets_number_quantity)] for street_name in range(streets_name_quantity)]
+        
     class HoodConstructor():
         def __init__(self):
             pass

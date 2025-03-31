@@ -45,6 +45,7 @@ def remove_orderes_for(streetPosition : int, addressPosition : int):
 
 def print_objects_in_room(self):
     counter = 0
+    enterPizzaPlace = False
     if print_items_in_room(self) == NO_ITEMS_IN_ROOM:
         counter += 1
     if print_vehicles_in_room(self) == NO_VEHICLES_IN_ROOM:
@@ -53,11 +54,12 @@ def print_objects_in_room(self):
         if player.position[0] == 3 and player.position[1] == 3:
             print_pizza_in_pizza_place(self)
             counter +=1
-        else:
-            if print_pizza_in_room(self) == NO_PIZZAS_IN_ROOM:
-                counter += 1
+            enterPizzaPlace = True
+    if not enterPizzaPlace:
+        if print_pizza_in_room(self) == NO_PIZZAS_IN_ROOM:
+            counter += 1
     if counter == 3:
-        print() #note: if room is empty print 1 empty line to currect spacing
+        print() #note: if room is empty print 1 empty line to correct spacing
 
 
 def print_items_in_room(self):

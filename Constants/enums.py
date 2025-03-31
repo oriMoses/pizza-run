@@ -35,7 +35,13 @@ class Skyscrapers_Street_Name(Enum):
     Shakedown = 10
     
 class Shakedown_Street_Name(Enum):
-    Shakedown = 10
+    DUCK = 0
+    PLATE = 1
+    SPOON = 2
+    SHAKEDOWN = 3
+    LOT = 4
+    TIME = 5
+    LATE = 6
     
 class Suburbs_Street_Number(Enum):
     I = 0
