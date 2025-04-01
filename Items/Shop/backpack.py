@@ -1,6 +1,7 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
+from Classes.inventory import Inventory
 
 class Backpack(BasicItem):
     def __init__(self, position):
@@ -8,7 +9,11 @@ class Backpack(BasicItem):
         self.quarter = "Suburbs"
         self.inShop = True
         self.price = 7
-    
+        self.inventory = Inventory()
+
+        self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COLD_PIZZA_ID, "cold pizza", 0, SHOW_ITEM_IN_ROOM)
+        
     def print_in_shop(self):
         print("(7 coins) Delivery backpack - you can keep up to 10 pizzas in this bag, the bag will make sure the pizza stays hot! You can drive with the backpack on you, or put it on a vehicle. \n")
 
@@ -17,3 +22,6 @@ class Backpack(BasicItem):
 
     def examine(self):
         print("you can keep up to 10 pizzas in this bag, the bag will make \n sure the pizza stays hot! You can drive with the backpack on you, or put  it on a vehicle.")
+        
+    def use(self):
+        print("you can put 10 pizza")

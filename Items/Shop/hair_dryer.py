@@ -13,7 +13,8 @@ class HairDryer(BasicItem):
         print("(2 coins) Hair dryer - can heat cold pizza (probably not the original use of this device. no warranty) \n")
 
     def print_in_room(self):
-        print("The hair dryer is on the floor.")
+        print("The hair dryer is on the floor")
 
     def examine(self):
         print("can heat cold pizza (probably not the original use of this device.\nno warranty")
+    

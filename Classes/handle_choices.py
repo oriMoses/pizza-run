@@ -313,23 +313,37 @@ class HandleInputs():
                     return -1
         return pizzasToAdd
 
+    def is_player_in_miniMarket(self, player):
+        if player.quarter == "Suburbs":
+            if player.position[0] == 1 and player.position[1] == 3:
+                return True
+            else:
+                return False
+    
+    def drop_or_take_pizzas_from(self, player, from_inventory, item_id, to_Inventory, amount, item_name):
+        if from_inventory.item_exist(item_id):
+            Settings.itemList[item_id].position = player.position
+            if item_id == HOT_PIZZA_ID or item_id == COLD_PIZZA_ID:
+                from_inventory.move_items(item_id, to_Inventory, amount)
+            else:
+                from_inventory.move_item(item_id, to_Inventory)
+            return True
+        else:
+            print("You don't have", item_name, "\n")
+            return False
+    
     def deal_with_pick_and_drop(self, roomInventory, item_id, item_name, amount, player):
         if "bike" in player.choice:
             if "pizza" in player.choice or "pizzas" in player.choice:
                 return
             
         if "pick" in player.choice or "take" in player.choice:
-            if player.quarter == "Suburbs":
-                if player.position[0] == 1 and player.position[1] == 3:
-                    print("Don't even think about it")
-                    return False
-                
-            if roomInventory.item_exist(item_id):
-                if item_id == HOT_PIZZA_ID or item_id == COLD_PIZZA_ID:
-                    roomInventory.move_items(item_id, player.inventory, amount)
-                else:
-                    roomInventory.move_item(item_id, player.inventory)
-                    print(item_name, "added to your inventory\n")
+            if self.is_player_in_miniMarket(player):
+                print("Don't even think about it")
+                return False
+
+            if self.drop_or_take_pizzas_from(player, roomInventory, item_id, player.inventory, amount, item_name):
+                print(item_name, "added to your inventory\n")
                 
             elif player.inventory.item_exist(item_id):
                 print("You already have", item_name, "\n")
@@ -337,20 +351,13 @@ class HandleInputs():
             return True
 
         elif "drop" in player.choice or "put" in player.choice or "give" in player.choice:
-            if player.quarter == "Suburbs":
-                if player.position[0] == 1 and player.position[1] == 3:
-                    print("Don't even think about leaving it here")
-                    return False
-                
-            if player.inventory.item_exist(item_id):
-                Settings.itemList[item_id].position = player.position
-                if item_id == HOT_PIZZA_ID or item_id == COLD_PIZZA_ID:
-                    player.inventory.move_items(item_id, roomInventory, amount)
-                else:
-                    player.inventory.move_item(item_id, roomInventory)
+            if self.is_player_in_miniMarket(player):
+                print("Don't even think about it")
+                return False
+
+            if self.drop_or_take_pizzas_from(player, player.inventory, item_id, roomInventory, amount, item_name):
                 print("item dropped.\n")
-            else:
-                print("You don't have", item_name, "\n")
+
             return True
         else:
             return False
