@@ -320,9 +320,8 @@ class HandleInputs():
             else:
                 return False
     
-    def drop_or_take_pizzas_from(self, player, from_inventory, item_id, to_Inventory, amount, item_name):
+    def move_pizzas_from(self, from_inventory, item_id, to_Inventory, amount, item_name):
         if from_inventory.item_exist(item_id):
-            Settings.itemList[item_id].position = player.position
             if item_id == HOT_PIZZA_ID or item_id == COLD_PIZZA_ID:
                 from_inventory.move_items(item_id, to_Inventory, amount)
             else:
@@ -342,7 +341,7 @@ class HandleInputs():
                 print("Don't even think about it")
                 return False
 
-            if self.drop_or_take_pizzas_from(player, roomInventory, item_id, player.inventory, amount, item_name):
+            if self.move_pizzas_from(roomInventory, item_id, player.inventory, amount, item_name):
                 print(item_name, "added to your inventory\n")
                 
             elif player.inventory.item_exist(item_id):
@@ -355,8 +354,9 @@ class HandleInputs():
                 print("Don't even think about it")
                 return False
 
-            if self.drop_or_take_pizzas_from(player, player.inventory, item_id, roomInventory, amount, item_name):
+            if self.move_pizzas_from(player.inventory, item_id, roomInventory, amount, item_name):
                 print("item dropped.\n")
+                Settings.itemList[item_id].position = player.position
 
             return True
         else:

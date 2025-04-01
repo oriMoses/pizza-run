@@ -32,6 +32,7 @@ class YellowHouse(suburbsQuarter):
 
 
             if self.door_knocked:
+                self.door_knocked = False
                 if handlePlayerInput.give_pizza(player):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
