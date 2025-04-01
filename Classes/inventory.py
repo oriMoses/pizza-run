@@ -5,12 +5,12 @@ class Inventory():
         self.inventory = {}
         self.max_pizza_capacity = 5
 
-    def add_item(self, item_id, item_name, stock_count, pizza_temprature = pizza_temprature.NOT_A_PIZZA):
-        self.inventory[item_id] = {"item_name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature}
+    def add_item(self, item_id, item_name, stock_count, showItem, pizza_temprature = pizza_temprature.NOT_A_PIZZA):
+        self.inventory[item_id] = {"item_name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature, "show_item": showItem}
 
     def move_item(self, item_id, toInventory):
         if item_id in self.inventory:
-            toInventory.add_item(item_id, self.inventory[item_id]["item_name"], self.inventory[item_id]["stock_count"])
+            toInventory.add_item(item_id, self.inventory[item_id]["item_name"], self.inventory[item_id]["stock_count"], True)
             self.inventory.pop(item_id)
         else:
             print("Item not in room.")
@@ -40,9 +40,10 @@ class Inventory():
         
     def print_room_inventory(self):
         for item in self.inventory:
-            if self.inventory[item]['item_name'] != "Pizza":
-                if self.inventory[item]['stock_count'] != 0:
-                    print("There's ", self.inventory[item]['item_name'], "on the floor\n")
+            if self.inventory[item]["show_item"]:
+                if self.inventory[item]['item_name'] != "Pizza":
+                    if self.inventory[item]['stock_count'] != 0:
+                        print("There's ", self.inventory[item]['item_name'], "on the floor\n")
 
     def print_player_inventory(self):
         for item in self.inventory:

@@ -10,23 +10,23 @@ class CasinoMainHall(skyscrapersQuarter):
     def __init__(self):
         skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.LUCK,Skyscrapers_Street_Number.VI])
         self.inputLegit = False
+        self.firstArrival = True
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
         self.wins_with_shiny_dice = 0
         
     def __str__(self):
         return f"Casino Main Hall (floor 1)"
 
     def print_first_arrival(self):
-        print("\nThe heart of the casino… at least the middle of it. \n\nYou see a dice table in the middle of the room. \nThe dice dealer is staring at you, for some reason. \n\nThere's an elevator to the", end=" ")
-        print(Colors.UNDERLINE + "North" + Colors.END, end=" ")
-        print(".")
+        print("\nThe heart of the casino... at least the middle of it. \n\nYou see a dice table in the middle of the room. \nThe dice dealer is staring at you, for some reason \n\nThere's an elevator to the", end=" ")
+        print(Colors.UNDERLINE + "West" + Colors.END)
 
         Settings.print_objects_in_room(self)
         
 
-    def first_arrival(self, player):
+    def first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
@@ -135,8 +135,7 @@ class CasinoMainHall(skyscrapersQuarter):
         #TODO: continue from here!
 
     def dialog_circle(self, player, handlePlayerInput):
-        self.first_arrival(player)
-        print("DEBUG: TODO: not show location of main casino hall")
+        self.first_arrival()
         while True:
             if Settings.goNextRoom:
                 break

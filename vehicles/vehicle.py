@@ -14,8 +14,8 @@ class Vehicle():
         self.vehicleKeyID = vehicleKeyID
 
         self.inventory = Inventory()
-        self.inventory.add_item(HOT_PIZZA_ID, "HotPizza", 0)
-        self.inventory.add_item(COLD_PIZZA_ID, "ColdPizza", 0)
+        self.inventory.add_item(HOT_PIZZA_ID, "HotPizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COLD_PIZZA_ID, "ColdPizza", 0, SHOW_ITEM_IN_ROOM)
 
     def turn_on(self):
         player = Player.getInstance()

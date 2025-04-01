@@ -12,14 +12,14 @@ class HippieHouse(suburbsQuarter):
         self.door_knocked = False
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):
         return f"Hippie House"
 
     def print_first_arrival(self):
-        print('You see a small apartment and smell rather... Earthy smell\n\nThere is a car parked outside with a bumper sticker that says "gas, grass or..." \nYou know what, nevermind the sticker.\n')
+        print('You see a small apartment and smell rather... Earthy smell\n\nThere is a car parked outside with a bumper sticker that says "gas, grass or..." \nYou know what, nevermind the sticker')
         Settings.print_objects_in_room(self)
 
 
@@ -28,7 +28,7 @@ class HippieHouse(suburbsQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Still with that strange smell.")
+            print("Still with that strange smell")
             Settings.print_objects_in_room(self)
 
 
@@ -46,7 +46,7 @@ class HippieHouse(suburbsQuarter):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
-                        orders = Settings.get_orders_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.I)
+                        orders = Settings.get_orders_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.I, player)
                         if orders == -1:
                             print("You already delivered this order")
                         elif orders == numberOfPizza:
@@ -55,9 +55,9 @@ class HippieHouse(suburbsQuarter):
 
                             Settings.remove_orderes_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.I)
 
-                            print('far out man!"')
+                            print('"far out man!"')
                             print(numberOfPizza*2, " coin up tip\n")
-                            break
+
                         else:
                             print("Thats not the correct order\n")
 
@@ -67,7 +67,7 @@ class HippieHouse(suburbsQuarter):
 
                         print("hmm, thanks man")
                         print(numberOfPizza, " coin up tip\n")
-                        break
+
                     else:
                         print("Not enough pizza in inventory\n")
                     self.inputLegit = True

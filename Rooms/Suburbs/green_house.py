@@ -14,10 +14,10 @@ class GreenHouse(suburbsQuarter):
         self.door_knocked = False
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(GREEN_LAWN_MOWER_KEY_ID, "Lawn mower key", 1)
-        self.inventory.add_item(LAWN_MOWER_ID, "Lawn mower", 1)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(GREEN_LAWN_MOWER_KEY_ID, "Lawn mower key", 1, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(LAWN_MOWER_ID, "Lawn mower", 1, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):
         return f"Green House"
@@ -40,7 +40,7 @@ class GreenHouse(suburbsQuarter):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
-                        orders = Settings.get_orders_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.V)
+                        orders = Settings.get_orders_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.V, player)
                         if orders == -1:
                             print("You already delivered this order\n")
                         elif orders == numberOfPizza:

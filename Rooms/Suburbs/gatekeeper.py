@@ -13,8 +13,8 @@ class Gatekeeper(suburbsQuarter):
         self.gateOpen = False
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):
         return f"Gatekeeper"
@@ -46,7 +46,7 @@ class Gatekeeper(suburbsQuarter):
             print(Colors.UNDERLINE + "South" + Colors.END)
             Settings.print_objects_in_room(self)
 
-    def dialog_circle(self, player, handlePlayerInput, ):
+    def dialog_circle(self, player, handlePlayerInput):
         if not self.gateOpen:
             self.first_arrival()
         else:
@@ -62,7 +62,7 @@ class Gatekeeper(suburbsQuarter):
                 numberOfPizza = Settings.howMuchPizza(self, player)
 
                 if player.inventory.hot_pizza_exists(numberOfPizza):
-                    orders = Settings.get_orders_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III)
+                    orders = Settings.get_orders_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III, player)
                     if orders == -1:
                         print("You already delivered this order\n")
                     elif orders == numberOfPizza:
@@ -104,8 +104,8 @@ class Gatekeeper(suburbsQuarter):
             elif "south" in player.choice and self.gateOpen:
                 player.quarter = "Skyscrapers"
                 skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.MAIN,Skyscrapers_Street_Number.I])
-                player.position[0] = 0
-                player.position[1] = 2
+                player.position[0] = 2
+                player.position[1] = 0
                 Settings.goNextRoom = True
                 self.inputLegit = True
                 print()

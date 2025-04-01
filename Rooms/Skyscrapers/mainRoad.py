@@ -10,8 +10,8 @@ class MainRoad(skyscrapersQuarter):
         skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name,Skyscrapers_Street_Number]) #Passed code until this line
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):
         return f"Main road"

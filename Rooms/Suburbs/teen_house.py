@@ -11,8 +11,8 @@ class TeenHouse(suburbsQuarter):
         self.firstArrival = True
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(HOT_PIZZA_ID, "HotPizza", 0)
-        self.inventory.add_item(COLD_PIZZA_ID, "ColdPizza", 0)
+        self.inventory.add_item(HOT_PIZZA_ID, "HotPizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COLD_PIZZA_ID, "ColdPizza", 0, SHOW_ITEM_IN_ROOM)
 
         self.door_knocked = False
 
@@ -39,7 +39,7 @@ class TeenHouse(suburbsQuarter):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
-                        orders = Settings.get_orders_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.II)
+                        orders = Settings.get_orders_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.II, player)
                         if orders == -1:
                             print("You already delivered this order\n")
                         elif orders == numberOfPizza:

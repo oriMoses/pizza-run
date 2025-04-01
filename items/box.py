@@ -11,8 +11,8 @@ class Box():
         self.ID = 100
 
         self.inventory = Inventory()
-        self.inventory.add_item(BIKE_KEY_ID, "bike key", 1)
-        self.inventory.add_item(SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1)
+        self.inventory.add_item(BIKE_KEY_ID, "bike key", 1, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1, SHOW_ITEM_IN_ROOM)
 
     def open(self):
         print(Colors.BROWN + "(box opened)\n" + Colors.END)

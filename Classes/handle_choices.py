@@ -39,11 +39,17 @@ class HandleInputs():
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
             elif player.quarter == "Skyscrapers":
+                print(player.position[0])
+                print(player.position[1])
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].print_first_arrival()
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inputLegit = True
+            elif player.quarter == "Shakedown":
+                Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].print_first_arrival()
+                Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
+                Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].inputLegit = True
             return True
-    
+
     def short_input(self, player):
         if len(player.choice) == 1:
             if player.choice == "i":
@@ -64,7 +70,8 @@ class HandleInputs():
             
     def green_lawn_mower_key(self, roomInventory, player):
         if "green lawn mower key" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, GREEN_LAWN_MOWER_KEY_ID, "green lawn mower key", 1, player)
+            if self.deal_with_pick_and_drop(roomInventory, GREEN_LAWN_MOWER_KEY_ID, "green lawn mower key", 1, player):
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(GREEN_LAWN_MOWER_KEY_ID):
@@ -73,7 +80,8 @@ class HandleInputs():
 
     def shiny_dice(self, roomInventory, player):
         if "shiny dice" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, SHINY_DICE_ID, "shiny dice", 1, player)
+            if self.deal_with_pick_and_drop(roomInventory, SHINY_DICE_ID, "shiny dice", 1, player):
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(SHINY_DICE_ID):
@@ -83,7 +91,8 @@ class HandleInputs():
 
     def lawn_mower(self, roomInventory, player):
         if "lawn mower" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, LAWN_MOWER_ID, "lawn mower", 1, player)
+            if self.deal_with_pick_and_drop(roomInventory, LAWN_MOWER_ID, "lawn mower", 1, player):
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(LAWN_MOWER_ID):
@@ -92,7 +101,8 @@ class HandleInputs():
 
     def wrist_watch(self, roomInventory, player):
         if "wrist watch" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, WRIST_WATCH_ID, "wrist watch", 1, player)
+            if self.deal_with_pick_and_drop(roomInventory, WRIST_WATCH_ID, "wrist watch", 1, player):
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(WRIST_WATCH_ID):
@@ -101,8 +111,9 @@ class HandleInputs():
 
     def tripper_guide(self, roomInventory, player):
         if "tripper guide" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, TRIPPER_GUIDE_ID, "tripper guide", 1, player)
-
+            if self.deal_with_pick_and_drop(roomInventory, TRIPPER_GUIDE_ID, "tripper guide", 1, player):
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+            
             if "examine" in player.choice:
                 if player.inventory.item_exist(TRIPPER_GUIDE_ID):
                     Settings.tripperLocationObject.examine()
@@ -111,7 +122,8 @@ class HandleInputs():
 
     def pizza_locator(self, roomInventory, player):
         if "pizza locator" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, PIZZA_LOCATOR_ID, "pizza locator", 1, player)
+            if self.deal_with_pick_and_drop(roomInventory, PIZZA_LOCATOR_ID, "pizza locator", 1, player):
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(PIZZA_LOCATOR_ID):
@@ -122,7 +134,8 @@ class HandleInputs():
 
     def hair_dryer(self, roomInventory, player):
         if "hair" in player.choice and "dryer" in player.choice:
-            self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1, player)
+            if self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1, player):
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
             if "examine" in player.choice:
                 if player.inventory.item_exist(HAIR_DRYER_ID):
@@ -136,7 +149,9 @@ class HandleInputs():
                 return True
             
             if player.inventory.item_exist(BIKE_KEY_ID) or roomInventory.item_exist(BIKE_KEY_ID):
-                self.deal_with_pick_and_drop(roomInventory, BIKE_KEY_ID, "bike key", 1, player)
+                if self.deal_with_pick_and_drop(roomInventory, BIKE_KEY_ID, "bike key", 1, player):
+                    Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+
                 Settings.bikeKeyObject.inBox = False
                 return True
 
@@ -151,6 +166,7 @@ class HandleInputs():
                 print("you can not see the suburbs notebook around\n")
                 
             if self.deal_with_pick_and_drop(roomInventory, SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1, player):
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
                 return True
             
             if "read" in player.choice or "examine" in player.choice:
@@ -198,11 +214,11 @@ class HandleInputs():
         if "bike" in player.choice:
             if "get down" in player.choice or "leave" in player.choice or "get off" in player.choice:
                 if Settings.bikeObject.player_on_vehacle():
-                    print("you got down from ", Settings.bikeObject.name)
+                    print("you got down from ", Settings.bikeObject.name + "\n")
                     Settings.bikeObject.playerOnVehicle = False
                     return True
                 else:
-                    print("you are not on a", Settings.bikeObject.name)
+                    print("you are not on a", Settings.bikeObject.name + "\n")
                     return True
 
             elif "climb" in player.choice or "ride" in player.choice or "get on" in player.choice:
@@ -303,6 +319,11 @@ class HandleInputs():
                 return
             
         if "pick" in player.choice or "take" in player.choice:
+            if player.quarter == "Suburbs":
+                if player.position[0] == 1 and player.position[1] == 3:
+                    print("Don't even think about it")
+                    return False
+                
             if roomInventory.item_exist(item_id):
                 if item_id == HOT_PIZZA_ID or item_id == COLD_PIZZA_ID:
                     roomInventory.move_items(item_id, player.inventory, amount)
@@ -316,6 +337,11 @@ class HandleInputs():
             return True
 
         elif "drop" in player.choice or "put" in player.choice or "give" in player.choice:
+            if player.quarter == "Suburbs":
+                if player.position[0] == 1 and player.position[1] == 3:
+                    print("Don't even think about leaving it here")
+                    return False
+                
             if player.inventory.item_exist(item_id):
                 Settings.itemList[item_id].position = player.position
                 if item_id == HOT_PIZZA_ID or item_id == COLD_PIZZA_ID:
@@ -325,7 +351,6 @@ class HandleInputs():
                 print("item dropped.\n")
             else:
                 print("You don't have", item_name, "\n")
-            
             return True
         else:
             return False
@@ -333,7 +358,9 @@ class HandleInputs():
     def pizza_key_input(self, roomInventory, player):
         if "key" in player.choice:
             if "pizza" in player.choice or "pizzas" in player.choice:
-                self.deal_with_pick_and_drop(roomInventory, MainPizzaKey_ID, "main pizza key", 1, player)
+                if self.deal_with_pick_and_drop(roomInventory, MainPizzaKey_ID, "main pizza key", 1, player):
+                    Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+
                 return True
 
     def get_all_pizza_from_(self, inventory):

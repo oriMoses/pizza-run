@@ -8,10 +8,11 @@ from Constants.constants import *
 class Elevator(skyscrapersQuarter):
     def __init__(self):
         skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.LUCK,Skyscrapers_Street_Number.V])
+        self.firstArrival = True
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):
         return f"Elevator"
@@ -23,7 +24,7 @@ class Elevator(skyscrapersQuarter):
         Settings.print_objects_in_room(self)
         
 
-    def first_arrival(self, player):
+    def first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
@@ -33,10 +34,8 @@ class Elevator(skyscrapersQuarter):
 
 
     def dialog_circle(self, player, handlePlayerInput):
-        self.first_arrival(player)
-        print("DEBUG: TODO: not show location of elevator")
-        print("DEBUG: TODO: change dialogs of elevator")
-
+        self.first_arrival()
+        
         while True:
             if Settings.goNextRoom:
                 break
@@ -44,14 +43,27 @@ class Elevator(skyscrapersQuarter):
 
             if "north" in player.choice or "south" in player.choice or "east" in player.choice or "west" in player.choice:
                 player.choice = ""
-                print("pardon me?")
-            
+                print("click a button")
+                self.first_arrival()
+                self.inputLegit = True
+
             if "0" in player.choice:
-                player.choice = "north"
-            elif "1" in player.choice:
-                player.choice = "south"
+                player.position[0] = 4
+                player.position[1] = 3
+                self.inputLegit = True
+                Settings.goNextRoom = True
+                
+            elif "1" in player.choice and not "5" in player.choice:
+                player.position[0] = 4
+                player.position[1] = 5
+                self.inputLegit = True
+                Settings.goNextRoom = True
+                
             elif "15" in player.choice:
-                player.choice = "west"
+                player.position[0] = 3
+                player.position[1] = 4
+                self.inputLegit = True
+                Settings.goNextRoom = True
                 
             if handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True

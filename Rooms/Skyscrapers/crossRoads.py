@@ -11,25 +11,25 @@ class CrossRoads(skyscrapersQuarter):
         self.inputLegit = False
         self.inventory = Inventory()
         self.firstArrival = True
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):
         return f"Crossroads"
 
     def print_first_arrival(self):
         print("You are at a crossroad. \n\nIt's surprisingly empty. \n\nThe main road goes from", end=" ")
-        print(Colors.UNDERLINE + "North" + Colors.END, end=" ")
+        print(Colors.UNDERLINE + "East" + Colors.END, end=" ")
         print("to", end=" ")
-        print(Colors.UNDERLINE + "South" + Colors.END, end=" ")
-        print("\nThere's a side road to the", end=" ")
         print(Colors.UNDERLINE + "West" + Colors.END, end=" ")
+        print("\nThere's a side road to the", end=" ")
+        print(Colors.UNDERLINE + "North" + Colors.END, end=" ")
         print("\nYou see a massive gate to the", end=" ")
-        print(Colors.UNDERLINE + "East" + Colors.END)
+        print(Colors.UNDERLINE + "South" + Colors.END)
         Settings.print_objects_in_room(self)
         
 
-    def first_arrival(self, player):
+    def first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
@@ -39,7 +39,7 @@ class CrossRoads(skyscrapersQuarter):
 
 
     def dialog_circle(self, player, handlePlayerInput):
-        self.first_arrival(player)
+        self.first_arrival()
 
         while True:
             if Settings.goNextRoom:

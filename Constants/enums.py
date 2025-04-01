@@ -17,7 +17,7 @@ class Colors(str, Enum):
     NEGATIVE = "\033[7m"
     CROSSED = "\033[9m"
     END = "\033[0m"
-
+    
 class Suburbs_Street_Name(Enum):
     BUSH = 0
     LOVE = 1

@@ -12,8 +12,8 @@ class SideRoad(skyscrapersQuarter):
         self.inputLegit = False
         self.firstArrival = True
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):
         return f"Side road"
@@ -53,13 +53,12 @@ class SideRoad(skyscrapersQuarter):
                 elif handlePlayerInput.player_input(self.inventory):
                     self.inputLegit = True
             
-            elif player.position[0] == 6:
-                if player.position[1] == 1 or player.position[1] == 3 or player.position[1] == 4:
-                    if "south" in player.choice:
+            elif player.position[0] == 4 and player.position[1] == 6:
+                    if "east" in player.choice:
                         player.quarter = "Shakedown"
                         shakedownQuarter.__init__(self, [Shakedown_Street_Name.DUCK,Shakedown_Street_Number.III])
-                        player.position[0] = 0
-                        player.position[1] = 2
+                        player.position[0] = 6
+                        player.position[1] = 0
                         Settings.goNextRoom = True
                         self.inputLegit = True
                         print()

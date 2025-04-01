@@ -18,17 +18,28 @@ shop_location = [10,10]
 mapInstance = None
 
 def init_orders(map):
-    global suburbsOrders, mapInstance
+    global suburbsOrders, skyscrapersOrders, shakedownOrders, mapInstance
     mapInstance = map
     suburbsOrders = [(5, [0,0]),  (3, [1,0]), (5, [2,1]), (3, [4,1]), (1, [5,2]), (2, [0,3]), (1, [1,3]), (1, [2,4]), (1, [4,4])]
-    #TODO: add orders to skyscrapers
+    skyscrapersOrders = [(30, [3,4]),  (30, [4,3])]
+    shakedownOrders = [(5, [0,3]),  (2, [3,0]), (1, [3,1]), (1, [3,4]), (12, [3,5]), (2, [5,3]), (1, [6, 0]), (1, [6,5])]
 
-def get_orders_for(streetPosition : int, addressPosition : int):
+def get_orders_for(streetPosition : int, addressPosition : int, player):
     global mapInstance
     orderAddress = [streetPosition.value, addressPosition.value]
-    for order in suburbsOrders:
-        if orderAddress == order[1]:
-            return order[0]
+    if player.quarter == "Suburbs":
+        for order in suburbsOrders:
+            if orderAddress == order[1]:
+                return order[0]
+    elif player.quarter == "Skyscrapers":
+        for order in skyscrapersOrders:
+            if orderAddress == order[1]:
+                return order[0]
+    elif player.quarter == "Shakedown":
+        for order in shakedownOrders:
+            if orderAddress == order[1]:
+                return order[0]
+        
     return -1
 
 def remove_orderes_for(streetPosition : int, addressPosition : int):
@@ -44,6 +55,7 @@ def remove_orderes_for(streetPosition : int, addressPosition : int):
         i += 1
 
 def print_objects_in_room(self):
+    player = Player.getInstance()
     counter = 0
     enterPizzaPlace = False
     if print_items_in_room(self) == NO_ITEMS_IN_ROOM:
@@ -180,32 +192,20 @@ def get_address(street, street_number, player):
     return address
 
 def get_street_number(street_number, player):
-    if player.quarter == "Suburbs":
-        if street_number == 0:
-            return "I"
-        if street_number == 1:
-            return "II"
-        if street_number == 2:
-            return "III"
-        if street_number == 3:
-            return "IV"
-        if street_number == 4:
-            return "V"
-    if player.quarter == "Skyscrapers":
-        if street_number == 0:
-            return "I"
-        if street_number == 1:
-            return "II"
-        if street_number == 2:
-            return "III"
-        if street_number == 3:
-            return "IV"
-        if street_number == 4:
-            return "V"
-        if street_number == 5:
-            return "VI"
-        if street_number == 6:
-            return "VII"
+    if street_number == 0:
+        return "I"
+    if street_number == 1:
+        return "II"
+    if street_number == 2:
+        return "III"
+    if street_number == 3:
+        return "IV"
+    if street_number == 4:
+        return "V"
+    if street_number == 5:
+        return "VI"
+    if street_number == 6:
+        return "VII"
 
 def get_street_name(street, player):
     if player.quarter == "Suburbs":
@@ -232,6 +232,21 @@ def get_street_name(street, player):
             return "Second St. "
         elif street == 4:
             return "Luck St. "
+    if player.quarter == "Shakedown":
+        if street == 0:
+            return "Duck St. "
+        elif street == 1:
+            return "Plate St. "
+        elif street == 2:
+            return "Spoon St. "
+        elif street == 3:
+            return "Shakedown St. "
+        elif street == 4:
+            return "Lot St. "
+        elif street == 5:
+            return "Time St. "
+        elif street == 6:
+            return "Late St. "
 
 def street_in_boundary(streetPoition, streetNumberPosition):
     global player, world_map

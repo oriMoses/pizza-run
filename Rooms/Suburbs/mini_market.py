@@ -11,20 +11,20 @@ class MiniMarket(suburbsQuarter):
         self.firstArrival = True
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
 
-        self.inventory.add_item(HAIR_DRYER_ID, "Hair Dryer", 1)
-        self.inventory.add_item(BACKPACK_ID, "Delivery Backpack", 1)
-        self.inventory.add_item(WRIST_WATCH_ID, "Wrist Watch", 1)
-        self.inventory.add_item(PIZZA_LOCATOR_ID, "Pizza Locator", 1)
-        self.inventory.add_item(TRIPPER_GUIDE_ID, "Tripper Guide", 1)
+        self.inventory.add_item(HAIR_DRYER_ID, "Hair Dryer", 1, HIDE_ITEM_IN_ROOM)
+        self.inventory.add_item(BACKPACK_ID, "Delivery Backpack", 1, HIDE_ITEM_IN_ROOM)
+        self.inventory.add_item(WRIST_WATCH_ID, "Wrist Watch", 1, HIDE_ITEM_IN_ROOM)
+        self.inventory.add_item(PIZZA_LOCATOR_ID, "Pizza Locator", 1, HIDE_ITEM_IN_ROOM)
+        self.inventory.add_item(TRIPPER_GUIDE_ID, "Tripper Guide", 1, HIDE_ITEM_IN_ROOM)
 
     def __str__(self):
         return f"Minimarket"
 
     def print_first_arrival(self):
-        print("You see a local shop, it seems to be open.")
+        print("You see a local shop, it seems to be open")
         Settings.print_objects_in_room(self)
 
 
@@ -33,18 +33,18 @@ class MiniMarket(suburbsQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("Still open.")
+            print("Still open")
             Settings.print_objects_in_room(self)
 
     
     def go_to_shop(self, player):
-        if "get in" in player.choice or "go" in player.choice:
+        if "get in" in player.choice or "go" in player.choice or "enter" in player.choice:
             if "shop" in player.choice or "minimarket" in player.choice or "mini market" in player.choice:
                 return True
         return False
 
     def print_on_buy(self):
-        print("""cha ching! \n\n“I hope you like it. no refunds!”\n""")
+        print("""cha ching! \n\n"I hope you like it. no refunds!"\n""")
 
     def dialog_circle(self, player, handlePlayerInput):
         self.first_arrival()
@@ -57,7 +57,7 @@ class MiniMarket(suburbsQuarter):
                 numberOfPizza = Settings.howMuchPizza(self, player)
 
                 if player.inventory.hot_pizza_exists(numberOfPizza):
-                    orders = Settings.get_orders_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.IV)
+                    orders = Settings.get_orders_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.IV, player)
                     if orders == -1:
                         print("You already delivered this order\n")
                     elif orders == numberOfPizza:
@@ -84,7 +84,7 @@ class MiniMarket(suburbsQuarter):
                 self.inputLegit = True
 
             if self.go_to_shop(player):
-                print('(Inside the shop)\nCashier: "hey there, would you like anything?" yes/no\n\n')
+                print('(Inside the shop)\nCashier: "hey there, would you like anything?" \nyes/no\n')
 
                 while "yes" not in player.choice and "no" not in player.choice and "buy" not in player.choice:
                     player.choice = input("> ").lower()
@@ -164,9 +164,14 @@ class MiniMarket(suburbsQuarter):
                                 print('"sorry bud, come back when you got enough money."\n')
                                 break
                     
+                    elif "take" in player.choice:
+                        print('''Cashier: "Don't even think about it"''')
+                        
+                        
                     elif "exit" not in player.choice:
                         print("you still in shop\n")
-                print("(exit shop)\n")
+                print("(exit shop)")
+                self.inputLegit = True
                     
     
             elif handlePlayerInput.player_input(self.inventory):

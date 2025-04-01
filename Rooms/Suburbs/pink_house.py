@@ -12,8 +12,8 @@ class PinkHouse(suburbsQuarter):
         self.door_knocked = False
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0)
+        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):
         return f"Pink House"
@@ -21,7 +21,7 @@ class PinkHouse(suburbsQuarter):
     def print_first_arrival(self):
         print("You see a pink house.\nThere's a big barbed fence to the ", end="")
         print(Colors.UNDERLINE + "East" + Colors.END)
-        print(".\nyou can't really see past the fence.\n\nstrange vibes over here.\n")
+        print("\nyou can't really see past the fence\n\nstrange vibes over here")
         Settings.print_objects_in_room(self)
 
     def first_arrival(self):
@@ -47,7 +47,7 @@ class PinkHouse(suburbsQuarter):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
                     if player.inventory.hot_pizza_exists(numberOfPizza):
-                        orders = Settings.get_orders_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.V)
+                        orders = Settings.get_orders_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.V, player)
                         if orders == -1:
                             print("You already delivered this order\n")
                         elif orders == numberOfPizza:
@@ -76,7 +76,7 @@ class PinkHouse(suburbsQuarter):
             elif "knock" in player.choice:
                 if "door" in player.choice or "house" in player.choice:
                     self.door_knocked = True
-                    print('You hear dogs barking and running.\nbang!\n\nsomeone crashed on the door!\nThe door opens to a crack and a man shouts:\n“who are you? go away!”\n')
+                    print('You hear dogs barking and running\nbang!\n\nsomeone crashed on the door!\nThe door opens to a crack and a man shouts:\n“who are you? go away!”\n')
                     self.inputLegit = True
 
             elif handlePlayerInput.player_input(self.inventory):
