@@ -141,6 +141,16 @@ class HandleInputs():
                 if player.inventory.item_exist(HAIR_DRYER_ID):
                     Settings.hairDryerObject.examine()
                     return True
+            
+            if "use" in player.choice:
+                Settings.hairDryerObject.use(roomInventory)
+                
+                
+                # if self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1, player):
+                    
+                # if self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1, player):
+                #     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+                
 
     def bike_key(self, roomInventory, player):
         if "bike" in player.choice and "key" in player.choice:
@@ -164,6 +174,7 @@ class HandleInputs():
         if "notebook" in player.choice and "suburbs" in player.choice:
             if not roomInventory.item_exist(SUBURBS_NOTEBOOK_ID):
                 print("you can not see the suburbs notebook around\n")
+                return True
                 
             if self.deal_with_pick_and_drop(roomInventory, SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1, player):
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
@@ -341,8 +352,9 @@ class HandleInputs():
                 print("Don't even think about it")
                 return False
 
-            if self.move_pizzas_from(roomInventory, item_id, player.inventory, amount, item_name):
-                print(item_name, "added to your inventory\n")
+            if "bag" in player.choice or "backpack" in player.choice:
+                if self.move_pizzas_from(player.inventory, item_id, Settings.backpackObject.inventory, amount, item_name):
+                    print(item_name, "added to your inventory\n")
                 
             elif player.inventory.item_exist(item_id):
                 print("You already have", item_name, "\n")
@@ -354,6 +366,11 @@ class HandleInputs():
                 print("Don't even think about it")
                 return False
 
+            if "bag" in player.choice or "backpack" in player.choice:
+                if self.move_pizzas_from(Settings.backpackObject.inventory, item_id, roomInventory, amount, item_name):
+                    print("item dropped.\n")
+                    Settings.itemList[item_id].position = player.position
+    
             if self.move_pizzas_from(player.inventory, item_id, roomInventory, amount, item_name):
                 print("item dropped.\n")
                 Settings.itemList[item_id].position = player.position
@@ -380,9 +397,7 @@ class HandleInputs():
         
         bikeInChoice = False
         if "pizza" in player.choice or "pizzas" in player.choice:
-            if "bike" in player.choice: bikeInChoice = True
-
-            if bikeInChoice:
+            if "bike" in player.choice:
                 if "pick" in player.choice or "take" in player.choice:
                     pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
                     pizzasToMove = self.get_number_of_(pizzasOnPlayer, "bike", player)

@@ -1,6 +1,7 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
+from Utils import pizza_temprature
 
 class HairDryer(BasicItem):
     def __init__(self, position):
@@ -16,5 +17,14 @@ class HairDryer(BasicItem):
         print("The hair dryer is on the floor")
 
     def examine(self):
-        print("can heat cold pizza (probably not the original use of this device.\nno warranty")
-    
+        print("can heat cold pizza (probably not the original use of this device)\nno warranty\n")
+        
+    def use(self, roomInventory, playerInventory):
+        for item in roomInventory:
+            if roomInventory[item]['item_id'] == COLD_PIZZA_ID:
+                for pizza in roomInventory[item]['stock_count']:
+                    roomInventory[item]['pizza_temprature'] = pizza_temprature.HOT
+        for item in playerInventory:
+            if playerInventory[item]['item_id'] == COLD_PIZZA_ID:
+                for pizza in playerInventory[item]['stock_count']:
+                    playerInventory[item]['pizza_temprature'] = pizza_temprature.HOT

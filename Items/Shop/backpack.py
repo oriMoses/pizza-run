@@ -22,6 +22,3 @@ class Backpack(BasicItem):
 
     def examine(self):
         print("you can keep up to 10 pizzas in this bag, the bag will make \n sure the pizza stays hot! You can drive with the backpack on you, or put  it on a vehicle.")
-        
-    def use(self):
-        print("you can put 10 pizza")
