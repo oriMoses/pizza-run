@@ -1,7 +1,6 @@
 from Classes.quarters import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Utils import pizza_temprature
 from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name
 from Constants.constants import *
 
@@ -11,8 +10,8 @@ class MiniMarket(suburbsQuarter):
         self.firstArrival = True
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COLD_PIZZA_ID, "cold pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 0, SHOW_ITEM_IN_ROOM)
 
         self.inventory.add_item(HAIR_DRYER_ID, "Hair Dryer", 1, HIDE_ITEM_IN_ROOM)
         self.inventory.add_item(BACKPACK_ID, "Delivery Backpack", 1, HIDE_ITEM_IN_ROOM)

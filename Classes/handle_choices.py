@@ -1,5 +1,4 @@
 import Classes.settings as Settings
-from Utils import pizza_temprature
 from Classes.player import Player
 from Constants.constants import *
 from Rooms.Suburbs.suburbs_none_special_room import SuburbsNoneSpecialRoom

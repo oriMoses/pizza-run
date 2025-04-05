@@ -2,8 +2,7 @@ from Classes.quarters import suburbsQuarter
 from Classes.inventory import Inventory
 import Classes.settings as Settings
 from Doors.main_pizza_place_door import mainPizzaPlaceDoor
-from Utils import pizza_temprature
-from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name, Colors
+from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name, Colors, pizza_temprature
 from Constants.constants import *
 import colorama
 class PizzaPlace():
@@ -13,7 +12,7 @@ class PizzaPlace():
         self.inputLegit = False
         self.firstArrival = True
         self.inventory = Inventory()
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 100, pizza_temprature.HOT, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 100, pizza_temprature.HOT, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(MainPizzaKey_ID, "main pizza key", 1, SHOW_ITEM_IN_ROOM)
 
         self.door = mainPizzaPlaceDoor()

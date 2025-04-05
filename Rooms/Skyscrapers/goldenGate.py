@@ -1,7 +1,6 @@
 from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Utils import pizza_temprature
 from Constants.enums import Skyscrapers_Street_Name, Skyscrapers_Street_Number, Colors
 from Constants.constants import *
 
@@ -12,8 +11,8 @@ class GoldenGate(skyscrapersQuarter):
         self.gateOpen = False
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COLD_PIZZA_ID, "cold pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 0, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):
         return f"Golden Gate\n"

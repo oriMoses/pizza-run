@@ -1,7 +1,6 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
-from Utils import pizza_temprature
 
 class HairDryer(BasicItem):
     def __init__(self, position):

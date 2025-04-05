@@ -1,16 +1,15 @@
-from Utils import pizza_temprature
-import Classes.settings as Settings
+from Constants.enums import pizza_temprature
 class Inventory():
     def __init__(self):
         self.inventory = {}
         self.max_pizza_capacity = 5
 
     def add_item(self, item_id, item_name, stock_count, showItem, pizza_temprature = pizza_temprature.NOT_A_PIZZA):
-        self.inventory[item_id] = {"item_name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature, "show_item": showItem}
+        self.inventory[item_id] = {"name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature, "show_item": showItem}
 
     def move_item(self, item_id, toInventory):
         if item_id in self.inventory:
-            toInventory.add_item(item_id, self.inventory[item_id]["item_name"], self.inventory[item_id]["stock_count"], True)
+            toInventory.add_item(item_id, self.inventory[item_id]["name"], self.inventory[item_id]["stock_count"], True)
             self.inventory.pop(item_id)
         else:
             print("Item not in room.")
@@ -31,25 +30,25 @@ class Inventory():
     def print_item_info(self, item_id):
         if item_id in self.inventory:
             item = self.inventory[item_id]
-            if item['item_name'] == "Pizza":
-                return f"Product Name: {item['item_name']}, Stock Count: {item['stock_count']}, Pizza Temprature: {item['pizza_temprature']}"
+            if item['name'] == "Pizza":
+                return f"Product Name: {item['name']}, Stock Count: {item['stock_count']}, Pizza Temprature: {item['pizza_temprature']}"
             else:
-                return f"Product Name: {item['item_name']}, Stock Count: {item['stock_count']}"
+                return f"Product Name: {item['name']}, Stock Count: {item['stock_count']}"
         else:
             return "Item not found in inventory."
         
     def print_room_inventory(self):
         for item in self.inventory:
             if self.inventory[item]["show_item"]:
-                if self.inventory[item]['item_name'] != "Pizza":
+                if self.inventory[item]['name'] != "hot pizza" and self.inventory[item]['name'] != "cold pizza":
                     if self.inventory[item]['stock_count'] != 0:
-                        print("There's ", self.inventory[item]['item_name'], "on the floor\n")
+                        print("There's", self.inventory[item]['name'], "on the floor")
 
     def print_player_inventory(self):
         for item in self.inventory:
-            if self.inventory[item]['item_name'] != "Pizza":
+            if self.inventory[item]['name'] != "Pizza":
                 if self.inventory[item]['stock_count'] != 0:
-                    print(self.inventory[item]['item_name'], self.inventory[item]['stock_count'])
+                    print(self.inventory[item]['name'], self.inventory[item]['stock_count'])
 
     def item_exist(self, item_id):
         if item_id in self.inventory:
@@ -60,7 +59,7 @@ class Inventory():
 
     def hot_pizza_exists(self, amount):
         for item in self.inventory:
-            if self.inventory[item]['item_name'] == "hot pizza":
+            if self.inventory[item]['name'] == "hot pizza":
                 if type(amount) != None:
                     if self.inventory[item]['stock_count'] == amount:
                         return True
@@ -69,7 +68,7 @@ class Inventory():
 
     def cold_pizza_exists(self, amount):
         for item in self.inventory:
-            if self.inventory[item]['item_name'] == "pizza":
+            if self.inventory[item]['name'] == "pizza":
                 if self.inventory[item]['stock_count'] >= amount:
                     return True
 

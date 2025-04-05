@@ -1,6 +1,5 @@
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Utils import pizza_temprature
 from Constants.constants import *
 from Classes.quarters import shakedownQuarter 
 from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number, Colors
@@ -12,7 +11,7 @@ class DownUnder(shakedownQuarter):
         self.inputLegit = False
     
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COLD_PIZZA_ID, "cold pizza", 0, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):

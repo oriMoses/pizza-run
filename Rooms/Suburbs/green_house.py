@@ -1,7 +1,6 @@
 from Classes.quarters import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Utils import pizza_temprature
 from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name
 from Constants.constants import *
 
@@ -14,8 +13,8 @@ class GreenHouse(suburbsQuarter):
         self.door_knocked = False
         self.inputLegit = False
         self.inventory = Inventory()
-        self.inventory.add_item(COLD_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
-        self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COLD_PIZZA_ID, "cold pizza", 0, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 0, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(GREEN_LAWN_MOWER_KEY_ID, "Lawn mower key", 1, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(LAWN_MOWER_ID, "Lawn mower", 1, SHOW_ITEM_IN_ROOM)
 
