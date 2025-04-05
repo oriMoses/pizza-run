@@ -66,11 +66,11 @@ def print_objects_in_room(self):
         if player.position[0] == 3 and player.position[1] == 3:
             print_pizza_in_pizza_place(self)
             counter +=1
-            enterPizzaPlace = True
-    if not enterPizzaPlace:
-        if print_pizza_in_room(self) == NO_PIZZAS_IN_ROOM:
-            counter += 1
-    if counter == 3:
+    #        enterPizzaPlace = True
+    # if not enterPizzaPlace:
+    #     if print_pizza_in_room(self) == NO_PIZZAS_IN_ROOM:
+    #         counter += 1
+    if counter == 2:
         print() #note: if room is empty print 1 empty line to correct spacing
 
 

@@ -38,8 +38,6 @@ class HandleInputs():
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
             elif player.quarter == "Skyscrapers":
-                print(player.position[0])
-                print(player.position[1])
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].print_first_arrival()
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inputLegit = True
@@ -142,8 +140,8 @@ class HandleInputs():
                     return True
             
             if "use" in player.choice:
-                Settings.hairDryerObject.use(roomInventory)
-                
+                Settings.hairDryerObject.use(roomInventory, player.inventory)
+                self.inputLegit = True
                 
                 # if self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1, player):
                     
@@ -330,12 +328,13 @@ class HandleInputs():
             else:
                 return False
     
-    def move_pizzas_from(self, from_inventory, item_id, to_Inventory, amount, item_name):
-        if from_inventory.item_exist(item_id):
-            if item_id == HOT_PIZZA_ID or item_id == COLD_PIZZA_ID:
-                from_inventory.move_items(item_id, to_Inventory, amount)
+    def move_pizzas_from(self, from_inventory, pizza_id, to_Inventory, amount, item_name):
+        
+        if from_inventory.item_exist(pizza_id):
+            if pizza_id == HOT_PIZZA_ID or pizza_id == COLD_PIZZA_ID:
+                from_inventory.move_items(pizza_id, to_Inventory, amount)
             else:
-                from_inventory.move_item(item_id, to_Inventory)
+                from_inventory.move_item(pizza_id, to_Inventory)
             return True
         else:
             print("You don't have", item_name, "\n")
@@ -434,8 +433,19 @@ class HandleInputs():
                 if pizzasToMove == -1:
                     return True
                 
-                player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToMove)
-                print("item dropped.\n")
+                if "hot" in player.choice:
+                    player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToMove)
+
+                elif "cold" in player.choice:
+                    player.inventory.move_items(COLD_PIZZA_ID, roomInventory, pizzasToMove)
+                
+                else:
+                    if player.inventory.item_exist(COLD_PIZZA_ID):
+                        player.inventory.move_items(COLD_PIZZA_ID, roomInventory, pizzasToMove)
+                    elif player.inventory.item_exist(HOT_PIZZA_ID):
+                        player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToMove)
+
+                print("item dropped\n")
                 return True
 
 #                    print("You don't have ", item_name)

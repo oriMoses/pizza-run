@@ -1,6 +1,6 @@
-import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
+from Constants.enums import pizza_temprature
 
 class HairDryer(BasicItem):
     def __init__(self, position):
@@ -17,13 +17,23 @@ class HairDryer(BasicItem):
 
     def examine(self):
         print("can heat cold pizza (probably not the original use of this device)\nno warranty\n")
+
+    def warm_pizzas_on(self, inventory):
+        inventory.inventory[HOT_PIZZA_ID]['stock_count'] += inventory.inventory[COLD_PIZZA_ID]['stock_count'] 
+        inventory.inventory[COLD_PIZZA_ID]['stock_count'] = 0        
         
     def use(self, roomInventory, playerInventory):
-        for item in roomInventory:
-            if roomInventory[item]['item_id'] == COLD_PIZZA_ID:
-                for pizza in roomInventory[item]['stock_count']:
-                    roomInventory[item]['pizza_temprature'] = pizza_temprature.HOT
-        for item in playerInventory:
-            if playerInventory[item]['item_id'] == COLD_PIZZA_ID:
-                for pizza in playerInventory[item]['stock_count']:
-                    playerInventory[item]['pizza_temprature'] = pizza_temprature.HOT
+        # {"name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature, "show_item": showItem}
+        
+        self.warm_pizzas_on(roomInventory)
+        self.warm_pizzas_on(playerInventory)
+        
+                
+        # for item in roomInventory:
+        #     if roomInventory[item]['item_name'] == "cold pizza":
+                
+                
+        # for item in playerInventory:
+        #     if playerInventory[item]['item_id'] == COLD_PIZZA_ID:
+        #         for pizza in playerInventory[item]['stock_count']:
+        #             playerInventory[item]['pizza_temprature'] = pizza_temprature.HOT
