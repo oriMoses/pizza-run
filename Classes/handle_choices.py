@@ -328,8 +328,8 @@ class HandleInputs():
             else:
                 return False
     
-    def move_pizzas_from(self, from_inventory, pizza_id, to_Inventory, amount, item_name):
-        
+    def move_pizzas_from(self, from_inventory, pizza_id, to_Inventory, amount):
+        print(amount)
         if from_inventory.item_exist(pizza_id):
             if pizza_id == HOT_PIZZA_ID or pizza_id == COLD_PIZZA_ID:
                 from_inventory.move_items(pizza_id, to_Inventory, amount)
@@ -337,7 +337,7 @@ class HandleInputs():
                 from_inventory.move_item(pizza_id, to_Inventory)
             return True
         else:
-            print("You don't have", item_name, "\n")
+            print("You don't have", pizza_id, "\n")
             return False
     
     def deal_with_pick_and_drop(self, roomInventory, item_id, item_name, amount, player):
@@ -352,7 +352,7 @@ class HandleInputs():
                 return False
 
             if "bag" in player.choice or "backpack" in player.choice:
-                if self.move_pizzas_from(player.inventory, item_id, Settings.backpackObject.inventory, amount, item_name):
+                if self.move_pizzas_from(player.inventory, item_id, Settings.backpackObject.inventory, amount):
                     print(item_name, "added to your inventory\n")
                 
             elif player.inventory.item_exist(item_id):
@@ -366,25 +366,13 @@ class HandleInputs():
                 return False
 
             if "bag" in player.choice or "backpack" in player.choice:
-                if self.move_pizzas_from(Settings.backpackObject.inventory, item_id, roomInventory, amount, item_name):
+                if self.move_pizzas_from(Settings.backpackObject.inventory, item_id, roomInventory, amount):
                     print("item dropped\n")
                     Settings.itemList[item_id].position = player.position
     
-            if self.move_pizzas_from(player.inventory, item_id, roomInventory, amount, item_name):
+            if self.move_pizzas_from(player.inventory, item_id, roomInventory, amount):
                 print("item dropped\n")
                 Settings.itemList[item_id].position = player.position
-
-                if "hot" in player.choice:
-                    player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToMove)
-
-                elif "cold" in player.choice:
-                    player.inventory.move_items(COLD_PIZZA_ID, roomInventory, pizzasToMove)
-                
-                else:
-                    self.check_player_pizza_to_give(player, roomInventory, pizzasToMove)
-                print("item dropped\n")
-                return True
-
 
             return True
         else:
@@ -411,7 +399,6 @@ class HandleInputs():
         if "key" in player.choice:
             return False
         
-        bikeInChoice = False
         if "pizza" in player.choice or "pizzas" in player.choice:
             if "bike" in player.choice:
                 if "pick" in player.choice or "take" in player.choice:
@@ -420,11 +407,10 @@ class HandleInputs():
                         print("pizza number unavailable")
                         return True
                     if "hot" in player.choice:
-                        player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToMove)
+                        self.move_pizzas_from(player.inventory, HOT_PIZZA_ID, roomInventory, pizzasToMove)
 
                     elif "cold" in player.choice:
-                        player.inventory.move_items(COLD_PIZZA_ID, roomInventory, pizzasToMove)
-                    
+                        self.move_pizzas_from(player.inventory, COLD_PIZZA_ID, roomInventory, pizzasToMove)
                     else:
                         self.check_player_pizza_to_give(player, roomInventory, pizzasToMove)
                     print("item dropped\n")
@@ -439,9 +425,9 @@ class HandleInputs():
                     self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToMove, player.choice, player)
                     return True
             else:
-                
                 if "pick" in player.choice or "take" in player.choice:
-                    pizzasToMove = self.get_pizza_on_player(player, "bike")
+                    pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
+                    pizzasToMove = self.get_number_of_(pizzasOnPlayer, "player", player)
                     if pizzasToMove == -1:
                         print("pizza number unavailable")
                         return True
@@ -450,7 +436,15 @@ class HandleInputs():
                         print("can't carry more than 5 pizza")
                         return True
                 
-                    self.move_pizza(roomInventory, player.inventory, pizzasToMove, player.choice, player)
+                    if "hot" in player.choice:
+                        self.move_pizzas_from(roomInventory, HOT_PIZZA_ID, player.inventory, pizzasToMove)
+
+                    elif "cold" in player.choice:
+                        self.move_pizzas_from(roomInventory, COLD_PIZZA_ID, player.inventory, pizzasToMove)
+
+                    else:
+                        self.check_player_pizza_to_give(player, roomInventory, pizzasToMove)
+
                     return True
                 
 

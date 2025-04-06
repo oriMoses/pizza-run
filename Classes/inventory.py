@@ -15,6 +15,7 @@ class Inventory():
             print("Item not in room.")
 
     def move_items(self, item_id, toInventory, amount):
+        print(amount)
         if self.inventory[item_id]["stock_count"] - amount >= 0:
             self.inventory[item_id]["stock_count"] -= amount
             toInventory.inventory[item_id]["stock_count"] += amount
