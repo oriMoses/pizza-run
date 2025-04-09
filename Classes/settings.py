@@ -73,6 +73,9 @@ def print_objects_in_room(self):
     if counter == 2:
         print() #note: if room is empty print 1 empty line to correct spacing
 
+def cool_pizzas_on(inventory):
+    inventory.inventory[COLD_PIZZA_ID]['stock_count'] += inventory.inventory[HOT_PIZZA_ID]['stock_count'] 
+    inventory.inventory[HOT_PIZZA_ID]['stock_count'] = 0
 
 def print_items_in_room(self):
     inBox = False

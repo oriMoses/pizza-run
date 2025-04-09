@@ -186,7 +186,7 @@ class HandleInputs():
     def inventory_input(self, player):
         if "inventory" in player.choice and len(player.choice) <= 10 :
             if not "bike inventory" in player.choice:
-                print("\ninventory:")
+                print("inventory:")
                 player.inventory.print_player_inventory()
                 return True
 
@@ -248,89 +248,47 @@ class HandleInputs():
                 Settings.bikeObject.inventory.print_player_inventory()
                 return True
 
-    def move_pizza(self, fromInventory, toInventory, pizzasToAdd, playerChoice, player):
-        hotPizzaInRoom = fromInventory.get_amount(HOT_PIZZA_ID)
-        if hotPizzaInRoom < pizzasToAdd:
-            coldPizzaInRoom = fromInventory.get_amount(COLD_PIZZA_ID)
-            if coldPizzaInRoom < pizzasToAdd:
-                print("Not enough pizza in inventory")
-                return False
-            else:
-                # if player.position.x == 4 and player.position.y == 4 and player.quarter == "skyscrapers":
-                #     if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
-                #         print("You can't put more than 10 pizza in the elevator!")
-                #         return True
-                fromInventory.move_items(COLD_PIZZA_ID, toInventory, pizzasToAdd)
-        else:
-            # if player.position[0] == 4 and player.position[1] == 4 and player.quarter == "skyscrapers":
-            #     if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
-            #         print("You can't put more than 10 pizza in the elevator!")
-            #         return True
+    # def move_pizza(self, fromInventory, toInventory, pizzasToAdd, playerChoice, player):
+    #     hotPizzaInRoom = fromInventory.get_amount(HOT_PIZZA_ID)
+    #     if hotPizzaInRoom < pizzasToAdd:
+    #         coldPizzaInRoom = fromInventory.get_amount(COLD_PIZZA_ID)
+    #         if coldPizzaInRoom < pizzasToAdd:
+    #             print("Not enough pizza in inventory")
+    #             return False
+    #         else:
+    #             # if player.position.x == 4 and player.position.y == 4 and player.quarter == "skyscrapers":
+    #             #     if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
+    #             #         print("You can't put more than 10 pizza in the elevator!")
+    #             #         return True
+    #             fromInventory.move_items(COLD_PIZZA_ID, toInventory, pizzasToAdd)
+    #     else:
+    #         # if player.position[0] == 4 and player.position[1] == 4 and player.quarter == "skyscrapers":
+    #         #     if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
+    #         #         print("You can't put more than 10 pizza in the elevator!")
+    #         #         return True
             
             
-            if (toInventory.get_amount(HOT_PIZZA_ID) + toInventory.get_amount(COLD_PIZZA_ID)) < toInventory.max_pizza_capacity:        
-                fromInventory.move_items(HOT_PIZZA_ID, toInventory, pizzasToAdd)
-            else:
-                print("can't carry more than ", end="")
-                print(toInventory.max_pizza_capacity, end=" ")
-                print("pizzas")
-                return True
+    #         if (toInventory.get_amount(HOT_PIZZA_ID) + toInventory.get_amount(COLD_PIZZA_ID)) < toInventory.max_pizza_capacity:        
+    #             fromInventory.move_items(HOT_PIZZA_ID, toInventory, pizzasToAdd)
+    #         else:
+    #             print("can't carry more than ", end="")
+    #             print(toInventory.max_pizza_capacity, end=" ")
+    #             print("pizzas")
+    #             return True
 
-        if pizzasToAdd == 0:
-            print("not enough pizza in inventory")
-        if "bike" in playerChoice:
-            if "give" in playerChoice or "put" in playerChoice:
-                print(pizzasToAdd, "pizzas\n(on bike)\n")
-            elif "take" in playerChoice or "pick" in playerChoice:
-                print(pizzasToAdd, "pizzas\n(on hands)\n")
-        else:
-            print(pizzasToAdd, "pizzas\n(on hands)\n")
-    
-    def get_number_of_(self, pizzasOnInventory, inventoryName, player):
-        pizzasToAdd = 0
-        if "1 " in player.choice:
-            pizzasToAdd = 1
+    #     if pizzasToAdd == 0:
+    #         print("not enough pizza in inventory")
+    #     if "bike" in playerChoice:
+    #         if "give" in playerChoice or "put" in playerChoice:
+    #             print(pizzasToAdd, "pizzas\n(on bike)\n")
+    #         elif "take" in playerChoice or "pick" in playerChoice:
+    #             print(pizzasToAdd, "pizzas\n(on hands)\n")
+    #     else:
+    #         print(pizzasToAdd, "pizzas\n(on hands)\n")
 
-        elif "2 " in player.choice:
-            pizzasToAdd = 2
-                
-        elif "3 " in player.choice:
-            pizzasToAdd = 3
-
-        elif "4 " in player.choice:
-            pizzasToAdd = 4
-
-        elif "5 " in player.choice:
-            pizzasToAdd = 5
-        else:
-            print(inventoryName, "can't carry more than 5 pizzas")
-            return -1
-        if "take" in player.choice and "bike" in player.choice:
-            if "drop" in player.choice:
-                pass
-            else:#TODO: remove here a lot
-                if pizzasToAdd + pizzasOnInventory > MAX_PIZZA_ON_PLAYER:
-                    pizzasToAdd = 0
-        elif "drop" in player.choice:
-            if pizzasToAdd > pizzasOnInventory:
-                print("not enough pizza in inventory")
-                return -1
-            elif player.quarter == "Skyscrapers" and player.position[0] == 4 and player.position[1] == 4:
-                if pizzasOnInventory + pizzasToAdd > 10:
-                    print("You can't put more than 10 pizzas in the elevator!")
-                    return -1
-        return pizzasToAdd
-
-    def is_player_in_miniMarket(self, player):
-        if player.quarter == "Suburbs":
-            if player.position[0] == 1 and player.position[1] == 3:
-                return True
-            else:
-                return False
-    
     def move_pizzas_from(self, from_inventory, pizza_id, to_Inventory, amount):
-        print(amount)
         if from_inventory.item_exist(pizza_id):
+
             if pizza_id == HOT_PIZZA_ID or pizza_id == COLD_PIZZA_ID:
                 from_inventory.move_items(pizza_id, to_Inventory, amount)
             else:
@@ -339,6 +297,54 @@ class HandleInputs():
         else:
             print("You don't have", pizza_id, "\n")
             return False
+
+    def get_number_of_(self, pizzasOnInventory, inventoryName, player):
+        pizzaOnPlayerChoice = 0
+        if "1 " in player.choice:
+            pizzaOnPlayerChoice = 1
+
+        elif "2 " in player.choice:
+            pizzaOnPlayerChoice = 2
+                
+        elif "3 " in player.choice:
+            pizzaOnPlayerChoice = 3
+
+        elif "4 " in player.choice:
+            pizzaOnPlayerChoice = 4
+
+        elif "5 " in player.choice:
+            pizzaOnPlayerChoice = 5
+        else:
+            return TOO_MUCH_PIZZA_TO_CARRY
+
+        if "pick" in player.choice or "take" in player.choice:
+            if (pizzasOnInventory + pizzaOnPlayerChoice) > 5:
+                return TOO_MUCH_PIZZA_TO_CARRY
+            
+
+        if "take" in player.choice and "bike" in player.choice:
+            if "drop" in player.choice:
+                pass
+            else:               #TODO: remove here a lot
+                if pizzaOnPlayerChoice + pizzasOnInventory > MAX_PIZZA_ON_PLAYER:
+                    pizzaOnPlayerChoice = 0
+        elif "drop" in player.choice:
+            if pizzaOnPlayerChoice > pizzasOnInventory:
+                return NOT_ENOUGH_PIZZA_IN_INVENTORY
+            
+            elif player.quarter == "Skyscrapers" and player.position[0] == 4 and player.position[1] == 4:
+                if pizzasOnInventory + pizzaOnPlayerChoice > 10:
+                    print("You can't put more than 10 pizzas in the elevator!")
+                    return TOO_MUCH_PIZZA_ON_ELEVATOR
+        return pizzaOnPlayerChoice
+
+    def is_player_in_miniMarket(self, player):
+        if player.quarter == "Suburbs":
+            if player.position[0] == 1 and player.position[1] == 3:
+                return True
+            else:
+                return False
+    
     
     def deal_with_pick_and_drop(self, roomInventory, item_id, item_name, amount, player):
         if "bike" in player.choice:
@@ -357,6 +363,9 @@ class HandleInputs():
                 
             elif player.inventory.item_exist(item_id):
                 print("You already have", item_name, "\n")
+            
+            elif roomInventory.move_item(item_id, player.inventory):
+                return True
             
             return True
 
@@ -382,8 +391,8 @@ class HandleInputs():
         if "key" in player.choice:
             if "pizza" in player.choice or "pizzas" in player.choice:
                 if self.deal_with_pick_and_drop(roomInventory, MainPizzaKey_ID, "main pizza key", 1, player):
+                    print("Main Pizza Key added to inventory")
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
-
                 return True
 
     def get_all_pizza_from_(self, inventory):
@@ -401,91 +410,96 @@ class HandleInputs():
         
         if "pizza" in player.choice or "pizzas" in player.choice:
             if "bike" in player.choice:
-                if "pick" in player.choice or "take" in player.choice:
-                    pizzasToMove = self.get_pizza_on_player(player, "bike")
-                    if pizzasToMove == -1:
-                        print("pizza number unavailable")
-                        return True
-                    if "hot" in player.choice:
-                        self.move_pizzas_from(player.inventory, HOT_PIZZA_ID, roomInventory, pizzasToMove)
+                # if "pick" in player.choice or "take" in player.choice:
+                error_thrown = False
+                pizzaOnPlayerChoice = self.get_pizza_on_player(player, "bike")
+                error_thrown = self.throw_errors(pizzaOnPlayerChoice)
 
-                    elif "cold" in player.choice:
-                        self.move_pizzas_from(player.inventory, COLD_PIZZA_ID, roomInventory, pizzasToMove)
-                    else:
-                        self.check_player_pizza_to_give(player, roomInventory, pizzasToMove)
+                if error_thrown == False:
+                    self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
                     print("item dropped\n")
-                    return True
+                return True
 
     
-                elif "put" in player.choice or "give" in player.choice:
-                    pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
-                    pizzasToMove = self.get_number_of_(pizzasOnPlayer, "player", player)
-                    if pizzasToMove == -1:
-                        return True
-                    self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzasToMove, player.choice, player)
-                    return True
+                # if "put" in player.choice or "give" in player.choice:
+                #     pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
+                #     pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, "player", player)
+                #     if pizzaOnPlayerChoice == -1:
+                #         return True
+                #     self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzaOnPlayerChoice, player.choice, player)
+                #     return True
             else:
                 if "pick" in player.choice or "take" in player.choice:
                     pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
-                    pizzasToMove = self.get_number_of_(pizzasOnPlayer, "player", player)
-                    if pizzasToMove == -1:
-                        print("pizza number unavailable")
-                        return True
-
-                    if pizzasOnPlayer + pizzasToMove > player.inventory.max_pizza_capacity:
-                        print("can't carry more than 5 pizza")
-                        return True
+                    pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, "player", player)
+                    error_thrown = self.throw_errors(pizzaOnPlayerChoice)
                 
-                    if "hot" in player.choice:
-                        self.move_pizzas_from(roomInventory, HOT_PIZZA_ID, player.inventory, pizzasToMove)
 
-                    elif "cold" in player.choice:
-                        self.move_pizzas_from(roomInventory, COLD_PIZZA_ID, player.inventory, pizzasToMove)
-
-                    else:
-                        self.check_player_pizza_to_give(player, roomInventory, pizzasToMove)
+                    if error_thrown == False:
+                        self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
 
                     return True
                 
 
             if "drop" in player.choice:
-                pizzasToMove = self.get_pizza_on_player(player, "player")
-                if pizzasToMove == -1:
-                    print("pizza number unavailable")
-                    return True
-                
-                if "hot" in player.choice:
-                    player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToMove)
+                pizzaOnPlayerChoice = self.get_pizza_on_player(player, "player")
+                error_thrown = self.throw_errors(pizzaOnPlayerChoice)
 
-                elif "cold" in player.choice:
-                    player.inventory.move_items(COLD_PIZZA_ID, roomInventory, pizzasToMove)
-                
-                else:
-                    self.check_player_pizza_to_give(player, roomInventory, pizzasToMove)
-                print("item dropped\n")
+                if error_thrown == False:
+                    self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice) #TODO: change function name, function do pick and drop
+                    print("item dropped\n")
                 return True
 
-    def check_player_pizza_to_give(self, player, roomInventory, pizzasToMove):
-        if player.inventory.item_exist(COLD_PIZZA_ID):
-            player.inventory.move_items(COLD_PIZZA_ID, roomInventory, pizzasToMove)
-        elif player.inventory.item_exist(HOT_PIZZA_ID):
-            player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzasToMove)
-
-
-
-    def cold_or_hot_pizza_in(inventory, secondInventory, pizzasToAdd):
-        hotPizzaInRoom = inventory.get_amount(HOT_PIZZA_ID)
-        if hotPizzaInRoom > pizzasToAdd:
-            print("x", pizzasToAdd, " (on hands)\n")
-            inventory.move_items(HOT_PIZZA_ID, secondInventory, pizzasToAdd)
-
-        coldPizzaInRoom = inventory.get_amount(COLD_PIZZA_ID)
-        if coldPizzaInRoom > pizzasToAdd:
-            print(pizzasToAdd, "pizzas\n(on hands)\n")
-            inventory.move_items(COLD_PIZZA_ID, secondInventory, pizzasToAdd)
+    def throw_errors(self, pizzaOnPlayerChoice):
+        if pizzaOnPlayerChoice ==  NUMBER_OF_PIZZA_MUST_BE_NAMED:
+            print("number of pizza must be named")
+            return True
+        elif pizzaOnPlayerChoice == NOT_ENOUGH_PIZZA_IN_INVENTORY:
+            print("not enough pizza in inventory")
+            return True
+        elif pizzaOnPlayerChoice == TOO_MUCH_PIZZA_TO_CARRY:
+            print("can't carry more than 5 pizzas")
+            return True
         else:
-            print("Not enough pizza in the room")
+            return False
 
+    def check_player_pizza_to_give(self, player, roomInventory, pizzaOnPlayerChoice):
+        if "drop" in player.choice or "put" in player.choice:
+            if "cold" in player.choice:
+                if player.inventory.item_exist(COLD_PIZZA_ID):
+                    player.inventory.move_items(COLD_PIZZA_ID, roomInventory, pizzaOnPlayerChoice)
+            elif "hot" in player.choice:
+                if player.inventory.item_exist(HOT_PIZZA_ID):
+                    player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzaOnPlayerChoice)
+            else:
+                if player.inventory.item_exist(COLD_PIZZA_ID):
+                    player.choice += " cold"
+                    self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
+                
+                elif player.inventory(HOT_PIZZA_ID):
+                    player.choice += " hot"
+                    self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
+                    
+        elif "pick" in player.choice or "take" in player.choice:
+            if "cold" in player.choice:
+                if roomInventory.item_exist(COLD_PIZZA_ID):
+                    #if player.inventory[COLD_PIZZA_ID]["stock_count"] += pizzaOnPlayerChoice
+                    if roomInventory.move_items(COLD_PIZZA_ID, player.inventory, pizzaOnPlayerChoice):
+
+                        print("x", abs(pizzaOnPlayerChoice), "cold pizza (on hands)\n")
+            elif "hot" in player.choice:
+                if roomInventory.item_exist(HOT_PIZZA_ID):
+                    if roomInventory.move_items(HOT_PIZZA_ID, player.inventory, pizzaOnPlayerChoice):
+                        print("x", abs(pizzaOnPlayerChoice), "hot pizza (on hands)\n")
+            else:
+                if roomInventory.item_exist(COLD_PIZZA_ID):
+                    player.choice += " cold"
+                    self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
+                
+                elif roomInventory.item_exist(HOT_PIZZA_ID):
+                    player.choice += " hot"
+                    self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
+                    
 
     def go_south(self, player):
         if Settings.bikeObject.playerOnVehicle:

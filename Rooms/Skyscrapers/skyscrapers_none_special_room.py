@@ -20,6 +20,8 @@ class SkyscrapersNoneSpecialRoom(skyscrapersQuarter):
         Settings.print_objects_in_room(self)
 
     def dialog_circle(self, player, handlePlayerInput):
+        Settings.cool_pizzas_on(player)
+        Settings.cool_pizzas_on(self.inventory)
         Settings.print_objects_in_room(self)
         self.inventory.print_room_inventory()
 

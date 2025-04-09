@@ -46,6 +46,8 @@ class GoldenGate(skyscrapersQuarter):
                 Settings.print_objects_in_room(self)
 
     def dialog_circle(self, player, handlePlayerInput):
+        Settings.cool_pizzas_on(player)
+        Settings.cool_pizzas_on(self.inventory)
         if not self.gateOpen:
             self.first_arrival()
         else:

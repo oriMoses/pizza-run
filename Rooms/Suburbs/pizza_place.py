@@ -4,10 +4,11 @@ import Classes.settings as Settings
 from Doors.main_pizza_place_door import mainPizzaPlaceDoor
 from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name, Colors, pizza_temprature
 from Constants.constants import *
-import colorama
+from colorama import just_fix_windows_console
 class PizzaPlace():
     
     def __init__(self):
+        just_fix_windows_console()
         suburbsQuarter.__init__(self, [Suburbs_Street_Name.FIRST,Suburbs_Street_Number.IV])
         self.inputLegit = False
         self.firstArrival = True
@@ -22,7 +23,7 @@ class PizzaPlace():
 
 
     def print_first_arrival(self):
-        print("""you are in the main pizza.\nIt's your basic pizza place, the floor is sticky and the cook is propably 16.\n""")
+        print("""you are in the main pizza\nIt's your basic pizza place, the floor is sticky and the cook is propably 16\n""")
         print("You see massive pile of hot pizza and a small ", end="")
         print(Colors.GREEN + "note" + Colors.END, end="")
         print(" on the counter\n")

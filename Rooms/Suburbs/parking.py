@@ -19,10 +19,12 @@ class Parking(suburbsQuarter):
         return f"Parking"
     
     def print_first_arrival(self):
-        print("You are in the pizza parking lot\n\nThere's a box on the floor")
+        print("You are in the pizza parking lot\nThere's a box on the floor")
         Settings.print_objects_in_room(self)
 
     def dialog_circle(self, player, handlePlayerInput):
+        Settings.cool_pizzas_on(player.inventory)
+        Settings.cool_pizzas_on(self.inventory)
         self.inventory.print_room_inventory()
         
         Settings.first_arrival(self)
