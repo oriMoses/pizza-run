@@ -144,12 +144,9 @@ class HandleInputs():
             
             if "use" in player.choice:
                 Settings.hairDryerObject.use(roomInventory, player.inventory)
-                self.inputLegit = True
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+                print("Voooooooom\n")
                 
-                # if self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1, player):
-                    
-                # if self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1, player):
-                #     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
                 
 
     def bike_key(self, roomInventory, player):

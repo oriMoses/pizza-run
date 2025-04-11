@@ -19,9 +19,15 @@ class HairDryer(BasicItem):
         print("can heat cold pizza (probably not the original use of this device)\nno warranty\n")
 
     def warm_pizzas_on(self, inventory):
-        inventory.inventory[HOT_PIZZA_ID]['stock_count'] += inventory.inventory[COLD_PIZZA_ID]['stock_count'] 
-        inventory.inventory[COLD_PIZZA_ID]['stock_count'] = 0        
+        if inventory.item_exist(COLD_PIZZA_ID) == False:
+            print("Not enough cold pizza around\n")
+        elif inventory.item_exist(HOT_PIZZA_ID) == False:
+            pass
+        else:
+            inventory.inventory[HOT_PIZZA_ID]['stock_count'] += inventory.inventory[COLD_PIZZA_ID]['stock_count'] 
+            inventory.inventory[COLD_PIZZA_ID]['stock_count'] = 0        
         
+            
     def use(self, roomInventory, playerInventory):
         # {"name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature, "show_item": showItem}
         
@@ -36,4 +42,4 @@ class HairDryer(BasicItem):
         # for item in playerInventory:
         #     if playerInventory[item]['item_id'] == COLD_PIZZA_ID:
         #         for pizza in playerInventory[item]['stock_count']:
-        #             playerInventory[item]['pizza_temprature'] = pizza_temprature.HOT
+        #             playerInventory[item]['pizza_temprature'] = pizza_temprature.HOT1
