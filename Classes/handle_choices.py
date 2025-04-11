@@ -32,10 +32,13 @@ class HandleInputs():
             if player.quarter == "Suburbs":
                 if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom:
                     print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
-                if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
+                elif Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
                     if "box" in player.choice: return False #TODO: after "look at box" in Parking, the code print vehicles in room
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_first_arrival()
-                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
+                if player.position[0] != 3 or player.position[1] != 3:
+                    Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
+                else:
+                    Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_pizza_in_pizza_place()
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
             elif player.quarter == "Skyscrapers":
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].print_first_arrival()

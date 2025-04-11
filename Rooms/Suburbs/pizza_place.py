@@ -13,7 +13,7 @@ class PizzaPlace():
         self.inputLegit = False
         self.firstArrival = True
         self.inventory = Inventory()
-        self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 100, pizza_temprature.HOT, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 50, pizza_temprature.HOT, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(MainPizzaKey_ID, "main pizza key", 1, SHOW_ITEM_IN_ROOM)
 
         self.door = mainPizzaPlaceDoor()
@@ -40,7 +40,9 @@ class PizzaPlace():
         Settings.print_vehicles_in_room(self)
         self.do_not_print_pizza = True
 
-    
+    def print_pizza_in_pizza_place(self):
+        Settings.print_pizza_in_pizza_place(self)
+        
     def dialog_circle(self, player, handlePlayerInput):
         Settings.first_arrival(self)
 
