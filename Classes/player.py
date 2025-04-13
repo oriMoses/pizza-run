@@ -22,4 +22,4 @@ class Player():
         self.inventory.add_item(COIN_ID, "coin", 0, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 0, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(COLD_PIZZA_ID, "cold pizza",0, SHOW_ITEM_IN_ROOM)
-        self.inventory.add_item(HAIR_DRYER_ID, "Hair dryer", 1, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(BACKPACK_ID, "Delivery Backpack", 1, SHOW_ITEM_IN_ROOM)
