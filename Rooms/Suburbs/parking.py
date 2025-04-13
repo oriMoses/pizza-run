@@ -32,21 +32,21 @@ class Parking(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
-            if "box" in player.choice:
-                if "open" in player.choice or "examine" in player.choice:
+            if "box" in player.input:
+                if "open" in player.input or "examine" in player.input:
                     if Settings.boxObject.open() == BOX_EMPTY:
                         self.box_open = False
                     else:
                         self.box_open = True
                     self.inputLegit = True
-                if "look" in player.choice:
+                if "look" in player.input:
                     print("it's a regular cardbox.\n")
                     self.inputLegit = True
 
             elif self.box_open:
-                if "read" in player.choice:
+                if "read" in player.input:
                     print("You can't read from the box")
                     self.inputLegit = True
                 else:

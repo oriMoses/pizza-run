@@ -45,9 +45,9 @@ class CrossRoads(skyscrapersQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
-            if "look" in player.choice:
+            if "look" in player.input:
                 print('Side road \n\nIt might get you somewhere.\n')
             
             if handlePlayerInput.player_input(self.inventory):

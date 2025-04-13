@@ -41,9 +41,9 @@ class TradeCenter(skyscrapersQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
-            if "north" in player.choice:
+            if "north" in player.input:
                 player.quarter = "Suburbs"
                 suburbsQuarter.__init__(self, [Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III])
                 player.position[0] = 5

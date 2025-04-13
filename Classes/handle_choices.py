@@ -29,12 +29,12 @@ class HandleInputs():
                 return True
 
     def look_input(self, player):
-        if "look" in player.choice or "lookaround" in player.choice or "lookup" in player.choice:
+        if "look" in player.input or "lookaround" in player.input or "lookup" in player.input:
             if player.quarter == "Suburbs":
                 if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom:
                     print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
                 elif Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
-                    if "box" in player.choice: return False #TODO: after "look at box" in Parking, the code print vehicles in room
+                    if "box" in player.input: return False #TODO: after "look at box" in Parking, the code print vehicles in room
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_first_arrival()
                 if player.position[0] != 3 or player.position[1] != 3:
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
@@ -52,81 +52,81 @@ class HandleInputs():
             return True
 
     def short_input(self, player):
-        if len(player.choice) == 1:
-            if player.choice == "i":
-                player.choice = "inventory"
+        if len(player.input) == 1:
+            if player.input == "i":
+                player.input = "inventory"
                 self.inventory_input(player)
                 return True
-            elif player.choice == "l":
-                player.choice = "look"
+            elif player.input == "l":
+                player.input = "look"
                 self.look_input(player)
                 return True
         
     def give_pizza(self, player):
-        if "give" in player.choice:
-            if "pizza" in player.choice:
+        if "give" in player.input:
+            if "pizza" in player.input:
                 return True
             else:
                 return False
             
     def green_lawn_mower_key(self, roomInventory, player):
-        if "green lawn mower key" in player.choice:
+        if "green lawn mower key" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, GREEN_LAWN_MOWER_KEY_ID, "green lawn mower key", 1, player):
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
-            if "examine" in player.choice:
+            if "examine" in player.input:
                 if player.inventory.item_exist(GREEN_LAWN_MOWER_KEY_ID):
                     Settings.greenLawnMowerKeyObject.examine()
                 return True
 
     def shiny_dice(self, roomInventory, player):
-        if "shiny dice" in player.choice:
+        if "shiny dice" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, SHINY_DICE_ID, "shiny dice", 1, player):
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
-            if "examine" in player.choice:
+            if "examine" in player.input:
                 if player.inventory.item_exist(SHINY_DICE_ID):
                     Settings.shinyDiceObject.examine()
                 return True
 
 
     def lawn_mower(self, roomInventory, player):
-        if "lawn mower" in player.choice:
+        if "lawn mower" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, LAWN_MOWER_ID, "lawn mower", 1, player):
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
-            if "examine" in player.choice:
+            if "examine" in player.input:
                 if player.inventory.item_exist(LAWN_MOWER_ID):
                     Settings.lawnMowerObject.examine()
                 return True
 
     def wrist_watch(self, roomInventory, player):
-        if "wrist watch" in player.choice:
+        if "wrist watch" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, WRIST_WATCH_ID, "wrist watch", 1, player):
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
-            if "examine" in player.choice:
+            if "examine" in player.input:
                 if player.inventory.item_exist(WRIST_WATCH_ID):
                     Settings.wristWatchObject.examine()
                 return True
 
     def tripper_guide(self, roomInventory, player):
-        if "tripper guide" in player.choice:
+        if "tripper guide" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, TRIPPER_GUIDE_ID, "tripper guide", 1, player):
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
             
-            if "examine" in player.choice:
+            if "examine" in player.input:
                 if player.inventory.item_exist(TRIPPER_GUIDE_ID):
                     Settings.tripperLocationObject.examine()
                 return True
 
 
     def pizza_locator(self, roomInventory, player):
-        if "pizza locator" in player.choice:
+        if "pizza locator" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, PIZZA_LOCATOR_ID, "pizza locator", 1, player):
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
-            if "examine" in player.choice:
+            if "examine" in player.input:
                 if player.inventory.item_exist(PIZZA_LOCATOR_ID):
                     Settings.pizzaLocatorObject.examine()
 
@@ -134,31 +134,31 @@ class HandleInputs():
 
 
     def backpack(self, roomInventory, player):
-        if "backpack" in player.choice or "back pack" in player.choice:
+        if "backpack" in player.input or "back pack" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, BACKPACK_ID, "delivery backpack", 1, player):
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
-            if "examine" in player.choice:
+            if "examine" in player.input:
                 if player.inventory.item_exist(BACKPACK_ID):
                     Settings.backpackObject.examine()
                     return True
             
-            if "use" in player.choice:
+            if "use" in player.input:
                 print("Backpack in use")
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
         
     def hair_dryer(self, roomInventory, player):
-        if "hair" in player.choice and "dryer" in player.choice:
+        if "hair" in player.input and "dryer" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1, player):
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
-            if "examine" in player.choice:
+            if "examine" in player.input:
                 if player.inventory.item_exist(HAIR_DRYER_ID):
                     Settings.hairDryerObject.examine()
                     return True
             
-            if "use" in player.choice:
+            if "use" in player.input:
                 Settings.hairDryerObject.use(roomInventory, player.inventory)
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
                 print("Voooooooom\n")
@@ -166,7 +166,7 @@ class HandleInputs():
                 
 
     def bike_key(self, roomInventory, player):
-        if "bike" in player.choice and "key" in player.choice:
+        if "bike" in player.input and "key" in player.input:
             if not roomInventory.item_exist(BIKE_KEY_ID):
                 print("you can not see the bike key around\n")
                 return True
@@ -178,13 +178,13 @@ class HandleInputs():
                 Settings.bikeKeyObject.inBox = False
                 return True
 
-            elif "examine" in player.choice:
+            elif "examine" in player.input:
                 if player.inventory.item_exist(BIKE_KEY_ID):
                     Settings.bikeKeyObject.examine()
                 return True
         return False
     def notebook(self, roomInventory, player):
-        if "notebook" in player.choice and "suburbs" in player.choice:
+        if "notebook" in player.input and "suburbs" in player.input:
             if not roomInventory.item_exist(SUBURBS_NOTEBOOK_ID):
                 print("you can not see the suburbs notebook around\n")
                 return True
@@ -193,21 +193,21 @@ class HandleInputs():
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
                 return True
             
-            if "read" in player.choice or "examine" in player.choice:
+            if "read" in player.input or "examine" in player.input:
                 if player.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
                     Settings.SuburbsNotebookObject.examine()
                     return True
             return False
 
     def inventory_input(self, player):
-        if "inventory" in player.choice and len(player.choice) <= 10 :
-            if not "bike inventory" in player.choice:
+        if "inventory" in player.input and len(player.input) <= 10 :
+            if not "bike inventory" in player.input:
                 print("inventory:")
                 player.inventory.print_player_inventory()
                 return True
 
     def help_input(self, player):
-        if "help" in player.choice:
+        if "help" in player.input:
             print("Useful commands:")
             print(" The 'INVENTORY' command lists the objects in your possession.")
             print(" The 'LOOK' command prints a description of your surroundings.")
@@ -235,8 +235,8 @@ class HandleInputs():
     def bike_input(self, player):
         if Settings.bikeObject.position != player.position:
             return False
-        if "bike" in player.choice:
-            if "get down" in player.choice or "leave" in player.choice or "get off" in player.choice:
+        if "bike" in player.input:
+            if "get down" in player.input or "leave" in player.input or "get off" in player.input:
                 if Settings.bikeObject.player_on_vehacle():
                     print("you got down from ", Settings.bikeObject.name + "\n")
                     Settings.bikeObject.playerOnVehicle = False
@@ -245,21 +245,21 @@ class HandleInputs():
                     print("you are not on a", Settings.bikeObject.name + "\n")
                     return True
 
-            elif "climb" in player.choice or "ride" in player.choice or "get on" in player.choice:
+            elif "climb" in player.input or "ride" in player.input or "get on" in player.input:
                 if Settings.bikeObject.is_vehicle_availabe():
                     Settings.bikeObject.playerOnVehicle = True
                     print("you are on the", Settings.bikeObject.name)
                 return True
             
-            elif "turn" in player.choice and "on" in player.choice:
+            elif "turn" in player.input and "on" in player.input:
                 Settings.bikeObject.turn_on()
                 return True
                 
-            elif "turn" in player.choice and "off" in player.choice:
+            elif "turn" in player.input and "off" in player.input:
                 Settings.bikeObject.turn_on()
                 return True
                 
-            elif "inventory" in player.choice:
+            elif "inventory" in player.input:
                 print("\nbike inventory:")
                 Settings.bikeObject.inventory.print_player_inventory()
                 return True
@@ -316,41 +316,41 @@ class HandleInputs():
 
     def get_number_of_(self, pizzasOnInventory, inventoryName, player):
         pizzaOnPlayerChoice = 0
-        if "1 " in player.choice:
+        if "1 " in player.input:
             pizzaOnPlayerChoice = 1
 
-        elif "2 " in player.choice:
+        elif "2 " in player.input:
             pizzaOnPlayerChoice = 2
                 
-        elif "3 " in player.choice:
+        elif "3 " in player.input:
             pizzaOnPlayerChoice = 3
 
-        elif "4 " in player.choice:
+        elif "4 " in player.input:
             pizzaOnPlayerChoice = 4
 
-        elif "5 " in player.choice:
+        elif "5 " in player.input:
             pizzaOnPlayerChoice = 5
         
         else:
             if player.inventory.item_exist(BACKPACK_ID):
-                if "6 " in player.choice:
+                if "6 " in player.input:
                     pizzaOnPlayerChoice = 6
                 
-                elif "7 " in player.choice:
+                elif "7 " in player.input:
                     pizzaOnPlayerChoice = 7
 
-                elif "8 " in player.choice:
+                elif "8 " in player.input:
                     pizzaOnPlayerChoice = 8
 
-                elif "9 " in player.choice:
+                elif "9 " in player.input:
                     pizzaOnPlayerChoice = 9
 
-                elif "10 " in player.choice:
+                elif "10 " in player.input:
                     pizzaOnPlayerChoice = 10
             else:   
                 return TOO_MUCH_PIZZA_TO_CARRY
 
-        if "pick" in player.choice or "take" in player.choice:
+        if "pick" in player.input or "take" in player.input:
             if player.inventory.item_exist(BACKPACK_ID):
                 if (pizzasOnInventory + pizzaOnPlayerChoice) > MAX_PIZZA_ON_PLAYER_WITH_BACKPACK:
                     return TOO_MUCH_PIZZA_TO_CARRY
@@ -361,13 +361,13 @@ class HandleInputs():
 
             
 
-        if "take" in player.choice and "bike" in player.choice:
-            if "drop" in player.choice:
+        if "take" in player.input and "bike" in player.input:
+            if "drop" in player.input:
                 pass
             else:               #TODO: remove here a lot
                 if pizzaOnPlayerChoice + pizzasOnInventory > MAX_PIZZA_ON_PLAYER:
                     pizzaOnPlayerChoice = 0
-        elif "drop" in player.choice:
+        elif "drop" in player.input:
             if pizzaOnPlayerChoice > pizzasOnInventory:
                 return NOT_ENOUGH_PIZZA_IN_INVENTORY
             
@@ -386,16 +386,16 @@ class HandleInputs():
     
     
     def deal_with_pick_and_drop(self, roomInventory, item_id, item_name, amount, player):
-        if "bike" in player.choice:
-            if "pizza" in player.choice or "pizzas" in player.choice:
+        if "bike" in player.input:
+            if "pizza" in player.input or "pizzas" in player.input:
                 return
             
-        if "pick" in player.choice or "take" in player.choice:
+        if "pick" in player.input or "take" in player.input:
             if self.is_player_in_miniMarket(player):
                 print("Don't even think about it")
                 return False
 
-            if "bag" in player.choice or "backpack" in player.choice:
+            if "bag" in player.input or "backpack" in player.input:
                 if self.move_item(item_id, player.inventory):
                     print(item_name, "added to your inventory\n")
                 
@@ -407,7 +407,7 @@ class HandleInputs():
             
             return True
 
-        elif "drop" in player.choice or "put" in player.choice or "give" in player.choice:
+        elif "drop" in player.input or "put" in player.input or "give" in player.input:
             if self.is_player_in_miniMarket(player):
                 print("Don't even think about it")
                 return False
@@ -421,8 +421,8 @@ class HandleInputs():
             return False
         
     def pizza_key_input(self, roomInventory, player):
-        if "key" in player.choice:
-            if "pizza" in player.choice or "pizzas" in player.choice:
+        if "key" in player.input:
+            if "pizza" in player.input or "pizzas" in player.input:
                 if self.deal_with_pick_and_drop(roomInventory, MainPizzaKey_ID, "main pizza key", 1, player):
                     print("Main Pizza Key added to inventory")
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
@@ -438,12 +438,12 @@ class HandleInputs():
         
     def pizza_input(self, roomInventory, player): #TODO: refactor all function
         #inputs to avoid in pizza input
-        if "key" in player.choice:
+        if "key" in player.input:
             return False
         
-        if "pizza" in player.choice or "pizzas" in player.choice:
-            if "bike" in player.choice:
-                # if "pick" in player.choice or "take" in player.choice:
+        if "pizza" in player.input or "pizzas" in player.input:
+            if "bike" in player.input:
+                # if "pick" in player.input or "take" in player.input:
                 error_thrown = False
                 pizzaOnPlayerChoice = self.get_pizza_on_player(player, "bike")
                 error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
@@ -454,15 +454,15 @@ class HandleInputs():
                 return True
 
     
-                # if "put" in player.choice or "give" in player.choice:
+                # if "put" in player.input or "give" in player.input:
                 #     pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
                 #     pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, "player", player)
                 #     if pizzaOnPlayerChoice == -1:
                 #         return True
-                #     self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzaOnPlayerChoice, player.choice, player)
+                #     self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzaOnPlayerChoice, player.input, player)
                 #     return True
             else:
-                if "pick" in player.choice or "take" in player.choice:
+                if "pick" in player.input or "take" in player.input:
                     pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
                     pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, "player", player)
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
@@ -474,7 +474,7 @@ class HandleInputs():
                     return True
                 
 
-            if "drop" in player.choice:
+            if "drop" in player.input:
                 pizzaOnPlayerChoice = self.get_pizza_on_player(player, "player")
                 error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
 
@@ -500,40 +500,40 @@ class HandleInputs():
             return False
 
     def check_player_pizza_to_give(self, player, roomInventory, pizzaOnPlayerChoice):
-        if "drop" in player.choice or "put" in player.choice:
-            if "cold" in player.choice:
+        if "drop" in player.input or "put" in player.input:
+            if "cold" in player.input:
                 if player.inventory.item_exist(COLD_PIZZA_ID):
                     player.inventory.move_items(COLD_PIZZA_ID, roomInventory, pizzaOnPlayerChoice)
-            elif "hot" in player.choice:
+            elif "hot" in player.input:
                 if player.inventory.item_exist(HOT_PIZZA_ID):
                     player.inventory.move_items(HOT_PIZZA_ID, roomInventory, pizzaOnPlayerChoice)
             else:
                 if player.inventory.item_exist(COLD_PIZZA_ID):
-                    player.choice += " cold"
+                    player.input += " cold"
                     self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
                 
                 elif player.inventory(HOT_PIZZA_ID):
-                    player.choice += " hot"
+                    player.input += " hot"
                     self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
                     
-        elif "pick" in player.choice or "take" in player.choice:
-            if "cold" in player.choice:
+        elif "pick" in player.input or "take" in player.input:
+            if "cold" in player.input:
                 if roomInventory.item_exist(COLD_PIZZA_ID):
                     #if player.inventory[COLD_PIZZA_ID]["stock_count"] += pizzaOnPlayerChoice
                     if roomInventory.move_items(COLD_PIZZA_ID, player.inventory, pizzaOnPlayerChoice):
 
                         print("x", abs(pizzaOnPlayerChoice), "cold pizza (on hands)\n")
-            elif "hot" in player.choice:
+            elif "hot" in player.input:
                 if roomInventory.item_exist(HOT_PIZZA_ID):
                     if roomInventory.move_items(HOT_PIZZA_ID, player.inventory, pizzaOnPlayerChoice):
                         print("x", abs(pizzaOnPlayerChoice), "hot pizza (on hands)\n")
             else:
                 if roomInventory.item_exist(COLD_PIZZA_ID):
-                    player.choice += " cold"
+                    player.input += " cold"
                     self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
                 
                 elif roomInventory.item_exist(HOT_PIZZA_ID):
-                    player.choice += " hot"
+                    player.input += " hot"
                     self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
                     
 
@@ -597,19 +597,19 @@ class HandleInputs():
             
             
     def go_input(self, player):
-        # if "drive" in player.choice:
+        # if "drive" in player.input:
         #     print("first you need to climb a vehicle\n")
         #     return True
-        if "south" in player.choice:
+        if "south" in player.input:
             self.go_south(player)
             return True
-        elif "north" in player.choice:
+        elif "north" in player.input:
             self.go_north(player)
             return True
-        elif "west" in player.choice:
+        elif "west" in player.input:
             self.go_west(player)
             return True
-        elif "east" in player.choice:
+        elif "east" in player.input:
             self.go_east(player)
             return True
         for vehicle in enumerate(Settings.vehicleList):

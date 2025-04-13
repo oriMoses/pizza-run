@@ -29,10 +29,10 @@ class ClockTower(shakedownQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
                 
-            if "examine" in player.choice and self.inventory.is_inventory_empty():
+            if "examine" in player.input and self.inventory.is_inventory_empty():
                 self.print_first_arrival()
                 self.inputLegit = True
 

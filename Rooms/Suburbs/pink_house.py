@@ -40,7 +40,7 @@ class PinkHouse(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
 
             if self.door_knocked:
@@ -75,8 +75,8 @@ class PinkHouse(suburbsQuarter):
                         print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
-            elif "knock" in player.choice:
-                if "door" in player.choice or "house" in player.choice:
+            elif "knock" in player.input:
+                if "door" in player.input or "house" in player.input:
                     self.door_knocked = True
                     print('You hear dogs barking and running\nbang!\n\nsomeone crashed on the door!\nThe door opens to a crack and a man shouts:\n“who are you? go away!”\n')
                     self.inputLegit = True

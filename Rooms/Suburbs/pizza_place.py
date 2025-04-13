@@ -49,48 +49,48 @@ class PizzaPlace():
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
             print()
             
 
-            if "note" in player.choice:
-                if "read" in player.choice:
-                    if "notebook" in player.choice:
+            if "note" in player.input:
+                if "read" in player.input:
+                    if "notebook" in player.input:
                         return
                     else:
                         print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)\n")
                         self.inputLegit = True
-                elif "take" in player.choice or "pick" in player.choice:
+                elif "take" in player.input or "pick" in player.input:
                     print("the note glued to the counter, you can't take it\n")
                     self.inputLegit = True
 
-            elif "north" in player.choice:
+            elif "north" in player.input:
                 print("There is a wall to the north\n")
-                player.choice = ""
+                player.input = ""
                 self.inputLegit = True
-            elif "south" in player.choice:
+            elif "south" in player.input:
                 print("There is a wall to the south\n")
-                player.choice = ""
+                player.input = ""
                 self.inputLegit = True
-            elif "east" in player.choice:
+            elif "east" in player.input:
                 print("There is a wall to the east\n")
-                player.choice = ""
+                player.input = ""
                 self.inputLegit = True
                 
-            if "door" in player.choice and "unlock" in player.choice or \
-                "door" in player.choice and "open" in player.choice:
+            if "door" in player.input and "unlock" in player.input or \
+                "door" in player.input and "open" in player.input:
                     self.door.unlock(player)
                     self.inputLegit = True
 
-            elif "west" in player.choice or \
-                "through" in player.choice and "door" in player.choice or \
-                    "get" in player.choice and "out" in player.choice:
+            elif "west" in player.input or \
+                "through" in player.input and "door" in player.input or \
+                    "get" in player.input and "out" in player.input:
                 self.inputLegit = True
                 if self.door.locked:
                     print("The door is locked (as doors should be)\n")
                 else:
                     
-                    player.choice = "west"
+                    player.input = "west"
                     handlePlayerInput.player_input(self.inventory)
                     break
 

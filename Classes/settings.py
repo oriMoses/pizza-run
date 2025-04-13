@@ -147,7 +147,7 @@ def first_arrival(self):
 
 def howMuchPizza(self, player):
     for numberOfPizza in range(0, MAX_PIZZA_ON_PLAYER+1):
-        if str(numberOfPizza) in player.choice:
+        if str(numberOfPizza) in player.input:
             return numberOfPizza
     return 0
     

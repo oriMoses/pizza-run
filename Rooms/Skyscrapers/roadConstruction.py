@@ -37,7 +37,7 @@ class RoadConstruction(skyscrapersQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
             if handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True

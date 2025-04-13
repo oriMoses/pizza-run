@@ -42,7 +42,7 @@ class InfoBooth(shakedownQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
             if handlePlayerInput.give_pizza(player):
                 numberOfPizza = Settings.howMuchPizza(self, player)
@@ -83,7 +83,7 @@ class InfoBooth(shakedownQuarter):
                     print("Not enough pizza in inventory\n")
                 self.inputLegit = True
                     
-            elif "examine" in player.choice and self.east_open:
+            elif "examine" in player.input and self.east_open:
                 print('You see a small wood stand with a colorful, handmade sing that\nreads: "Info booth"\nTheres two people standing behind the booth.\n"Happy new year, woohoo!!!"\nThe guys seem to be in a…. festive mood.\nYou can go east')
                 self.inputLegit = True
                 break

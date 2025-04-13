@@ -29,7 +29,7 @@ class YellowHouse(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
 
             if self.door_knocked:
@@ -64,8 +64,8 @@ class YellowHouse(suburbsQuarter):
                         print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
-            if "knock" in player.choice:
-                if "door" in player.choice or "house" in player.choice:
+            if "knock" in player.input:
+                if "door" in player.input or "house" in player.input:
                     self.door_knocked = True
                     print('“honey go get the door”\n(door opened)\n“oh, i didn’t expect for you to be here so soon“\n')
                     self.inputLegit = True

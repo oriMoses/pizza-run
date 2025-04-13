@@ -42,7 +42,7 @@ class BlueHouse(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
             if self.door_knocked:
                 self.door_knocked = False
@@ -76,15 +76,15 @@ class BlueHouse(suburbsQuarter):
                     else:
                         print("Not enough pizza in inventory")
                     self.inputLegit = True
-            if "gnomes" in player.choice:
-                if "kick" in player.choice or "punch" in player.choice \
-                    or "move" in player.choice or "take" in player.choice \
-                    or "destroy" in player.choice or "examine" in player.choice \
-                    or "look at" in player.choice:
+            if "gnomes" in player.input:
+                if "kick" in player.input or "punch" in player.input \
+                    or "move" in player.input or "take" in player.input \
+                    or "destroy" in player.input or "examine" in player.input \
+                    or "look at" in player.input:
                     print("They seem to be unmovable and indestructible. they still look at you")
 
-            elif "knock" in player.choice:
-                if "door" in player.choice or "house" in player.choice:
+            elif "knock" in player.input:
+                if "door" in player.input or "house" in player.input:
                     self.door_knocked = True
                     print("(door opened) \nhello there, young man")
 

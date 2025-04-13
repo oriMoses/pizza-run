@@ -56,15 +56,15 @@ class GoldenGate(skyscrapersQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
-            if "talk" in player.choice or "approach" in player.choice or "look" in player.choice:
-                if "guard" in player.choice:
+            if "talk" in player.input or "approach" in player.input or "look" in player.input:
+                if "guard" in player.input:
                     print('hey kiddo, got a ticket?\n')
                     self.inputLegit = True
                     
-            if "give" in player.choice or "use" in player.choice:
-                if "ticket" in player.choice:
+            if "give" in player.input or "use" in player.input:
+                if "ticket" in player.input:
                     if player.inventory.item_exist(GOLDEN_TICKET_ID):
                         print('The guard looks surprised. \nHe stands back as the gate opens. \n\n"Go on kiddo, ', end="")
                         print("you're ", end="")
@@ -79,7 +79,7 @@ class GoldenGate(skyscrapersQuarter):
                     
                     self.inputLegit = True
                     
-            elif "east" in player.choice:
+            elif "east" in player.input:
                 if self.gateOpen:
                     pass #TODO: code golden gate 
                 else:

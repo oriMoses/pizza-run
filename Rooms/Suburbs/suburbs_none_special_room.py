@@ -19,7 +19,7 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
         Settings.print_objects_in_room(self)
 
     def dialog_circle(self, player, handlePlayerInput):
-        Settings.cool_pizzas_on(player)
+        Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
         Settings.print_objects_in_room(self)
         self.inventory.print_room_inventory()
@@ -27,15 +27,15 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
                 
-            if "examine" in player.choice and self.inventory.is_inventory_empty(): #TODO: does this line make sense?
+            if "examine" in player.input and self.inventory.is_inventory_empty(): #TODO: does this line make sense?
                 print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
                 self.print_first_arrival()
                 self.inputLegit = True
 
-            if "look" in player.choice:
+            if "look" in player.input:
                 print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
                 self.print_first_arrival()
                 self.inputLegit = True

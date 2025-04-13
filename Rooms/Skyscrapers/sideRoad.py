@@ -42,10 +42,10 @@ class SideRoad(skyscrapersQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
             if player.position[0] == 0 and player.position[1] == 2:
-                if "north" in player.choice:
+                if "north" in player.input:
                     player.quarter = "Suburbs"
                     player.position[0] = Skyscrapers_Street_Name.DUCK.value
                     player.position[1] = Skyscrapers_Street_Number.III.value
@@ -55,7 +55,7 @@ class SideRoad(skyscrapersQuarter):
                     self.inputLegit = True
             
             elif player.position[0] == 4 and player.position[1] == 6:
-                    if "east" in player.choice:
+                    if "east" in player.input:
                         player.quarter = "Shakedown"
                         shakedownQuarter.__init__(self, [Shakedown_Street_Name.DUCK,Shakedown_Street_Number.III])
                         player.position[0] = 6
@@ -65,7 +65,7 @@ class SideRoad(skyscrapersQuarter):
                         print()
                 
                 
-            elif "look" in player.choice:
+            elif "look" in player.input:
                 print('It might get you somewhere.\n')
                 Settings.print_objects_in_room(self)
                 self.inputLegit = True

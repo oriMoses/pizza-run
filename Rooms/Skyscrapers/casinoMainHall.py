@@ -37,23 +37,23 @@ class CasinoMainHall(skyscrapersQuarter):
         print('You won 10 coins! \n"Nice roll! care for another round?"\n\nRoll again? yes\no')
         Settings.player.inventory.update_item(Settings.COIN_ID, Settings.player.inventory.get_amount(Settings.COIN_ID) + 10)
 
-        if 'no' not in Settings.player.choice:
-            Settings.player.choice = ''
+        if 'no' not in Settings.player.input:
+            Settings.player.input = ''
             
-        while Settings.player.choice != "yes" and Settings.player.choice != "no":
-            Settings.player.choice = input("> ").lower()
-        if 'yes' in Settings.player.choice:
+        while Settings.player.input != "yes" and Settings.player.input != "no":
+            Settings.player.input = input("> ").lower()
+        if 'yes' in Settings.player.input:
             self.roll_dice()
-        if 'no' in Settings.player.choice:
+        if 'no' in Settings.player.input:
             print('"leaving with a win? a fine decision"')
         
     def loss_dice_roll(self):
         print('You lost!\n"Better luck next time… care for another round?" \n\nRoll again? yes\no')
-        if 'no' in Settings.player.choice:
+        if 'no' in Settings.player.input:
             print('"Don', end='')
             print("'", end='')
             print('t let it get you down kid, it just money"')
-        if 'yes' in Settings.player.choice:
+        if 'yes' in Settings.player.input:
             self.roll_dice()
         
     def roll_dice(self):
@@ -83,10 +83,10 @@ class CasinoMainHall(skyscrapersQuarter):
         print("I've got a regular dice if you don't own any", end='')
         print('"\n\n**choose a dice!**')
         
-        while Settings.player.choice != "regular dice" and Settings.player.choice != "shiny dice":
-            Settings.player.choice = input("> ").lower()
+        while Settings.player.input != "regular dice" and Settings.player.input != "shiny dice":
+            Settings.player.input = input("> ").lower()
 
-            if "regular dice" in Settings.player.choice:
+            if "regular dice" in Settings.player.input:
                 print("The dealer gives you a regular dice.\n\nLet's roll!")
 
                 self.roll_dice()
@@ -94,24 +94,24 @@ class CasinoMainHall(skyscrapersQuarter):
 
                 #TODO: continuw from here
                 
-            elif "shiny dice" in Settings.player.choice:
-                Settings.player.choice = ''
+            elif "shiny dice" in Settings.player.input:
+                Settings.player.input = ''
 
                 self.roll_shiny_dice()
                 
-                while Settings.player.choice != "yes" and Settings.player.choice != "no":
-                    Settings.player.choice = input("> ").lower()
-                    if "yes" in Settings.player.choice:
+                while Settings.player.input != "yes" and Settings.player.input != "no":
+                    Settings.player.input = input("> ").lower()
+                    if "yes" in Settings.player.input:
                         if self.wins_with_shiny_dice == 4:
                             self.player_caught_cheating()
 
                         self.roll_shiny_dice()
 
-                    elif "no" in Settings.player.choice:
+                    elif "no" in Settings.player.input:
                         if self.wins_with_shiny_dice > 0:
                             print("leaving with a win? a fine decision\n")
                     
-                    Settings.player.choice = ''
+                    Settings.player.input = ''
 
             else:
                 print("I've got a regular dice if you don't own any")
@@ -119,13 +119,13 @@ class CasinoMainHall(skyscrapersQuarter):
         
     def interaction_with_dealer(self):
         print('"Welcome, new face." \n"Its 5 coins per roll, 10 coins reward if you win" \n\n"Care for a play?" (will cost 5 coins) \n\nYes/No\n')
-        while Settings.player.choice != "yes" and Settings.player.choice != "no":
-            Settings.player.choice = input("> ").lower()
+        while Settings.player.input != "yes" and Settings.player.input != "no":
+            Settings.player.input = input("> ").lower()
 
-            if "yes" in Settings.player.choice:
+            if "yes" in Settings.player.input:
                 self.start_gambling()
                 
-            elif "no" in Settings.player.choice:
+            elif "no" in Settings.player.input:
                 print('"Alright, see you later. \nBy the way, you wanna check out the top floor" \n\nThe dealer wink at you, then greet the new gamblers and leave you to be.')
             else:
                 print('"Care for a play?" (will cost 5 coins) \n\nYes/No\n')
@@ -140,9 +140,9 @@ class CasinoMainHall(skyscrapersQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
-            if ("go" in player.choice and "table" in player.choice) or ("talk" in player.choice and "dealer" in player.choice):
+            if ("go" in player.input and "table" in player.input) or ("talk" in player.input and "dealer" in player.input):
                 self.interaction_with_dealer()
                 
             elif handlePlayerInput.player_input(self.inventory):

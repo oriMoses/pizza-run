@@ -31,9 +31,9 @@ class MainRoad(skyscrapersQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
-            if "look" in player.choice:
+            if "look" in player.input:
                 print('buildings all around. \n\nnowhere to go but the road')
             
             if handlePlayerInput.player_input(self.inventory):

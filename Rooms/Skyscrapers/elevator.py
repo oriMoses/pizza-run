@@ -40,27 +40,27 @@ class Elevator(skyscrapersQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
-            if "north" in player.choice or "south" in player.choice or "east" in player.choice or "west" in player.choice:
-                player.choice = ""
+            if "north" in player.input or "south" in player.input or "east" in player.input or "west" in player.input:
+                player.input = ""
                 print("click a button")
                 self.first_arrival()
                 self.inputLegit = True
 
-            if "0" in player.choice:
+            if "0" in player.input:
                 player.position[0] = 4
                 player.position[1] = 3
                 self.inputLegit = True
                 Settings.goNextRoom = True
                 
-            elif "1" in player.choice and not "5" in player.choice:
+            elif "1" in player.input and not "5" in player.input:
                 player.position[0] = 4
                 player.position[1] = 5
                 self.inputLegit = True
                 Settings.goNextRoom = True
                 
-            elif "15" in player.choice:
+            elif "15" in player.input:
                 player.position[0] = 3
                 player.position[1] = 4
                 self.inputLegit = True

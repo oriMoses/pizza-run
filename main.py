@@ -11,14 +11,14 @@ os.system("")
 def startGame(player):
     print("Welcome to pizza run!\nA pen and paper is advised.")
     
-    while player.choice != "start" and player.choice != "yes":
+    while player.input != "start" and player.input != "yes":
         print("\nstart?")
-        player.choice = input("> ")
+        player.input = input("> ")
         print()
 
 def choose_room_in_suburbs(map, player, handlePlayerInput):
-    if "give" not in player.choice and "pizza" not in player.choice:
-        player.choice = ""
+    if "give" not in player.input and "pizza" not in player.input:
+        player.input = ""
         
         print(Colors.BOLD + Settings.get_address(player.position[0], player.position[1], player) + Colors.END)
         print(map.suburbs.position[player.position[0]][player.position[1]])
@@ -27,8 +27,8 @@ def choose_room_in_suburbs(map, player, handlePlayerInput):
     map.suburbs.position[player.position[0]][player.position[1]].dialog_circle(player, handlePlayerInput)
 
 def choose_room_in_skyscrapers(map, player, handlePlayerInput):    
-    if "give" not in player.choice and "pizza" not in player.choice:
-        player.choice = ""
+    if "give" not in player.input and "pizza" not in player.input:
+        player.input = ""
         
         if (player.position[0] == 4 and player.position[1] == 4) or (player.position[0] == 4 and player.position[1] == 5) or (player.position[0] == 3 and player.position[1] == 4) or (player.position[0] == 4 and player.position[1] == 3):
             pass
@@ -41,8 +41,8 @@ def choose_room_in_skyscrapers(map, player, handlePlayerInput):
     map.skyscrapers.position[player.position[0]][player.position[1]].dialog_circle(player, handlePlayerInput)
 
 def choose_room_in_shakedown(map, player, handlePlayerInput):    
-    if "give" not in player.choice and "pizza" not in player.choice:
-        player.choice = ""
+    if "give" not in player.input and "pizza" not in player.input:
+        player.input = ""
         print(Colors.BOLD + Settings.get_address(player.position[0], player.position[1], player) + Colors.END)
         print(map.shakedown.position[player.position[0]][player.position[1]])
 

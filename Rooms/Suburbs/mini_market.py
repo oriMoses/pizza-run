@@ -37,8 +37,8 @@ class MiniMarket(suburbsQuarter):
 
     
     def go_to_shop(self, player):
-        if "get in" in player.choice or "go" in player.choice or "enter" in player.choice:
-            if "shop" in player.choice or "minimarket" in player.choice or "mini market" in player.choice:
+        if "get in" in player.input or "go" in player.input or "enter" in player.input:
+            if "shop" in player.input or "minimarket" in player.input or "mini market" in player.input:
                 return True
         return False
 
@@ -52,7 +52,7 @@ class MiniMarket(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
             print("")
             if handlePlayerInput.give_pizza(player):
                 numberOfPizza = Settings.howMuchPizza(self, player)
@@ -87,13 +87,13 @@ class MiniMarket(suburbsQuarter):
             if self.go_to_shop(player):
                 print('(Inside the shop)\nCashier: "hey there, would you like anything?" \nyes/no\n')
 
-                while "yes" not in player.choice and "no" not in player.choice and "buy" not in player.choice:
-                    player.choice = input("> ").lower()
+                while "yes" not in player.input and "no" not in player.input and "buy" not in player.input:
+                    player.input = input("> ").lower()
                     print("")
-                    if "yes" not in player.choice and "no" not in player.choice and "buy" not in player.choice:
+                    if "yes" not in player.input and "no" not in player.input and "buy" not in player.input:
                         print("it's either yes or no, dont waste my time!\n")
 
-                if "no" in player.choice:
+                if "no" in player.input:
                     return False
                 
                 print("""I've got some stuff you might find useful"\n""")
@@ -101,11 +101,11 @@ class MiniMarket(suburbsQuarter):
                     if item[1].inShop == True:
                         item[1].print_in_shop()
                 
-                while "exit" not in player.choice:
-                    player.choice = input("> ").lower()
+                while "exit" not in player.input:
+                    player.input = input("> ").lower()
                     print("")
-                    if "buy" in player.choice:
-                        if "hair dryer" in player.choice:
+                    if "buy" in player.input:
+                        if "hair dryer" in player.input:
                             if not self.inventory.item_exist(Settings.HAIR_DRYER_ID):
                                 print ("item not in shop\n")
                             elif player.inventory.get_amount(Settings.COIN_ID) >= Settings.hairDryerObject.price:
@@ -117,7 +117,7 @@ class MiniMarket(suburbsQuarter):
                                 print('"sorry bud, come back when you got enough money."\n')
                                 break
 
-                        elif "backpack" in player.choice:
+                        elif "backpack" in player.input:
                             if not self.inventory.item_exist(Settings.BACKPACK_ID):
                                 print ("item not in shop\n")                            
                             elif player.inventory.get_amount(Settings.COIN_ID) >= Settings.backpackObject.price:
@@ -129,7 +129,7 @@ class MiniMarket(suburbsQuarter):
                                 print('"sorry bud, come back when you got enough money."\n')
                                 break
 
-                        elif "wrist watch" in player.choice:
+                        elif "wrist watch" in player.input:
                             if not self.inventory.item_exist(Settings.BACKPACK_ID):
                                 print ("item not in shop\n")
                             elif player.inventory.get_amount(Settings.COIN_ID) >= Settings.WristWatchObject.price:
@@ -141,7 +141,7 @@ class MiniMarket(suburbsQuarter):
                                 print('"sorry bud, come back when you got enough money."\n')
                                 break
 
-                        elif "pizza locator" in player.choice:
+                        elif "pizza locator" in player.input:
                             if not self.inventory.item_exist(Settings.PIZZA_LOCATOR_ID):
                                 print ("item not in shop\n")
                             elif player.inventory.get_amount(Settings.COIN_ID) >= Settings.PizzaLocatorObject.price:
@@ -153,7 +153,7 @@ class MiniMarket(suburbsQuarter):
                                 print('"sorry bud, come back when you got enough money."\n')
                                 break
 
-                        elif "tripper guide" in player.choice:
+                        elif "tripper guide" in player.input:
                             if not self.inventory.item_exist(Settings.TRIPPER_GUIDE_ID):
                                 print ("item not in shop")                            
                             elif player.inventory.get_amount(Settings.COIN_ID) >= Settings.TripperGuideObject.price:
@@ -165,11 +165,11 @@ class MiniMarket(suburbsQuarter):
                                 print('"sorry bud, come back when you got enough money."\n')
                                 break
                     
-                    elif "take" in player.choice:
+                    elif "take" in player.input:
                         print('''Cashier: "Don't even think about it"''')
                         
                         
-                    elif "exit" not in player.choice:
+                    elif "exit" not in player.input:
                         print("you still in shop\n")
                 print("(exit shop)")
                 self.inputLegit = True

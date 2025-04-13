@@ -5,7 +5,7 @@ class Player():
     instance = None
     position = None
     score = 0
-    choice = ""
+    input = ""
     quarter = "Suburbs"
     
     class playerHelper(): #this class make sure Player is a singletone and instantiate only once

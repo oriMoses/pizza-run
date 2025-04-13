@@ -33,7 +33,7 @@ class TeenHouse(suburbsQuarter):
             if Settings.goNextRoom:
                 break
 
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
             if self.door_knocked:
                 self.door_knocked = False
@@ -67,8 +67,8 @@ class TeenHouse(suburbsQuarter):
                         print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
-            if "knock" in player.choice:
-                if "door" in player.choice or "house" in player.choice:
+            if "knock" in player.input:
+                if "door" in player.input or "house" in player.input:
                     self.door_knocked = True
                     print('(door opened)\n "Pizzas hereeee"\n')
                     self.inputLegit = True

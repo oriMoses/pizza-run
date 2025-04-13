@@ -56,7 +56,7 @@ class Gatekeeper(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
 
             if handlePlayerInput.give_pizza(player):
@@ -94,15 +94,15 @@ class Gatekeeper(suburbsQuarter):
                     print("Not enough pizza in inventory\n")
                 self.inputLegit = True
             
-            if "look" in player.choice and "man" in player.choice:
+            if "look" in player.input and "man" in player.input:
                 print("hi there!\n")
 
-            elif "man" in player.choice or "gatekeeper" in player.choice:
-                if "talk" in player.choice or "approach" in player.choice or "look" in player.choice:
+            elif "man" in player.input or "gatekeeper" in player.input:
+                if "talk" in player.input or "approach" in player.input or "look" in player.input:
                     print('hi there!\n')
                     self.inputLegit = True
                     
-            elif "south" in player.choice and self.gateOpen:
+            elif "south" in player.input and self.gateOpen:
                 player.quarter = "Skyscrapers"
                 skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.MAIN,Skyscrapers_Street_Number.I])
                 player.position[0] = 2

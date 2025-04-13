@@ -43,7 +43,7 @@ class DownUnder(shakedownQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
             if handlePlayerInput.give_pizza(player):
                 numberOfPizza = Settings.howMuchPizza(self, player)
@@ -84,15 +84,15 @@ class DownUnder(shakedownQuarter):
                     print("Not enough pizza in inventory\n")
                 self.inputLegit = True
                     
-            elif "examine" in player.choice:
+            elif "examine" in player.input:
                 self.print_first_arrival()
                 self.inputLegit = True
                 break
             
-            elif "west" in player.choice:
+            elif "west" in player.input:
                 print("There's no way to climb up that slide")
             
-            elif "north" in player.choice:
+            elif "north" in player.input:
                 print("It seems that east is the only way")
             
             elif handlePlayerInput.player_input(self.inventory):

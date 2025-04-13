@@ -33,7 +33,7 @@ class GreenHouse(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
 
             if self.door_knocked:
@@ -68,62 +68,62 @@ class GreenHouse(suburbsQuarter):
                         print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
-            if "note" in player.choice:
-                if "read" in player.choice or "examine" in player.choice:
+            if "note" in player.input:
+                if "read" in player.input or "examine" in player.input:
                     if self.lawn_mower_key_taken:
                         print('"Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”\n')
                     else:
                         print('"Greetings, i will be back soon.\nPlease slide the pizza under the door.\nAlso - feel free to mow the lawn!”\nThere is a green lawn mower key taped to the note.\n')
                     self.inputLegit = True
                     
-                if "take" in player.choice:
+                if "take" in player.input:
                     print("Don't bother - the note is glued to the door\n")
                     self.inputLegit = True
                     
-            elif "key" in player.choice:
-                if "take" in player.choice or "examine" in player.choice:
+            elif "key" in player.input:
+                if "take" in player.input or "examine" in player.input:
                     print("lawn mower key added to your inventory\n")
                     self.inventory.move_item(Settings.GREEN_LAWN_MOWER_KEY_ID, player.inventory)
                     self.inputLegit = True
                     self.lawn_mower_key_taken = True
-                    player.choice = ""
+                    player.input = ""
                     
-            if "lawn mower" in player.choice or Settings.LawnMowerObject.turned_on:
-                if "turn" in player.choice and "on" in player.choice: 
+            if "lawn mower" in player.input or Settings.LawnMowerObject.turned_on:
+                if "turn" in player.input and "on" in player.input: 
                     if Settings.LawnMowerObject.turned_on:
                         print("lawn mower already turned on")
                         self.inputLegit = True
-                        player.choice = ""
+                        player.input = ""
 
                     elif player.inventory.item_exist(GREEN_LAWN_MOWER_KEY_ID):
                         Settings.LawnMowerObject.turned_on = True
                         print("Vrrmmmmmm!")
                         self.inputLegit = True
-                        player.choice = ""
+                        player.input = ""
 
-                elif "ride" in player.choice:
+                elif "ride" in player.input:
                     if Settings.LawnMowerObject.turned_on:
                         Settings.LawnMowerObject.player_riding = True
                         print("You are riding the lawn mower\n")
                         self.inputLegit = True
-                        player.choice = ""
+                        player.input = ""
                     else:
                         print("You first need to turn on the lawn mower")
 
                         
             if Settings.LawnMowerObject.turned_on and Settings.LawnMowerObject.player_riding:
-                if "mow " in player.choice or "cut" in player.choice:
+                if "mow " in player.input or "cut" in player.input:
                     print("well done! The grass is evenly cut.\nyou see a shiny dice on the grass.\n")
                     self.inputLegit = True
                     self.shiny_dice_available = True
                             
-            if "shiny dice" in player.choice and self.shiny_dice_available:
-                if "examine" in player.choice or "look" in player.choice:
+            if "shiny dice" in player.input and self.shiny_dice_available:
+                if "examine" in player.input or "look" in player.input:
                     print("It looks like a regular casino dice. When shaken, a quiet metallic sound rings from inside.\nI wonder why…\n")
                     self.inputLegit = True
                     
-            elif "knock" in player.choice:
-                if "door" in player.choice or "house" in player.choice:
+            elif "knock" in player.input:
+                if "door" in player.input or "house" in player.input:
                     self.door_knocked = True
                     print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n“Did we order pizza?”\n\n“Hah, guess we did.“\n')
                     self.inputLegit = True

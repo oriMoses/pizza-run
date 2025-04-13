@@ -27,15 +27,15 @@ class BigSlide(shakedownQuarter):
     def print_first_arrival(self, player):
         print("You see a massive, yellow slide\nIt's so big you can't spot the landing\nYour head gets fuzzy from the height\nslide down?")
         
-        while "yes" not in player.choice and "no" not in player.choice:
+        while "yes" not in player.input and "no" not in player.input:
             print("yes/no?\n")
-            player.choice = input("> ").lower()
-            if "yes" in player.choice:
+            player.input = input("> ").lower()
+            if "yes" in player.input:
                 print('lets goooo!\nYou drop ', end='')
                 print(Colors.UNDERLINE + 'everything' + Colors.END, end='')
                 print('and jump head first down the yellow slide\nWhat a horrible idea! Who talked you into that?!')
             
-            elif "no" in player.choice:
+            elif "no" in player.input:
                 print("Aww come on! don't be a wimp!(go ")
                 print(Colors.UNDERLINE + 'west' + Colors.END, end=' ')
                 print("if you are a coward)")
@@ -50,9 +50,9 @@ class BigSlide(shakedownQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
                 
-            if "examine" in player.choice and self.inventory.is_inventory_empty():
+            if "examine" in player.input and self.inventory.is_inventory_empty():
                 self.print_first_arrival(player)
                 self.inputLegit = True
 

@@ -37,7 +37,7 @@ class BushGarden(suburbsQuarter):
         while True:
             if Settings.goNextRoom:
                 break
-            player.choice = input("> ").lower()
+            player.input = input("> ").lower()
 
 
             if self.picnic_went:
@@ -55,12 +55,12 @@ class BushGarden(suburbsQuarter):
 
                             print('''"thanks man! We don't have any money for tips… \n\nbut you can join us! \nTake a slice of pizza, kick your shoes off and enjoy yourself!" \n\nstay at the festival? yes/no\n''')
 
-                            while player.choice != "yes" and player.choice != "no":
-                                player.choice = input("> ").lower()
+                            while player.input != "yes" and player.input != "no":
+                                player.input = input("> ").lower()
 
-                                if "yes" in player.choice:
+                                if "yes" in player.input:
                                     self.print_end_1(player)
-                                elif "no" in player.choice:
+                                elif "no" in player.input:
                                     print("I get it man, show must go on… anyway, happy new year!!!\n")
                                 else:
                                     print("\nstay at the festival? yes/no\n")
@@ -79,8 +79,8 @@ class BushGarden(suburbsQuarter):
                         print("Not enough pizza in inventory\n")
                     self.inputLegit = True
 
-            elif "table" in player.choice or "picnic" in player.choice:
-                if "go" in player.choice:
+            elif "table" in player.input or "picnic" in player.input:
+                if "go" in player.input:
                     print("""you hike your way to the table. \nfrom up close, you see the table is on top of a hill. \nDown the hill, you see an improvised stage. \n\nThe live music cuts right through you… \nsomething about the singer's voice. \n\nThe hill is dotted with colorful rugs and people.\nsome dance, some just lay back and look at the sky. \n\n"oh! Hey guys, pizza man here!" \n\nThe people around the picnic table smile at you, maybe give them pizza? \n""")
                     self.picnic_went = True
                     self.inputLegit = True
