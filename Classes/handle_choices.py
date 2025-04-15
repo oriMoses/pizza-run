@@ -4,12 +4,10 @@ from Constants.constants import *
 from Rooms.Suburbs.suburbs_none_special_room import SuburbsNoneSpecialRoom
 from Rooms.Suburbs.parking import Parking
 
-#   START CHANGE HANDLEINPUT TO SINGLETON
-
 class HandleInputs():
     instance = None
     
-    class classHelper(): #this class make sure Player is a singletone and instantiate only once
+    class classHelper(): #this class make sure class is a singletone and instantiate only once
         def __call__( self, *args, **kw ):
             if HandleInputs.instance is None:
                 HandleInputs.instance = HandleInputs()
@@ -185,7 +183,7 @@ class HandleInputs():
         return False
     def notebook(self, roomInventory, player):
         if "notebook" in player.input and "suburbs" in player.input:
-            if not roomInventory.item_exist(SUBURBS_NOTEBOOK_ID):
+            if not roomInventory.item_exist(SUBURBS_NOTEBOOK_ID) and not player.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
                 print("you can not see the suburbs notebook around\n")
                 return True
                 

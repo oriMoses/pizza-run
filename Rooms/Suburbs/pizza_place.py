@@ -23,7 +23,7 @@ class PizzaPlace():
 
 
     def print_first_arrival(self):
-        print("""you are in the main pizza\nIt's your basic pizza place, the floor is sticky and the cook is propably 16\n""")
+        print("""you are in the main pizza place\nIt's your basic pizza place, the floor is sticky and the cook is propably 16\n""")
         print("You see massive pile of hot pizza and a small ", end="")
         print(Colors.GREEN + "note" + Colors.END, end="")
         print(" on the counter\n")
@@ -63,6 +63,9 @@ class PizzaPlace():
                 elif "take" in player.input or "pick" in player.input:
                     print("the note glued to the counter, you can't take it\n")
                     self.inputLegit = True
+                elif "lick" in player.input:
+                    print("you start to feel sick and you don't want to lick it anymore")
+                    self.inputLegit = True
 
             elif "north" in player.input:
                 print("There is a wall to the north\n")
@@ -89,7 +92,6 @@ class PizzaPlace():
                 if self.door.locked:
                     print("The door is locked (as doors should be)\n")
                 else:
-                    
                     player.input = "west"
                     handlePlayerInput.player_input(self.inventory)
                     break

@@ -44,6 +44,8 @@ class Parking(suburbsQuarter):
                 if "look" in player.input:
                     print("it's a regular cardbox.\n")
                     self.inputLegit = True
+                if "pick up" in player.input or "take" in player.input:
+                    print("box is too heavy")
 
             elif self.box_open:
                 if "read" in player.input:

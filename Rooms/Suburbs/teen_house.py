@@ -24,7 +24,7 @@ class TeenHouse(suburbsQuarter):
 
 
     def dialog_circle(self, player, handlePlayerInput):
-        Settings.cool_pizzas_on(player)
+        Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
         self.firstArrival = True
         self.print_first_arrival()

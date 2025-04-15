@@ -134,7 +134,7 @@ class CasinoMainHall(skyscrapersQuarter):
         #TODO: continue from here!
 
     def dialog_circle(self, player, handlePlayerInput):
-        Settings.cool_pizzas_on(player)
+        Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
         self.first_arrival()
         while True:
