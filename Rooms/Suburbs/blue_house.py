@@ -24,7 +24,7 @@ class BlueHouse(suburbsQuarter):
         print("You see a blue house, with a lawn full of garden gnomes.\nIt feels like the gnomes are looking at you.\n\nmaybe it's better not to think about the garden gnomes so much.\n")
         Settings.print_objects_in_room(self)
 
-    def first_arrival(self):
+    def unique_first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
@@ -37,7 +37,7 @@ class BlueHouse(suburbsQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        self.first_arrival()
+        self.unique_first_arrival()
         
         while True:
             if Settings.goNextRoom:

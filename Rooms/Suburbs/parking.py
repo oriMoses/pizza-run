@@ -25,9 +25,9 @@ class Parking(suburbsQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        self.inventory.print_room_inventory()
+#        self.inventory.print_room_inventory()
         
-        Settings.first_arrival(self)
+        Settings.generic_first_arrival(self)
         self.box_open = False
         while True:
             if Settings.goNextRoom:

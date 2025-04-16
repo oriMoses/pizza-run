@@ -57,7 +57,6 @@ def remove_orderes_for(streetPosition : int, addressPosition : int):
 def print_objects_in_room(self):
     player = Player.getInstance()
     counter = 0
-    print("before first printing")
     if print_items_in_room(self) == NO_ITEMS_IN_ROOM:
         counter += 1
     if print_vehicles_in_room(self) == NO_VEHICLES_IN_ROOM:
@@ -68,7 +67,6 @@ def print_objects_in_room(self):
             counter +=1
     if counter == 2:
         print() #note: if room is empty print 1 empty line to correct spacing
-    print("after first printing")
 
 def cool_pizzas_on(inventory):
     inventory.inventory[COLD_PIZZA_ID]['stock_count'] += inventory.inventory[HOT_PIZZA_ID]['stock_count'] 
@@ -82,7 +80,7 @@ def print_items_in_room(self):
                 item[1].inBox = True
         elif item[1].ID == HAIR_DRYER_ID or item[1].ID == PIZZA_LOCATOR_ID or item[1].ID == TRIPPER_GUIDE_ID or item[1].ID == WRIST_WATCH_ID or item[1].ID == BACKPACK_ID:
             if item[1].inShop:
-                inShop = True
+                pass
         else:
             if self.inventory.item_exist(item[1].ID):
                 item[1].print_in_room()
@@ -132,7 +130,7 @@ def print_pizza_in_room(self):
     else:
         return NO_PIZZAS_IN_ROOM
 
-def first_arrival(self):
+def generic_first_arrival(self):
     if self.firstArrival:
         self.print_first_arrival()
         self.firstArrival = False

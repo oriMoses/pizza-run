@@ -22,7 +22,7 @@ class Bank(skyscrapersQuarter):
         Settings.print_objects_in_room(self)
 
 
-    def first_arrival(self, player):
+    def unique_first_arrival(self, player):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
@@ -33,7 +33,7 @@ class Bank(skyscrapersQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        self.first_arrival()
+        self.unique_first_arrival()
 
         while True:
             if Settings.goNextRoom:

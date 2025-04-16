@@ -15,18 +15,10 @@ class MainRoad(skyscrapersQuarter):
     def __str__(self):
         return f"Main road"
 
-    def print_first_arrival(self):
-        Settings.print_objects_in_room(self)
-
-
-    def first_arrival(self):
-        self.print_first_arrival()
-
-
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        self.first_arrival()
+        Settings.print_objects_in_room(self)
 
         while True:
             if Settings.goNextRoom:

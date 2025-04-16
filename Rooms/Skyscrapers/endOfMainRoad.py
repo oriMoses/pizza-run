@@ -23,20 +23,10 @@ class EndOfMainRoad(skyscrapersQuarter):
         print(Colors.UNDERLINE + "South" + Colors.END)
         Settings.print_objects_in_room(self)
 
-
-    def first_arrival(self):
-        if self.firstArrival:
-            self.print_first_arrival()
-            self.firstArrival = False
-        else:
-            #print("End of main road\n")
-            Settings.print_objects_in_room(self)
-
-
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        self.first_arrival()
+        Settings.generic_first_arrival()
 
         while True:
             if Settings.goNextRoom:

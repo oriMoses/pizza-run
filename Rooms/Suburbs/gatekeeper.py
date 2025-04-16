@@ -31,7 +31,7 @@ class Gatekeeper(suburbsQuarter):
         Settings.print_objects_in_room(self)
 
 
-    def first_arrival(self):
+    def unique_first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
@@ -49,7 +49,7 @@ class Gatekeeper(suburbsQuarter):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
         if not self.gateOpen:
-            self.first_arrival()
+            self.unique_first_arrival()
         else:
             Settings.print_objects_in_room(self)
 

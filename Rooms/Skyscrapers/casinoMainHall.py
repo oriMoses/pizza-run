@@ -25,7 +25,7 @@ class CasinoMainHall(skyscrapersQuarter):
         Settings.print_objects_in_room(self)
         
 
-    def first_arrival(self):
+    def unique_first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
@@ -136,7 +136,7 @@ class CasinoMainHall(skyscrapersQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        self.first_arrival()
+        self.unique_first_arrival()
         while True:
             if Settings.goNextRoom:
                 break

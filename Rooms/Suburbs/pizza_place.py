@@ -44,7 +44,7 @@ class PizzaPlace():
         Settings.print_pizza_in_pizza_place(self)
         
     def dialog_circle(self, player, handlePlayerInput):
-        Settings.first_arrival(self)
+        Settings.generic_first_arrival(self)
 
         while True:
             if Settings.goNextRoom:

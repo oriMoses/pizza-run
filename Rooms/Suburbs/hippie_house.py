@@ -22,10 +22,10 @@ class HippieHouse(suburbsQuarter):
         Settings.print_objects_in_room(self)
 
 
-    def first_arrival(self):
-        if self.firstArrival:
+    def unique_first_arrival(self):
+        if self.first_arrival:
             self.print_first_arrival()
-            self.firstArrival = False
+            self.first_arrival = False
         else:
             print("Still with that strange smell")
             Settings.print_objects_in_room(self)
@@ -34,7 +34,7 @@ class HippieHouse(suburbsQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        self.first_arrival()
+        self.unique_first_arrival()
 
         while True:
             if Settings.goNextRoom:

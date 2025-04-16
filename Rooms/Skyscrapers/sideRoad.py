@@ -21,7 +21,7 @@ class SideRoad(skyscrapersQuarter):
         Settings.print_objects_in_room(self)
         
 
-    def first_arrival(self, player):
+    def unique_first_arrival(self, player):
         if self.firstArrival:
             if player.position[0] == 0 and player.position[1] == 2:
                 print("You see a bank,", end=" ") 
@@ -37,7 +37,7 @@ class SideRoad(skyscrapersQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        self.first_arrival(player)
+        self.unique_first_arrival(player)
 
         while True:
             if Settings.goNextRoom:
