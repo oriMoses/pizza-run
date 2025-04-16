@@ -29,16 +29,6 @@ class Inventory():
             self.inventory[item_id]["stock_count"] = stock_count
         else:
             print("Item not found in inventory.")
-
-    def print_item_info(self, item_id):
-        if item_id in self.inventory:
-            item = self.inventory[item_id]
-            if item['name'] == "Pizza":
-                return f"Product Name: {item['name']}, Stock Count: {item['stock_count']}, Pizza Temprature: {item['pizza_temprature']}"
-            else:
-                return f"Product Name: {item['name']}, Stock Count: {item['stock_count']}"
-        else:
-            return "Item not found in inventory."
         
     def print_room_inventory(self):
         for item in self.inventory:
