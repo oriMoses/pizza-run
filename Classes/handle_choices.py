@@ -29,7 +29,7 @@ class HandleInputs():
     def look_input(self, player):
         if "look" in player.input or "lookaround" in player.input or "lookup" in player.input:
             if player.quarter == "Suburbs":
-                if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom:
+                if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom: #TODO: make same lines for Skyscrapers and Shakedown
                     print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
                 elif Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
                     if "box" in player.input: return False #TODO: after "look at box" in Parking, the code print vehicles in room

@@ -104,6 +104,8 @@ class MiniMarket(suburbsQuarter):
                 while "exit" not in player.input:
                     player.input = input("> ").lower()
                     print("")
+                    if "south" in player.input or "north" in player.input or "east" in player.input or "west" in player.input:
+                        player.input += " exit"
                     if "buy" in player.input:
                         if "hair dryer" in player.input:
                             if not self.inventory.item_exist(Settings.HAIR_DRYER_ID):
