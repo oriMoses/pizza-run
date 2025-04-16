@@ -55,7 +55,7 @@ class YellowHouse(suburbsQuarter):
 
                     elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
                         player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
+                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
 
                         print("cold pizza… well, still pizza")
                         print(numberOfPizza, " coin up tip\n")

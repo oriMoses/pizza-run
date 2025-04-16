@@ -34,18 +34,16 @@ class HandleInputs():
                 elif Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
                     if "box" in player.input: return False #TODO: after "look at box" in Parking, the code print vehicles in room
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_first_arrival()
-                if player.position[0] != 3 or player.position[1] != 3:
-                    Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
-                else:
+                if player.position[0] == 3 and player.position[1] == 3:
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_pizza_in_pizza_place()
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
             elif player.quarter == "Skyscrapers":
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].print_first_arrival()
-                Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
+                Settings.print_objects_in_room(Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]])
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inputLegit = True
             elif player.quarter == "Shakedown":
                 Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].print_first_arrival()
-                Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].inventory.print_room_inventory()
+                Settings.print_objects_in_room(Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]])                
                 Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].inputLegit = True
             return True
 
