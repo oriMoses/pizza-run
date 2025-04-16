@@ -11,8 +11,10 @@ class Inventory():
         if item_id in self.inventory:
             toInventory.add_item(item_id, self.inventory[item_id]["name"], self.inventory[item_id]["stock_count"], True)
             self.inventory.pop(item_id)
+            return True
         else:
             print("Item not in room.")
+            return False
 
     def move_items(self, item_id, toInventory, amount):
         if self.inventory[item_id]["stock_count"] - amount >= 0:

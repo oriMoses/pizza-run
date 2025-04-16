@@ -57,7 +57,7 @@ def remove_orderes_for(streetPosition : int, addressPosition : int):
 def print_objects_in_room(self):
     player = Player.getInstance()
     counter = 0
-    enterPizzaPlace = False
+    print("before first printing")
     if print_items_in_room(self) == NO_ITEMS_IN_ROOM:
         counter += 1
     if print_vehicles_in_room(self) == NO_VEHICLES_IN_ROOM:
@@ -66,29 +66,24 @@ def print_objects_in_room(self):
         if player.position[0] == 3 and player.position[1] == 3:
             print_pizza_in_pizza_place(self)
             counter +=1
-    #        enterPizzaPlace = True
-    # if not enterPizzaPlace:
-    #     if print_pizza_in_room(self) == NO_PIZZAS_IN_ROOM:
-    #         counter += 1
     if counter == 2:
         print() #note: if room is empty print 1 empty line to correct spacing
+    print("after first printing")
 
 def cool_pizzas_on(inventory):
     inventory.inventory[COLD_PIZZA_ID]['stock_count'] += inventory.inventory[HOT_PIZZA_ID]['stock_count'] 
     inventory.inventory[HOT_PIZZA_ID]['stock_count'] = 0
 
 def print_items_in_room(self):
-    inBox = False
-    inShop = False
     itemInRoom = False
     for item in enumerate(itemList):
         if item[1].ID == SUBURBS_NOTEBOOK_ID or item[1].ID == BIKE_KEY_ID:
             if item[1].inBox:
-                inBox = True
+                item[1].inBox = True
         elif item[1].ID == HAIR_DRYER_ID or item[1].ID == PIZZA_LOCATOR_ID or item[1].ID == TRIPPER_GUIDE_ID or item[1].ID == WRIST_WATCH_ID or item[1].ID == BACKPACK_ID:
             if item[1].inShop:
                 inShop = True
-        if inShop == False and inBox == False:
+        else:
             if self.inventory.item_exist(item[1].ID):
                 item[1].print_in_room()
                 itemInRoom = True

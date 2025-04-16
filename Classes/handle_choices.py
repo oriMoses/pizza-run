@@ -401,6 +401,7 @@ class HandleInputs():
                 print("You already have", item_name, "\n")
             
             elif roomInventory.move_item(item_id, player.inventory):
+                print(item_name, "added to your inventory\n")
                 return True
             
             return True
@@ -413,7 +414,7 @@ class HandleInputs():
             if self.move_pizzas_from(player.inventory, item_id, roomInventory, amount):
                 print("item dropped\n")
                 Settings.itemList[item_id].position = player.position
-
+                
             return True
         else:
             return False
@@ -422,7 +423,6 @@ class HandleInputs():
         if "key" in player.input:
             if "pizza" in player.input or "pizzas" in player.input:
                 if self.deal_with_pick_and_drop(roomInventory, MainPizzaKey_ID, "main pizza key", 1, player):
-                    print("Main Pizza Key added to inventory")
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
                 return True
 

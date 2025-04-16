@@ -8,7 +8,7 @@ class MainPizzaKey(BasicItem):
         self.quarter = "Suburbs"
 
     def print_in_room(self):
-        print("The Main pizza key is on the floor")
+        print("There's main pizza key on the floor")
 
     def examine(self):
         print("I guess it's open the door")
