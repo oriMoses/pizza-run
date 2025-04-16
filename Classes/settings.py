@@ -78,7 +78,11 @@ def print_items_in_room(self):
     for item in enumerate(itemList):
         if item[1] == HOT_PIZZA_ID or item[1] == COLD_PIZZA_ID:
             if self.inventory.item_exist(item[1]):
-                if player.quarter == "Suburbs" and (player.position[0] != 3 or player.position[1] != 3):
+                if player.quarter == "Suburbs":
+                    if (player.position[0] != 3 or player.position[1] != 3):
+                        print_pizza_in_room(self)
+                        itemInRoom = True
+                else:
                     print_pizza_in_room(self)
                     itemInRoom = True
         

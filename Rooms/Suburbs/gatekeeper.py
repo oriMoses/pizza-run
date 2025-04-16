@@ -87,12 +87,12 @@ class Gatekeeper(suburbsQuarter):
 
                     print("Thank you, too bad its cold")
                     print(numberOfPizza, " coin up tip")
-                    print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open.')
+                    print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open')
                     self.gateOpen = True
+                    self.inputLegit = True
                     break
                 else:
                     print("Not enough pizza in inventory\n")
-                self.inputLegit = True
             
             if "look" in player.input and "man" in player.input:
                 print("hi there!\n")

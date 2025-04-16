@@ -25,7 +25,7 @@ class CasinoRoof(skyscrapersQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        Settings.generic_first_arrival()
+        Settings.generic_first_arrival(self)
 
         while True:
             if Settings.goNextRoom:
