@@ -114,7 +114,7 @@ class MiniMarket(suburbsQuarter):
                                 self.print_on_buy()
                                 Settings.hairDryerObject.inShop = False
                             else:
-                                print('"sorry bud, come back when you got enough money."\n')
+                                print('"sorry bud, come back when you got enough money"\n')
                                 break
 
                         elif "backpack" in player.input:
@@ -126,7 +126,7 @@ class MiniMarket(suburbsQuarter):
                                 self.print_on_buy()
                                 Settings.backpackObject.inShop = False
                             else:
-                                print('"sorry bud, come back when you got enough money."\n')
+                                print('"sorry bud, come back when you got enough money"\n')
                                 break
 
                         elif "wrist watch" in player.input:

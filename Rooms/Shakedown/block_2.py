@@ -16,12 +16,6 @@ class Block_2(shakedownQuarter):
     def __str__(self):
         return f"Block 2"
 
-    def first_arrival(self):
-        if self.firstArrival:
-            self.print_first_arrival()
-            self.firstArrival = False
-        else:
-            pass
             
     def print_first_arrival(self):
         print("What a mess! \n\nThere's a man on top of the clock tower wearing a poorly made chicken custom.")
@@ -32,9 +26,9 @@ class Block_2(shakedownQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        Settings.print_objects_in_room(self)
-        self.inventory.print_room_inventory()
-        self.first_arrival()
+        # Settings.print_objects_in_room(self)
+        # self.inventory.print_room_inventory()
+        Settings.generic_first_arrival()
         
         while True:
             if Settings.goNextRoom:

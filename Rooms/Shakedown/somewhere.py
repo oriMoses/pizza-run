@@ -17,7 +17,7 @@ class Somewhere(shakedownQuarter):
         return f"Somewhere"
 
 
-    def first_arrival(self):
+    def unique_first_arrival(self):
         if self.firstArrival:
             self.print_first_arrival()
             self.firstArrival = False
@@ -31,8 +31,8 @@ class Somewhere(shakedownQuarter):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
         Settings.print_objects_in_room(self)
-        self.inventory.print_room_inventory()
-        self.first_arrival()
+        #self.inventory.print_room_inventory()
+        self.unique_first_arrival()
         
         while True:
             if Settings.goNextRoom:

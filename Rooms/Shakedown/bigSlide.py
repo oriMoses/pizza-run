@@ -16,13 +16,6 @@ class BigSlide(shakedownQuarter):
     def __str__(self):
         return f"Big Slide"
 
-    def first_arrival(self, player):
-        if self.firstArrival:
-            self.print_first_arrival(player)           
-
-            self.firstArrival = False
-        else:
-            pass
             
     def print_first_arrival(self, player):
         print("You see a massive, yellow slide\nIt's so big you can't spot the landing\nYour head gets fuzzy from the height\nslide down?")
@@ -43,9 +36,9 @@ class BigSlide(shakedownQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        Settings.print_objects_in_room(self)
-        self.inventory.print_room_inventory()
-        self.first_arrival(player)
+        #Settings.print_objects_in_room(self)
+        #self.inventory.print_room_inventory()
+        Settings.generic_first_arrival(player)
         
         while True:
             if Settings.goNextRoom:

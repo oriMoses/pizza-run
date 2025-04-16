@@ -23,9 +23,9 @@ class HippieHouse(suburbsQuarter):
 
 
     def unique_first_arrival(self):
-        if self.first_arrival:
+        if self.firstArrival:
             self.print_first_arrival()
-            self.first_arrival = False
+            self.firstArrival = False
         else:
             print("Still with that strange smell")
             Settings.print_objects_in_room(self)
@@ -47,7 +47,7 @@ class HippieHouse(suburbsQuarter):
                 if handlePlayerInput.give_pizza(player):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
-                    if player.inventory.hot_pizza_exists(numberOfPizza):
+                    if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
                         orders = Settings.get_orders_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.I, player)
                         if orders == -1:
                             print("You already delivered this order")
@@ -63,7 +63,7 @@ class HippieHouse(suburbsQuarter):
                         else:
                             print("Thats not the correct order\n")
 
-                    elif player.inventory.cold_pizza_exists(numberOfPizza):
+                    elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
                         player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
                         player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
 

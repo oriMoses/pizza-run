@@ -16,12 +16,6 @@ class Block_1(shakedownQuarter):
     def __str__(self):
         return f"Block 1"
 
-    def first_arrival(self):
-        if self.firstArrival:
-            self.print_first_arrival()
-            self.firstArrival = False
-        else:
-            pass
             
     def print_first_arrival(self):
         print('What a mess!\n\nThree clowns are holding a rugged looking mattress, while looking up…\nThe crowd is surrounding them\nYou find yourself being pushed' , end='')
@@ -33,7 +27,7 @@ class Block_1(shakedownQuarter):
         Settings.cool_pizzas_on(self.inventory)
         Settings.print_objects_in_room(self)
         self.inventory.print_room_inventory()
-        self.first_arrival()
+        Settings.generic_first_arrival()
         
         while True:
             if Settings.goNextRoom:

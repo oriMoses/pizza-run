@@ -44,7 +44,7 @@ class BushGarden(suburbsQuarter):
                 if handlePlayerInput.give_pizza(player):
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
-                    if player.inventory.hot_pizza_exists(numberOfPizza):
+                    if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
                         orders = Settings.get_orders_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.I. player)
                         if orders == -1:
                             print("You already delivered this order\n")
@@ -68,7 +68,7 @@ class BushGarden(suburbsQuarter):
                         else:
                             print("give me pizza!!!! only one pizza!\n")
 
-                    elif player.inventory.cold_pizza_exists(numberOfPizza):
+                    elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
                         player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
                         player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
 
