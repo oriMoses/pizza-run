@@ -19,7 +19,7 @@ class BigSlide(shakedownQuarter):
 
     def drop_all_inventory(self):
         player = Player.getInstance()
-        for item in player.inventory()
+        for item in player.inventory():
             if item['stock_count'] == 0:
                 pass
             elif item['stock_count'] == 1:
