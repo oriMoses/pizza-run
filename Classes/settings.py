@@ -92,6 +92,10 @@ def print_items_in_room(self):
         elif item[1].ID == HAIR_DRYER_ID or item[1].ID == PIZZA_LOCATOR_ID or item[1].ID == TRIPPER_GUIDE_ID or item[1].ID == WRIST_WATCH_ID or item[1].ID == BACKPACK_ID:
             if item[1].inShop:
                 pass
+            else:
+                if self.inventory.item_exist(item[1].ID):
+                    item[1].print_in_room()
+                    itemInRoom = True
 
         else:
             if self.inventory.item_exist(item[1].ID):

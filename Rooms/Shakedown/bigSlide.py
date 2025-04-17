@@ -19,13 +19,15 @@ class BigSlide(shakedownQuarter):
 
     def drop_all_inventory(self):
         player = Player.getInstance()
-        for item in player.inventory():
-            if item['stock_count'] == 0:
+        # while len(player.inventory.inventory) > 0:
+        #     item_id = player.inventory.inventory[0]
+        for item_id in list(player.inventory.inventory):
+            if player.inventory.inventory[item_id]['stock_count'] == 0:
                 pass
-            elif item['stock_count'] == 1:
-                player.inventory.move_item(item.id, Settings.mapInstance.suburbs.position[6][2].inventory, item['stock_count'])
+            elif player.inventory.inventory[item_id]['stock_count'] == 1:
+                player.inventory.move_item(item_id, Settings.mapInstance.shakedown.position[Shakedown_Street_Name.LATE.value][Shakedown_Street_Number.III.value].inventory)
             else:
-                player.inventory.move_items(item.id, Settings.mapInstance.suburbs.position[6][2].inventory, item['stock_count'])
+                player.inventory.move_items(item_id, Settings.mapInstance.shakedown.position[Shakedown_Street_Name.LATE][Shakedown_Street_Number.III].inventory, player.inventory.inventory[item_id]['stock_count'])
 
             
     def print_first_arrival(self):
@@ -64,7 +66,7 @@ class BigSlide(shakedownQuarter):
                 self.print_first_arrival()
                 self.inputLegit = True
             
-            elif "east" in player.choice:
+            elif "east" in player.input:
                 print("You can't go there")
                 self.inputLegit = True
 

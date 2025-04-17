@@ -132,8 +132,9 @@ class HandleInputs():
     def backpack(self, roomInventory, player):
         if "backpack" in player.input or "back pack" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, BACKPACK_ID, "delivery backpack", 1, player):
-                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
-
+                if player.quarter == "Suburbs":
+                    Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+                    #TODO: add input legit for all maps
             if "examine" in player.input:
                 if player.inventory.item_exist(BACKPACK_ID):
                     Settings.backpackObject.examine()
@@ -147,7 +148,8 @@ class HandleInputs():
     def hair_dryer(self, roomInventory, player):
         if "hair" in player.input and "dryer" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, HAIR_DRYER_ID, "hair dryer", 1, player):
-                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+                if player.quarter == "Suburbs":
+                    Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
             if "examine" in player.input:
                 if player.inventory.item_exist(HAIR_DRYER_ID):
