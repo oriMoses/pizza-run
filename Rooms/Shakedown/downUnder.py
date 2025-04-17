@@ -46,6 +46,7 @@ class DownUnder(shakedownQuarter):
             player.input = input("> ").lower()
 
             if handlePlayerInput.give_pizza(player):
+                self.inputLegit = True
                 if self.order_given == False:
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
@@ -62,10 +63,8 @@ class DownUnder(shakedownQuarter):
                             print(2, " coin up tip\n")
                             
                             print("The guys seem to be thrilled about the pizza. they let you pass.\nYou can go ")
-                            print(Colors.Underline + "East" + Colors.END)
-                            self.inputLegit = True
+                            print(Colors.UNDERLINE + "East" + Colors.END)
                             self.order_given = True
-                            break
                         else:
                             print("Thats not the correct order\n")
 
@@ -82,19 +81,14 @@ class DownUnder(shakedownQuarter):
                             print(2, " coin up tip\n")
                             
                             print("The guys seem to be thrilled about the pizza. they let you pass.\nYou can go ")
-                            print(Colors.Underline + "East" + Colors.END)
-                            self.inputLegit = True
+                            print(Colors.UNDERLINE + "East" + Colors.END)
                             self.order_given = True
-                            break
                         else:
                             print("That's not the correct order")
-                            self.inputLegit = True
                     else:
                         print("Not enough pizza in inventory\n")
-                    self.inputLegit = True
                 else:
                     print("order already given")
-                    self.inputLegit = True
                     
             elif "examine" in player.input:
                 self.print_first_arrival()

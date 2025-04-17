@@ -278,6 +278,13 @@ def street_in_boundary(streetPoition, streetNumberPosition):
         if type(world_map.skyscrapers.position[streetPoition][streetNumberPosition]).__name__ == "OutOfBounds":
             return False
         
+    if player.quarter == "Shakedown":
+        if streetPoition < SHAKEDOWN_MIN_STREET_BOUNDARY or \
+            streetPoition > SHAKEDOWN_MAX_STREET_BOUNDARY:
+            return False
 
+        if streetNumberPosition < SHAKEDOWN_MIN_STREET_NUMBER_BOUNDARY or \
+            streetNumberPosition > SHAKEDOWN_MAX_STREET_NUMBER_BOUNDARY:
+            return False  
+        
     return True
-    

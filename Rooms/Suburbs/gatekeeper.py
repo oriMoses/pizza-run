@@ -60,6 +60,7 @@ class Gatekeeper(suburbsQuarter):
 
 
             if handlePlayerInput.give_pizza(player):
+                self.inputLegit = True
                 if self.order_given == False:
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
@@ -76,12 +77,9 @@ class Gatekeeper(suburbsQuarter):
                             print(numberOfPizza*2, " coin up tip")
                             print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care"\nThe gate is now open')
                             self.gateOpen = True
-                            self.inputLegit = True
                             self.order_given = True
-                            break
                         else:
                             print("Thats not the correct order\n")
-                            self.inputLegit = True
 
                     elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
                         orders = Settings.get_orders_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III, player)
@@ -96,12 +94,9 @@ class Gatekeeper(suburbsQuarter):
                             print(numberOfPizza, " coin up tip")
                             print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open')
                             self.gateOpen = True
-                            self.inputLegit = True
                             self.order_given = True
-                            break
                         else:
                             print("That's not the correct order\n")
-                            self.inputLegit = True
                     else:
                         print("Not enough pizza in inventory\n")
                 else:

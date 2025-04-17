@@ -55,6 +55,7 @@ class MiniMarket(suburbsQuarter):
             player.input = input("> ").lower()
             print("")
             if handlePlayerInput.give_pizza(player):
+                self.inputLegit = True
                 if self.order_given == False:
                     numberOfPizza = Settings.howMuchPizza(self, player)
 
@@ -70,7 +71,6 @@ class MiniMarket(suburbsQuarter):
                             print('"Perfect"')
                             print(numberOfPizza*2, " coin up tip\n")
                             self.order_given = True
-                            break
                         else:
                             print("Thats not the correct order\n")
 
@@ -86,17 +86,12 @@ class MiniMarket(suburbsQuarter):
                             print('"Thanks, kind of cold tho"')
                             print(numberOfPizza, " coin up tip\n")
                             self.order_given = True
-                            break
                         else:
                             print("That's not the correct order")
-                            self.inputLegit = True
                     else:
-                        print("Not enough pizza in inventory\n")
-                    self.inputLegit = True
-                
+                        print("Not enough pizza in inventory\n")                
                 else:
                     print("order already given")
-                    self.inputLegit = True
                     
             if self.go_to_shop(player):
                 print('(Inside the shop)\nCashier: "hey there, would you like anything?" \nyes/no\n')

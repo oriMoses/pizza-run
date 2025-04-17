@@ -42,6 +42,7 @@ class BushGarden(suburbsQuarter):
 
             if self.picnic_went:
                 if handlePlayerInput.give_pizza(player):
+                    self.inputLegit = True
                     if self.order_given == False:
                         numberOfPizza = Settings.howMuchPizza(self, player)
 
@@ -65,7 +66,6 @@ class BushGarden(suburbsQuarter):
                                         print("\nstay at the festival? yes/no\n")
                                 
                                 self.order_given = True
-                                break
                             else:
                                 print("give me pizza!!!! only one pizza!\n")
 
@@ -80,16 +80,12 @@ class BushGarden(suburbsQuarter):
                                 print("The man grabs the pizza and shut the door with a slam!")
                                 print(numberOfPizza, " coin up tip")
                                 self.order_given = True
-                                break
                             else:
                                 print("That's not the correct order")
-                                self.inputLegit = True
                         else:
                             print("Not enough pizza in inventory\n")
-                        self.inputLegit = True
                     else:
                         print("order already given")
-                        self.inputLegit = True
                         
             elif "table" in player.input or "picnic" in player.input:
                 if "go" in player.input:

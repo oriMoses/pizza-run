@@ -3,6 +3,7 @@ from Classes.inventory import Inventory
 from Constants.constants import *
 from Classes.quarters import shakedownQuarter 
 from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number, Colors
+from Classes.player import Player
 
 class BigSlide(shakedownQuarter):
     def __init__(self):
@@ -16,8 +17,19 @@ class BigSlide(shakedownQuarter):
     def __str__(self):
         return f"Big Slide"
 
+    def drop_all_inventory(self):
+        player = Player.getInstance()
+        for item in player.inventory()
+            if item['stock_count'] == 0:
+                pass
+            elif item['stock_count'] == 1:
+                player.inventory.move_item(item.id, Settings.mapInstance.suburbs.position[6][2].inventory, item['stock_count'])
+            else:
+                player.inventory.move_items(item.id, Settings.mapInstance.suburbs.position[6][2].inventory, item['stock_count'])
+
             
-    def print_first_arrival(self, player):
+    def print_first_arrival(self):
+        player = Player.getInstance()
         print("You see a massive, yellow slide\nIt's so big you can't spot the landing\nYour head gets fuzzy from the height\nslide down?")
         
         while "yes" not in player.input and "no" not in player.input:
@@ -27,18 +39,21 @@ class BigSlide(shakedownQuarter):
                 print('lets goooo!\nYou drop ', end='')
                 print(Colors.UNDERLINE + 'everything' + Colors.END, end='')
                 print('and jump head first down the yellow slide\nWhat a horrible idea! Who talked you into that?!')
-            
+                self.drop_all_inventory()
+                
             elif "no" in player.input:
                 print("Aww come on! don't be a wimp!(go ")
                 print(Colors.UNDERLINE + 'west' + Colors.END, end=' ')
                 print("if you are a coward)")
+            else:
+                print("You must choose!!!")
         
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
         #Settings.print_objects_in_room(self)
         #self.inventory.print_room_inventory()
-        Settings.generic_first_arrival(player)
+        Settings.generic_first_arrival(self)
         
         while True:
             if Settings.goNextRoom:
@@ -46,7 +61,11 @@ class BigSlide(shakedownQuarter):
             player.input = input("> ").lower()
                 
             if "examine" in player.input and self.inventory.is_inventory_empty():
-                self.print_first_arrival(player)
+                self.print_first_arrival()
+                self.inputLegit = True
+            
+            elif "east" in player.choice:
+                print("You can't go there")
                 self.inputLegit = True
 
             elif handlePlayerInput.player_input(self.inventory):

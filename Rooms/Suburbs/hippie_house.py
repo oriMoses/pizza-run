@@ -45,6 +45,7 @@ class HippieHouse(suburbsQuarter):
             if self.door_knocked:
                 self.door_knocked = False
                 if handlePlayerInput.give_pizza(player):
+                    self.inputLegit = True
                     if self.order_given == False:
                         numberOfPizza = Settings.howMuchPizza(self, player)
 
@@ -77,13 +78,10 @@ class HippieHouse(suburbsQuarter):
                                 self.order_given = True
                             else:
                                 print("That's not the correct order")
-                                self.inputLegit = True
                         else:
                             print("Not enough pizza in inventory\n")
-                        self.inputLegit = True
                     else:
                         print("order already given")
-                        self.inputLegit = True
                         
             elif "knock" in player.input: #TODO: move the check if knock door to function in Settings, and use it in every room
                 if "door" in player.input or "house" in player.input:

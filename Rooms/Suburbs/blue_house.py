@@ -47,6 +47,7 @@ class BlueHouse(suburbsQuarter):
             if self.door_knocked:
                 self.door_knocked = False
                 if handlePlayerInput.give_pizza(player):
+                    self.inputLegit = True
                     if self.order_given == False:
                         numberOfPizza = Settings.howMuchPizza(self, player)
 
@@ -63,8 +64,7 @@ class BlueHouse(suburbsQuarter):
                                 self.order_given = True
                             else:
                                 print("Thats not the correct order\n")
-                            self.inputLegit = True
-
+                            
                         elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
                             orders = Settings.get_orders_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II, player)
                             if orders == numberOfPizza:
@@ -77,16 +77,12 @@ class BlueHouse(suburbsQuarter):
                                 print(numberOfPizza, " coin up tip")
                                 self.order_given = True
                             else:
-                                print("That's not the correct order")
-                                
-                            self.inputLegit = True
+                                print("That's not the correct order")                                
                         else:
                             print("Not enough pizza in inventory")
-                        self.inputLegit = True
                     
                     else:
                         print("order already given")
-                        self.inputLegit = True
                         
             if "gnomes" in player.input:
                 if "kick" in player.input or "punch" in player.input \

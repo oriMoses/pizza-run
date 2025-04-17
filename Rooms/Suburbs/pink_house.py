@@ -46,6 +46,7 @@ class PinkHouse(suburbsQuarter):
             if self.door_knocked:
                 self.door_knocked = False
                 if handlePlayerInput.give_pizza(player):
+                    self.inputLegit = True
                     if self.order_given == False:
                         numberOfPizza = Settings.howMuchPizza(self, player)
 
@@ -61,7 +62,6 @@ class PinkHouse(suburbsQuarter):
                                 print('The man grabs the pizza and shut the door with a slam!')
                                 print(numberOfPizza*2, " coin up tip\n")
                                 self.order_given = True
-                                break
                             else:
                                 print("give me pizza!!!! only one pizza!\n")
 
@@ -77,16 +77,12 @@ class PinkHouse(suburbsQuarter):
                                 print("The man grabs the pizza and shut the door with a slam!")
                                 print(numberOfPizza, " coin up tip\n")
                                 self.order_given = True
-                                break
                             else:
                                 print("That's not the correct order")
-                                self.inputLegit = True
                         else:
                             print("Not enough pizza in inventory\n")
-                        self.inputLegit = True
                     else:
                         print("order already given")
-                        self.inputLegit = True
 
             elif "knock" in player.input:
                 if "door" in player.input or "house" in player.input:
