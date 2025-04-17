@@ -47,9 +47,7 @@ class BushGarden(suburbsQuarter):
 
                         if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
                             orders = Settings.get_orders_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.I. player)
-                            if orders == -1:
-                                print("You already delivered this order\n")
-                            elif orders == numberOfPizza:
+                            if orders == numberOfPizza:
                                 player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
 
                                 Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.I)
@@ -72,15 +70,20 @@ class BushGarden(suburbsQuarter):
                                 print("give me pizza!!!! only one pizza!\n")
 
                         elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
-                            player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
+                            orders = Settings.get_orders_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.I. player)
+                            if orders == numberOfPizza:
+                                player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
 
-                            Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.I)
+                                Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.I)
 
-                            print("The man grabs the pizza and shut the door with a slam!")
-                            print(numberOfPizza, " coin up tip")
-                            self.order_given = True
-                            break
+                                print("The man grabs the pizza and shut the door with a slam!")
+                                print(numberOfPizza, " coin up tip")
+                                self.order_given = True
+                                break
+                            else:
+                                print("That's not the correct order")
+                                self.inputLegit = True
                         else:
                             print("Not enough pizza in inventory\n")
                         self.inputLegit = True

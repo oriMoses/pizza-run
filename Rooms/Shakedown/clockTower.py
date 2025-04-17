@@ -30,7 +30,6 @@ class ClockTower(shakedownQuarter):
             if Settings.goNextRoom:
                 break
             player.input = input("> ").lower()
-
                 
             if "examine" in player.input and self.inventory.is_inventory_empty():
                 self.print_first_arrival()

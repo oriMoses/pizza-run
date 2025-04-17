@@ -50,10 +50,8 @@ class InfoBooth(shakedownQuarter):
 
                     if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
                         orders = Settings.get_orders_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I, player)
-                        if orders == -1:
-                            print("You already delivered this order")
+                        if orders == numberOfPizza:
                             
-                        elif orders == numberOfPizza:
                             player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                             player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza + 2)
 
@@ -71,19 +69,25 @@ class InfoBooth(shakedownQuarter):
                             print("Thats not the correct order\n")
 
                     elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
-                        player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
+                        orders = Settings.get_orders_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I, player)
+                        if orders == numberOfPizza:
 
-                        Settings.remove_orderes_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I)
+                            player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
 
-                        print('woohoo, happy new year')
-                        print(2, " coin up tip\n")
-                        
-                        print("The guys seem to be thrilled about the pizza, they let you pass")
-                        self.east_open = True
-                        self.inputLegit = True
-                        self.order_given = True
-                        break
+                            Settings.remove_orderes_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I)
+
+                            print('woohoo, happy new year')
+                            print(2, " coin up tip\n")
+                            
+                            print("The guys seem to be thrilled about the pizza, they let you pass")
+                            self.east_open = True
+                            self.inputLegit = True
+                            self.order_given = True
+                            break
+                        else:
+                            print("That's not the correct order")
+                            self.inputLegit = True
                     else:
                         print("Not enough pizza in inventory\n")
                     self.inputLegit = True

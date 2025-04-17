@@ -50,9 +50,8 @@ class HippieHouse(suburbsQuarter):
 
                         if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
                             orders = Settings.get_orders_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.I, player)
-                            if orders == -1:
-                                print("You already delivered this order")
-                            elif orders == numberOfPizza:
+                            if orders == numberOfPizza:
+                                
                                 player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
                                 player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
 
@@ -65,14 +64,20 @@ class HippieHouse(suburbsQuarter):
                                 print("Thats not the correct order\n")
 
                         elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
-                            player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
+                            orders = Settings.get_orders_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.I, player)
+                            if orders == numberOfPizza:
 
-                            Settings.remove_orderes_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.I)
+                                player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
 
-                            print("hmm, thanks man")
-                            print(numberOfPizza, " coin up tip\n")
-                            self.order_given = True
+                                Settings.remove_orderes_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.I)
+
+                                print("hmm, thanks man")
+                                print(numberOfPizza, " coin up tip\n")
+                                self.order_given = True
+                            else:
+                                print("That's not the correct order")
+                                self.inputLegit = True
                         else:
                             print("Not enough pizza in inventory\n")
                         self.inputLegit = True
@@ -86,7 +91,7 @@ class HippieHouse(suburbsQuarter):
                         print("You can't knock on door while on bike\n")
                         return False
                     self.door_knocked = True
-                    print('(door opened) \nA big cloud of smoke spread everywhere.\nYou see two long-haired people with colorful clothes.\n"Did we order pizza?"\n\n"Hah, guess we did."\n')
+                    print('(door opened) \nA big cloud of smoke spread everywhere\nYou see two long-haired people with colorful clothes\n"Did we order pizza?"\n\n"Hah, guess we did"\n')
                     self.inputLegit = True
                     
             elif handlePlayerInput.player_input(self.inventory):

@@ -43,9 +43,9 @@ class CasinoRoof(skyscrapersQuarter):
                 if "read" in player.input:
                     print('"Dear pizza delivery guy, please bring 30 ', end='')
                     print(Colors.UNDERLINE + "hot" + Colors.END)
-                    print('pizzas to this roof. \n', end='')
+                    print('pizzas to this roof')
                     print(Colors.UNDERLINE + "Cold" + Colors.END)
-                    print('pizza is not acceptable! \nYou will receive a generous tip for your hard work" \n\nThe note ends with an unreadable signature\n')
+                    print('pizza is not acceptable!\nYou will receive a generous tip for your hard work" \n\nThe note ends with an unreadable signature\n')
                 
                 elif "take" in player.input or "pick" in player.input:
                     print("You don't feel okay with taking that much gold")

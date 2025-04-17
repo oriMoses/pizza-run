@@ -39,8 +39,6 @@ def get_orders_for(streetPosition : int, addressPosition : int, player):
         for order in shakedownOrders:
             if orderAddress == order[1]:
                 return order[0]
-        
-    return -1
 
 def remove_orderes_for(streetName : int, streetNumber : int):
     global suburbsOrders

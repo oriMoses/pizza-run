@@ -30,7 +30,6 @@ class ArtistPass(shakedownQuarter):
             if Settings.goNextRoom:
                 break
             player.input = input("> ").lower()
-
                 
             if "examine" in player.input and self.inventory.is_inventory_empty():
                 print("It's the skyscrapers, you see tall buildings around.\n")
