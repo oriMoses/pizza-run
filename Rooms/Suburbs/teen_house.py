@@ -38,34 +38,42 @@ class TeenHouse(suburbsQuarter):
             if self.door_knocked:
                 self.door_knocked = False
                 if handlePlayerInput.give_pizza(player):
-                    numberOfPizza = Settings.howMuchPizza(self, player)
+                    if self.order_given == False:
+                        numberOfPizza = Settings.howMuchPizza(self, player)
 
-                    if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
-                        orders = Settings.get_orders_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.II, player)
-                        if orders == -1:
-                            print("You already delivered this order\n")
-                        elif orders == numberOfPizza:
-                            player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+                        if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
+                            orders = Settings.get_orders_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.II, player)
+                            if orders == -1:
+                                print("You already delivered this order\n")
+                            elif orders == numberOfPizza:
+                                player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
+                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+
+                                Settings.remove_orderes_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.II)
+
+                                print("thanks! Damm, that smells amazing")
+                                print(numberOfPizza*2, " coin up tip\n")
+                                self.order_given = True
+                                break
+                            else:
+                                print("Thats not the correct order\n")
+
+                        elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
+                            player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
 
                             Settings.remove_orderes_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.II)
 
-                            print("thanks! Damm, that smells amazing")
-                            print(numberOfPizza*2, " coin up tip\n")
+                            print("thanks! Damm, that's cold")
+                            print(numberOfPizza, " coin up tip\n")
+                            self.order_given = True
                             break
                         else:
-                            print("Thats not the correct order\n")
-
-                    elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
-                        player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
-
-                        print("thanks! Damm, that's cold")
-                        print(numberOfPizza, " coin up tip\n")
-                        break
+                            print("Not enough pizza in inventory\n")
+                        self.inputLegit = True
                     else:
-                        print("Not enough pizza in inventory\n")
-                    self.inputLegit = True
+                        print("order already given")
+                        self.inputLegit = True
 
             if "knock" in player.input:
                 if "door" in player.input or "house" in player.input:

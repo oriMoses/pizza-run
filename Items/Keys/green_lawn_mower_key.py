@@ -8,7 +8,7 @@ class GreenLawnMowerKey(BasicItem):
         self.quarter = "Suburbs"
 
     def print_in_room(self):
-        print("There's a green lawn mower key on the floor.")
+        print("There's a green lawn mower key on the floor")
 
     def examine(self):
-        print("use this key to start the lawn mower.")
+        print("use this key to start the lawn mower")

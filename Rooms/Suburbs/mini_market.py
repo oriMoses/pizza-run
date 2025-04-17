@@ -55,35 +55,44 @@ class MiniMarket(suburbsQuarter):
             player.input = input("> ").lower()
             print("")
             if handlePlayerInput.give_pizza(player):
-                numberOfPizza = Settings.howMuchPizza(self, player)
+                if self.order_given == False:
+                    numberOfPizza = Settings.howMuchPizza(self, player)
 
-                if player.inventory.hot_pizza_exists(numberOfPizza):
-                    orders = Settings.get_orders_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.IV, player)
-                    if orders == -1:
-                        print("You already delivered this order\n")
-                    elif orders == numberOfPizza:
-                        player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+                    if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
+                        orders = Settings.get_orders_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.IV, player)
+                        if orders == -1:
+                            print("You already delivered this order\n")
+                        elif orders == numberOfPizza:
+                            player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+
+                            Settings.remove_orderes_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.IV)
+
+                            print('"Perfect"')
+                            print(numberOfPizza*2, " coin up tip\n")
+                            self.order_given = True
+                            break
+                        else:
+                            print("Thats not the correct order\n")
+
+                    elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
+                        player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
 
                         Settings.remove_orderes_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.IV)
-
-                        print('"Perfect"')
-                        print(numberOfPizza*2, " coin up tip\n")
+                        
+                        print('"Thanks, kind of cold tho"')
+                        print(numberOfPizza, " coin up tip\n")
+                        self.order_given = True
                         break
                     else:
-                        print("Thats not the correct order\n")
-
-                elif player.inventory.cold_pizza_exists(numberOfPizza):
-                    player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                    player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
-
-                    print('"Thanks, kind of cold tho"')
-                    print(numberOfPizza, " coin up tip\n")
-                    break
+                        print("Not enough pizza in inventory\n")
+                    self.inputLegit = True
+                
                 else:
-                    print("Not enough pizza in inventory\n")
-                self.inputLegit = True
-
+                    print("order already given")
+                    self.inputLegit = True
+                    
             if self.go_to_shop(player):
                 print('(Inside the shop)\nCashier: "hey there, would you like anything?" \nyes/no\n')
 

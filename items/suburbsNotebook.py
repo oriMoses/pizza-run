@@ -22,7 +22,7 @@ class SuburbsNotebook(BasicItem):
 
             if orders == -1:
                 print(Colors.GREEN + "x", str(note[0]) + Colors.END, " ", end='')
-                print(Colors.GREEN + Settings.get_address(note[1][0], note[1][1]) + Colors.END. Player.instance)
+                print(Colors.GREEN + Settings.get_address(note[1][0], note[1][1], Player.instance) + Colors.END)
             else:
                 print("x", note[0], " ", end='')
                 print(Settings.get_address(note[1][0], note[1][1], Player.instance))

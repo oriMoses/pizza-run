@@ -33,20 +33,22 @@ class CasinoRoof(skyscrapersQuarter):
             player.input = input("> ").lower()
 
             if (self.inventory.get_amount(HOT_PIZZA_ID) + self.inventory.get_amount(COLD_PIZZA_ID)) >= 30:
-                print("You jump away and duck as a gold-cover helicopter lands on the roof. \nA blinding light shines from it. \n\nThe helicopter and the pizza are gone! \n\nYou got 100 coin tip!") 
-                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 100)
-                self.inventory.update_item(Settings.HOT_PIZZA_ID, player.self.get_amount(Settings.HOT_PIZZA_ID) - 30)
-
+                if self.order_given == False:
+                    print("You jump away and duck as a gold-cover helicopter lands on the roof. \nA blinding light shines from it. \n\nThe helicopter and the pizza are gone! \n\nYou got 100 coin tip!") 
+                    player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 100)
+                    self.inventory.update_item(Settings.HOT_PIZZA_ID, player.self.get_amount(Settings.HOT_PIZZA_ID) - 30)
+                    self.order_given = True
+                    
             elif "note" in player.input:
                 if "read" in player.input:
                     print('"Dear pizza delivery guy, please bring 30 ', end='')
                     print(Colors.UNDERLINE + "hot" + Colors.END)
                     print('pizzas to this roof. \n', end='')
                     print(Colors.UNDERLINE + "Cold" + Colors.END)
-                    print('pizza is not acceptable! \nYou will receive a generous tip for your hard work." \n\nThe note ends with an unreadable signature.\n')
+                    print('pizza is not acceptable! \nYou will receive a generous tip for your hard work" \n\nThe note ends with an unreadable signature\n')
                 
                 elif "take" in player.input or "pick" in player.input:
-                    print("You don't feel okay with taking that much gold.")
+                    print("You don't feel okay with taking that much gold")
                 
             elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True

@@ -46,16 +46,34 @@ class DownUnder(shakedownQuarter):
             player.input = input("> ").lower()
 
             if handlePlayerInput.give_pizza(player):
-                numberOfPizza = Settings.howMuchPizza(self, player)
+                if self.order_given == False:
+                    numberOfPizza = Settings.howMuchPizza(self, player)
 
-                if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
-                    orders = Settings.get_orders_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I, player)
-                    if orders == -1:
-                        print("You already delivered this order")
-                        
-                    elif orders == numberOfPizza:
-                        player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza + 2)
+                    if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
+                        orders = Settings.get_orders_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I, player)
+                        if orders == -1:
+                            print("You already delivered this order")
+                            
+                        elif orders == numberOfPizza:
+                            player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza + 2)
+
+                            Settings.remove_orderes_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I)
+
+                            print('woohoo, happy new year')
+                            print(2, " coin up tip\n")
+                            
+                            print("The guys seem to be thrilled about the pizza. they let you pass.\nYou can go ")
+                            print(Colors.Underline + "East" + Colors.END)
+                            self.inputLegit = True
+                            self.order_given = True
+                            break
+                        else:
+                            print("Thats not the correct order\n")
+
+                    elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
+                        player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
 
                         Settings.remove_orderes_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I)
 
@@ -65,24 +83,14 @@ class DownUnder(shakedownQuarter):
                         print("The guys seem to be thrilled about the pizza. they let you pass.\nYou can go ")
                         print(Colors.Underline + "East" + Colors.END)
                         self.inputLegit = True
+                        self.order_given = True
                         break
                     else:
-                        print("Thats not the correct order\n")
-
-                elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
-                    player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                    player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
-
-                    print('woohoo, happy new year')
-                    print(2, " coin up tip\n")
-                    
-                    print("The guys seem to be thrilled about the pizza. they let you pass.\nYou can go ")
-                    print(Colors.Underline + "East" + Colors.END)
+                        print("Not enough pizza in inventory\n")
                     self.inputLegit = True
-                    break
                 else:
-                    print("Not enough pizza in inventory\n")
-                self.inputLegit = True
+                    print("order already given")
+                    self.inputLegit = True
                     
             elif "examine" in player.input:
                 self.print_first_arrival()

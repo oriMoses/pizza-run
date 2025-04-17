@@ -60,39 +60,47 @@ class Gatekeeper(suburbsQuarter):
 
 
             if handlePlayerInput.give_pizza(player):
-                numberOfPizza = Settings.howMuchPizza(self, player)
+                if self.order_given == False:
+                    numberOfPizza = Settings.howMuchPizza(self, player)
 
-                if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
-                    orders = Settings.get_orders_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III, player)
-                    if orders == -1:
-                        print("You already delivered this order\n")
-                    elif orders == numberOfPizza:
-                        player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+                    if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
+                        orders = Settings.get_orders_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III, player)
+                        if orders == -1:
+                            print("You already delivered this order\n")
+                        elif orders == numberOfPizza:
+                            player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+
+                            Settings.remove_orderes_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III)
+
+                            print('\nThank you, you just made my shift way better')
+                            print(numberOfPizza*2, " coin up tip")
+                            print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open')
+                            self.gateOpen = True
+                            self.inputLegit = True
+                            self.order_given = True
+                            break
+                        else:
+                            print("Thats not the correct order\n")
+
+                    elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
+                        player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                        player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
 
                         Settings.remove_orderes_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III)
 
-                        print('\nThank you, you just made my shift way better')
-                        print(numberOfPizza*2, " coin up tip")
+                        print("Thank you, too bad its cold")
+                        print(numberOfPizza, " coin up tip")
                         print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open')
                         self.gateOpen = True
                         self.inputLegit = True
+                        self.order_given = True
                         break
                     else:
-                        print("Thats not the correct order\n")
-
-                elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
-                    player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                    player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
-
-                    print("Thank you, too bad its cold")
-                    print(numberOfPizza, " coin up tip")
-                    print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care."\nThe gate is now open')
-                    self.gateOpen = True
-                    self.inputLegit = True
-                    break
+                        print("Not enough pizza in inventory\n")
                 else:
-                    print("Not enough pizza in inventory\n")
+                    print("order already given")
+
             
             if "look" in player.input and "man" in player.input:
                 print("hi there!\n")

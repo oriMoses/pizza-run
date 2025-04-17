@@ -42,16 +42,18 @@ def get_orders_for(streetPosition : int, addressPosition : int, player):
         
     return -1
 
-def remove_orderes_for(streetPosition : int, addressPosition : int):
+def remove_orderes_for(streetName : int, streetNumber : int):
     global suburbsOrders
     suburbsOrders_list = list(suburbsOrders)
     i=0
-    orderAddress = [streetPosition.value, addressPosition.value]
+    
+    orderAddressToRemove = [streetName.value, streetNumber.value]
 
     for order in suburbsOrders:
-        if orderAddress == order[1]:
+        if orderAddressToRemove == order[1]:
             suburbsOrders_list.pop(i)
             suburbsOrders = tuple(suburbsOrders_list)
+            
         i += 1
 
 def print_objects_in_room(self):
