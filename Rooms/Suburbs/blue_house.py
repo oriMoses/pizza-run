@@ -61,7 +61,6 @@ class BlueHouse(suburbsQuarter):
                                 print("my my, what a wonderful pizza!")
                                 print(numberOfPizza*2, " coin up tip\n")
                                 self.order_given = True
-                                break
                             else:
                                 print("Thats not the correct order\n")
                             self.inputLegit = True
@@ -77,10 +76,10 @@ class BlueHouse(suburbsQuarter):
                                 print("In my days, thay use to serve hot pizza")
                                 print(numberOfPizza, " coin up tip")
                                 self.order_given = True
-                                break
                             else:
                                 print("That's not the correct order")
-                                self.inputLegit = True
+                                
+                            self.inputLegit = True
                         else:
                             print("Not enough pizza in inventory")
                         self.inputLegit = True
