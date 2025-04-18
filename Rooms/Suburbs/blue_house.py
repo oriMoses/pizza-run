@@ -93,6 +93,7 @@ class BlueHouse(suburbsQuarter):
 
             elif "knock" in player.input:
                 if "door" in player.input or "house" in player.input:
+                    self.inputLegit = True
                     self.door_knocked = True
                     print("(door opened) \nhello there, young man")
 

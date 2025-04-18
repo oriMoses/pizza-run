@@ -392,10 +392,6 @@ class HandleInputs():
             if self.is_player_in_miniMarket(player):
                 print("Don't even think about it")
                 return False
-
-            if "bag" in player.input or "backpack" in player.input:
-                if self.move_item(item_id, player.inventory):
-                    print(item_name, "added to your inventory\n")
                 
             elif player.inventory.item_exist(item_id):
                 print("You already have", item_name, "\n")
