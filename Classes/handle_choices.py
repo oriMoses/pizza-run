@@ -262,48 +262,6 @@ class HandleInputs():
                 print("\nbike inventory:")
                 Settings.bikeObject.inventory.print_player_inventory()
                 return True
-            
-    #         elif "take" in playerChoice or "pick" in playerChoice:
-    #             print(pizzasToAdd, "pizzas\n(on hands)\n")
-
-
-    # def move_pizza(self, fromInventory, toInventory, pizzasToAdd, playerChoice, player):
-    #     hotPizzaInRoom = fromInventory.get_amount(HOT_PIZZA_ID)
-    #     if hotPizzaInRoom < pizzasToAdd:
-    #         coldPizzaInRoom = fromInventory.get_amount(COLD_PIZZA_ID)
-    #         if coldPizzaInRoom < pizzasToAdd:
-    #             print("Not enough pizza in inventory")
-    #             return False
-    #         else:
-    #             # if player.position.x == 4 and player.position.y == 4 and player.quarter == "skyscrapers":
-    #             #     if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
-    #             #         print("You can't put more than 10 pizza in the elevator!")
-    #             #         return True
-    #             fromInventory.move_items(COLD_PIZZA_ID, toInventory, pizzasToAdd)
-    #     else:
-    #         # if player.position[0] == 4 and player.position[1] == 4 and player.quarter == "skyscrapers":
-    #         #     if coldPizzaInRoom + hotPizzaInRoom + pizzasToAdd > 10:
-    #         #         print("You can't put more than 10 pizza in the elevator!")
-    #         #         return True
-            
-            
-    #         if (toInventory.get_amount(HOT_PIZZA_ID) + toInventory.get_amount(COLD_PIZZA_ID)) < toInventory.max_pizza_capacity:        
-    #             fromInventory.move_items(HOT_PIZZA_ID, toInventory, pizzasToAdd)
-    #         else:
-    #             print("can't carry more than ", end="")
-    #             print(toInventory.max_pizza_capacity, end=" ")
-    #             print("pizzas")
-    #             return True
-
-    #     if pizzasToAdd == 0:
-    #         print("not enough pizza in inventory")
-    #     if "bike" in playerChoice:
-    #         if "give" in playerChoice or "put" in playerChoice:
-    #             print(pizzasToAdd, "pizzas\n(on bike)\n")
-    #         elif "take" in playerChoice or "pick" in playerChoice:
-    #             print(pizzasToAdd, "pizzas\n(on hands)\n")
-    #     else:
-    #         print(pizzasToAdd, "pizzas\n(on hands)\n")
 
     def move_pizzas_from(self, from_inventory, pizza_id, to_Inventory, amount):
         if from_inventory.item_exist(pizza_id):
@@ -589,9 +547,6 @@ class HandleInputs():
             
             
     def go_input(self, player):
-        # if "drive" in player.input:
-        #     print("first you need to climb a vehicle\n")
-        #     return True
         if "south" in player.input:
             self.go_south(player)
             return True
