@@ -250,11 +250,11 @@ class HandleInputs():
                     print("you are on the", Settings.bikeObject.name)
                 return True
             
-            elif "turn" in player.input and "on" in player.input:
+            elif ("turn" in player.input and "on" in player.input) or "start" in player.input:
                 Settings.bikeObject.turn_on()
                 return True
                 
-            elif "turn" in player.input and "off" in player.input:
+            elif ("turn" in player.input and "off" in player.input) or ("shut" in player.input and "down" in player.input):
                 Settings.bikeObject.turn_on()
                 return True
                 
@@ -262,6 +262,10 @@ class HandleInputs():
                 print("\nbike inventory:")
                 Settings.bikeObject.inventory.print_player_inventory()
                 return True
+            
+    #         elif "take" in playerChoice or "pick" in playerChoice:
+    #             print(pizzasToAdd, "pizzas\n(on hands)\n")
+
 
     # def move_pizza(self, fromInventory, toInventory, pizzasToAdd, playerChoice, player):
     #     hotPizzaInRoom = fromInventory.get_amount(HOT_PIZZA_ID)
@@ -356,9 +360,6 @@ class HandleInputs():
             else:
                 if (pizzasOnInventory + pizzaOnPlayerChoice) > MAX_PIZZA_ON_PLAYER:
                     return TOO_MUCH_PIZZA_TO_CARRY
-                
-
-            
 
         if "take" in player.input and "bike" in player.input:
             if "drop" in player.input:
@@ -371,7 +372,7 @@ class HandleInputs():
                 return NOT_ENOUGH_PIZZA_IN_INVENTORY
             
             elif player.quarter == "Skyscrapers" and player.position[0] == 4 and player.position[1] == 4:
-                if pizzasOnInventory + pizzaOnPlayerChoice > 10:
+                if pizzasOnInventory + pizzaOnPlayerChoice > MAX_AMOUNT_OF_PIZZA_IN_ELEVATOR:
                     print("You can't put more than 10 pizzas in the elevator!")
                     return TOO_MUCH_PIZZA_ON_ELEVATOR
         return pizzaOnPlayerChoice
@@ -435,48 +436,44 @@ class HandleInputs():
         #inputs to avoid in pizza input
         if "key" in player.input:
             return False
-        
+        error_thrown = False
         if "pizza" in player.input or "pizzas" in player.input:
             if "bike" in player.input:
-                # if "pick" in player.input or "take" in player.input:
-                error_thrown = False
-                pizzaOnPlayerChoice = self.get_pizza_on_player(player, "bike")
-                error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
+                if "pick" in player.input or "take" in player.input:
+                    pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
+                    pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, "player", player)
+                    error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
 
-                if error_thrown == False:
-                    self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
-                    print("item dropped\n")
-                return True
-
-    
-                # if "put" in player.input or "give" in player.input:
-                #     pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
-                #     pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, "player", player)
-                #     if pizzaOnPlayerChoice == -1:
-                #         return True
-                #     self.move_pizza(player.inventory, Settings.bikeObject.inventory, pizzaOnPlayerChoice, player.input, player)
-                #     return True
+                    if error_thrown == False:
+                        self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice)
+                        print("item dropped\n")
+                        return True
+                
+                if "drop" in player.input or "put" in player.input:
+                    pizzaOnPlayerChoice = self.get_pizza_on_player(player, "player")
+                    error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
+                    if error_thrown == False:
+                        self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice) #TODO: change function name, function do pick and drop
+                        print("item dropped\n")
+                        return True
             else:
                 if "pick" in player.input or "take" in player.input:
                     pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
                     pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, "player", player)
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
-                
 
                     if error_thrown == False:
                         self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
-
                     return True
                 
+                if "drop" in player.input:
+                    pizzaOnPlayerChoice = self.get_pizza_on_player(player, "player")
+                    error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
 
-            if "drop" in player.input:
-                pizzaOnPlayerChoice = self.get_pizza_on_player(player, "player")
-                error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
-
-                if error_thrown == False:
-                    self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice) #TODO: change function name, function do pick and drop
-                    print("item dropped\n")
-                return True
+                    if error_thrown == False:
+                        self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice) #TODO: change function name, function do pick and drop
+                        print("item dropped\n")
+                    return True
 
     def throw_errors(self, pizzaOnPlayerChoice, player):
         if pizzaOnPlayerChoice ==  NUMBER_OF_PIZZA_MUST_BE_NAMED:
