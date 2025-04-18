@@ -19,8 +19,6 @@ class BigSlide(shakedownQuarter):
 
     def drop_all_inventory(self):
         player = Player.getInstance()
-        # while len(player.inventory.inventory) > 0:
-        #     item_id = player.inventory.inventory[0]
         for item_id in list(player.inventory.inventory):
             if player.inventory.inventory[item_id]['stock_count'] == 0:
                 pass
@@ -53,8 +51,6 @@ class BigSlide(shakedownQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        #Settings.print_objects_in_room(self)
-        #self.inventory.print_room_inventory()
         Settings.generic_first_arrival(self)
         
         while True:

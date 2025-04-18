@@ -26,8 +26,6 @@ class Block_2(shakedownQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        # Settings.print_objects_in_room(self)
-        # self.inventory.print_room_inventory()
         Settings.generic_first_arrival(self)
         
         while True:
