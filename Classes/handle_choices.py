@@ -226,6 +226,7 @@ class HandleInputs():
             
             print("Objects:") 
             print(" Most objects have names and can be referenced by them.\n")
+            print(" The 'EXAMINE' command gives you information about objects\n")
             
             
             return True
