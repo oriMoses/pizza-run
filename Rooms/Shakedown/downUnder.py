@@ -29,7 +29,7 @@ class DownUnder(shakedownQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            print("You look back at the slide, which looks like a yellow cliff\nThey should put a landing pad here, or something\nThere's a building to the ")
+            print("You look back at the slide, which looks like a yellow cliff\nThey should put a landing pad here, or something\nThere's a building to the ", end='')
             print(Colors.UNDERLINE + "East" + Colors.END)
 
             Settings.print_objects_in_room(self)
@@ -96,11 +96,11 @@ class DownUnder(shakedownQuarter):
                 break
             
             elif "west" in player.input:
-                print("There's no way to climb up that slide")
-            
+                print("There's no way to climb up that slide\n")
+                self.inputLegit = True
             elif "north" in player.input:
-                print("It seems that east is the only way")
-            
+                print("It seems that east is the only way\n")
+                self.inputLegit = True
             elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 

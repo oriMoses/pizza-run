@@ -47,7 +47,9 @@ from Rooms.Shakedown.infoBooth import InfoBooth
 from Rooms.Shakedown.bigSlide import BigSlide
 from Rooms.Shakedown.downUnder import DownUnder
 from Rooms.Shakedown.gate import Gate
-
+from Rooms.Shakedown.safetyCenter import SafetyCenter
+from Rooms.Shakedown.insideSafetyCenter import InsideSafetyCenter
+from Rooms.Shakedown.safetyGuy import SafetyGuy
 
 from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number, Skyscrapers_Street_Name, Skyscrapers_Street_Number,Shakedown_Street_Number, Shakedown_Street_Name
 
@@ -171,7 +173,9 @@ class Map():
             self.position[6][2] = Somewhere(Shakedown_Street_Name.LATE,Shakedown_Street_Number.III)
             self.position[6][3] = BigSlide()
             self.position[6][4] = DownUnder()
-
+            self.position[6][5] = SafetyCenter()
+            self.position[6][6] = InsideSafetyCenter()
+            self.position[5][6] = SafetyGuy()
                     
     class HoodConstructor():
         def __init__(self):

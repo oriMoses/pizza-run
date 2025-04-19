@@ -28,7 +28,7 @@ class InfoBooth(shakedownQuarter):
             self.print_first_arrival()
             self.firstArrival = False
         else:
-            if self.east_open:
+            if self.east_open and self.order_given == False:
                 print("You can go ", end='')
                 print(Colors.UNDERLINE + "East" + Colors.END)
             Settings.print_objects_in_room(self)
@@ -61,7 +61,8 @@ class InfoBooth(shakedownQuarter):
                             print('woohoo, happy new year')
                             print(2, " coin up tip\n")
                             
-                            print("The guys seem to be thrilled about the pizza, they let you pass")
+                            print("The guys seem to be thrilled about the pizza, they let you pass\nYou can go ", end='')
+                            print(Colors.UNDERLINE + "East" + Colors.END)
                             self.east_open = True
                             self.order_given = True
                         else:
@@ -90,9 +91,9 @@ class InfoBooth(shakedownQuarter):
                     print("order already given")
                     
             elif "examine" in player.input and self.east_open:
-                print('You see a small wood stand with a colorful, handmade sing that\nreads: "Info booth"\nTheres two people standing behind the booth.\n"Happy new year, woohoo!!!"\nThe guys seem to be in a…. festive mood.\nYou can go east')
+                print('You see a small wood stand with a colorful, handmade sing that\nreads: "Info booth"\nTheres two people standing behind the booth.\n"Happy new year, woohoo!!!"\nThe guys seem to be in a…. festive mood.\nYou can go ', end='')
+                print(Colors.UNDERLINE + "East" + Colors.END)
                 self.inputLegit = True
-                break
             
             elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True

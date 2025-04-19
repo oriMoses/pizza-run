@@ -38,8 +38,11 @@ class BigSlide(shakedownQuarter):
             if "yes" in player.input:
                 print('lets goooo!\nYou drop ', end='')
                 print(Colors.UNDERLINE + 'everything' + Colors.END, end='')
-                print('and jump head first down the yellow slide\nWhat a horrible idea! Who talked you into that?!')
+                print(' and jump head first down the yellow slide\nWhat a horrible idea! Who talked you into that?!')
                 self.drop_all_inventory()
+                player.position[0] = 6
+                player.position[1] = 4
+                Settings.goNextRoom = True
                 
             elif "no" in player.input:
                 print("Aww come on! don't be a wimp!(go ")

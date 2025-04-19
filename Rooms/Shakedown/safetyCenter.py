@@ -1,13 +1,13 @@
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Constants.constants import *
+from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number
 from Classes.quarters import shakedownQuarter 
-from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number, Colors
-from Classes.player import Player
+from Constants.enums import Colors
 
-class Block_2(shakedownQuarter):
+class SafetyCenter(shakedownQuarter):
     def __init__(self):
-        shakedownQuarter.__init__(self, [Shakedown_Street_Name.TIME,Shakedown_Street_Number.III])
+        shakedownQuarter.__init__(self, [Shakedown_Street_Name.LATE,Shakedown_Street_Number.VI])
         self.firstArrival = True
         self.inputLegit = False
         self.inventory = Inventory()
@@ -15,27 +15,35 @@ class Block_2(shakedownQuarter):
         self.inventory.add_item(HOT_PIZZA_ID, "Pizza", 0, SHOW_ITEM_IN_ROOM)
 
     def __str__(self):
-        return f"Block 2"
+        return f"Safety center"
 
-            
     def print_first_arrival(self):
-        print("What a mess! \n\nThere's a man on top of the clock tower wearing a poorly made chicken custom.")
-        print('\nHe spread his cardboard wings - the crowd beneath goes wild! tho… i dont think chickens can fly\nYou find yourself being pushed ' , end='')
-        print(Colors.UNDERLINE + "South" + Colors.END, end=' ')
-        print('by the crowd\n')
-        Player.getInstance().position[0] = 6
-        Player.getInstance().position[1] = 2
-        Settings.goNextRoom = True
-        
+        print('''Voshhhhhhhh!\nYou look up and see burning stuff fly off the roof\nIn front of you there's a smoldering sing thats reads : "safety center"\nYou jump away from a falling fireball\n\nGo''', end=' ')
+        print(Colors.UNDERLINE + "East" + Colors.END, end=' ')
+        print("to enter the safety center!")
+        Settings.print_objects_in_room(self)
+
+    def unique_first_arrival(self):
+        if self.firstArrival:
+            self.print_first_arrival()
+            self.firstArrival = False
+        else:
+            print("Burning stuff falls of the roof\nYou do not feel very safe\n\nGo ", end='')
+            print(Colors.UNDERLINE + "East" + Colors.END, end=' ')
+            print("to enter the safety center")
+            Settings.print_objects_in_room(self)
+            
+            
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-        Settings.generic_first_arrival(self)
-        
+        self.unique_first_arrival()
+
         while True:
             if Settings.goNextRoom:
                 break
             player.input = input("> ").lower()
+
                 
             if "examine" in player.input and self.inventory.is_inventory_empty():
                 self.print_first_arrival()
