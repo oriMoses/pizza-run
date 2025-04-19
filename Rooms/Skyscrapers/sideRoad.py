@@ -54,15 +54,14 @@ class SideRoad(skyscrapersQuarter):
                 elif handlePlayerInput.player_input(self.inventory):
                     self.inputLegit = True
             
-            elif player.position[0] == 4 and player.position[1] == 6:
-                    if "east" in player.input:
-                        player.quarter = "Shakedown"
-                        shakedownQuarter.__init__(self, [Shakedown_Street_Name.DUCK,Shakedown_Street_Number.III])
-                        player.position[0] = 6
-                        player.position[1] = 0
-                        Settings.goNextRoom = True
-                        self.inputLegit = True
-                        print()
+            elif (player.position[0] == 4 and player.position[1] == 6) and ("east" in player.input):
+                player.quarter = "Shakedown"
+                shakedownQuarter.__init__(self, [Shakedown_Street_Name.DUCK,Shakedown_Street_Number.III])
+                player.position[0] = 6
+                player.position[1] = 0
+                Settings.goNextRoom = True
+                self.inputLegit = True
+                print()
                 
                 
             elif "look" in player.input:
