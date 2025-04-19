@@ -29,16 +29,6 @@ class Inventory():
             self.inventory[item_id]["stock_count"] = stock_count
         else:
             print("Item not found in inventory.")
-        
-    # def print_room_inventory(self):
-    #     for item in self.inventory:
-    #         if self.inventory[item]["show_item"]:
-
-    #             if self.inventory[item]['stock_count'] != 0:
-    #                 if self.inventory[item]['name'] == "hot pizza" or self.inventory[item]['name'] == "cold pizza":
-    #                     print("There are", self.inventory[item]['stock_count'], self.inventory[item]['name'], "in here")
-    #                 else:
-    #                     print("There's", self.inventory[item]['name'], "on the floor")
 
     def print_player_inventory(self):
         for item in self.inventory:

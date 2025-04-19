@@ -275,38 +275,38 @@ class HandleInputs():
             print("You don't have", pizza_id, "\n")
             return False
 
-    def get_number_of_(self, pizzasOnInventory, inventoryName, player):
+    def get_number_of_(self, pizzasOnInventory, player):
         pizzaOnPlayerChoice = 0
-        if "1 " in player.input:
+        if "1 " in player.input or "one" in player.input:
             pizzaOnPlayerChoice = 1
 
-        elif "2 " in player.input:
+        elif "2 " in player.input or "two" in player.input:
             pizzaOnPlayerChoice = 2
                 
-        elif "3 " in player.input:
+        elif "3 " in player.input or "three" in player.input:
             pizzaOnPlayerChoice = 3
 
-        elif "4 " in player.input:
+        elif "4 " in player.input or "four" in player.input:
             pizzaOnPlayerChoice = 4
 
-        elif "5 " in player.input:
+        elif "5" in player.input or "five" in player.input:
             pizzaOnPlayerChoice = 5
         
         else:
             if player.inventory.item_exist(BACKPACK_ID):
-                if "6 " in player.input:
+                if "6 " in player.input or "six" in player.input:
                     pizzaOnPlayerChoice = 6
                 
-                elif "7 " in player.input:
+                elif "7 " in player.input or "seven" in player.input:
                     pizzaOnPlayerChoice = 7
 
-                elif "8 " in player.input:
+                elif "8 " in player.input or "eight" in player.input:
                     pizzaOnPlayerChoice = 8
 
-                elif "9 " in player.input:
+                elif "9 " in player.input or "nine" in player.input:
                     pizzaOnPlayerChoice = 9
 
-                elif "10 " in player.input:
+                elif "10 " in player.input or "ten" in player.input:
                     pizzaOnPlayerChoice = 10
             else:   
                 return TOO_MUCH_PIZZA_TO_CARRY
@@ -385,9 +385,9 @@ class HandleInputs():
     def get_all_pizza_from_(self, inventory):
         return inventory.get_amount(HOT_PIZZA_ID) + inventory.get_amount(COLD_PIZZA_ID)
     
-    def get_pizza_on_player(self, player, inventory_name):
+    def get_pizza_on_player(self, player):
         pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
-        return self.get_number_of_(pizzasOnPlayer, inventory_name, player)
+        return self.get_number_of_(pizzasOnPlayer, player)
         
         
     def pizza_input(self, roomInventory, player): #TODO: refactor all function
@@ -399,7 +399,7 @@ class HandleInputs():
             if "bike" in player.input:
                 if "pick" in player.input or "take" in player.input:
                     pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
-                    pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, "player", player)
+                    pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, player)
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
 
                     if error_thrown == False:
@@ -408,7 +408,7 @@ class HandleInputs():
                         return True
                 
                 if "drop" in player.input or "put" in player.input:
-                    pizzaOnPlayerChoice = self.get_pizza_on_player(player, "player")
+                    pizzaOnPlayerChoice = self.get_pizza_on_player(player)
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
                     if error_thrown == False:
                         self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice) #TODO: change function name, function do pick and drop
@@ -417,7 +417,7 @@ class HandleInputs():
             else:
                 if "pick" in player.input or "take" in player.input:
                     pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
-                    pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, "player", player)
+                    pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, player)
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
 
                     if error_thrown == False:
@@ -425,7 +425,7 @@ class HandleInputs():
                     return True
                 
                 if "drop" in player.input:
-                    pizzaOnPlayerChoice = self.get_pizza_on_player(player, "player")
+                    pizzaOnPlayerChoice = self.get_pizza_on_player(player)
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
 
                     if error_thrown == False:

@@ -14,6 +14,7 @@ class PizzaPlace():
         self.firstArrival = True
         self.inventory = Inventory()
         self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 100, pizza_temprature.HOT, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COLD_PIZZA_ID, "cold pizza", 0, pizza_temprature.COLD, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(MainPizzaKey_ID, "main pizza key", 1, SHOW_ITEM_IN_ROOM)
 
         self.door = mainPizzaPlaceDoor()
@@ -49,9 +50,9 @@ class PizzaPlace():
         while True:
             if Settings.goNextRoom:
                 break
+            Settings.warm_pizzas_on(self.inventory)
             player.input = input("> ").lower()
             print()
-            
 
             if "note" in player.input:
                 if "read" in player.input:
@@ -101,4 +102,4 @@ class PizzaPlace():
                 
             if self.inputLegit == False:
                 print("pardon me?\n")
-            self.inputLegit = False
+                self.inputLegit = False
