@@ -25,38 +25,52 @@ class Parking(suburbsQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-#        self.inventory.print_room_inventory()
-        
         Settings.generic_first_arrival(self)
         self.box_open = False
+        
         while True:
             if Settings.goNextRoom:
                 break
             player.input = input("> ").lower()
-
+            if self.box_open:
+                if "take" in player.input and "all" in player.input:
+                    if "take" in player.input and "all" in player.input:
+                        print("don't be greedy ;)")
+                        self.inputLegit = True
+                
             if "box" in player.input:
-                if "open" in player.input or "examine" in player.input:
-                    if Settings.boxObject.open() == BOX_EMPTY:
-                        self.box_open = False
-                    else:
-                        self.box_open = True
+                if "examine" in player.input:
+                    print("it's a regular cardbox")
                     self.inputLegit = True
-                if "look" in player.input:
-                    print("it's a regular cardbox.\n")
-                    self.inputLegit = True
+                
                 if "pick up" in player.input or "take" in player.input:
                     print("box is too heavy")
-
-            elif self.box_open:
-                if "read" in player.input:
-                    print("You can't read from the box")
                     self.inputLegit = True
-                else:
-                    self.inputLegit = handlePlayerInput.player_input(Settings.boxObject.inventory)
                     
                 if self.box_open:
-                    print(Colors.BROWN + "(box closed)\n" + Colors.END)
-                    self.box_open = False
+                    if "open" in player.input:
+                        print(Colors.BROWN + "(box already open)\n" + Colors.END)
+                        self.inputLegit = True
+                    if "read" in player.input:
+                        print("You can't read from the box")
+                        self.inputLegit = True
+                    if "close" in player.input:
+                        print(Colors.BROWN + "(box closed)\n" + Colors.END)
+                        self.box_open = False
+                        self.inputLegit = True
+
+                    else:
+                        self.inputLegit = handlePlayerInput.player_input(Settings.boxObject.inventory)
+                else:
+                    if "open" in player.input:
+                        Settings.boxObject.open()
+                        self.box_open = True
+                        self.inputLegit = True
+                        
+                    if "close" in player.input:
+                        print(Colors.BROWN + "(box already closed)\n" + Colors.END)
+                        self.inputLegit = True
+
                 
             elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True

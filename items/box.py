@@ -25,4 +25,3 @@ class Box():
             print("You see bike key\n")
         else:
             print("(box is empty)\n")
-            return BOX_EMPTY
