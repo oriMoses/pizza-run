@@ -9,14 +9,13 @@ class Box():
         self.quarter = "Suburbs"
         self.position = 3,2
         self.ID = 100
+        self.box_open = False
 
         self.inventory = Inventory()
         self.inventory.add_item(BIKE_KEY_ID, "bike key", 1, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(SUBURBS_NOTEBOOK_ID, "suburbs notebook", 1, SHOW_ITEM_IN_ROOM)
 
-    def open(self):
-        print(Colors.BROWN + "(box opened)\n" + Colors.END)
-
+    def print_items_inside(self):
         if self.inventory.item_exist(SUBURBS_NOTEBOOK_ID) and self.inventory.item_exist(BIKE_KEY_ID):
             print("You see the ", end='')
             print(Colors.GREEN + "suburbs notebook " + Colors.END, end='')
@@ -29,3 +28,7 @@ class Box():
             print("You see bike key\n")
         else:
             print("(box is empty)\n")
+            
+    def open(self):
+        print(Colors.BROWN + "(box opened)\n" + Colors.END)
+        self.print_items_inside()

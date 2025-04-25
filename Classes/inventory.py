@@ -13,7 +13,7 @@ class Inventory():
             self.inventory.pop(item_id)
             return True
         else:
-            print("Item not in room.")
+            print("item not in room")
             return False
 
     def move_items(self, item_id, toInventory, amount):

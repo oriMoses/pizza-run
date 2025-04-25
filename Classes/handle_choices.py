@@ -32,7 +32,7 @@ class HandleInputs():
                 if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom: #TODO: make same lines for Skyscrapers and Shakedown
                     print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
                 elif Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
-                    if "box" in player.input: return False #TODO: after "look at box" in Parking, the code print vehicles in room
+                    if "box" in player.input: return False
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_first_arrival()
                 if player.position[0] == 3 and player.position[1] == 3:
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_pizza_in_pizza_place()
@@ -164,8 +164,8 @@ class HandleInputs():
                 
 
     def bike_key(self, roomInventory, player):
-        if "bike" in player.input and "key" in player.input:
-            if not roomInventory.item_exist(BIKE_KEY_ID):
+        if "bike" in player.input and "key" in player.input and Settings.boxObject.box_open:
+            if not roomInventory.item_exist(BIKE_KEY_ID) and not player.inventory.item_exist(BIKE_KEY_ID):
                 print("you can not see the bike key around\n")
                 return True
             
@@ -183,7 +183,7 @@ class HandleInputs():
         return False
     def notebook(self, roomInventory, player):
         if "notebook" in player.input and "suburbs" in player.input:
-            if not roomInventory.item_exist(SUBURBS_NOTEBOOK_ID) and not player.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
+            if not roomInventory.item_exist(SUBURBS_NOTEBOOK_ID) and not player.inventory.item_exist(SUBURBS_NOTEBOOK_ID) and not Settings.boxObject.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
                 print("you can not see the suburbs notebook around\n")
                 return True
                 
@@ -352,8 +352,13 @@ class HandleInputs():
             if self.is_player_in_miniMarket(player):
                 print("Don't even think about it")
                 return False
-                
+            
             elif player.inventory.item_exist(item_id):
+                if "notebook" in player.input and Settings.SuburbsNotebookObject.inBox:
+                    return True
+                if "key" in player.input and Settings.bikeKeyObject.inBox:
+                    return True
+                print(Settings.bikeKeyObject.inBox)
                 print("You already have", item_name, "\n")
             
             elif roomInventory.move_item(item_id, player.inventory):
