@@ -18,7 +18,11 @@ class Box():
         print(Colors.BROWN + "(box opened)\n" + Colors.END)
 
         if self.inventory.item_exist(SUBURBS_NOTEBOOK_ID) and self.inventory.item_exist(BIKE_KEY_ID):
-            print("You see the suburbs notebook and a bike key\n")
+            print("You see the ", end='')
+            print(Colors.GREEN + "suburbs notebook " + Colors.END, end='')
+            print("and a ", end='')
+            print(Colors.GREEN + "bike key" + Colors.END+"\n")
+            
         elif self.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
             print("You see the suburbs notebook\n")
         elif self.inventory.item_exist(BIKE_KEY_ID):
