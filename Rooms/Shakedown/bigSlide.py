@@ -25,7 +25,7 @@ class BigSlide(shakedownQuarter):
             elif player.inventory.inventory[item_id]['stock_count'] == 1:
                 player.inventory.move_item(item_id, Settings.mapInstance.shakedown.position[Shakedown_Street_Name.LATE.value][Shakedown_Street_Number.III.value].inventory)
             else:
-                player.inventory.move_items(item_id, Settings.mapInstance.shakedown.position[Shakedown_Street_Name.LATE][Shakedown_Street_Number.III].inventory, player.inventory.inventory[item_id]['stock_count'])
+                player.inventory.move_items(item_id, Settings.mapInstance.shakedown.position[Shakedown_Street_Name.LATE.value][Shakedown_Street_Number.III.value].inventory, player.inventory.inventory[item_id]['stock_count'])
 
             
     def print_first_arrival(self):

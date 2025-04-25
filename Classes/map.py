@@ -169,8 +169,8 @@ class Map():
             self.position[5][3] = ClockTower()
 
             self.position[6][0] = InfoBooth()
-            self.position[6][1] = Somewhere(Shakedown_Street_Name.LATE,Shakedown_Street_Number.II)
-            self.position[6][2] = Somewhere(Shakedown_Street_Name.LATE,Shakedown_Street_Number.III)
+            self.position[6][1] = Somewhere(Shakedown_Street_Name.LATE.value,Shakedown_Street_Number.II.value)
+            self.position[6][2] = Somewhere(Shakedown_Street_Name.LATE.value,Shakedown_Street_Number.III.value)
             self.position[6][3] = BigSlide()
             self.position[6][4] = DownUnder()
             self.position[6][5] = SafetyCenter()

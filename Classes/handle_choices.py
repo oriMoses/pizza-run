@@ -309,7 +309,7 @@ class HandleInputs():
                 elif "10 " in player.input or "ten" in player.input:
                     pizzaOnPlayerChoice = 10
             else:   
-                return TOO_MUCH_PIZZA_TO_CARRY
+                return HOW_MANY_PIZZA
 
         if "pick" in player.input or "take" in player.input:
             if player.inventory.item_exist(BACKPACK_ID):
@@ -445,6 +445,9 @@ class HandleInputs():
                 print("can't carry more than 10 pizzas")
             else:
                 print("can't carry more than 5 pizzas")
+            return True
+        elif pizzaOnPlayerChoice == HOW_MANY_PIZZA:
+            print("be specific how many pizzas")
             return True
         else:
             return False

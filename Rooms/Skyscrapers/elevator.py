@@ -45,7 +45,6 @@ class Elevator(skyscrapersQuarter):
             if "north" in player.input or "south" in player.input or "east" in player.input or "west" in player.input:
                 player.input = ""
                 print("click a button")
-                self.first_arrival()
                 self.inputLegit = True
 
             if "0" in player.input:
