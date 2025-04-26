@@ -210,9 +210,13 @@ class HandleInputs():
     def inventory_input(self, player):
         if "inventory" in player.input and len(player.input) <= 10 :
             if not "bike inventory" in player.input:
-                print("inventory:")
-                player.inventory.print_player_inventory()
-                return True
+                if player.inventory.inventory_empty(): 
+                    print("(inventory empty)\n")
+                    return True
+                else:
+                    print("inventory:")
+                    player.inventory.print_player_inventory()
+                    return True
 
     def help_input(self, player):
         if "help" in player.input:
@@ -269,9 +273,13 @@ class HandleInputs():
                 return True
                 
             elif "inventory" in player.input:
-                print("\nbike inventory:")
-                Settings.bikeObject.inventory.print_player_inventory()
-                return True
+                if Settings.bikeObject.inventory.inventory_empty(): 
+                    print("\n(inventory empty)\n")
+                    return True
+                else:
+                    print("\nbike inventory:")
+                    Settings.bikeObject.inventory.print_player_inventory()
+                    return True
             
             elif "examine" in player.input:
                 Settings.bikeObject.examine()

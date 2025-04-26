@@ -31,6 +31,12 @@ class Inventory():
         else:
             print("Item not found in inventory.")
 
+    def inventory_empty(self):
+        for item_id in list(self.inventory):
+            if self.inventory[item_id]['stock_count'] != 0:
+                return False
+        return True
+
     def print_player_inventory(self):
         for item in self.inventory:
             if "cold pizza" in self.inventory[item]['name'] and self.inventory[item]['stock_count'] != 0:
