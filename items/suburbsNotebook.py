@@ -15,7 +15,7 @@ class SuburbsNotebook(BasicItem):
         print("There's a " + Colors.GREEN + "suburbs notebook" + Colors.END + " on the floor" + Colors.END)
 
     def examine(self):
-        print("\nYour boss again, do not lose this notebook! \nAll the address for the suburbs deliveries are here: \n")
+        print('\n"Your boss again, do not lose this notebook!" \nAll the address for the suburbs deliveries are here:\n')
         ordersList = list(self.orders)
         for i, note in enumerate(ordersList):
             orders = Settings.get_orders_for(Suburbs_Street_Name(note[1][0]), Suburbs_Street_Number(note[1][1]), Player.instance)

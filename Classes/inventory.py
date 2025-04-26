@@ -34,12 +34,15 @@ class Inventory():
     def print_player_inventory(self):
         for item in self.inventory:
             if "cold pizza" in self.inventory[item]['name'] and self.inventory[item]['stock_count'] != 0:
-                print(Colors.BLUE + self.inventory[item]['name'], str(self.inventory[item]['stock_count']) + Colors.END)
+                print(Colors.BLUE + str(self.inventory[item]['stock_count']) + ' '+ self.inventory[item]['name'] + Colors.END)
             elif "hot pizza" in self.inventory[item]['name'] and self.inventory[item]['stock_count'] != 0:
-                print(Colors.RED + self.inventory[item]['name'], str(self.inventory[item]['stock_count']) + Colors.END)
+                print(Colors.RED + str(self.inventory[item]['stock_count']) + ' ' + self.inventory[item]['name'] + Colors.END)
             else:
                 if self.inventory[item]['stock_count'] != 0:
-                    print(Colors.GREEN + self.inventory[item]['name'], str(self.inventory[item]['stock_count']) + Colors.END)
+                    if self.inventory[item]['stock_count'] == 1:
+                        print(Colors.GREEN + self.inventory[item]['name'] + Colors.END)
+                    else:
+                        print(Colors.GREEN + str(self.inventory[item]['stock_count']) + self.inventory[item]['name'] + Colors.END)
 
     def item_exist(self, item_id):
         if item_id in self.inventory:

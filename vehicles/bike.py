@@ -20,3 +20,4 @@ class Bike(Vehicle):
 
     def examine(self):
         print("An old, bumpy delivery bike. Can get the job done. You can store up to five pizzas on the bike. Faster than walking.")
+            #"You see an old beat up bike with a logo of pesent genfield\nThere's a plastic box on the back, that can store up to 5 pizzas"

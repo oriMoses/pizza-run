@@ -272,6 +272,10 @@ class HandleInputs():
                 print("\nbike inventory:")
                 Settings.bikeObject.inventory.print_player_inventory()
                 return True
+            
+            elif "examine" in player.input:
+                Settings.bikeObject.examine()
+                return True
 
     def move_pizzas_from(self, from_inventory, pizza_id, to_Inventory, amount):
         if from_inventory.item_exist(pizza_id):
@@ -419,7 +423,7 @@ class HandleInputs():
 
                     if error_thrown == False:
                         self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice)
-                        print("item dropped\n")
+                        print("(" + str(pizzaOnPlayerChoice) + " pizzas on hands)\n")
                         return True
                 
                 if "drop" in player.input or "put" in player.input:
@@ -427,7 +431,7 @@ class HandleInputs():
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
                     if error_thrown == False:
                         self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice) #TODO: change function name, function do pick and drop
-                        print("item dropped\n")
+                        print("(" + str(pizzaOnPlayerChoice) + " pizzas on bike)\n")
                         return True
             else:
                 if "pick" in player.input or "take" in player.input:
@@ -462,7 +466,7 @@ class HandleInputs():
                 print("can't carry more than 5 pizzas")
             return True
         elif pizzaOnPlayerChoice == HOW_MANY_PIZZA:
-            print("be specific how many pizzas")
+            print("be specific how many pizzas...")
             return True
         else:
             return False
