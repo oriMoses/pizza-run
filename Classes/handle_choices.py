@@ -20,7 +20,7 @@ class HandleInputs():
 
     def player_input(self, roomInventory):
         player = Player.getInstance()
-        if self.short_input(player) or self.look_input(player) or self.inventory_input(player) or self.help_input(player) or self.bike_input(player) or self.pizza_key_input(roomInventory, player) \
+        if self.short_input(player) or self.drop_all(player) or self.look_input(player) or self.inventory_input(player) or self.help_input(player) or self.bike_input(player) or self.pizza_key_input(roomInventory, player) \
                 or self.go_input(player) or self.pizza_input(roomInventory, player) or self.notebook(roomInventory, player) \
                 or self.bike_key(roomInventory, player) or self.hair_dryer(roomInventory, player) or self.pizza_locator(roomInventory, player) or self.tripper_guide(roomInventory, player) or self.wrist_watch(roomInventory, player) or self.lawn_mower(roomInventory, player) or self.shiny_dice(roomInventory, player) or self.green_lawn_mower_key(roomInventory, player) or self.backpack(roomInventory, player):
 
@@ -57,6 +57,18 @@ class HandleInputs():
                 player.input = "look"
                 self.look_input(player)
                 return True
+        
+    def drop_all(self, player):
+        if "drop all" in player.input:
+            if player.quarter == "Suburbs":
+                player.inventory.drop_all_inventory_to(player, Settings.mapInstance.suburbs, player.position[0], player.position[1])
+            elif player.quarter == "Skyscrapers":
+                player.inventory.drop_all_inventory_to(player, Settings.mapInstance.skyscrapers, player.position[0], player.position[1])
+            elif player.quarter == "Shakedown":
+                player.inventory.drop_all_inventory_to(player, Settings.mapInstance.shakedown, player.position[0], player.position[1])
+            print("items dropped\n")
+            return True
+        
         
     def give_pizza(self, player):
         if "give" in player.input:

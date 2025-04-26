@@ -17,15 +17,15 @@ class BigSlide(shakedownQuarter):
     def __str__(self):
         return f"Big Slide"
 
-    def drop_all_inventory(self):
-        player = Player.getInstance()
-        for item_id in list(player.inventory.inventory):
-            if player.inventory.inventory[item_id]['stock_count'] == 0:
-                pass
-            elif player.inventory.inventory[item_id]['stock_count'] == 1:
-                player.inventory.move_item(item_id, Settings.mapInstance.shakedown.position[Shakedown_Street_Name.LATE.value][Shakedown_Street_Number.III.value].inventory)
-            else:
-                player.inventory.move_items(item_id, Settings.mapInstance.shakedown.position[Shakedown_Street_Name.LATE.value][Shakedown_Street_Number.III.value].inventory, player.inventory.inventory[item_id]['stock_count'])
+    # def drop_all_inventory_to(self, street_name_value, street_number_value):
+    #     player = Player.getInstance()
+    #     for item_id in list(player.inventory.inventory):
+    #         if player.inventory.inventory[item_id]['stock_count'] == 0:
+    #             pass
+    #         elif player.inventory.inventory[item_id]['stock_count'] == 1:
+    #             player.inventory.move_item(item_id, Settings.mapInstance.shakedown.position[Shakedown_Street_Name.LATE.value][Shakedown_Street_Number.III.value].inventory)
+    #         else:
+    #             player.inventory.move_items(item_id, Settings.mapInstance.shakedown.position[Shakedown_Street_Name.LATE.value][Shakedown_Street_Number.III.value].inventory, player.inventory.inventory[item_id]['stock_count'])
 
             
     def print_first_arrival(self):
@@ -39,7 +39,7 @@ class BigSlide(shakedownQuarter):
                 print('lets goooo!\nYou drop ', end='')
                 print(Colors.UNDERLINE + 'everything' + Colors.END, end='')
                 print(' and jump head first down the yellow slide\nWhat a horrible idea! Who talked you into that?!')
-                self.drop_all_inventory()
+                player.inventory.drop_all_inventory(player, Settings.mapInstance, Shakedown_Street_Name.LATE.value, Shakedown_Street_Number.III.value)
                 player.position[0] = 6
                 player.position[1] = 4
                 Settings.goNextRoom = True

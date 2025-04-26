@@ -63,3 +63,12 @@ class Inventory():
             return self.inventory[item_id]['stock_count']
         else:
             return 0
+        
+    def drop_all_inventory_to(self, inventory, mapInstance, street_name_value, street_number_value):
+        for item_id in list(inventory.inventory.inventory):
+            if inventory.inventory.inventory[item_id]['stock_count'] == 0:
+                pass
+            elif inventory.inventory.inventory[item_id]['stock_count'] == 1:
+                inventory.inventory.move_item(item_id, mapInstance.position[street_name_value][street_number_value].inventory)
+            else:
+                inventory.inventory.move_items(item_id, mapInstance.position[street_name_value][street_number_value].inventory, inventory.inventory.inventory[item_id]['stock_count'])
