@@ -59,7 +59,8 @@ class InfoBooth(shakedownQuarter):
                             Settings.remove_orderes_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I)
 
                             print('woohoo, happy new year')
-                            print(2, " coin up tip\n")
+                            Settings.print_tip_up(2)
+
                             
                             print("The guys seem to be thrilled about the pizza, they let you pass\nYou can go ", end='')
                             print(Colors.UNDERLINE + "East" + Colors.END)
@@ -78,7 +79,7 @@ class InfoBooth(shakedownQuarter):
                             Settings.remove_orderes_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I)
 
                             print('woohoo, happy new year')
-                            print(2, " coin up tip\n")
+                            Settings.print_tip_up(2)
                             
                             print("The guys seem to be thrilled about the pizza, they let you pass")
                             self.east_open = True

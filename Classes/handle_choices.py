@@ -61,11 +61,11 @@ class HandleInputs():
     def drop_all(self, player):
         if "drop all" in player.input:
             if player.quarter == "Suburbs":
-                player.inventory.drop_all_inventory_to(player, Settings.mapInstance.suburbs, player.position[0], player.position[1])
+                player.inventory.drop_all_inventory_to(player.inventory, Settings.mapInstance.suburbs, player.position[0], player.position[1])
             elif player.quarter == "Skyscrapers":
-                player.inventory.drop_all_inventory_to(player, Settings.mapInstance.skyscrapers, player.position[0], player.position[1])
+                player.inventory.drop_all_inventory_to(player.inventory, Settings.mapInstance.skyscrapers, player.position[0], player.position[1])
             elif player.quarter == "Shakedown":
-                player.inventory.drop_all_inventory_to(player, Settings.mapInstance.shakedown, player.position[0], player.position[1])
+                player.inventory.drop_all_inventory_to(player.inventory, Settings.mapInstance.shakedown, player.position[0], player.position[1])
             print("items dropped\n")
             return True
         

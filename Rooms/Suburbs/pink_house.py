@@ -55,12 +55,10 @@ class PinkHouse(suburbsQuarter):
                             if orders == numberOfPizza:
                                 
                                 player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
 
                                 Settings.remove_orderes_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.V)
 
                                 print('The man grabs the pizza and shut the door with a slam!')
-                                print(numberOfPizza*2, " coin up tip\n")
                                 self.order_given = True
                             else:
                                 print("give me pizza!!!! only one pizza!\n")
@@ -70,12 +68,10 @@ class PinkHouse(suburbsQuarter):
                             if orders == numberOfPizza:
 
                                 player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
 
                                 Settings.remove_orderes_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.V)
 
                                 print("The man grabs the pizza and shut the door with a slam!")
-                                print(numberOfPizza, " coin up tip\n")
                                 self.order_given = True
                             else:
                                 print("That's not the correct order")

@@ -60,7 +60,8 @@ class BlueHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II)
 
                                 print("my my, what a wonderful pizza!")
-                                print(numberOfPizza*2, " coin up tip\n")
+                                Settings.print_tip_up(numberOfPizza*2)
+
                                 self.order_given = True
                             else:
                                 print("Thats not the correct order\n")
@@ -74,7 +75,7 @@ class BlueHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II)
 
                                 print("In my days, thay use to serve hot pizza")
-                                print(numberOfPizza, " coin up tip")
+                                Settings.print_tip_up(numberOfPizza)
                                 self.order_given = True
                             else:
                                 print("That's not the correct order")                                

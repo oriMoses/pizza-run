@@ -48,7 +48,8 @@ class YellowHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.IV)
 
                                 print('"that is what im talking about! happy new year!"')
-                                print(numberOfPizza*2, " coin up tip\n")
+                                Settings.print_tip_up(numberOfPizza*2)
+
                                 self.order_given = True
                             else:
                                 print("Thats not the correct order\n")
@@ -63,7 +64,8 @@ class YellowHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.IV)
 
                                 print("cold pizza… well, still pizza")
-                                print(numberOfPizza, " coin up tip\n")
+                                Settings.print_tip_up(numberOfPizza)
+
                                 self.order_given = True
                             else:
                                 print("That's not the correct order")

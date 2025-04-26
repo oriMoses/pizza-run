@@ -50,7 +50,6 @@ class BushGarden(suburbsQuarter):
                             orders = Settings.get_orders_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.I. player)
                             if orders == numberOfPizza:
                                 player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-
                                 Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.I)
 
                                 print('''"thanks man! We don't have any money for tips… \n\nbut you can join us! \nTake a slice of pizza, kick your shoes off and enjoy yourself!" \n\nstay at the festival? yes/no\n''')
@@ -66,8 +65,6 @@ class BushGarden(suburbsQuarter):
                                         print("\nstay at the festival? yes/no\n")
                                 
                                 self.order_given = True
-                            else:
-                                print("give me pizza!!!! only one pizza!\n")
 
                         elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
                             orders = Settings.get_orders_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.I. player)
@@ -77,8 +74,18 @@ class BushGarden(suburbsQuarter):
 
                                 Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.I)
 
-                                print("The man grabs the pizza and shut the door with a slam!")
-                                print(numberOfPizza, " coin up tip")
+                                print('''"thanks man! We don't have any money for tips… \n\nbut you can join us! \nTake a slice of pizza, kick your shoes off and enjoy yourself!" \n\nstay at the festival? yes/no\n''')
+
+                                while player.input != "yes" and player.input != "no":
+                                    player.input = input("> ").lower()
+
+                                    if "yes" in player.input:
+                                        self.print_end_1(player)
+                                    elif "no" in player.input:
+                                        print("I get it man, show must go on… anyway, happy new year!!!\n")
+                                    else:
+                                        print("\nstay at the festival? yes/no\n")
+                                        
                                 self.order_given = True
                             else:
                                 print("That's not the correct order")

@@ -13,6 +13,7 @@ from Items.box import Box
 from vehicles.bike import Bike
 from Classes.player import Player
 from Constants.constants import *
+from Constants.enums import Colors
 
 shop_location = [10,10]
 mapInstance = None
@@ -298,3 +299,7 @@ def street_in_boundary(streetPoition, streetNumberPosition):
             return False  
         
     return True
+
+def print_tip_up(tip_number):
+    print(Colors.YELLOW + "You got ", end='')
+    print(tip_number, "coin tip!" + Colors.END)
