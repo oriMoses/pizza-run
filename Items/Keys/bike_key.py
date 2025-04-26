@@ -1,6 +1,7 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
+from Constants.enums import Colors
 
 class BikeKey(BasicItem):
     def __init__(self, map):
@@ -10,7 +11,7 @@ class BikeKey(BasicItem):
         self.inBox = True
 
     def print_in_room(self):
-        print("There's a bike key on the floor")
+        print("There's a " + Colors.GREEN + "bike key" + Colors.END + " on the floor" + Colors.END)
 
     def examine(self):
         print("use the key to start the bike")

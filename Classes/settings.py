@@ -145,10 +145,10 @@ def print_pizza_in_room(self):
     coldPizzasInRoom = self.inventory.get_amount(COLD_PIZZA_ID)
 
     if hotPizzasInRoom != 0:
-        print("There are " + Colors.RED + str(hotPizzasInRoom) + " hot pizzas" + Colors.END + " in here")
+        print("There " + Colors.RED + str(hotPizzasInRoom) + " hot pizzas" + Colors.END + " in here")
         return OK
     elif coldPizzasInRoom != 0:
-        print("There are " + Colors.BLUE + str(coldPizzasInRoom) + " cold pizzas" + Colors.END + " in here")
+        print("There's " + Colors.BLUE + str(coldPizzasInRoom) + " cold pizzas" + Colors.END + " in here")
         return OK
     else:
         return NO_PIZZAS_IN_ROOM

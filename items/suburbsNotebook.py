@@ -12,7 +12,7 @@ class SuburbsNotebook(BasicItem):
         self.inBox = True
 
     def print_in_room(self):
-        print("There's a suburbs notebook on the floor")
+        print("There's a " + Colors.GREEN + "suburbs notebook" + Colors.END + " on the floor" + Colors.END)
 
     def examine(self):
         print("\nYour boss again, do not lose this notebook! \nAll the address for the suburbs deliveries are here: \n")

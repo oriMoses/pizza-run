@@ -39,7 +39,7 @@ class Inventory():
                 print(Colors.RED + self.inventory[item]['name'], str(self.inventory[item]['stock_count']) + Colors.END)
             else:
                 if self.inventory[item]['stock_count'] != 0:
-                    print(self.inventory[item]['name'], self.inventory[item]['stock_count'])
+                    print(Colors.GREEN + self.inventory[item]['name'], str(self.inventory[item]['stock_count']) + Colors.END)
 
     def item_exist(self, item_id):
         if item_id in self.inventory:

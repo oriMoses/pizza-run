@@ -1,6 +1,6 @@
 from Items.basic_item import BasicItem
 from Constants.constants import *
-from Constants.enums import pizza_temprature
+from Constants.enums import Colors
 
 class HairDryer(BasicItem):
     def __init__(self, position):
@@ -13,7 +13,7 @@ class HairDryer(BasicItem):
         print("(2 coins) Hair dryer - can heat cold pizza (probably not the original use of this device. no warranty) \n")
 
     def print_in_room(self):
-        print("The hair dryer is on the floor")
+        print("There's a " + Colors.GREEN + "hair dryer" + Colors.END + " on the floor" + Colors.END)
 
     def examine(self):
         print("can heat cold pizza (probably not the original use of this device)\nno warranty\n")

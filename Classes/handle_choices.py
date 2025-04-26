@@ -384,7 +384,7 @@ class HandleInputs():
 
             if self.move_pizzas_from(player.inventory, item_id, roomInventory, amount):
                 print("item dropped\n")
-                Settings.itemList[item_id].position = player.position
+                Settings.ShinyDiceObject.position = player.position
                 
             return True
         else:

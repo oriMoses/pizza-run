@@ -1,6 +1,7 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
+from Constants.enums import Colors
 
 class GreenLawnMowerKey(BasicItem):
     def __init__(self, map):
@@ -8,7 +9,8 @@ class GreenLawnMowerKey(BasicItem):
         self.quarter = "Suburbs"
 
     def print_in_room(self):
-        print("There's a green lawn mower key on the floor")
+        print("There's a " + Colors.GREEN + "green lawn mower key" + Colors.END + " on the floor" + Colors.END)
+
 
     def examine(self):
         print("use this key to start the lawn mower")

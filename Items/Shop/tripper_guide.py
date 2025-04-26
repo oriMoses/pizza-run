@@ -1,6 +1,7 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
+from Constants.enums import Colors
 
 class TripperGuide(BasicItem):
     def __init__(self, position):
@@ -13,7 +14,8 @@ class TripperGuide(BasicItem):
         print("(1 coin) The tipper guide - Will tell you how to get better tips. \n")
 
     def print_in_room(self):
-        print("The tipper guide is on the floor.")
+        print("There's a " + Colors.GREEN + "tipper guide" + Colors.END + " on the floor" + Colors.END)
+
 
     def examine(self):
         print("""The front cover reads: "The tippers guide, make bigger tips!" """)
