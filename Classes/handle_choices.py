@@ -170,9 +170,7 @@ class HandleInputs():
             
             if "use" in player.input:
                 Settings.hairDryerObject.use(roomInventory, player.inventory)
-                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
-                print("Voooooooom\n")
-                
+                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True                
                 
 
     def bike_key(self, roomInventory, player):
@@ -482,14 +480,13 @@ class HandleInputs():
                     player.input += " cold"
                     self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
                 
-                elif player.inventory(HOT_PIZZA_ID):
+                elif player.inventory.item_exist(HOT_PIZZA_ID):
                     player.input += " hot"
                     self.check_player_pizza_to_give(player, roomInventory, pizzaOnPlayerChoice)
                     
         elif "pick" in player.input or "take" in player.input:
             if "cold" in player.input:
                 if roomInventory.item_exist(COLD_PIZZA_ID):
-                    #if player.inventory[COLD_PIZZA_ID]["stock_count"] += pizzaOnPlayerChoice
                     if roomInventory.move_items(COLD_PIZZA_ID, player.inventory, pizzaOnPlayerChoice):
 
                         print("x", abs(pizzaOnPlayerChoice), "cold pizza (on hands)\n")

@@ -1,4 +1,5 @@
 from Constants.enums import pizza_temprature
+from Constants.enums import Colors
 class Inventory():
     def __init__(self):
         self.inventory = {}
@@ -32,7 +33,11 @@ class Inventory():
 
     def print_player_inventory(self):
         for item in self.inventory:
-            if self.inventory[item]['name'] != "Pizza":
+            if "cold pizza" in self.inventory[item]['name'] and self.inventory[item]['stock_count'] != 0:
+                print(Colors.BLUE + self.inventory[item]['name'], str(self.inventory[item]['stock_count']) + Colors.END)
+            elif "hot pizza" in self.inventory[item]['name'] and self.inventory[item]['stock_count'] != 0:
+                print(Colors.RED + self.inventory[item]['name'], str(self.inventory[item]['stock_count']) + Colors.END)
+            else:
                 if self.inventory[item]['stock_count'] != 0:
                     print(self.inventory[item]['name'], self.inventory[item]['stock_count'])
 
