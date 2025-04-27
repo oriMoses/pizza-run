@@ -1,7 +1,7 @@
 from Classes.inventory import Inventory
 from Constants.constants import *
 from Classes.player import Player
-
+from Constants.enums import Colors
 class Vehicle():
     def __init__(self, position, itemID, max_pizza_in_inventory, vehicleName, vehicleKeyID):
         self.position = position
@@ -21,28 +21,28 @@ class Vehicle():
         player = Player.getInstance()
         if player.inventory.item_exist(self.vehicleKeyID):
             self.vehicleOn = True
-            print("the", self.name, "is on\n")
+            print("the " + Colors.GREEN + self.name + Colors.END + " is on\n")
         else:
-            print("You don't have the key to the", self.name)
+            print("You don't have the key to the " + Colors.GREEN + self.name + Colors.END)
     
     def is_vehicle_availabe(self):
         player = Player.getInstance()
         
         if self.position != player.position:
-            print(self.name, "not nearby")
+            print(Colors.GREEN + self.name + Colors.END + " not nearby")
             return False
         if player.inventory.item_exist(HOT_PIZZA_ID) or player.inventory.item_exist(COLD_PIZZA_ID):
-            print("""You can't ride a""", self.name,  "with pizza on your hands (and probably shouldn't try)\n""")
+            print("""You can't ride a """ + Colors.GREEN + self.name + Colors.END + " with pizza on your hands (and probably shouldn't try)\n""")
             return False
         if not player.inventory.item_exist(BIKE_KEY_ID):
-            print("you don't have the key to the", self.name)
+            print("you don't have the key to the " + Colors.GREEN + self.name + Colors.END)
             return False
     
         return True
     
     def can_vehicle_ride(self):
         if not self.vehicleOn:
-            print("You have to turn the", self.name, "on")
+            print("You have to turn the " + Colors.GREEN + self.name + Colors.END + " on")
             return False
         return True
     
@@ -51,7 +51,7 @@ class Vehicle():
     
     def turn_off(self):
         self.vehicleOn = False
-        print(self.vehicleName, "is off\n")
+        print(Colors.GREEN + self.name + Colors.END + " is off\n")
 
     def print_in_room(self):
         pass

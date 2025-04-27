@@ -3,7 +3,7 @@ from Classes.player import Player
 from Constants.constants import *
 from Rooms.Suburbs.suburbs_none_special_room import SuburbsNoneSpecialRoom
 from Rooms.Suburbs.parking import Parking
-
+from Constants.enums import Colors
 class HandleInputs():
     instance = None
     
@@ -439,7 +439,7 @@ class HandleInputs():
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
                     if error_thrown == False:
                         self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice) #TODO: change function name, function do pick and drop
-                        print("(" + str(pizzaOnPlayerChoice) + " pizzas on bike)\n")
+                        print("(" + str(pizzaOnPlayerChoice) + " pizzas on " + Colors.GREEN + Settings.bikeObject.name + Colors.END + ")\n")
                         return True
             else:
                 if "pick" in player.input or "take" in player.input:
