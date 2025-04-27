@@ -3,6 +3,7 @@ from Items.basic_item import BasicItem
 from Constants.constants import *
 from Constants.enums import Colors
 from Classes.inventory import Inventory
+from Classes.player import Player
 
 class Backpack(BasicItem):
     def __init__(self, position):
@@ -19,7 +20,10 @@ class Backpack(BasicItem):
         print("(7 coins) Delivery backpack - you can keep up to 10 pizzas in this bag, the bag will make sure the pizza stays hot! You can drive with the backpack on you, or put it on a vehicle \n")
 
     def print_in_room(self):
-        print("There's a " + Colors.GREEN + "Delivery backpack" + Colors.END + " on the floor")
+        player = Player.getInstance()
+        if player.position == self.position:
+            print("\nThere's a " + "delivery " + Colors.GREEN + "backpack" + Colors.END + " on the floor ", end=' ')
+            self.inventory.print_pizzas_on(self.inventory)
 
     def examine(self):
         print("you can keep up to 10 pizzas in this bag, the bag will make sure the pizza stays hot!\nYou can drive with the backpack on you, or put it on a vehicle")

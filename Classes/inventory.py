@@ -1,5 +1,6 @@
 from Constants.enums import pizza_temprature
 from Constants.enums import Colors
+from Constants.constants import HOT_PIZZA_ID, COLD_PIZZA_ID
 class Inventory():
     def __init__(self):
         self.inventory = {}
@@ -86,3 +87,13 @@ class Inventory():
                 inventory.move_item(item_id, mapInstance.position[street_name_value][street_number_value].inventory)
             else:
                 inventory.move_items(item_id, mapInstance.position[street_name_value][street_number_value].inventory, inventory.inventory[item_id]['stock_count'])
+    
+    def print_pizzas_on(self, inventory):
+        if inventory.item_exist(HOT_PIZZA_ID) and inventory.item_exist(COLD_PIZZA_ID):
+            print("(" + str(inventory.get_amount(HOT_PIZZA_ID)) + Colors.RED + " H.P " + Colors.END + str(inventory.get_amount(COLD_PIZZA_ID)) + Colors.BLUE + " C.P" + Colors.END + ")")
+        elif inventory.item_exist(HOT_PIZZA_ID):
+            print("(" + str(inventory.get_amount(HOT_PIZZA_ID)) + Colors.RED + " H.P" + Colors.END + ")")
+
+        elif inventory.item_exist(COLD_PIZZA_ID):
+            print("(" + str(inventory.get_amount(COLD_PIZZA_ID)) + Colors.BLUE + " C.P" + Colors.END + ")")
+        print()
