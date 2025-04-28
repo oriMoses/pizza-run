@@ -47,7 +47,7 @@ class SideRoad(skyscrapersQuarter):
             if player.position[0] == 0 and player.position[1] == 2:
                 if "north" in player.input:
                     player.quarter = "Suburbs"
-                    player.position[0] = Skyscrapers_Street_Name.DUCK.value
+                    player.position[0] = Skyscrapers_Street_Name.CRASH.value
                     player.position[1] = Skyscrapers_Street_Number.III.value
                     Settings.goNextRoom = True
                     self.inputLegit = True

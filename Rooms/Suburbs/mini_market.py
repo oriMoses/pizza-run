@@ -1,7 +1,7 @@
 from Classes.quarters import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name
+from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name, Suburbs_Tips
 from Constants.constants import *
 
 class MiniMarket(suburbsQuarter):
@@ -64,12 +64,12 @@ class MiniMarket(suburbsQuarter):
                         if orders == numberOfPizza:
 
                             player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Suburbs_Tips.MINI_MARKET_HOT.value)
 
                             Settings.remove_orderes_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.IV)
 
                             print('"Perfect"')
-                            print(numberOfPizza*2, " coin up tip\n")
+                            print(Suburbs_Tips.MINI_MARKET_HOT.value, " coin up tip\n")
                             self.order_given = True
                         else:
                             print("Thats not the correct order\n")
@@ -79,12 +79,12 @@ class MiniMarket(suburbsQuarter):
                         if orders == numberOfPizza:
 
                             player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Suburbs_Tips.MINI_MARKET_COLD.value)
 
                             Settings.remove_orderes_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.IV)
                             
                             print('"Thanks, kind of cold tho"')
-                            print(numberOfPizza, " coin up tip\n")
+                            print(Suburbs_Tips.MINI_MARKET_COLD.value, " coin up tip\n")
                             self.order_given = True
                         else:
                             print("That's not the correct order")

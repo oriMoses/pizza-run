@@ -1,7 +1,7 @@
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Constants.constants import *
-from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number
+from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number, Shakedown_Tips
 from Classes.quarters import shakedownQuarter 
 from Constants.enums import Colors
 

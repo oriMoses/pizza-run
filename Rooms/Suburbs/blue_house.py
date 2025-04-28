@@ -1,7 +1,7 @@
 from Classes.quarters import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name
+from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name, Suburbs_Tips
 from Constants.constants import *
 
 class BlueHouse(suburbsQuarter):
@@ -55,12 +55,12 @@ class BlueHouse(suburbsQuarter):
                             orders = Settings.get_orders_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II, player)
                             if orders == numberOfPizza:
                                 player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Suburbs_Tips.BLUE_HOUSE_HOT.value)
 
                                 Settings.remove_orderes_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II)
 
                                 print("my my, what a wonderful pizza!")
-                                Settings.print_tip_up(numberOfPizza*2)
+                                Settings.print_tip_up(Suburbs_Tips.BLUE_HOUSE_HOT.value)
 
                                 self.order_given = True
                             else:
@@ -70,12 +70,12 @@ class BlueHouse(suburbsQuarter):
                             orders = Settings.get_orders_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II, player)
                             if orders == numberOfPizza:
                                 player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 5)
+                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Suburbs_Tips.BLUE_HOUSE_COLD.value)
 
                                 Settings.remove_orderes_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II)
 
                                 print("In my days, thay use to serve hot pizza")
-                                Settings.print_tip_up(numberOfPizza)
+                                Settings.print_tip_up(Suburbs_Tips.BLUE_HOUSE_COLD.value)
                                 self.order_given = True
                             else:
                                 print("That's not the correct order")                                

@@ -2,7 +2,7 @@ from Classes.quarters import suburbsQuarter
 from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number, Skyscrapers_Street_Name, Skyscrapers_Street_Number, Colors
+from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number, Skyscrapers_Street_Name, Skyscrapers_Street_Number, Colors, Suburbs_Tips
 from Constants.constants import *
 
 class Gatekeeper(suburbsQuarter):
@@ -69,12 +69,12 @@ class Gatekeeper(suburbsQuarter):
                         if orders == numberOfPizza:
                             
                             player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Suburbs_Tips.GATEKEEPER_HOT.value)
 
                             Settings.remove_orderes_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III)
 
                             print('\n"Thank you, you just made my shift way better"')
-                            Settings.print_tip_up(numberOfPizza*2)
+                            Settings.print_tip_up(Suburbs_Tips.GATEKEEPER_HOT.value)
 
                             print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care"\nThe gate is now open')
                             self.gateOpen = True
@@ -87,12 +87,12 @@ class Gatekeeper(suburbsQuarter):
                         if orders == numberOfPizza:
                             
                             player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Suburbs_Tips.GATEKEEPER_COLD.value)
 
                             Settings.remove_orderes_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III)
 
                             print('"Thank you, too bad its cold"')
-                            Settings.print_tip_up(numberOfPizza)
+                            Settings.print_tip_up(Suburbs_Tips.GATEKEEPER_COLD.value)
 
                             print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care"\nThe gate is now open')
                             self.gateOpen = True

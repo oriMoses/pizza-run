@@ -1,7 +1,7 @@
 from Classes.quarters import suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name
+from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name, Suburbs_Tips
 from Constants.constants import *
 
 class YellowHouse(suburbsQuarter):
@@ -43,12 +43,12 @@ class YellowHouse(suburbsQuarter):
                             if orders == numberOfPizza:
                                 
                                 player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza*2)
+                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Suburbs_Tips.YELLOW_HOUSE_HOT.value)
 
                                 Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.IV)
 
                                 print('"that is what im talking about! happy new year!"')
-                                Settings.print_tip_up(numberOfPizza*2)
+                                Settings.print_tip_up(Suburbs_Tips.YELLOW_HOUSE_HOT.value)
 
                                 self.order_given = True
                             else:
@@ -59,12 +59,12 @@ class YellowHouse(suburbsQuarter):
                             if orders == numberOfPizza:
 
                                 player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
+                                player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Suburbs_Tips.YELLOW_HOUSE_COLD.value)
 
                                 Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.IV)
 
                                 print("cold pizza… well, still pizza")
-                                Settings.print_tip_up(numberOfPizza)
+                                Settings.print_tip_up(Suburbs_Tips.YELLOW_HOUSE_COLD.value)
 
                                 self.order_given = True
                             else:

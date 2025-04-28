@@ -72,3 +72,30 @@ class Shakedown_Street_Number(Enum):
     V = 4
     VI = 5
     VII = 6
+    
+class Suburbs_Tips(Enum):
+    YELLOW_HOUSE_HOT = 4
+    YELLOW_HOUSE_COLD = 2
+    HIPPIE_HOUSE_HOT = 6
+    HIPPIE_HOUSE_COLD = 3
+    MINI_MARKET_HOT = 8
+    MINI_MARKET_COLD = 3
+    TEEN_HOUSE_HOT = 10
+    TEEN_HOUSE_COLD = 5
+    GREEN_HOUSE_HOT = 0
+    GREEN_HOUSE_COLD = 0
+    GATEKEEPER_HOT = 2
+    GATEKEEPER_COLD = 1
+    BLUE_HOUSE_HOT = 10
+    BLUE_HOUSE_COLD = 5
+
+class Skyscrapers_Tips(Enum):
+    CASINO_ROOF_HOT = 100
+
+class Shakedown_Tips(Enum):
+    INFO_BOOTH_HOT = 2
+    INFO_BOOTH_COLD = 2
+    SAFETY_GUY_COLD = 1
+    SAFETY_GUY_HOT = 2
+    PAWN_SHOP_COLD = 2
+    PAWN_SHOP_HOT = 4

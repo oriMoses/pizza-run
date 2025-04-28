@@ -1,7 +1,7 @@
 from Classes.quarters import skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors, Skyscrapers_Tips
 from Constants.constants import *
 
 class CasinoRoof(skyscrapersQuarter):
@@ -34,8 +34,8 @@ class CasinoRoof(skyscrapersQuarter):
 
             if (self.inventory.get_amount(HOT_PIZZA_ID) + self.inventory.get_amount(COLD_PIZZA_ID)) >= 30:
                 if self.order_given == False:
-                    print("You jump away and duck as a gold-cover helicopter lands on the roof. \nA blinding light shines from it. \n\nThe helicopter and the pizza are gone! \n\nYou got 100 coin tip!") 
-                    player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + 100)
+                    print("You jump away and duck as a gold-cover helicopter lands on the roof. \nA blinding light shines from it. \n\nThe helicopter and the pizza are gone! \n\nYou got " + Skyscrapers_Tips.CASINO_ROOF_HOT.value + " coin tip!") 
+                    player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Skyscrapers_Tips.CASINO_ROOF_HOT.value)
                     self.inventory.update_item(Settings.HOT_PIZZA_ID, player.self.get_amount(Settings.HOT_PIZZA_ID) - 30)
                     self.order_given = True
                     

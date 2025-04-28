@@ -3,7 +3,7 @@ import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Constants.constants import *
 from Classes.quarters import shakedownQuarter 
-from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number, Colors
+from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number, Colors, Shakedown_Tips
 
 class InfoBooth(shakedownQuarter):
     def __init__(self):
@@ -54,12 +54,12 @@ class InfoBooth(shakedownQuarter):
                         if orders == numberOfPizza:
                             
                             player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
-                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza + 2)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + SHAKE.INFO_BOOTH_HOT.value)
 
                             Settings.remove_orderes_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I)
 
                             print('woohoo, happy new year')
-                            Settings.print_tip_up(2)
+                            Settings.print_tip_up(Shakedown_Tips.INFO_BOOTH_HOT.value)
 
                             
                             print("The guys seem to be thrilled about the pizza, they let you pass\nYou can go ", end='')
@@ -74,12 +74,12 @@ class InfoBooth(shakedownQuarter):
                         if orders == numberOfPizza:
 
                             player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
-                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Shakedown_Tips.INFO_BOOTH_COLD.value)
 
                             Settings.remove_orderes_for(Shakedown_Street_Name.LATE, Shakedown_Street_Number.I)
 
                             print('woohoo, happy new year')
-                            Settings.print_tip_up(2)
+                            Settings.print_tip_up(Shakedown_Tips.INFO_BOOTH_COLD.value)
                             
                             print("The guys seem to be thrilled about the pizza, they let you pass")
                             self.east_open = True
