@@ -432,16 +432,24 @@ class HandleInputs():
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
 
                     if error_thrown == False:
-                        self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice)
-                        print("(" + str(pizzaOnPlayerChoice) + " pizzas on hands)\n")
+                        if Settings.bikeObject.inventory.get_number_of_pizza_in():
+                            self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice)
+                            print("(" + str(pizzaOnPlayerChoice) + " pizzas on hands)\n")
+                        else:
+                            print(Colors.GREEN + Settings.bikeObject.name + Colors.END + " don't have " + str(pizzaOnPlayerChoice) + " pizzas\n")
                     return True
                 
                 if "drop" in player.input or "put" in player.input:
                     pizzaOnPlayerChoice = self.get_pizza_on_player(player)
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
+                    
                     if error_thrown == False:
-                        self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice) #TODO: change function name, function do pick and drop
-                        print("(" + str(pizzaOnPlayerChoice) + " pizzas on " + Colors.GREEN + Settings.bikeObject.name + Colors.END + ")\n")
+                        if player.inventory.get_number_of_pizza_in():
+                            self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice) #TODO: change function name, function do pick and drop
+                            print("(" + str(pizzaOnPlayerChoice) + " pizzas on " + Colors.GREEN + Settings.bikeObject.name + Colors.END + ")\n")
+                        else:
+                            print("You don't have any pizzas on you\n")
+                    
                     return True
             else:
                 if "pick" in player.input or "take" in player.input:

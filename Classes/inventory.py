@@ -58,7 +58,7 @@ class Inventory():
         else:
             return False
 
-    def pizza_exists(self, amount, pizza_id):
+    def pizzas_exists(self, amount, pizza_id):
         for item in self.inventory:
             if item == pizza_id:
                 if self.inventory[item]['stock_count'] >= amount:
@@ -78,6 +78,9 @@ class Inventory():
             return self.inventory[item_id]['stock_count']
         else:
             return 0
+    
+    def get_number_of_pizza_in(self):
+        return self.get_amount(HOT_PIZZA_ID) + self.get_amount(HOT_PIZZA_ID)
         
     def drop_all_inventory_to(self, inventory, mapInstance, street_name_value, street_number_value):
         for item_id in list(inventory.inventory):
