@@ -56,7 +56,7 @@ class Inventory():
                         print(Colors.GREEN + str(self.inventory[item]['stock_count']) + self.inventory[item]['name'] + Colors.END)
 
     def item_exist(self, item_id):
-        if item_id in self.inventory:
+        if item_id in self.inventory: #TODO: here not finding pizza in backpack inventory 
             if self.inventory[item_id]['stock_count'] != 0:
                 return True
 
@@ -85,7 +85,7 @@ class Inventory():
             return 0
     
     def get_number_of_pizza_in(self):
-        return self.get_amount(HOT_PIZZA_ID) + self.get_amount(HOT_PIZZA_ID)
+        return self.get_amount(HOT_PIZZA_ID) + self.get_amount(COLD_PIZZA_ID)
         
     def drop_all_inventory_to(self, inventory, mapInstance, street_name_value, street_number_value):
         for item_id in list(inventory.inventory):

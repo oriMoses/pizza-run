@@ -11,6 +11,7 @@ class Backpack(BasicItem):
         self.quarter = "Suburbs"
         self.inShop = True
         self.price = 7
+        self.name = "Delivery Backpack"
         self.inventory = Inventory()
 
         self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 0, SHOW_ITEM_IN_ROOM)

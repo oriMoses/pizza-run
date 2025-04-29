@@ -142,11 +142,21 @@ class HandleInputs():
 
 
     def backpack(self, roomInventory, player):
-        if "backpack" in player.input or "back pack" in player.input:
+        if not player.inventory.item_exist(Settings.backpackObject):
+            return False
+        if "backpack" in player.input:
             # if self.deal_with_pick_and_drop(roomInventory, BACKPACK_ID, "delivery backpack", 1, player):
             #     if player.quarter == "Suburbs":
             #         Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
             #         #TODO: add input legit for all maps
+            if "inventory" in player.input:
+                if Settings.bikeObject.inventory.inventory_empty(): 
+                    print("\n(inventory empty)\n")
+                    return True
+                else:
+                    print("\nbike inventory:")
+                    Settings.bikeObject.inventory.print_player_inventory()
+                    return True
             if "examine" in player.input:
                 if player.inventory.item_exist(BACKPACK_ID):
                     Settings.backpackObject.examine()
@@ -356,7 +366,7 @@ class HandleInputs():
             else:               #TODO: remove here a lot
                 if pizzaOnPlayerChoice + pizzasOnInventory > MAX_PIZZA_ON_PLAYER:
                     pizzaOnPlayerChoice = 0
-        elif "drop" in player.input:
+        elif "drop" in player.input or "put" in player.input:
             if pizzaOnPlayerChoice > pizzasOnInventory:
                 return NOT_ENOUGH_PIZZA_IN_INVENTORY
             
@@ -375,7 +385,7 @@ class HandleInputs():
     
     
     def deal_with_pick_and_drop(self, roomInventory, item_id, item_name, amount, player):
-        if "bike" in player.input:
+        if "bike" in player.input or "backpack" in player.input:
             if "pizza" in player.input or "pizzas" in player.input:
                 return
             
@@ -434,7 +444,7 @@ class HandleInputs():
         if "pizza" in player.input or "pizzas" in player.input:
             if "bike" in player.input:
                 if "pick" in player.input or "take" in player.input:
-                    pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
+                    pizzasOnPlayer = self.get_all_pizza_from_(Settings.bikeObject.inventory)
                     pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, player)
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
 
@@ -458,6 +468,33 @@ class HandleInputs():
                             print("You don't have any pizzas on you\n")
                     
                     return True
+            elif "backpack" in player.input:
+                if "pick" in player.input or "take" in player.input:
+                    pizzasOnPlayer = self.get_all_pizza_from_(Settings.backpackObject.inventory)
+                    pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, player)
+                    error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
+
+                    if error_thrown == False:
+                        if Settings.backpackObject.inventory.get_number_of_pizza_in():
+                            self.check_player_pizza_to_give(player, Settings.backpackObject.inventory, pizzaOnPlayerChoice)
+                            print("(" + str(pizzaOnPlayerChoice) + " pizzas in backpack)\n")
+                        else:
+                            print(Colors.GREEN + Settings.backpackObject.name + Colors.END + " don't have " + str(pizzaOnPlayerChoice) + " pizzas\n")
+                    return True
+                
+                if "drop" in player.input or "put" in player.input:
+                    pizzaOnPlayerChoice = self.get_pizza_on_player(player)
+                    error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
+                    
+                    if error_thrown == False:
+                        if player.inventory.get_number_of_pizza_in():
+                            self.check_player_pizza_to_give(player, Settings.backpackObject.inventory, pizzaOnPlayerChoice) #TODO: change function name, function do pick and drop
+                            print("(" + str(pizzaOnPlayerChoice) + " pizzas on " + Colors.GREEN + Settings.backpackObject.name + Colors.END + ")\n")
+                        else:
+                            print("You don't have any pizzas on you\n")
+                    
+                    return True
+
             else:
                 if "pick" in player.input or "take" in player.input:
                     pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
