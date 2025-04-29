@@ -74,7 +74,7 @@ class Gatekeeper(suburbsQuarter):
                             Settings.remove_orderes_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III)
 
                             print('\n"Thank you, you just made my shift way better"')
-                            Settings.print_tip_up(Suburbs_Tips.GATEKEEPER_HOT.value)
+                            self.print_tip_up(Suburbs_Tips.GATEKEEPER_HOT.value)
 
                             print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care"\nThe gate is now open')
                             self.gateOpen = True
@@ -92,7 +92,7 @@ class Gatekeeper(suburbsQuarter):
                             Settings.remove_orderes_for(Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III)
 
                             print('"Thank you, too bad its cold"')
-                            Settings.print_tip_up(Suburbs_Tips.GATEKEEPER_COLD.value)
+                            self.print_tip_up(Suburbs_Tips.GATEKEEPER_COLD.value)
 
                             print('"By the way, feel free to pass. Those rich folks over there do not pay me enough to care"\nThe gate is now open')
                             self.gateOpen = True

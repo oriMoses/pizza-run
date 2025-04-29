@@ -52,7 +52,7 @@ class TeenHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.II)
 
                                 print("thanks! Damm, that smells amazing")
-                                Settings.print_tip_up(Suburbs_Tips.TEEN_HOUSE_HOT.value)
+                                self.print_tip_up(Suburbs_Tips.TEEN_HOUSE_HOT.value)
 
                                 self.order_given = True
                             else:
@@ -68,7 +68,7 @@ class TeenHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.II)
 
                                 print("thanks! Damm, that's cold")
-                                Settings.print_tip_up(Suburbs_Tips.TEEN_HOUSE_COLD.value)
+                                self.print_tip_up(Suburbs_Tips.TEEN_HOUSE_COLD.value)
 
                                 self.order_given = True
                             else:

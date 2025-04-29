@@ -299,7 +299,3 @@ def street_in_boundary(streetPoition, streetNumberPosition):
             return False  
         
     return True
-
-def print_tip_up(tip_number):
-    print(Colors.YELLOW + "You got ", end='')
-    print(tip_number, "coin tip!" + Colors.END)

@@ -48,7 +48,7 @@ class YellowHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.IV)
 
                                 print('"that is what im talking about! happy new year!"')
-                                Settings.print_tip_up(Suburbs_Tips.YELLOW_HOUSE_HOT.value)
+                                self.print_tip_up(Suburbs_Tips.YELLOW_HOUSE_HOT.value)
 
                                 self.order_given = True
                             else:
@@ -64,7 +64,7 @@ class YellowHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.BUSH,Suburbs_Street_Number.IV)
 
                                 print("cold pizza… well, still pizza")
-                                Settings.print_tip_up(Suburbs_Tips.YELLOW_HOUSE_COLD.value)
+                                self.print_tip_up(Suburbs_Tips.YELLOW_HOUSE_COLD.value)
 
                                 self.order_given = True
                             else:

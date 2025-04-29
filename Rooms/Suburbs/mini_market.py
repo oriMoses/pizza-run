@@ -69,7 +69,8 @@ class MiniMarket(suburbsQuarter):
                             Settings.remove_orderes_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.IV)
 
                             print('"Perfect"')
-                            print(Suburbs_Tips.MINI_MARKET_HOT.value, " coin up tip\n")
+                            self.print_tip_up(Suburbs_Tips.MINI_MARKET_HOT.value)
+
                             self.order_given = True
                         else:
                             print("Thats not the correct order\n")
@@ -84,7 +85,8 @@ class MiniMarket(suburbsQuarter):
                             Settings.remove_orderes_for(Suburbs_Street_Name.LOVE,Suburbs_Street_Number.IV)
                             
                             print('"Thanks, kind of cold tho"')
-                            print(Suburbs_Tips.MINI_MARKET_COLD.value, " coin up tip\n")
+                            self.print_tip_up(Suburbs_Tips.MINI_MARKET_COLD.value)
+
                             self.order_given = True
                         else:
                             print("That's not the correct order")

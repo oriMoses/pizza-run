@@ -60,7 +60,7 @@ class BlueHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II)
 
                                 print("my my, what a wonderful pizza!")
-                                Settings.print_tip_up(Suburbs_Tips.BLUE_HOUSE_HOT.value)
+                                self.print_tip_up(Suburbs_Tips.BLUE_HOUSE_HOT.value)
 
                                 self.order_given = True
                             else:
@@ -75,7 +75,7 @@ class BlueHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.II)
 
                                 print("In my days, thay use to serve hot pizza")
-                                Settings.print_tip_up(Suburbs_Tips.BLUE_HOUSE_COLD.value)
+                                self.print_tip_up(Suburbs_Tips.BLUE_HOUSE_COLD.value)
                                 self.order_given = True
                             else:
                                 print("That's not the correct order")                                

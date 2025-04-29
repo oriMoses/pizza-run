@@ -52,7 +52,7 @@ class GreenHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.V)
 
                                 print('far out man!"')
-                                Settings.print_tip_up(Suburbs_Tips.GREEN_HOUSE_HOT.value)
+                                self.print_tip_up(Suburbs_Tips.GREEN_HOUSE_HOT.value)
 
                                 self.order_given = True
                             else:
@@ -68,7 +68,7 @@ class GreenHouse(suburbsQuarter):
                                 Settings.remove_orderes_for(Suburbs_Street_Name.TREE,Suburbs_Street_Number.V)
 
                                 print("hmm, thanks man")
-                                Settings.print_tip_up(Suburbs_Tips.GREEN_HOUSE_COLD.value)
+                                self.print_tip_up(Suburbs_Tips.GREEN_HOUSE_COLD.value)
 
                                 self.order_given = True
                             else:
