@@ -7,7 +7,7 @@ class suburbsQuarter:
     def dialog_circle():
         pass
 
-    def print_tip_up(tip_number):
+    def print_tip_up(self, tip_number):
         print(Colors.YELLOW + "You got ", end='')
         print(tip_number, "coin tip!" + Colors.END)
 

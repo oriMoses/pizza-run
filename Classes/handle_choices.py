@@ -143,10 +143,10 @@ class HandleInputs():
 
     def backpack(self, roomInventory, player):
         if "backpack" in player.input or "back pack" in player.input:
-            if self.deal_with_pick_and_drop(roomInventory, BACKPACK_ID, "delivery backpack", 1, player):
-                if player.quarter == "Suburbs":
-                    Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
-                    #TODO: add input legit for all maps
+            # if self.deal_with_pick_and_drop(roomInventory, BACKPACK_ID, "delivery backpack", 1, player):
+            #     if player.quarter == "Suburbs":
+            #         Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
+            #         #TODO: add input legit for all maps
             if "examine" in player.input:
                 if player.inventory.item_exist(BACKPACK_ID):
                     Settings.backpackObject.examine()
@@ -300,7 +300,7 @@ class HandleInputs():
             print("You don't have", pizza_id, "\n")
             return False
 
-    def get_number_of_(self, pizzasOnInventory, player):
+    def get_pizza_on_player_choice(self, player):
         pizzaOnPlayerChoice = 0
         if "1 " in player.input or "one" in player.input:
             pizzaOnPlayerChoice = 1
@@ -336,9 +336,15 @@ class HandleInputs():
             else:   
                 return HOW_MANY_PIZZA
 
+        return pizzaOnPlayerChoice
+    
+    def get_number_of_(self, pizzasOnInventory, player):
+        pizzaOnPlayerChoice = self.get_pizza_on_player_choice(player)
+        if pizzaOnPlayerChoice == HOW_MANY_PIZZA: return HOW_MANY_PIZZA
+
         if "pick" in player.input or "take" in player.input:
             if player.inventory.item_exist(BACKPACK_ID):
-                if (pizzasOnInventory + pizzaOnPlayerChoice) > MAX_PIZZA_ON_PLAYER_WITH_BACKPACK:
+                if (pizzasOnInventory + pizzaOnPlayerChoice) > (MAX_PIZZA_IN_BACKPACK + MAX_PIZZA_ON_PLAYER):
                     return TOO_MUCH_PIZZA_TO_CARRY
             else:
                 if (pizzasOnInventory + pizzaOnPlayerChoice) > MAX_PIZZA_ON_PLAYER:
