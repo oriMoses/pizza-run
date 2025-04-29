@@ -21,8 +21,12 @@ class Inventory():
     def move_items(self, item_id, toInventory, amount):
         if self.inventory[item_id]["stock_count"] - amount >= 0:
             self.inventory[item_id]["stock_count"] -= amount
-            toInventory.inventory[item_id]["stock_count"] += amount
-            return True
+            if toInventory.item_exist(item_id):
+                toInventory.inventory[item_id]["stock_count"] += amount
+                return True
+            else:
+                toInventory.add_item(item_id, self.inventory[item_id]["name"], self.inventory[item_id]["stock_count"], True)
+                return True
         else:
             return False
 

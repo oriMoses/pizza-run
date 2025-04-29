@@ -169,7 +169,8 @@ class HandleInputs():
                     return True
             
             if "use" in player.input:
-                Settings.hairDryerObject.use(roomInventory, player.inventory)
+                Settings.hairDryerObject.use(roomInventory, player.inventory, Settings.backpackObject.inventory, player)
+   
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True                
                 
 
@@ -396,7 +397,7 @@ class HandleInputs():
                 print("Don't even think about it")
                 return False
 
-            if self.move_pizzas_from(player.inventory, item_id, roomInventory, amount):
+            if self.move_pizzas_from(Settings.backpackObject.inventory, item_id, roomInventory, amount):
                 print("item dropped\n")
                 Settings.ShinyDiceObject.position = player.position
                 
