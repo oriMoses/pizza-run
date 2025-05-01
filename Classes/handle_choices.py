@@ -142,14 +142,15 @@ class HandleInputs():
 
 
     def backpack(self, roomInventory, player):
-        if not player.inventory.item_exist(BACKPACK_ID):
-            return False
 
         if "backpack" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, BACKPACK_ID, "delivery backpack", 1, player):
                 if player.quarter == "Suburbs":
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
             #         #TODO: add input legit for all maps
+            
+        # if not player.inventory.item_exist(BACKPACK_ID):
+        #     return False
             
             if "inventory" in player.input:
                 if Settings.backpackObject.inventory.inventory_empty(): 
