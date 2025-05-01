@@ -55,9 +55,10 @@ class Inventory():
                         print(Colors.GREEN + str(self.inventory[item]['stock_count']) + self.inventory[item]['name'] + Colors.END)
 
     def item_exist(self, item_id):
-        if item_id in self.inventory: #TODO: here not finding pizza in backpack inventory 
-            if self.inventory[item_id]['stock_count'] != 0:
-                return True
+        for item in self.inventory:
+            if item == item_id: #TODO: here not finding pizza in backpack inventory 
+                if self.inventory[item_id]['stock_count'] != 0:
+                    return True
 
         else:
             return False
@@ -96,7 +97,6 @@ class Inventory():
                 inventory.move_items(item_id, mapInstance.position[street_name_value][street_number_value].inventory, inventory.inventory[item_id]['stock_count'])
     
     def print_pizzas_on(self, inventory, player_on_vehacle):
-
         if inventory.item_exist(HOT_PIZZA_ID) and inventory.item_exist(COLD_PIZZA_ID):
             print("(" + str(inventory.get_amount(HOT_PIZZA_ID)) + Colors.RED + " H.P " + Colors.END + str(inventory.get_amount(COLD_PIZZA_ID)) + Colors.BLUE + " C.P" + Colors.END + ")")
         elif inventory.item_exist(HOT_PIZZA_ID):

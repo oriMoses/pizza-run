@@ -24,7 +24,9 @@ class Backpack(BasicItem):
         player = Player.getInstance()
         if player.position == self.position:
             print("\nThere's a " + "delivery " + Colors.GREEN + "backpack" + Colors.END + " on the floor ", end=' ')
-            self.inventory.print_pizzas_on(self.inventory)
+            self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle)
 
     def examine(self):
+        player = Player.getInstance()
         print("you can keep up to 10 pizzas in this bag, the bag will make sure the pizza stays hot!\nYou can drive with the backpack on you, or put it on a vehicle")
+        self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle)
