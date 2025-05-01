@@ -16,6 +16,10 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
         return f"..."
 
     def print_first_arrival(self):
+        player = Settings.player.getInstance()
+        if "look" in player.input:
+            print("It's the suburbs, nothing much here\nYou hear some unrelated to the game birds in the background")
+            self.inputLegit = True
         Settings.print_objects_in_room(self)
 
     def dialog_circle(self, player, handlePlayerInput):
@@ -35,7 +39,6 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
                 self.inputLegit = True
 
             if "look" in player.input:
-                print("It's the suburbs, nothing much here\nYou hear some unrelated to the game birds in the background")
                 self.print_first_arrival()
                 self.inputLegit = True
                 
