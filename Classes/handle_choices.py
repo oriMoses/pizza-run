@@ -213,7 +213,6 @@ class HandleInputs():
                 if Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].inputLegit == False:
                     return False
 
-
     def notebook(self, roomInventory, player):
         if "notebook" in player.input and "suburbs" in player.input:
             if not roomInventory.item_exist(SUBURBS_NOTEBOOK_ID) and not player.inventory.item_exist(SUBURBS_NOTEBOOK_ID) and not Settings.boxObject.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
@@ -464,7 +463,11 @@ class HandleInputs():
                     if error_thrown == False:
                         if Settings.bikeObject.inventory.get_number_of_pizza_in():
                             self.check_player_pizza_to_give(player, Settings.bikeObject.inventory, pizzaOnPlayerChoice)
-                            print("(" + str(pizzaOnPlayerChoice) + " pizzas on hands)\n")
+                            
+                            # if "hot" in player.input:
+                            #     print(Colors.RED + str(pizzaOnPlayerChoice) + "pizzas" + Colors.END + "(on hands)\n")
+                            # else:
+                            #     print(Colors.BLUE + str(pizzaOnPlayerChoice) + "pizzas" + Colors.END + "(on hands)\n")
                         else:
                             print(Colors.GREEN + Settings.bikeObject.name + Colors.END + " don't have " + str(pizzaOnPlayerChoice) + " pizzas\n")
                     return True
@@ -569,11 +572,11 @@ class HandleInputs():
                 if roomInventory.item_exist(COLD_PIZZA_ID):
                     if roomInventory.move_items(COLD_PIZZA_ID, player.inventory, pizzaOnPlayerChoice):
 
-                        print("x", abs(pizzaOnPlayerChoice), "cold pizza (on hands)\n")
+                        print(Colors.BLUE + "x" ,abs(pizzaOnPlayerChoice), "cold pizzas" + Colors.END + " (on hands)\n")
             elif "hot" in player.input:
                 if roomInventory.item_exist(HOT_PIZZA_ID):
                     if roomInventory.move_items(HOT_PIZZA_ID, player.inventory, pizzaOnPlayerChoice):
-                        print("x", abs(pizzaOnPlayerChoice), "hot pizza (on hands)\n")
+                        print(Colors.RED + "x", abs(pizzaOnPlayerChoice), "hot pizza" + Colors.END + " (on hands)\n")
             else:
                 if roomInventory.item_exist(COLD_PIZZA_ID):
                     player.input += " cold"
