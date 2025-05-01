@@ -90,9 +90,6 @@ def print_items_in_room(self):
                 else:
                     print_pizza_in_room(self)
                     itemInRoom = True
-        
-        # elif item[1].ID == SUBURBS_NOTEBOOK_ID or item[1].ID == BIKE_KEY_ID:
-        #     pass
         elif item[1].ID == HAIR_DRYER_ID or item[1].ID == PIZZA_LOCATOR_ID or item[1].ID == TRIPPER_GUIDE_ID or item[1].ID == WRIST_WATCH_ID or item[1].ID == BACKPACK_ID:
             if item[1].inShop:
                 pass

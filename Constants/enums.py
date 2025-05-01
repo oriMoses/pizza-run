@@ -18,11 +18,6 @@ class Colors(str, Enum):
     CROSSED = "\033[9m"
     END = "\033[0m"
     
-class pizza_temprature(Enum):
-    HOT = 0,
-    COLD = 1,
-    NOT_A_PIZZA = 2
-    
 class Suburbs_Street_Name(Enum):
     BUSH = 0
     LOVE = 1

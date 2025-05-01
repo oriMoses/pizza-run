@@ -203,8 +203,16 @@ class HandleInputs():
                 if player.inventory.item_exist(BIKE_KEY_ID):
                     Settings.bikeKeyObject.examine()
                 return True
-        if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit == False:
-            return False
+            if player.quarter == "Suburbs":
+                if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit == False:
+                    return False
+            elif player.quarter == "Skyscrapers":
+                if Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inputLegit == False:
+                    return False
+            elif player.quarter == "Shakedown":
+                if Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].inputLegit == False:
+                    return False
+
 
     def notebook(self, roomInventory, player):
         if "notebook" in player.input and "suburbs" in player.input:

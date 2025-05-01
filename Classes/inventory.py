@@ -1,12 +1,11 @@
-from Constants.enums import pizza_temprature
 from Constants.enums import Colors
 from Constants.constants import HOT_PIZZA_ID, COLD_PIZZA_ID
 class Inventory():
     def __init__(self):
         self.inventory = {}
 
-    def add_item(self, item_id, item_name, stock_count, showItem, pizza_temprature = pizza_temprature.NOT_A_PIZZA):
-        self.inventory[item_id] = {"name": item_name, "stock_count": stock_count,  "pizza_temprature": pizza_temprature, "show_item": showItem}
+    def add_item(self, item_id, item_name, stock_count, showItem):
+        self.inventory[item_id] = {"name": item_name, "stock_count": stock_count, "show_item": showItem}
 
     def move_item(self, item_id, toInventory):
         if item_id in self.inventory:
