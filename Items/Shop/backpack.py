@@ -22,9 +22,9 @@ class Backpack(BasicItem):
 
     def print_in_room(self):
         player = Player.getInstance()
-        if player.position == self.position:
-            print("\nThere's a " + "delivery " + Colors.GREEN + "backpack" + Colors.END + " on the floor ", end=' ')
-            self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle)
+#        if player.position == self.position:
+        print("\nThere's a " + "delivery " + Colors.GREEN + "backpack" + Colors.END + " on the floor ", end=' ')
+        self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle)
 
     def examine(self):
         player = Player.getInstance()

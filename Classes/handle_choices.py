@@ -142,13 +142,15 @@ class HandleInputs():
 
 
     def backpack(self, roomInventory, player):
-        if not player.inventory.item_exist(Settings.backpackObject.ID):
+        if not player.inventory.item_exist(BACKPACK_ID):
             return False
+
         if "backpack" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, BACKPACK_ID, "delivery backpack", 1, player):
                 if player.quarter == "Suburbs":
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
             #         #TODO: add input legit for all maps
+            
             if "inventory" in player.input:
                 if Settings.backpackObject.inventory.inventory_empty(): 
                     print("\n(inventory empty)\n")
@@ -164,8 +166,7 @@ class HandleInputs():
             
             if "use" in player.input:
                 print("Backpack in use")
-                Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
-
+                return True
         
     def hair_dryer(self, roomInventory, player):
         if "hair" in player.input and "dryer" in player.input:
@@ -302,7 +303,6 @@ class HandleInputs():
 
     def move_pizzas_from(self, from_inventory, pizza_id, to_Inventory, amount):
         if from_inventory.item_exist(pizza_id):
-
             if pizza_id == HOT_PIZZA_ID or pizza_id == COLD_PIZZA_ID:
                 from_inventory.move_items(pizza_id, to_Inventory, amount)
             else:
@@ -395,14 +395,14 @@ class HandleInputs():
             if self.is_player_in_miniMarket(player):
                 print("Don't even think about it")
                 return False
-            
+                            
             elif player.inventory.item_exist(item_id):
                 if "notebook" in player.input and Settings.SuburbsNotebookObject.inBox:
                     return True
                 if "key" in player.input and Settings.bikeKeyObject.inBox:
                     return True
                 print(Settings.bikeKeyObject.inBox)
-                print("You already have", item_name, "\n")
+                print("You already have " + Colors.GREEN + item_name + Colors.END + "\n")
             
             elif roomInventory.move_item(item_id, player.inventory):
                 print(Colors.GREEN + item_name + Colors.END + " added to your inventory\n")
@@ -415,9 +415,11 @@ class HandleInputs():
                 print("Don't even think about it")
                 return False
 
-            if self.move_pizzas_from(Settings.backpackObject.inventory, item_id, roomInventory, amount):
+            
+            if self.move_pizzas_from(Settings.player.inventory, item_id, roomInventory, amount):
                 print("item dropped\n")
-                Settings.ShinyDiceObject.position = player.position
+                
+                #Settings.ShinyDiceObject.position = player.position
                 
             return True
         else:
