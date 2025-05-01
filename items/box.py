@@ -23,9 +23,10 @@ class Box():
             print(Colors.GREEN + "bike key" + Colors.END+"\n")
             
         elif self.inventory.item_exist(SUBURBS_NOTEBOOK_ID):
-            print("You see the suburbs notebook\n")
+            print("You see the " + Colors.GREEN + "suburbs notebook\n" + Colors.END)
+            
         elif self.inventory.item_exist(BIKE_KEY_ID):
-            print("You see bike key\n")
+            print("You see " + Colors.GREEN + "bike key\n" + Colors.END)
         else:
             print("(box is empty)\n")
             
