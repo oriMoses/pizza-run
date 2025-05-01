@@ -69,15 +69,15 @@ class PizzaPlace():
                     self.inputLegit = True
 
             elif "north" in player.input:
-                print("There is a wall to the north\n")
+                print("There's a wall to the north\n")
                 player.input = ""
                 self.inputLegit = True
             elif "south" in player.input:
-                print("There is a wall to the south\n")
+                print("There's a wall to the south\n")
                 player.input = ""
                 self.inputLegit = True
             elif "east" in player.input:
-                print("There is a wall to the east\n")
+                print("There's a wall to the east\n")
                 player.input = ""
                 self.inputLegit = True
                 

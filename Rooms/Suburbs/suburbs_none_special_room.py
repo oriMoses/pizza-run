@@ -22,7 +22,6 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
         Settings.print_objects_in_room(self)
-        #self.inventory.print_room_inventory()
 
         while True:
             if Settings.goNextRoom:
@@ -31,12 +30,12 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
 
                 
             if "examine" in player.input and self.inventory.is_inventory_empty(): #TODO: does this line make sense?
-                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
+                print("It's the suburbs, nothing much here\nYou hear some unrelated to the game birds in the background")
                 self.print_first_arrival()
                 self.inputLegit = True
 
             if "look" in player.input:
-                print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
+                print("It's the suburbs, nothing much here\nYou hear some unrelated to the game birds in the background")
                 self.print_first_arrival()
                 self.inputLegit = True
                 

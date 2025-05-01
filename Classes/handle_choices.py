@@ -264,17 +264,19 @@ class HandleInputs():
         if "bike" in player.input:
             if "get down" in player.input or "leave" in player.input or "get off" in player.input:
                 if Settings.bikeObject.player_on_vehacle():
-                    print("you got down from ", Settings.bikeObject.name + "\n")
+                    print("You got down from ", Settings.bikeObject.name + "\n")
                     Settings.bikeObject.playerOnVehicle = False
+                    player.player_on_vehacle = False
                     return True
                 else:
-                    print("you are not on a", Settings.bikeObject.name + "\n")
+                    print("You are not on a", Settings.bikeObject.name + "\n")
                     return True
 
             elif "climb" in player.input or "ride" in player.input or "get on" in player.input:
                 if Settings.bikeObject.is_vehicle_availabe():
                     Settings.bikeObject.playerOnVehicle = True
-                    print("you are on the" + Colors.GREEN + Settings.bikeObject.name + Colors.END)
+                    player.player_on_vehacle = True
+                    print("You are on the" + Colors.GREEN + Settings.bikeObject.name + Colors.END)
                 return True
             
             elif ("turn" in player.input and "on" in player.input) or "start" in player.input:
@@ -444,7 +446,7 @@ class HandleInputs():
         if "pizza" in player.input or "pizzas" in player.input:
             if "bike" in player.input:
                 if "pick" in player.input or "take" in player.input:
-                    pizzasOnPlayer = self.get_all_pizza_from_(Settings.bikeObject.inventory)
+                    pizzasOnPlayer = self.get_all_pizza_from_(player.inventory)
                     pizzaOnPlayerChoice = self.get_number_of_(pizzasOnPlayer, player)
                     error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
 

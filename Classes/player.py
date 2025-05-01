@@ -7,7 +7,7 @@ class Player():
     score = 0
     input = ""
     quarter = "Suburbs"
-    
+    player_on_vehacle = False
     class playerHelper(): #this class make sure Player is a singletone and instantiate only once
         def __call__( self, *args, **kw ):
             if Player.instance is None:
@@ -17,9 +17,9 @@ class Player():
     getInstance = playerHelper()
 
     def __init__(self):
-        self.position = [3,3]
+        self.position = [3,2]
         self.inventory = Inventory()
-        self.inventory.add_item(COIN_ID, "coin", 100, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COIN_ID, "coin", 0, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 0, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(COLD_PIZZA_ID, "cold pizza",0, SHOW_ITEM_IN_ROOM)
         #self.inventory.add_item(HAIR_DRYER_ID, "hair dryer",1, SHOW_ITEM_IN_ROOM)
