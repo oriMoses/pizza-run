@@ -3,7 +3,7 @@ from Classes.player import Player
 from Constants.constants import *
 from Rooms.Suburbs.suburbs_none_special_room import SuburbsNoneSpecialRoom
 from Rooms.Suburbs.parking import Parking
-from Constants.enums import Colors
+from Constants.enums import Colors, quarter
 class HandleInputs():
     instance = None
     
@@ -28,7 +28,7 @@ class HandleInputs():
 
     def look_input(self, player):
         if "look" in player.input or "lookaround" in player.input or "lookup" in player.input:
-            if player.quarter == "Suburbs":
+            if player.quarter == quarter.SUBURBS:
                 if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom: #TODO: make same lines for Skyscrapers and Shakedown
                     print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
                 elif Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
@@ -37,11 +37,11 @@ class HandleInputs():
                 if player.position[0] == 3 and player.position[1] == 3:
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_pizza_in_pizza_place()
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
-            elif player.quarter == "Skyscrapers":
+            elif player.quarter == quarter.SKYSCRAPERS:
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].print_first_arrival()
                 Settings.print_objects_in_room(Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]])
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inputLegit = True
-            elif player.quarter == "Shakedown":
+            elif player.quarter == quarter.SHAKEDOWN:
                 Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].print_first_arrival()
                 Settings.print_objects_in_room(Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]])                
                 Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].inputLegit = True

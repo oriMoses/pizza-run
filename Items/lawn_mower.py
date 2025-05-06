@@ -1,11 +1,12 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
+from Constants.enums import quarter
 
 class LawnMower(BasicItem):
     def __init__(self, map):
         super().__init__(map.suburbs.position[4][4].location, LAWN_MOWER_ID)
-        self.quarter = "Suburbs"
+        self.quarter = quarter.SUBURBS
         self.turned_on = False
         self.player_riding = False
     def print_in_room(self):

@@ -74,8 +74,9 @@ def cool_pizzas_on(inventory):
     inventory.inventory[HOT_PIZZA_ID]['stock_count'] = 0
 
 def warm_pizzas_on(inventory):
-    inventory.inventory[HOT_PIZZA_ID]['stock_count'] += inventory.get_amount(COLD_PIZZA_ID) 
-    inventory.inventory[COLD_PIZZA_ID]['stock_count'] = 0
+    if type(inventory).__name__ == "bike":
+        inventory.inventory[HOT_PIZZA_ID]['stock_count'] += inventory.get_amount(COLD_PIZZA_ID) 
+        inventory.inventory[COLD_PIZZA_ID]['stock_count'] = 0
 
 def print_items_in_room(self):
     itemInRoom = False

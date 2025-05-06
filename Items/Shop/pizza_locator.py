@@ -1,12 +1,12 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
-from Constants.enums import Colors
+from Constants.enums import Colors, quarter
 
 class PizzaLocator(BasicItem):
     def __init__(self, position):
         super().__init__(position, PIZZA_LOCATOR_ID)
-        self.quarter = "Suburbs"
+        self.quarter = quarter.SUBURBS
         self.inShop = True
         self.price = 20
 

@@ -3,10 +3,10 @@ import Items.suburbsNotebook as Notebook
 import Items.Keys.bike_key as BikeKey
 from Classes.inventory import Inventory
 from Constants.constants import *
-from Constants.enums import Colors
+from Constants.enums import Colors, quarter
 class Box():
     def __init__(self):
-        self.quarter = "Suburbs"
+        self.quarter = quarter.SUBURBS
         self.position = 3,2
         self.ID = 100
         self.box_open = False

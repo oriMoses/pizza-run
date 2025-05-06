@@ -104,5 +104,5 @@ class Inventory():
         elif inventory.item_exist(COLD_PIZZA_ID):
             print("(" + str(inventory.get_amount(COLD_PIZZA_ID)) + Colors.BLUE + " C.P" + Colors.END + ")")
         if player_on_vehacle:
-            print("bike inventory!!#@R#@R@#R@#")            
+            print(Colors.GREEN + "Bike" + Colors.END + " inventory:")            
         print()

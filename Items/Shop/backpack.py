@@ -1,14 +1,14 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
-from Constants.enums import Colors
+from Constants.enums import Colors, quarter
 from Classes.inventory import Inventory
 from Classes.player import Player
 
 class Backpack(BasicItem):
     def __init__(self, position):
         super().__init__(position, BACKPACK_ID) 
-        self.quarter = "Suburbs"
+        self.quarter = quarter.SUBURBS
         self.inShop = True
         self.price = 7
         self.name = "Delivery Backpack"

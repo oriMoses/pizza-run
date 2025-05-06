@@ -7,7 +7,7 @@ from Constants.enums import *
 class SuburbsNotebook(BasicItem):
     def __init__(self, position):
         super().__init__(position, SUBURBS_NOTEBOOK_ID) 
-        self.quarter = "Suburbs"
+        self.quarter = quarter.SUBURBS
         self.orders = Settings.suburbsOrders
         self.inBox = True
 

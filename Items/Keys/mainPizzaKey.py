@@ -1,12 +1,12 @@
 import Classes.settings as Settings
 from Items.basic_item import BasicItem
 from Constants.constants import *
-from Constants.enums import Colors
+from Constants.enums import Colors, quarter
 
 class MainPizzaKey(BasicItem):
     def __init__(self, position):
         super().__init__(position, MainPizzaKey_ID)
-        self.quarter = "Suburbs"
+        self.quarter = quarter.SUBURBS
 
     def print_in_room(self):
         print("There's a " + Colors.GREEN + "main pizza key" + Colors.END + " on the floor" + Colors.END)
