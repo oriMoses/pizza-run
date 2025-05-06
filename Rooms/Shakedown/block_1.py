@@ -2,7 +2,7 @@ import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Constants.constants import *
 from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number, Colors
-from Classes.quarters import shakedownQuarter 
+from Classes.specific_quarters import shakedownQuarter 
 from Classes.player import Player
 
 class Block_1(shakedownQuarter):

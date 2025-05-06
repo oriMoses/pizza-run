@@ -2,7 +2,7 @@ import sys
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Constants.constants import *
-from Classes.quarters import shakedownQuarter 
+from Classes.specific_quarters import shakedownQuarter 
 
 class Somewhere(shakedownQuarter):
     def __init__(self, street, streetNumber):

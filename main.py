@@ -61,7 +61,7 @@ def choose_player_room(map, player, handlePlayerInput):
         choose_room_in_shakedown(map, player, handlePlayerInput)
             
 
-def main():    
+def main():
     map = Map.getInstance()
     player = Player.getInstance()
     handlePlayerInput = HandleInputs.getInstance()

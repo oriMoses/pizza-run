@@ -2,7 +2,7 @@ import sys
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Constants.constants import *
-from Classes.quarters import shakedownQuarter, skyscrapersQuarter
+from Classes.specific_quarters import shakedownQuarter, skyscrapersQuarter
 from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number, Colors, Shakedown_Tips, Skyscrapers_Street_Name, Skyscrapers_Street_Number
 
 class InfoBooth(shakedownQuarter):

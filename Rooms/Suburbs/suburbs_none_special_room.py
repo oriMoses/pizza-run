@@ -1,7 +1,7 @@
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Constants.constants import *
-from Classes.quarters import suburbsQuarter 
+from Classes.specific_quarters import suburbsQuarter 
 
 class SuburbsNoneSpecialRoom(suburbsQuarter):
     def __init__(self, street, streetNumber):

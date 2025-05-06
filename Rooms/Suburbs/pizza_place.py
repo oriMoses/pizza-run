@@ -1,11 +1,11 @@
-from Classes.quarters import suburbsQuarter
+from Classes.specific_quarters import suburbsQuarter
 from Classes.inventory import Inventory
 import Classes.settings as Settings
 from Doors.main_pizza_place_door import mainPizzaPlaceDoor
 from Constants.enums import Suburbs_Street_Number, Suburbs_Street_Name, Colors
 from Constants.constants import *
 #from colorama import just_fix_windows_console #Uses on windows builds, not working on mac
-class PizzaPlace():
+class PizzaPlace(suburbsQuarter):
     
     def __init__(self):
         #just_fix_windows_console() #Uses on windows builds, not working on mac

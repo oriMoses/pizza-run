@@ -1,4 +1,4 @@
-from Classes.quarters import skyscrapersQuarter, suburbsQuarter
+from Classes.specific_quarters import skyscrapersQuarter, suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors, Suburbs_Street_Name, Suburbs_Street_Number
