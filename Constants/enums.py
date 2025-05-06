@@ -1,5 +1,11 @@
 from enum import Enum
 
+class quarter():
+    SUBURBS = 0
+    SKYSCRAPERS = 1
+    SHAKEDOWN = 2
+    HOOD = 3
+
 class Colors(str, Enum):
     BLACK = "\033[0;30m"
     RED = "\033[0;31m"

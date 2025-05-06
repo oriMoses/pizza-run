@@ -1,7 +1,7 @@
 from Classes.specific_quarters import skyscrapersQuarter, suburbsQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors, Suburbs_Street_Name, Suburbs_Street_Number
+from Constants.enums import Skyscrapers_Street_Number, Skyscrapers_Street_Name, Colors, Suburbs_Street_Name, Suburbs_Street_Number, quarter
 from Constants.constants import *
 
 class TradeCenter(skyscrapersQuarter):
@@ -42,9 +42,9 @@ class TradeCenter(skyscrapersQuarter):
             if Settings.goNextRoom:
                 break
             player.input = input("> ").lower()
-
+                    
             if "north" in player.input:
-                player.quarter = "Suburbs"
+                player.quarter = quarter.SUBURBS
                 suburbsQuarter.__init__(self, [Suburbs_Street_Name.DUCK,Suburbs_Street_Number.III])
                 player.position[0] = 5
                 player.position[1] = 2

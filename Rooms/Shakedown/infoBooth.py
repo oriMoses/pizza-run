@@ -3,7 +3,7 @@ import Classes.settings as Settings
 from Classes.inventory import Inventory
 from Constants.constants import *
 from Classes.specific_quarters import shakedownQuarter, skyscrapersQuarter
-from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number, Colors, Shakedown_Tips, Skyscrapers_Street_Name, Skyscrapers_Street_Number
+from Constants.enums import Shakedown_Street_Name, Shakedown_Street_Number, Colors, Shakedown_Tips, Skyscrapers_Street_Name, Skyscrapers_Street_Number, quarter
 
 class InfoBooth(shakedownQuarter):
     def __init__(self):
@@ -45,7 +45,7 @@ class InfoBooth(shakedownQuarter):
             player.input = input("> ").lower()
 
             if "west" in player.input:
-                player.quarter = "Skyscrapers"
+                player.quarter = quarter.SKYSCRAPERS
                 #skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.SECOND,Skyscrapers_Street_Number.VII])
                 player.position[0] = 4
                 player.position[1] = 7

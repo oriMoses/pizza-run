@@ -1,7 +1,7 @@
 from Classes.specific_quarters import skyscrapersQuarter, shakedownQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Constants.enums import Colors, Skyscrapers_Street_Number, Skyscrapers_Street_Name, Shakedown_Street_Name, Shakedown_Street_Number 
+from Constants.enums import Colors, Skyscrapers_Street_Number, Skyscrapers_Street_Name, Shakedown_Street_Name, Shakedown_Street_Number, quarter
 from Constants.constants import *
 
 class SideRoad(skyscrapersQuarter):
@@ -42,19 +42,9 @@ class SideRoad(skyscrapersQuarter):
             if Settings.goNextRoom:
                 break
             player.input = input("> ").lower()
-
-            if player.position[0] == 0 and player.position[1] == 2:
-                if "north" in player.input:
-                    player.quarter = "Suburbs"
-                    player.position[0] = Skyscrapers_Street_Name.CRASH.value
-                    player.position[1] = Skyscrapers_Street_Number.III.value
-                    Settings.goNextRoom = True
-                    self.inputLegit = True
-                elif handlePlayerInput.player_input(self.inventory):
-                    self.inputLegit = True
             
-            elif (player.position[0] == 4 and player.position[1] == 6) and ("east" in player.input):
-                player.quarter = "Shakedown"
+            if (player.position[0] == 4 and player.position[1] == 6) and ("east" in player.input):
+                player.quarter = quarter.SHAKEDOWN
                 shakedownQuarter.__init__(self, [Shakedown_Street_Name.DUCK,Shakedown_Street_Number.III])
                 player.position[0] = 6
                 player.position[1] = 0

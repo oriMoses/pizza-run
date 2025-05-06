@@ -51,13 +51,13 @@ def choose_room_in_shakedown(map, player, handlePlayerInput):
 
     
 def choose_player_room(map, player, handlePlayerInput):
-    if player.quarter == "Suburbs":
+    if player.quarter == quarter.SUBURBS:
         choose_room_in_suburbs(map, player, handlePlayerInput)
 
-    elif player.quarter == "Skyscrapers":
+    elif player.quarter == quarter.SKYSCRAPERS:
         choose_room_in_skyscrapers(map, player, handlePlayerInput)
     
-    elif player.quarter == "Shakedown":
+    elif player.quarter == quarter.SHAKEDOWN:
         choose_room_in_shakedown(map, player, handlePlayerInput)
             
 

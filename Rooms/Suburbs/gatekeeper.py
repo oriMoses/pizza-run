@@ -1,7 +1,7 @@
 from Classes.specific_quarters import suburbsQuarter, skyscrapersQuarter
 import Classes.settings as Settings
 from Classes.inventory import Inventory
-from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number, Skyscrapers_Street_Name, Skyscrapers_Street_Number, Colors, Suburbs_Tips
+from Constants.enums import Suburbs_Street_Name, Suburbs_Street_Number, Skyscrapers_Street_Name, Skyscrapers_Street_Number, Colors, Suburbs_Tips, quarter
 from Constants.constants import *
 
 class Gatekeeper(suburbsQuarter):
@@ -114,7 +114,7 @@ class Gatekeeper(suburbsQuarter):
                     self.inputLegit = True
                     
             elif "south" in player.input and self.gateOpen:
-                player.quarter = "Skyscrapers"
+                player.quarter = quarter.SKYSCRAPERS
                 skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.MAIN,Skyscrapers_Street_Number.I])
                 player.position[0] = 2
                 player.position[1] = 0

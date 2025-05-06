@@ -13,7 +13,7 @@ from Items.box import Box
 from vehicles.bike import Bike
 from Classes.player import Player
 from Constants.constants import *
-from Constants.enums import Colors
+from Constants.enums import Colors, quarter
 
 shop_location = [10,10]
 mapInstance = None
@@ -28,15 +28,15 @@ def init_orders(map):
 def get_orders_for(streetPosition : int, addressPosition : int, player):
     global mapInstance
     orderAddress = [streetPosition.value, addressPosition.value]
-    if player.quarter == "Suburbs":
+    if player.quarter == quarter.SUBURBS:
         for order in suburbsOrders:
             if orderAddress == order[1]:
                 return order[0]
-    elif player.quarter == "Skyscrapers":
+    elif player.quarter == quarter.SKYSCRAPERS:
         for order in skyscrapersOrders:
             if orderAddress == order[1]:
                 return order[0]
-    elif player.quarter == "Shakedown":
+    elif player.quarter == quarter.SHAKEDOWN:
         for order in shakedownOrders:
             if orderAddress == order[1]:
                 return order[0]
@@ -62,7 +62,7 @@ def print_objects_in_room(self):
         counter += 1
     if print_vehicles_in_room(self) == NO_VEHICLES_IN_ROOM:
         counter += 1
-    if player.quarter == "Suburbs":
+    if player.quarter == quarter.SUBURBS:
         if player.position[0] == 3 and player.position[1] == 3:
             print_pizza_in_pizza_place(self)
             counter +=1
@@ -223,7 +223,7 @@ def get_street_number(street_number, player):
         return "VII"
 
 def get_street_name(street, player):
-    if player.quarter == "Suburbs":
+    if player.quarter == quarter.SUBURBS:
         if street == 0:
             return "Bush St. "
         elif street == 1:
@@ -236,7 +236,7 @@ def get_street_name(street, player):
             return "Tree St. "
         elif street == 5:
             return "Duck St. "
-    if player.quarter == "Skyscrapers":
+    if player.quarter == quarter.SKYSCRAPERS:
         if street == 0:
             return "Crash St. "
         elif street == 1:
@@ -247,7 +247,7 @@ def get_street_name(street, player):
             return "Second St. "
         elif street == 4:
             return "Luck St. "
-    if player.quarter == "Shakedown":
+    if player.quarter == quarter.SHAKEDOWN:
         if street == 0:
             return "Duck St. "
         elif street == 1:
@@ -266,7 +266,7 @@ def get_street_name(street, player):
 def street_in_boundary(streetPoition, streetNumberPosition):
     global player, world_map
     player = Player.getInstance()
-    if player.quarter == "Suburbs":
+    if player.quarter == quarter.SUBURBS:
         if streetPoition < SUBURBS_MIN_STREET_BOUNDARY or \
             streetPoition > SUBURBS_MAX_STREET_BOUNDARY:
             return False
@@ -274,7 +274,7 @@ def street_in_boundary(streetPoition, streetNumberPosition):
         if streetNumberPosition < SUBURBS_MIN_STREET_NUMBER_BOUNDARY or \
             streetNumberPosition > SUBURBS_MAX_STREET_NUMBER_BOUNDARY:
             return False
-    if player.quarter == "Skyscrapers":
+    if player.quarter == quarter.SKYSCRAPERS:
         if streetPoition < SKYSCRAPERS_MIN_STREET_BOUNDARY or \
             streetPoition > SKYSCRAPERS_MAX_STREET_BOUNDARY:
             return False
@@ -285,7 +285,7 @@ def street_in_boundary(streetPoition, streetNumberPosition):
         if type(world_map.skyscrapers.position[streetPoition][streetNumberPosition]).__name__ == "OutOfBounds":
             return False
         
-    if player.quarter == "Shakedown":
+    if player.quarter == quarter.SHAKEDOWN:
         if streetPoition < SHAKEDOWN_MIN_STREET_BOUNDARY or \
             streetPoition > SHAKEDOWN_MAX_STREET_BOUNDARY:
             return False
