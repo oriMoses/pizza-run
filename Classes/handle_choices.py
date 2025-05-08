@@ -157,7 +157,7 @@ class HandleInputs():
                     print("\n(inventory empty)\n")
                     return True
                 else:
-                    print("\nbackpack inventory:")
+                    print("\n" + Colors.GREEN + "Backpack" + Colors.END + " inventory:")
                     Settings.backpackObject.inventory.print_player_inventory()
                     return True
             if "examine" in player.input:

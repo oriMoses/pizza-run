@@ -34,6 +34,7 @@ class HippieHouse(suburbsQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
+#        print(self.name)
         self.unique_first_arrival()
 
         while True:
