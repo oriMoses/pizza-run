@@ -273,7 +273,7 @@ class HandleInputs():
         if "bike" in player.input:
             if "get down" in player.input or "leave" in player.input or "get off" in player.input:
                 if Settings.bikeObject.player_on_vehacle():
-                    print("You got down from ", Settings.bikeObject.name + "\n")
+                    print("You got off the " + Colors.GREEN + Settings.bikeObject.name + Colors.END + "\n")
                     Settings.bikeObject.playerOnVehicle = False
                     player.player_on_vehacle = False
                     return True
