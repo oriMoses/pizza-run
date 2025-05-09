@@ -285,7 +285,7 @@ class HandleInputs():
                 if Settings.bikeObject.is_vehicle_availabe():
                     Settings.bikeObject.playerOnVehicle = True
                     player.player_on_vehacle = True
-                    print("You are on the" + Colors.GREEN + Settings.bikeObject.name + Colors.END)
+                    print("You are on the " + Colors.GREEN + Settings.bikeObject.name + Colors.END)
                 return True
             
             elif ("turn" in player.input and "on" in player.input) or "start" in player.input:
