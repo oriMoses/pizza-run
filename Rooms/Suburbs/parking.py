@@ -42,17 +42,16 @@ class Parking(suburbsQuarter):
                 self.inputLegit = handlePlayerInput.player_input(Settings.boxObject.inventory)
             
             else:
-
                 if "box" in player.input:
                     if "examine" in player.input:
                         print("it's a regular cardbox")
                         self.inputLegit = True
                     
                     if ("pick up" in player.input or "take" in player.input) and ("notebook" not in player.input and "key" not in player.input):
-                        print("box is too heavy")
+                        print(Colors.GREEN + "Box" + Colors.END + " is too heavy\n")
                         self.inputLegit = True
                         
-                    if Settings.boxObject.box_open:
+                    elif Settings.boxObject.box_open:
                         if "open" in player.input:
                             print(Colors.BROWN + "(box already open)\n" + Colors.END)
                             Settings.boxObject.print_items_inside()
