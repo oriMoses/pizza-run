@@ -59,13 +59,13 @@ class PizzaPlace(suburbsQuarter):
                     if "notebook" in player.input:
                         return
                     else:
-                        print("You got 4 hours and 100 pizzas to deliver! Make sure you serve them hot! Now, get busy (the note is sticky, for some reason)\n")
+                        print('"You got 4 hours and 100 ' + Colors.RED + "piz" + Colors.BLUE + "zas" + Colors.END +' to deliver! Make sure you serve them hot! Now, get busy!" (the note is sticky, for some reason)\n')
                         self.inputLegit = True
                 elif "take" in player.input or "pick" in player.input:
-                    print("the note glued to the counter, you can't take it\n")
+                    print("The " + Colors.GREEN + "note" + Colors.END + " glued to the counter\nYou can't take it!\n")
                     self.inputLegit = True
                 elif "lick" in player.input:
-                    print("you start to feel sick and you don't want to lick it anymore")
+                    print("You start to feel sick and you don't want to lick it anymore")
                     self.inputLegit = True
 
             elif "north" in player.input:
