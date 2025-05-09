@@ -634,7 +634,7 @@ class HandleInputs():
         if Settings.bikeObject.playerOnVehicle:
             if player.quarter == "Suburbs":
                 if player.position == [3,2]:
-                    print("You can't ride bike to the pizza place")
+                    print("You can't drive " + Colors.GREEN + "Bike" + Colors.END + " into the pizza place")
                     return True
             if not Settings.bikeObject.can_vehicle_ride():
                 return True

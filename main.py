@@ -21,7 +21,7 @@ def choose_room_in_suburbs(map, player, handlePlayerInput):
         player.input = ""
         
         print(Colors.BOLD + Settings.get_address(player.position[0], player.position[1], player) + Colors.END)
-        print(map.suburbs.position[player.position[0]][player.position[1]])
+        print(map.suburbs.position[player.position[0]][player.position[1]]) #TODO: create and move to print_room_name()
 
     Settings.goNextRoom = False
     map.suburbs.position[player.position[0]][player.position[1]].dialog_circle(player, handlePlayerInput)
