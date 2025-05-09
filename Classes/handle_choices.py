@@ -273,7 +273,7 @@ class HandleInputs():
         if "bike" in player.input:
             if "get down" in player.input or "leave" in player.input or "get off" in player.input:
                 if Settings.bikeObject.player_on_vehacle():
-                    print("You got off the " + Colors.GREEN + Settings.bikeObject.name + Colors.END + "\n")
+                    print("You got off the   " + Colors.GREEN + Settings.bikeObject.name + Colors.END + "\n")
                     Settings.bikeObject.playerOnVehicle = False
                     player.player_on_vehacle = False
                     return True
@@ -545,7 +545,7 @@ class HandleInputs():
                 print("can't carry more than 5 pizzas")
             return True
         elif pizzaOnPlayerChoice == HOW_MANY_PIZZA:
-            print("be specific how many pizzas...\n")
+            print("Be specific, how many pizzas?\n")
             return True
         else:
             return False
