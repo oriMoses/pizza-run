@@ -16,7 +16,7 @@ class SuburbsNoneSpecialRoom(suburbsQuarter):
         return f"..."
 
     def print_first_arrival(self):
-        player = Settings.player.getInstance()
+        player = Settings.Player.getInstance()
         if "look" in player.input:
             print("It's the suburbs, nothing much here\nYou hear some unrelated to the game birds in the background")
             self.inputLegit = True

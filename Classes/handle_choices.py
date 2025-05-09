@@ -29,7 +29,9 @@ class HandleInputs():
     def look_input(self, player):
         if "look" in player.input or "lookaround" in player.input or "lookup" in player.input:
             if player.quarter == quarter.SUBURBS:
-                if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom: #TODO: make same lines for Skyscrapers and Shakedown
+                print(Colors.BOLD + Settings.get_address(player.position[0], player.position[1], player) + Colors.END)
+                print(Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]]) #TODO: create and move to print_room_name()
+                if Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == SuburbsNoneSpecialRoom:
                     print("It's the suburbs, nothing much here.\nyou hear some unrelated to the game birds in the background")
                 elif Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]] == Parking:
                     if "box" in player.input: return False
@@ -38,10 +40,19 @@ class HandleInputs():
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].print_pizza_in_pizza_place()
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
             elif player.quarter == quarter.SKYSCRAPERS:
+                if (player.position[0] == 4 and player.position[1] == 4) or (player.position[0] == 4 and player.position[1] == 5) or (player.position[0] == 3 and player.position[1] == 4) or (player.position[0] == 4 and player.position[1] == 3):
+                    pass
+                else:
+                    print(Colors.BOLD + Settings.get_address(player.position[0], player.position[1], player) + Colors.END) #TODO: create and move to print_room_name()
+                
+                print(Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]])
+
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].print_first_arrival()
                 Settings.print_objects_in_room(Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]])
                 Settings.mapInstance.skyscrapers.position[player.position[0]][player.position[1]].inputLegit = True
-            elif player.quarter == quarter.SHAKEDOWN:
+            elif player.quarter == quarter.SHAKEDOWN:        
+                print(Colors.BOLD + Settings.get_address(player.position[0], player.position[1], player) + Colors.END)
+                print(Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]]) #TODO: create and move to print_room_name()
                 Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].print_first_arrival()
                 Settings.print_objects_in_room(Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]])                
                 Settings.mapInstance.shakedown.position[player.position[0]][player.position[1]].inputLegit = True

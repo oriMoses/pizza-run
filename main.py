@@ -33,7 +33,7 @@ def choose_room_in_skyscrapers(map, player, handlePlayerInput):
         if (player.position[0] == 4 and player.position[1] == 4) or (player.position[0] == 4 and player.position[1] == 5) or (player.position[0] == 3 and player.position[1] == 4) or (player.position[0] == 4 and player.position[1] == 3):
             pass
         else:
-            print(Colors.BOLD + Settings.get_address(player.position[0], player.position[1], player) + Colors.END)
+            print(Colors.BOLD + Settings.get_address(player.position[0], player.position[1], player) + Colors.END) #TODO: create and move to print_room_name()
             
     print(map.skyscrapers.position[player.position[0]][player.position[1]])
 
@@ -44,7 +44,7 @@ def choose_room_in_shakedown(map, player, handlePlayerInput):
     if "give" not in player.input and "pizza" not in player.input:
         player.input = ""
         print(Colors.BOLD + Settings.get_address(player.position[0], player.position[1], player) + Colors.END)
-        print(map.shakedown.position[player.position[0]][player.position[1]])
+        print(map.shakedown.position[player.position[0]][player.position[1]]) #TODO: create and move to print_room_name()
 
     Settings.goNextRoom = False
     map.shakedown.position[player.position[0]][player.position[1]].dialog_circle(player, handlePlayerInput)
