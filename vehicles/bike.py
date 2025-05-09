@@ -21,8 +21,8 @@ class Bike(Vehicle):
 
     def examine(self):
         player = Player.getInstance()
-        print('''You see an old beat up bike with the logo of "PESENT GENFIELD"\nThere's a plastic box on the back, that can store up to 5 pizzas''')
+        print('''You see an old beat up ''' + Colors.GREEN + "Bike" + Colors.END + ''' with the logo of "PESENT GENFIELD"\nThere's a plastic box on the back, that can store up to 5 pizzas''')
         if self.inventory.inventory_empty():
-            print("\nNo pizza in bike")
+            print("\nNo pizza in " + Colors.GREEN + "Bike" + Colors.END)
         else:
             self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle)

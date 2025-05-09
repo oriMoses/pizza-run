@@ -19,7 +19,7 @@ class TeenHouse(suburbsQuarter):
         return f"Teen House"
 
     def print_first_arrival(self):
-        print("You see a family house, no cars in front.\n\nIt's sounds like there's about million teenagers inside")
+        print("You see a family house, no cars in front\n\nIt's sounds like there's about million teenagers inside")
         Settings.print_objects_in_room(self)
 
 
@@ -51,7 +51,7 @@ class TeenHouse(suburbsQuarter):
 
                                 Settings.remove_orderes_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.II)
 
-                                print("thanks! Damm, that smells amazing")
+                                print('"Thanks! Damm, that smells amazing"')
                                 self.print_tip_up(Suburbs_Tips.TEEN_HOUSE_HOT.value)
 
                                 self.order_given = True
@@ -67,7 +67,7 @@ class TeenHouse(suburbsQuarter):
 
                                 Settings.remove_orderes_for(Suburbs_Street_Name.FREEDOM,Suburbs_Street_Number.II)
 
-                                print("thanks! Damm, that's cold")
+                                print('''"Thanks! Damm, that's cold"''')
                                 self.print_tip_up(Suburbs_Tips.TEEN_HOUSE_COLD.value)
 
                                 self.order_given = True
