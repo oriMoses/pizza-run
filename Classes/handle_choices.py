@@ -485,7 +485,7 @@ class HandleInputs():
                 
                 if "drop" in player.input or "put" in player.input:
                     pizzaOnPlayerChoice = self.get_pizza_on_player(player)
-                    error_thrown = self.throw_errors(pizzaOnPlayerChoice, player)
+                    error_thrown = self.throw_errors(pizzaOnPlayerChoice+Settings.bikeObject.inventory.get_number_of_pizza_in(), player)
                     
                     if error_thrown == False:
                         if player.inventory.get_number_of_pizza_in():
@@ -548,12 +548,8 @@ class HandleInputs():
         elif pizzaOnPlayerChoice == NOT_ENOUGH_PIZZA_IN_INVENTORY:
             print("not enough pizza in inventory")
             return True
-        elif pizzaOnPlayerChoice == TOO_MUCH_PIZZA_TO_CARRY:
-            if player.inventory.item_exist(BACKPACK_ID):
-                print("can't carry more than 10 pizzas")
-                return True
-            else:
-                print("can't carry more than 5 pizzas")
+        elif pizzaOnPlayerChoice == TOO_MUCH_PIZZA_TO_CARRY or pizzaOnPlayerChoice > MAX_PIZZA_ON_PLAYER:
+            print("can't carry more than 5 pizzas")
             return True
         elif pizzaOnPlayerChoice == HOW_MANY_PIZZA:
             print("Be specific, how many pizzas?\n")
