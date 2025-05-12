@@ -192,7 +192,7 @@ class HandleInputs():
                     return True
             
             if "use" in player.input:
-                Settings.hairDryerObject.use(roomInventory, player.inventory, Settings.backpackObject.inventory, player)
+                Settings.hairDryerObject.use(roomInventory, player.inventory, Settings.bikeObject.inventory, Settings.backpackObject.inventory, player)
    
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True                
                 

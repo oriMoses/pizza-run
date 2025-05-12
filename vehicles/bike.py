@@ -17,7 +17,7 @@ class Bike(Vehicle):
         if not self.player_on_vehacle():
             if player.position == self.position:
                 print("\nThere's a delivery " + Colors.GREEN + self.name + Colors.END + " in here ", end=' ')
-                self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle)
+                self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle, Colors.GREEN + "Bike" + Colors.END)
 
     def examine(self):
         player = Player.getInstance()
@@ -25,4 +25,4 @@ class Bike(Vehicle):
         if self.inventory.inventory_empty():
             print("\nNo pizza in " + Colors.GREEN + "Bike" + Colors.END)
         else:
-            self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle)
+            self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle, Colors.GREEN + "Bike" + Colors.END)

@@ -27,12 +27,12 @@ class HairDryer(BasicItem):
             return True    
         
             
-    def use(self, roomInventory, playerInventory, bikeInventory, player):
+    def use(self, roomInventory, playerInventory, bikeInventory, backpackInventory, player):
         if player.inventory.item_exist(BACKPACK_ID):
-            if self.warm_pizzas_on(bikeInventory) == False and self.warm_pizzas_on(roomInventory) == False and self.warm_pizzas_on(playerInventory) == False:
+            if self.warm_pizzas_on(bikeInventory) == False and self.warm_pizzas_on(roomInventory) == False and self.warm_pizzas_on(playerInventory) == False and self.warm_pizzas_on(backpackInventory) == False:
                 print("Not enough cold pizza around\n")
         else:   
-            if self.warm_pizzas_on(roomInventory) == False and self.warm_pizzas_on(playerInventory) == False:
+            if self.warm_pizzas_on(roomInventory) == False and self.warm_pizzas_on(bikeInventory) == False and self.warm_pizzas_on(playerInventory) == False and self.warm_pizzas_on(backpackInventory) == False:
                 print("Not enough cold pizza around\n")
             else:
                 print("Voooooooom")
