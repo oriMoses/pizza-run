@@ -45,7 +45,6 @@ class BlueHouse(suburbsQuarter):
             player.input = input("> ").lower()
 
             if self.door_knocked:
-                self.door_knocked = False
                 if handlePlayerInput.give_pizza(player):
                     self.inputLegit = True
                     if self.order_given == False:
@@ -92,7 +91,7 @@ class BlueHouse(suburbsQuarter):
                     or "look at" in player.input:
                     print("They seem to be unmovable and indestructible. they still look at you")
 
-            elif "knock" in player.input:
+            if "knock" in player.input:
                 if "door" in player.input or "house" in player.input:
                     self.inputLegit = True
                     self.door_knocked = True

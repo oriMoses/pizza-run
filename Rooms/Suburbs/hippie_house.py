@@ -34,7 +34,6 @@ class HippieHouse(suburbsQuarter):
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
-#        print(self.name)
         self.unique_first_arrival()
 
         while True:
@@ -44,7 +43,6 @@ class HippieHouse(suburbsQuarter):
 
 
             if self.door_knocked:
-                self.door_knocked = False
                 if handlePlayerInput.give_pizza(player):
                     self.inputLegit = True
                     if self.order_given == False:
@@ -86,7 +84,7 @@ class HippieHouse(suburbsQuarter):
                     else:
                         print("order already given")
                         
-            elif "knock" in player.input: #TODO: move the check if knock door to function in Settings, and use it in every room
+            if "knock" in player.input: #TODO: move the check if knock door to function in Settings, and use it in every room
                 if "door" in player.input or "house" in player.input:
                     if Settings.bikeObject.player_on_vehacle():
                         print("You can't knock on door while on bike\n")

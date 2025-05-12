@@ -44,7 +44,6 @@ class PinkHouse(suburbsQuarter):
 
 
             if self.door_knocked:
-                self.door_knocked = False
                 if handlePlayerInput.give_pizza(player):
                     self.inputLegit = True
                     if self.order_given == False:
@@ -80,7 +79,7 @@ class PinkHouse(suburbsQuarter):
                     else:
                         print("order already given")
 
-            elif "knock" in player.input:
+            if "knock" in player.input:
                 if "door" in player.input or "house" in player.input:
                     self.door_knocked = True
                     print('You hear dogs barking and running\nbang!\n\nsomeone crashed on the door!\nThe door opens to a crack and a man shouts:\n“who are you? go away!”\n')

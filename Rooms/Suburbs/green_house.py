@@ -36,7 +36,6 @@ class GreenHouse(suburbsQuarter):
             player.input = input("> ").lower()
 
             if self.door_knocked:
-                self.door_knocked = False
                 if handlePlayerInput.give_pizza(player):
                     self.inputLegit = True
                     if self.order_given == False:
@@ -132,7 +131,7 @@ class GreenHouse(suburbsQuarter):
                     print("It looks like a regular casino dice. When shaken, a quiet metallic sound rings from inside.\nI wonder why…\n")
                     self.inputLegit = True
                     
-            elif "knock" in player.input:
+            if "knock" in player.input:
                 if "door" in player.input or "house" in player.input:
                     self.door_knocked = True
                     print('(door opened) \nA big cloud of smoke spread everywhere\nYou see two long-haired people with colorful clothes\n"Did we order pizza?"\n\n"Hah, guess we did"\n')

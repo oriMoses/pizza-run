@@ -32,7 +32,6 @@ class YellowHouse(suburbsQuarter):
             player.input = input("> ").lower()
 
             if self.door_knocked:
-                self.door_knocked = False
                 if handlePlayerInput.give_pizza(player):
                     self.inputLegit = True
                     if self.order_given == False:
