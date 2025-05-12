@@ -58,7 +58,6 @@ class Inventory():
             if item == item_id: #TODO: here not finding pizza in backpack inventory 
                 if self.inventory[item_id]['stock_count'] != 0:
                     return True
-
         else:
             return False
 

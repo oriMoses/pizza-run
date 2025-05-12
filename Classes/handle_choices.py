@@ -198,11 +198,14 @@ class HandleInputs():
                 
 
     def bike_key(self, roomInventory, player):
-        if "bike" in player.input and "key" in player.input and Settings.boxObject.box_open:
-            if not roomInventory.item_exist(BIKE_KEY_ID) and not player.inventory.item_exist(BIKE_KEY_ID):
-                print("you can not see the bike key around\n")
-                return True
-            
+        if "bike" in player.input and "key" in player.input:
+            if Settings.bikeKeyObject.inBox and not Settings.boxObject.box_open:
+                    print("you can not see the bike key around\n")
+                    return True
+            else:
+                if not roomInventory.item_exist(BIKE_KEY_ID) and not player.inventory.item_exist(BIKE_KEY_ID):
+                    print("you can not see the bike key around\n")
+                    return True
             if player.inventory.item_exist(BIKE_KEY_ID) or roomInventory.item_exist(BIKE_KEY_ID):
                 if self.deal_with_pick_and_drop(roomInventory, BIKE_KEY_ID, "bike key", 1, player):
                     Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
