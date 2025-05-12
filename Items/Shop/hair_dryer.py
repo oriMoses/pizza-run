@@ -18,22 +18,32 @@ class HairDryer(BasicItem):
     def examine(self):
         print("can heat cold pizza (probably not the original use of this device)\nno warranty\n")
 
-    def warm_pizzas_on(self, inventory):
-        if inventory.item_exist(COLD_PIZZA_ID) == False and inventory.item_exist(HOT_PIZZA_ID) == False:
-            return False
-        else:
-            inventory.inventory[HOT_PIZZA_ID]['stock_count'] += inventory.inventory[COLD_PIZZA_ID]['stock_count'] 
-            inventory.inventory[COLD_PIZZA_ID]['stock_count'] = 0    
-            return True    
+    def warm_pizzas_on(self, roomInventory, bike, player, backpack):
+        items = [bike, backpack]
+        inventories = [roomInventory, player.inventory]
+        pizza_warmed = False
         
+        for object in items:
+            if object == backpack: 
+                if object.inShop:
+                    pass
+            elif object.position == player.position:
+                if object.inventory.item_exist(COLD_PIZZA_ID):
+                    object.inventory.update_item(HOT_PIZZA_ID, object.inventory.get_amount(HOT_PIZZA_ID) + object.inventory.get_amount(COLD_PIZZA_ID))
+                    
+                    object.inventory.update_item(COLD_PIZZA_ID, 0)
+                    pizza_warmed = True
             
-    def use(self, roomInventory, playerInventory, bikeInventory, backpackInventory, player):
-        if player.inventory.item_exist(BACKPACK_ID):
-            if self.warm_pizzas_on(bikeInventory) == False and self.warm_pizzas_on(roomInventory) == False and self.warm_pizzas_on(playerInventory) == False and self.warm_pizzas_on(backpackInventory) == False:
-                print("Not enough cold pizza around\n")
-        else:   
-            if self.warm_pizzas_on(roomInventory) == False and self.warm_pizzas_on(bikeInventory) == False and self.warm_pizzas_on(playerInventory) == False and self.warm_pizzas_on(backpackInventory) == False:
-                print("Not enough cold pizza around\n")
-            else:
-                print("Voooooooom")
-                print("All pizzas in room turned hot\n")
+        for inventory in inventories:
+            if inventory.item_exist(COLD_PIZZA_ID):
+                inventory.update_item(HOT_PIZZA_ID, inventory.get_amount(HOT_PIZZA_ID) + inventory.get_amount(COLD_PIZZA_ID))
+                inventory.update_item(COLD_PIZZA_ID, 0)
+                pizza_warmed = True
+        return pizza_warmed
+        
+    def use(self, roomInventory, player, bike, backpack):
+        if self.warm_pizzas_on(roomInventory, bike, player, backpack) == False:            
+            print("Not enough cold pizza around\n")
+        else:
+            print("Voooooooom")
+            print("All pizzas in room turned hot\n")
