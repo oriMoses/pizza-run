@@ -61,3 +61,10 @@ class Vehicle():
 
     def examine(self):
         pass
+    
+    def print_in_room(self):
+        player = Player.getInstance()
+        if not self.player_on_vehacle():
+            if player.position == self.position:
+                print("\nThere's a delivery " + Colors.GREEN + self.name + Colors.END + " in here ", end=' ')
+                self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle, Colors.GREEN + self.name + Colors.END)

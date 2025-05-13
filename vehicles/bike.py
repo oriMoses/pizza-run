@@ -6,19 +6,11 @@ from Classes.player import Player
 from Constants.enums import Colors
 class Bike(Vehicle):
     def __init__(self, map):
-        super().__init__([3,2], BIKE_ID, MAX_PIZZA_ON_BIKE, "Bike", BIKE_KEY_ID)
+        super().__init__([3,2], BIKE_ID, MAX_PIZZA_ON_BIKE, "Delivery Bike", BIKE_KEY_ID)
         self.quarter = "Suburbs"
 
     def __str__(self):
-        return f"bike"
-
-    def print_in_room(self):
-        player = Player.getInstance()
-        if not self.player_on_vehacle():
-            if player.position == self.position:
-                print("\nThere's a delivery " + Colors.GREEN + self.name + Colors.END + " in here ", end=' ')
-                self.inventory.print_pizzas_on(self.inventory, player.player_on_vehacle, Colors.GREEN + "Bike" + Colors.END)
-
+        return f"Delivery Bike"
     def examine(self):
         player = Player.getInstance()
         print('''You see an old beat up ''' + Colors.GREEN + "Bike" + Colors.END + ''' with the logo of "PESENT GENFIELD"\nThere's a plastic box on the back, that can store up to 5 pizzas''')
