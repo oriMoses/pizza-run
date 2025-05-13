@@ -120,13 +120,18 @@ class HandleInputs():
                 return True
 
     def wrist_watch(self, roomInventory, player):
-        if "wrist watch" in player.input:
+        if "wrist" in player.input and "watch" in player.input:
             if self.deal_with_pick_and_drop(roomInventory, WRIST_WATCH_ID, "wrist watch", 1, player):
                 Settings.mapInstance.suburbs.position[player.position[0]][player.position[1]].inputLegit = True
 
             if "examine" in player.input:
                 if player.inventory.item_exist(WRIST_WATCH_ID):
-                    Settings.wristWatchObject.examine()
+                    Settings.WristWatchObject.examine()
+                return True
+            
+            if "use" in player.input:
+                if player.inventory.item_exist(WRIST_WATCH_ID):
+                    Settings.WristWatchObject.use()
                 return True
 
     def tripper_guide(self, roomInventory, player):

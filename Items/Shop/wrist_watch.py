@@ -16,4 +16,8 @@ class WristWatch(BasicItem):
         print("There's a " + Colors.GREEN + "wrist watch" + Colors.END + " on the floor" + Colors.END)
 
     def examine(self):
-        print("It tells the time.")
+        print("It tells the time\n")
+    
+    def use(self):
+        print("Time is an illusion especially when you deliver pizza\n")
+        

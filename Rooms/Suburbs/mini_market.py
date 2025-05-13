@@ -142,7 +142,7 @@ class MiniMarket(suburbsQuarter):
                                 print('"sorry bud, come back when you got enough money"\n')
                                 break
 
-                        elif "wrist watch" in player.input:
+                        elif "wrist" in player.input and "watch" in player.input:
                             if not self.inventory.item_exist(Settings.BACKPACK_ID):
                                 print ("item not in shop\n")
                             elif player.inventory.get_amount(Settings.COIN_ID) >= Settings.WristWatchObject.price:
