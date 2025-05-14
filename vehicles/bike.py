@@ -11,6 +11,7 @@ class Bike(Vehicle):
 
     def __str__(self):
         return f"Delivery Bike"
+    
     def examine(self):
         player = Player.getInstance()
         print('''You see an old beat up ''' + Colors.GREEN + "Bike" + Colors.END + ''' with the logo of "PESENT GENFIELD"\nThere's a plastic box on the back, that can store up to 5 pizzas''')

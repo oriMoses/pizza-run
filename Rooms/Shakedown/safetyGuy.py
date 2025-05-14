@@ -7,7 +7,7 @@ from Constants.enums import Colors
 
 class SafetyGuy(shakedownQuarter):
     def __init__(self):
-        shakedownQuarter.__init__(self, [Shakedown_Street_Name.TIME,Shakedown_Street_Number.VII])
+        shakedownQuarter.__init__(self, [Shakedown_Street_Name.TIME,Shakedown_Street_Number.VI])
         self.firstArrival = True
         self.inputLegit = False
         self.inventory = Inventory()
@@ -39,7 +39,50 @@ class SafetyGuy(shakedownQuarter):
                 break
             player.input = input("> ").lower()
 
-                
+
+            if handlePlayerInput.give_pizza(player):
+                self.inputLegit = True
+                if self.order_given == False:
+                    numberOfPizza = Settings.howMuchPizza(self, player)
+                    if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
+                        orders = Settings.get_orders_for(Shakedown_Street_Name.TIME,Shakedown_Street_Number.VI, player)
+                        if orders == numberOfPizza:
+                            
+                            player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Shakedown_Tips.SAFETY_GUY_HOT.value)
+
+                            Settings.remove_orderes_for(Shakedown_Street_Name.TIME,Shakedown_Street_Number.VI)
+
+                            print('\n"A pizza? all right!\n A token for your might!"')
+                            print("You got 2 coin tip! ... and some blue paper clips?\n")
+                            #TODO: give player blue paper clips
+
+                            self.order_given = True
+                        else:
+                            print("Thats not the correct order\n")
+
+                    elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
+                        orders = Settings.get_orders_for(Shakedown_Street_Name.TIME,Shakedown_Street_Number.VI, player)
+                        if orders == numberOfPizza:
+
+                            player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Shakedown_Tips.SAFETY_GUY_COLD.value)
+
+                            Settings.remove_orderes_for(Shakedown_Street_Name.TIME,Shakedown_Street_Number.VI)
+
+                            print('"A pizza? all right!\n A token for your might!"')
+                            print("You got 1 coin tip! ... and some blue paper clips?\n")
+                            #TODO: add blue paper clips to player 
+                            self.order_given = True
+                        else:
+                            print("That's not the correct order\n")
+                    else:
+                        print("Not enough pizza in inventory\n")
+                else:
+                    print("order already given")
+                    self.inputLegit = True
+
+
             if "examine" in player.input and self.inventory.is_inventory_empty():
                 self.print_first_arrival()
                 self.inputLegit = True

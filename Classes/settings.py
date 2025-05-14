@@ -23,7 +23,7 @@ def init_orders(map):
     mapInstance = map
     suburbsOrders = [(5, [0,0]),  (3, [1,0]), (5, [2,1]), (3, [4,1]), (1, [5,2]), (2, [0,3]), (1, [1,3]), (1, [2,4]), (1, [4,4])]
     skyscrapersOrders = [(30, [3,4]),  (30, [4,3])]
-    shakedownOrders = [(5, [0,3]),  (2, [3,0]), (1, [3,1]), (1, [3,4]), (12, [3,5]), (2, [5,3]), (1, [6, 0]), (1, [6,5])]
+    shakedownOrders = [(5, [0,3]),  (2, [3,0]), (1, [3,1]), (1, [3,4]), (12, [3,5]), (2, [5,3]), (1, [5,5]), (1, [6, 0])]
 
 def get_orders_for(streetPosition : int, addressPosition : int, player):
     global mapInstance
