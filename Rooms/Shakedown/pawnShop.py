@@ -30,7 +30,54 @@ class PawnShop(shakedownQuarter):
                 break
             player.input = input("> ").lower()
 
-                
+
+            if handlePlayerInput.give_pizza(player):
+                self.inputLegit = True
+                if self.order_given == False:
+                    numberOfPizza = Settings.howMuchPizza(self, player)
+                    print('"Oh! I see you got some pizza..."')
+                    if player.inventory.pizza_exists(numberOfPizza, HOT_PIZZA_ID):
+                        orders = Settings.get_orders_for(Shakedown_Street_Name.SHAKEDOWN,Shakedown_Street_Number.I, player)
+                        if orders == numberOfPizza:
+                            
+                            player.inventory.update_item(Settings.HOT_PIZZA_ID, player.inventory.get_amount(Settings.HOT_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Shakedown_Tips.PAWN_SHOP_HOT.value)
+
+                            Settings.remove_orderes_for(Shakedown_Street_Name.SHAKEDOWN,Shakedown_Street_Number.I)
+
+                            print('"It smells wonderful, thank you!"')
+                            
+                            self.print_tip_up(Shakedown_Tips.PAWN_SHOP_HOT.value)
+                            print()
+                            #TODO: give player blue paper clips
+
+                            self.order_given = True
+                        else:
+                            print("Thats not the correct order\n")
+
+                    elif player.inventory.pizza_exists(numberOfPizza, COLD_PIZZA_ID):
+                        orders = Settings.get_orders_for(Shakedown_Street_Name.SHAKEDOWN,Shakedown_Street_Number.I, player)
+                        if orders == numberOfPizza:
+
+                            player.inventory.update_item(Settings.COLD_PIZZA_ID, player.inventory.get_amount(Settings.COLD_PIZZA_ID) - numberOfPizza)
+                            player.inventory.update_item(Settings.COIN_ID, player.inventory.get_amount(Settings.COIN_ID) + Shakedown_Tips.PAWN_SHOP_COLD.value)
+
+                            Settings.remove_orderes_for(Shakedown_Street_Name.SHAKEDOWN,Shakedown_Street_Number.I)
+
+                            print('"Thanks!"')
+                            self.print_tip_up(Shakedown_Tips.PAWN_SHOP_COLD.value)
+                            print()
+
+                            #TODO: add blue paper clips to player 
+                            self.order_given = True
+                        else:
+                            print("That's not the correct order\n")
+                    else:
+                        print("Not enough pizza in inventory\n")
+                else:
+                    print("order already given")
+                    self.inputLegit = True
+
             if "examine" in player.input and self.inventory.is_inventory_empty():
                 print("It's the skyscrapers, you see tall buildings around.\n")
                 self.print_first_arrival()
