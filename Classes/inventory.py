@@ -46,6 +46,8 @@ class Inventory():
                 print(Colors.BLUE + str(self.inventory[item]['stock_count']) + ' '+ self.inventory[item]['name'] + Colors.END)
             elif "hot pizza" in self.inventory[item]['name'] and self.inventory[item]['stock_count'] != 0:
                 print(Colors.RED + str(self.inventory[item]['stock_count']) + ' ' + self.inventory[item]['name'] + Colors.END)
+            elif "coin" in self.inventory[item]['name'] and self.inventory[item]['stock_count'] != 0:
+                print(Colors.YELLOW + str(self.inventory[item]['stock_count']) + ' ' + self.inventory[item]['name'] + Colors.END)
             else:
                 if self.inventory[item]['stock_count'] != 0:
                     if self.inventory[item]['stock_count'] == 1:
