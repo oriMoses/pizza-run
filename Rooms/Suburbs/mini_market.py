@@ -107,7 +107,7 @@ class MiniMarket(suburbsQuarter):
                 if "no" in player.input:
                     return False
                 
-                print("""I've got some stuff you might find useful"\n""")
+                print('''"I've got some stuff you might find useful"\n''')
                 for item in enumerate(Settings.shopItemList):
                     if item[1].inShop == True:
                         item[1].print_in_shop()

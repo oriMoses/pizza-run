@@ -3,7 +3,7 @@ from Constants.constants import *
 from Constants.enums import quarter
 
 class Player():
-    quarter = quarter.SHAKEDOWN
+    quarter = quarter.SUBURBS
     player_on_vehacle = False
     instance = None
     position = None
@@ -18,7 +18,7 @@ class Player():
     getInstance = playerHelper()
 
     def __init__(self):
-        self.position = [6,5]
+        self.position = [1,0]
         self.inventory = Inventory()
         self.inventory.add_item(COIN_ID, "coin", 100, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 0, SHOW_ITEM_IN_ROOM)
