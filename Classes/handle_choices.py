@@ -551,13 +551,13 @@ class HandleInputs():
 
     def throw_errors(self, pizzaOnPlayerChoice, player):
         if pizzaOnPlayerChoice ==  NUMBER_OF_PIZZA_MUST_BE_NAMED:
-            print("number of pizza must be named")
+            print("number of pizza must be named\n")
             return True
         elif pizzaOnPlayerChoice == NOT_ENOUGH_PIZZA_IN_INVENTORY:
-            print("not enough pizza in inventory")
+            print("not enough pizza in inventory\n")
             return True
         elif pizzaOnPlayerChoice == TOO_MUCH_PIZZA_TO_CARRY or pizzaOnPlayerChoice > MAX_PIZZA_ON_PLAYER:
-            print("can't carry more than 5 pizzas")
+            print("can't carry more than 5 pizzas\n")
             return True
         elif pizzaOnPlayerChoice == HOW_MANY_PIZZA:
             print("Be specific, how many pizzas?\n")
