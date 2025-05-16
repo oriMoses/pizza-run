@@ -113,15 +113,18 @@ class Gatekeeper(suburbsQuarter):
                     print('hi there!\n')
                     self.inputLegit = True
                     
-            elif "south" in player.input and self.gateOpen:
-                player.quarter = quarter.SKYSCRAPERS
-                skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.MAIN,Skyscrapers_Street_Number.I])
-                player.position[0] = 2
-                player.position[1] = 0
-                Settings.goNextRoom = True
+            elif "south" in player.input: 
+                if self.gateOpen:
+                    player.quarter = quarter.SKYSCRAPERS
+                    skyscrapersQuarter.__init__(self, [Skyscrapers_Street_Name.MAIN,Skyscrapers_Street_Number.I])
+                    player.position[0] = 2
+                    player.position[1] = 0
+                    Settings.goNextRoom = True
+                    print()
+                else:
+                    print("The gate is closed! (for now)\n")
                 self.inputLegit = True
-                print()
-            
+                
             elif handlePlayerInput.player_input(self.inventory):
                 self.inputLegit = True
                 
