@@ -15,6 +15,10 @@ class MainRoad(skyscrapersQuarter):
     def __str__(self):
         return f"Main road"
 
+    def print_first_arrival(self):
+        print("Buildings all around\n\nNo where to go but the road", end='')
+        Settings.print_objects_in_room(self)
+        
     def dialog_circle(self, player, handlePlayerInput):
         Settings.cool_pizzas_on(player.inventory)
         Settings.cool_pizzas_on(self.inventory)
