@@ -20,8 +20,8 @@ class Player():
     def __init__(self):
         self.position = [3,3]
         self.inventory = Inventory()
-        self.inventory.add_item(COIN_ID, "coin", 100, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COIN_ID, "coin", 0, SHOW_ITEM_IN_ROOM)
         self.inventory.add_item(HOT_PIZZA_ID, "hot pizza", 0, SHOW_ITEM_IN_ROOM)
-        self.inventory.add_item(COLD_PIZZA_ID, "cold pizza",5, SHOW_ITEM_IN_ROOM)
-        self.inventory.add_item(HAIR_DRYER_ID, "hair dryer",1, SHOW_ITEM_IN_ROOM)
+        self.inventory.add_item(COLD_PIZZA_ID, "cold pizza",0, SHOW_ITEM_IN_ROOM)
+        #self.inventory.add_item(HAIR_DRYER_ID, "hair dryer",1, SHOW_ITEM_IN_ROOM)
         #self.inventory.add_item(BACKPACK_ID, "delivery backpack",1, SHOW_ITEM_IN_ROOM)
